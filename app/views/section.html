@@ -1,0 +1,28 @@
+<form role="form" ng-submit="updateSection()">
+	<div class="form-group">
+		<label for="heading">Title</label>
+		<input type="text" class="form-control" id="heading" ng-model="section.heading">
+	</div>
+	<div class="form-group">
+		<label for="text">Text</label>
+		<textArea type="text" class="form-control" id="text" ng-model="section.text"></textArea>
+	</div>
+
+	<p></p>
+	<div>UpdatedBy: {{section.updatedBy}}</div>
+	<div>UpdatedDate: {{section.updatedDate | date}}</div>
+	<p></p>
+	<div>CreatedBy: {{section.createdBy}}</div>
+	<div>CreatedDate: {{section.createdDate | date}}</div>
+	<p></p>
+
+		<div class="form-group">
+		<label>Recommendations:</label>
+		<div ng-repeat="recommendation in section.recommendations">			
+			<a href="#/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</a>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Lagre</button>
+</form>
+

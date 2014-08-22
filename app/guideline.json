@@ -1,0 +1,169 @@
+{
+  "authors": [{
+    "authorId": 1,
+    "name": "Håvar Stavseth",
+    "phoneNr": "+47 99317987",
+    "adress": "St Olavs Plass",
+    "email": "has@steria.no"
+  }],
+  "institutions": [],
+  "sections": [{
+    "recommendations": [{
+      "emrInfo": [{
+        "emrInfoId": 1,
+        "name": "EmrCode1"
+      },
+      {
+        "emrInfoId": 2,
+        "name": "EmrCode2"
+      }],
+      "keyInfo": [{
+        "keyInfoId": 1
+      }],
+      "picos": [{
+        "burdenOfTreatments": [],
+        "conflictOfInterests": [],
+        "picoCodes": [{
+          "taxonomyCodes": [{
+            "taxonomyCodeId": 1,
+            "code": "Z39.1",
+            "name": "Pleie og undersøkelse av ammende mor",
+            "schemaSystem": "ICD-10",
+            "schemaId": "ICD-10"
+          },
+          {
+            "taxonomyCodeId": 2,
+            "code": "O91.0",
+            "name": "Infeksjon i brystvorte i forbindelse med fødsel",
+            "schemaSystem": "ICD-10",
+            "schemaId": "ICD-10"
+          },
+          {
+            "taxonomyCodeId": 3,
+            "code": "O91.1",
+            "name": "Abscess i bryst i forbindelse med fødsel",
+            "schemaSystem": "ICD-10",
+            "schemaId": "ICD-10"
+          },
+          {
+            "taxonomyCodeId": 4,
+            "code": "O91.2",
+            "name": "Ikke-purulent mastitt i forbindelse med fødsel",
+            "schemaSystem": "ICD-10",
+            "schemaId": "ICD-10"
+          }],
+          "picoCodeId": 1,
+          "picoType": 0
+        }],
+        "picoContinousOutcomes": [],
+        "picoOutcomes": [],
+        "picoId": 1,
+        "control": "Fullamming 4 md og fortsatt amming til 6 md med tillegg av annen kost.",
+        "intervention": "Fullamming til 6 måneder",
+        "outcome": "",
+        "population": "Friske spedbarn i Norge og deres mødre",
+        "summary": "Vil fullamming i 6 md sammenliknet med kortere fullammingsperiode (til 4 md og deretter tilleggskost sammen med morsmelk til 6 md) ha betydning for helsen hos barn (ev. mor) målt ved utvalgte utfall? ",
+        "sortOrder": 1,
+        "isDeleted": false
+      }],
+      "recommendationId": 1,
+      "heading": "Morsmelk som eneste mat frem til 6 måneders alder",
+      "sortOrder": 1,
+      "text": "I første levehalvår gir morsmelk all næring barnet trenger, med unntak av vitamin D. Det er ingen grunn til å gi barnet annen mat og drikke enn morsmelk og tilskudd av vitamin D frem til 6 måneders alder, dersom spedbarnet vokser tilfredsstillende og mor ønsker å fullamme. Fast føde bør introduseres senest fra 6 måneders alder.",
+      "isDeleted": false
+    },
+    {
+      "emrInfo": [],
+      "keyInfo": [],
+      "picos": [{
+        "burdenOfTreatments": [],
+        "conflictOfInterests": [],
+        "picoCodes": [{
+          "taxonomyCodes": [],
+          "picoCodeId": 2,
+          "picoType": 0
+        }],
+        "picoContinousOutcomes": [],
+        "picoOutcomes": [],
+        "picoId": 2,
+        "sortOrder": 2,
+        "isDeleted": false
+      }],
+      "recommendationId": 2,
+      "heading": "Morsmelk og introduksjon av fast føde fra tidligst 4 måneders alder",
+      "sortOrder": 0,
+      "text": "Barn som får morsmelk, kan fra tidligst 4 måneders alder gis fast føde. Spedbarnets kost skal fortsatt hovedsakelig bestå av morsmelk. Årsaker til å begynne med fast føde kan være at barnet ikke vokser tilfredsstillende, at barnet viser tydelig interesse for familiens mat, eller at mor av ulike andre årsaker ønsker det.",
+      "isDeleted": false
+    },
+    {
+      "emrInfo": [],
+      "keyInfo": [],
+      "picos": [{
+        "burdenOfTreatments": [],
+        "conflictOfInterests": [],
+        "picoCodes": [{
+          "taxonomyCodes": [{
+            "taxonomyCodeId": 5,
+            "code": "P92.5",
+            "name": "Problem med brysternæring hos nyfødt",
+            "schemaSystem": "ICD-10",
+            "schemaId": "ICD-10"
+          },
+          {
+            "taxonomyCodeId": 1001,
+            "code": "240301009",
+            "name": "Problem med brysternæring hos nyfødt",
+            "schemaSystem": "SNOMED",
+            "schemaId": "SNOMED"
+          }],
+          "picoCodeId": 3,
+          "picoType": 2
+        }],
+        "picoContinousOutcomes": [],
+        "picoOutcomes": [],
+        "picoId": 3,
+        "sortOrder": 3,
+        "isDeleted": false
+      }],
+      "recommendationId": 3,
+      "heading": "Morsmelkerstatning ved behov for annen mat enn morsmelk til 4 måneders alder",
+      "sortOrder": 0,
+      "text": "Hvis barnet trenger annen mat i tillegg til morsmelken, skal dette være kun morsmelkerstatning frem til 4 måneders alder. Hvis barnet ikke får morsmelk, skal det gis kun morsmelkerstatning frem til 4 måneders alder. Barn som ikke får morsmelk, kan introduseres for fast føde fra 4 måneders alder.",
+      "isDeleted": false
+    }],
+    "sectionId": 1,
+    "heading": "Maten i første levehalvår",
+    "text": "",
+    "isDeleted": false
+  },
+  {
+    "recommendations": [],
+    "sectionId": 2,
+    "heading": "Vurderinger bak anbefalingen",
+    "text": "Som bakgrunn for anbefalingen er hovedvekt er lagt på en systematisk kunnskapsoppsummering utarbeidet av The Cochrane Collaboration, Kramer & Kakuma 2012, Optimal duration of exclusive breastfeeding (1), på bakgrunn av metodeveiledning gitt i GRADE (ref). I denne Cochrane-reviewen er det sammenliknet fullamming til 6 md med fullamming til 3-4 md og deretter amming + tilleggskost til 6 md. Arbeidsgruppen har vurdert at resultater som gjelder 3 md + tilleggskost er overførbare til 4 md + tilleggskost. Det er lagt til grunn i utarbeidelsen av anbefalingen at 4 md bør være det tidligste tidspunkt for introduksjon av tilleggskost. I det følgende er det derfor sammenliknet fullamming til 6 md med fullamming til 4 md med introduksjon av tilleggskost fra 4 md. I tillegg til de utfall som er beskrevet i Cochrane-reviewen (1), er det lagt til utfallene allergi/atopisk sykdom, cøliaki og spiseutvikling/smaksaksept, fordi det for disse utfallene har vært hevdet at tidligere introduksjon av fast føde kan gi en helsefordel. For disse utfallene har det vært gjort egne litteratursøk og –gjennomgang, se xxx. Arbeidsgruppen har lagt vekt på vurderingene (1)som gjelder for utviklede land. Cochrane-reviewen konkluderer med at fullamming til 6 md (sammenliknet med fullamming til 4 md): 1) beskytter barnet bedre mot mage- og tarminfeksjoner 2) gjør at mødre oftere ikke får tilbake menstruasjonen i denne perioden, og  3) at mødre går raskere ned i vekt etter fødselen. Cochrane-reviewen konkluderer også med at det ikke er vist noen fordeler ved å introdusere tilleggskost mellom 4 og 6 md i utviklede land.Arbeidsgruppen anerkjenner konklusjonene fra Cochrane-reviewen (Kramer & Kakuma 2012) og valgte å legge avgjørende vekt på utfall relatert til barnets helse. Tre av arbeidsgruppens medlemmer (MG, ET og LFA) gjorde en særskilt vurdering av utfallet mage-tarm-infeksjoner. Deres vurdering er at den studien som Cochrane-reviewen bygger på når det gjelder mage- og tarminfeksjoner (ref), har metodologiske svakheter, at resultatene kun i begrenset grad kan overføres til norske forhold, og at forskjellene mellom de to alternativene har liten klinisk/praktisk betydning. Flertallet i arbeidsgruppen anerkjenner denne vurderingen. Som en konsekvens av dette mener flertallet i arbeidsgruppen at de to alternativene (fullamming til 6 md og fullamming til 4 md med introduksjon av tilleggskost fra 4 md) bør sidestilles i en anbefaling. Et mindretall i arbeidsgruppen (AB) argumenterte for at resultatene fra den aktuelle studien (ref) er overførbare til norske forhold, at fullamming til 6 md har en forebyggende effekt på mage- og tarm infeksjoner av klinisk/praktisk betydning for norske spedbarn, og at det dermed ikke er grunnlag for å endre gjeldende hovedanbefaling om fullamming til 6 måneder. Denne vurderingen ble støttet av KLM. BL ga støtte til en sidestilling av de to alternativene, men tok forbehold om at formulering av anbefalingen ikke blir dreiet mer i retning av 4 md enn 6 md.Det legges vekt på at kunnskapsgrunnlaget bør fremstilles på en tydelig måte slik at hver enkelt kvinne selv, i samarbeid med helsesøster/helsepersonell, kan ta et valg på best mulig grunnlag ut fra verdier/preferanser og livssituasjon. Det er den enkelte mor som, i samarbeid med (ev. partner og) helsesøster/helsepersonell må velge hvor lenge hun ønsker å fullamme (mellom 4 og 6 md alder).  Anbefaling må være egnet til individuell rådgivning, tilpasset det enkelte barn/familie, samtidig som uklarheter og misforståelser unngås.",
+    "isDeleted": false
+  }],
+  "guidelineId": 1,
+  "startDate": "2014-05-15T11:46:37",
+  "title": "Spedbarnsernæring",
+  "englishTitle": "Spedbarnsernæring på engelsk",
+  "owner": "Helsedirektoratet",
+  "published": "2014-05-15T11:46:37",
+  "disclaimer": "Disclaimer",
+  "createdDate": "2014-05-15T11:46:37",
+  "updatedDate": "2014-05-15T11:46:37",
+  "createdBy": {
+    "userId": 1,
+    "displayName": "Håvar Stavseth",
+    "email": "has@steria.no"
+  },
+  "updatedBy": {
+    "userId": 1,
+    "displayName": "Håvar Stavseth",
+    "email": "has@steria.no"
+  },
+  "language": "NO",
+  "sponsors": "Helsedirektoratet",
+  "type": 0,
+  "isDeleted": false
+}
