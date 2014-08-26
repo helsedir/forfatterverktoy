@@ -1,0 +1,27 @@
+<form role="form" ng-submit="updateRecommendation()">
+	<div class="form-group">
+		<label for="heading">Title</label>
+		<input type="text" class="form-control" id="heading" ng-model="recommendation.heading">
+	</div>
+	<div class="form-group">
+		<label for="rational">Rational</label>
+		<textArea type="text" class="form-control" id="rational" ng-model="recommendation.rational"></textArea>
+	</div>
+
+	<p></p>
+	<div>UpdatedBy: {{recommendation.updatedBy}}</div>
+	<div>UpdatedDate: {{recommendation.updatedDate | date}}</div>
+	<p></p>
+	<div>CreatedBy: {{recommendation.createdBy}}</div>
+	<div>CreatedDate: {{recommendation.createdDate | date}}</div>
+	<p></p>
+
+		<div class="form-group">
+		<label>Picos:</label>
+		<div ng-repeat="pico in recommendation.picos">			
+			<a href="#/pico/{{pico.picoId}}">{{pico.picoId}}</a>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Lagre</button>
+</form>
