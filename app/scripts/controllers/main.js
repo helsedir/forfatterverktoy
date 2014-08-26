@@ -10,9 +10,10 @@
 angular.module('webUiApp')
   .controller('MainCtrl',['$scope', '$resource', 'Guideline', function ($scope, $resource, Guideline) {
 
+
   	Guideline.query().$promise.then(function(guidelines){
   		//success
-  		$scope.guidelines = guidelines;
+		$scope.guidelines = guidelines;
   	}, function(errResponse){
   		console.log(errResponse);
   	});

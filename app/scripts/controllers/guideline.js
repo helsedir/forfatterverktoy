@@ -27,8 +27,8 @@ angular.module('webUiApp')
     	$scope.guidelines.splice(index, 1)
     };
 
-    $scope.editAuthor = function() {
-      $location.path('/editAuthor');
+    $scope.addAuthor = function(guidelineId) {
+      $location.path('/addAuthor');
     };
 
   }]);

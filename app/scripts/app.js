@@ -35,13 +35,25 @@ angular
         templateUrl: 'views/guideline.html',
         controller: 'GuidelineCtrl'
       })
+      .when('/section/:sectionId', {
+        templateUrl: 'views/section.html',
+        controller: 'SectionCtrl'
+      })
+      .when('/recommendation/:recommendationId', {
+        templateUrl: 'views/recommendation.html',
+        controller: 'RecommendationCtrl'
+      })
       .when('/author/:authorId', {
         templateUrl: 'views/author.html',
         controller: 'AuthorCtrl'
       })
-      .when('/section/:sectionId', {
-        templateUrl: 'views/section.html',
-        controller: 'SectionCtrl'
+      .when('/pico/:picoId', {
+        templateUrl: 'views/pico.html',
+        controller: 'PicoCtrl'
+      })
+      .when('/addAuthor/', {
+        templateUrl: 'views/addauthor.html',
+        controller: 'AddauthorCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

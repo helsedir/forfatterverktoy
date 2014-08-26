@@ -20,4 +20,16 @@ angular.module('webUiApp')
     {
     	'update' : { method:'PUT' }
     });
+  }])  
+  .factory('Recommendation', ['$resource', function ($resource) {
+    return $resource(apiUrl+'api/v1/recommendations/:_id',{},
+    {
+      'update' : { method:'PUT' }
+    });
+  }])  
+  .factory('Pico', ['$resource', function ($resource) {
+    return $resource(apiUrl+'api/v1/pico/:_id',{},
+    {
+      'update' : { method:'PUT' }
+    });
   }]);

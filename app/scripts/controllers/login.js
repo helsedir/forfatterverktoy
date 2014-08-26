@@ -20,7 +20,7 @@ angular.module('webUiApp')
     $scope.login = function () {
  
         authService.login($scope.loginData).then(function (response) {
-            
+ 
             $location.path('/');
         },
          function (err) {

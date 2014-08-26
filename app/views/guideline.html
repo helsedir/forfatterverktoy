@@ -45,7 +45,8 @@
 			<a href="#/author/{{author.authorId}}">{{author.name}}</a>
 		</div>
 	</div>
-	<button type="button" class="btn btn-info" ng-click="editAuthor()">Legg til forfatter</button>
+	<button type="button" class="btn btn-default btn-sm" ng-click="addAuthor(guideline.guidelineId)">Legg til forfatter</button>
+	<p></p>
 	<!-- List Of Sections -->
 	<div class="form-group">
 		<label>Sections:</label>
@@ -53,14 +54,19 @@
 			<a href="#/section/{{section.sectionId}}">{{section.heading}}</a>
 		</div>
 	</div>
-	<button type="button" ng-click="addSection">Legg til seksjon</button>
+	<button type="button" class="btn btn-default btn-sm" ng-click="addSection">Legg til seksjon</button>
 	<p></p>
+	<p></p>
+	<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+	<p></p>
+	<p></p>
+	<small>
 	<div>UpdatedBy: {{guideline.updatedBy}}</div>
 	<div>UpdatedDate: {{guideline.updatedDate | date}}</div>
 	<p></p>
 	<div>CreatedBy: {{guideline.createdBy}}</div>
 	<div>CreatedDate: {{guideline.createdDate | date}}</div>
 	<p></p>
-	<button type="submit" class="btn btn-primary">Lagre</button>
+	</small>
 </form>
 <p></p>
