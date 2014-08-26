@@ -28,7 +28,19 @@ angular.module('webUiApp')
     });
   }])  
   .factory('Pico', ['$resource', function ($resource) {
-    return $resource(apiUrl+'api/v1/pico/:_id',{},
+    return $resource(apiUrl+'api/v1/picos/:_id',{},
+    {
+      'update' : { method:'PUT' }
+    });
+  }])
+  .factory('PicoCode', ['$resource', function ($resource) {
+    return $resource(apiUrl+'api/v1/picoCodes/:_id',{},
+    {
+      'update' : { method:'PUT' }
+    });
+  }])
+  .factory('TaxonomyCode', ['$resource', function ($resource) {
+    return $resource(apiUrl+'api/v1/taxonomyCode/:_id',{},
     {
       'update' : { method:'PUT' }
     });

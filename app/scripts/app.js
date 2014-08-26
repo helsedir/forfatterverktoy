@@ -51,6 +51,14 @@ angular
         templateUrl: 'views/pico.html',
         controller: 'PicoCtrl'
       })
+      .when('/picoCode/:picoCodeId', {
+        templateUrl: 'views/picocode.html',
+        controller: 'PicocodeCtrl'
+      })
+      .when('/taxonomyCode/:taxonomyCodeId', {
+        templateUrl: 'views/taxonomycode.html',
+        controller: 'TaxonomycodeCtrl'
+      })
       .when('/addAuthor/', {
         templateUrl: 'views/addauthor.html',
         controller: 'AddauthorCtrl'

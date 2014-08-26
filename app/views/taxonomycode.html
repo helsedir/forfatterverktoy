@@ -1,0 +1,41 @@
+<form role="form" ng-submit="updateTaxonomyCode()">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" class="form-control" id="name" ng-model="taxonomyCode.name">
+	</div>
+		<div class="form-group">
+		<label for="shortName">Short Name</label>
+		<input type="text" class="form-control" id="shortName" ng-model="taxonomyCode.shortName">
+	</div>
+	<div class="form-group">
+		<label for="code">Code</label>
+		<input type="text" class="form-control" id="code" ng-model="taxonomyCode.code">
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<input type="text" class="form-control" id="description" ng-model="taxonomyCode.description">
+	</div>
+		<div class="form-group">
+		<label for="querySource">QuerySource</label>
+		<input type="text" class="form-control" id="querySource" ng-model="taxonomyCode.querySource">
+	</div>
+		<div class="form-group">
+		<label for="schemaSystem">SchemaSystem</label>
+		<input type="text" class="form-control" id="schemaSystem" ng-model="taxonomyCode.schemaSystem">
+	</div>
+		<div class="form-group">
+		<label for="schemaId">SchemaId</label>
+		<input type="text" class="form-control" id="schemaId" ng-model="taxonomyCode.schemaId">
+	</div>
+
+
+	<p></p>
+	<div>UpdatedBy: {{taxonomyCode.updatedBy}}</div>
+	<div>UpdatedDate: {{taxonomyCode.updatedDate | date}}</div>
+	<p></p>
+	<div>CreatedBy: {{taxonomyCode.createdBy}}</div>
+	<div>CreatedDate: {{taxonomyCode.createdDate | date}}</div>
+	<p></p>
+
+	<button type="submit" class="btn btn-primary">Lagre</button>
+</form>
