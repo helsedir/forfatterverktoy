@@ -348,6 +348,16 @@ module.exports = function (grunt) {
         'svgmin'
       ]
     },
+    replace: {
+      serverUrl: {
+        src: ['<%= yeoman.dist %>/scripts/*.js'],
+        overwrite: true,                 // overwrite matched source files
+        replacements: [{
+          from: "http://localhost:50500/",
+          to: "http://hdirapi.azurewebsites.net/"
+        }]
+      }
+    },
 
     // Test settings
     karma: {
@@ -401,7 +411,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'replace'
   ]);
 
   grunt.registerTask('default', [
