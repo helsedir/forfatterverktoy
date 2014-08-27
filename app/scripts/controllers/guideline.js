@@ -11,24 +11,55 @@ angular.module('webUiApp')
   .controller('GuidelineCtrl',['$scope', 'Guideline', '$routeParams', '$location', '$timeout', 'toastr', function ($scope, Guideline, $routeParams, $location, $timeout, toastr) {
 
   	var guidelineId = $routeParams.guidelineId;
+    if(guidelineId == 0)
+    {
+      $scope.guideline = new Guideline();
+    }
+    else
+    {      
+      Guideline.get({_id: guidelineId}, function(data){
+        $scope.guideline = data;
+      });
+    }
 
-  	Guideline.get({_id: guidelineId}, function(data){
-  		$scope.guideline = data;
-  	});
     
     $scope.updateGuideline = function() {
-    	Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
-      .$promise.then(function(data){
+      if($scope.guideline.guidelineId == null)
+      {
+        console.log('$save');
+        $scope.guideline.$save().then(function(data){
+            toastr.success('Opprettet: ' + data.title);
+            $location.path('/guideline/'+ data.guidelineId);
 
-        toastr.success($scope.guideline.title, 'Lagret');
-      }, function(error){
+        }, function (error){
+          if(error.status == 401)
+          {
+            toastr.warning('Logg inn for å lagre');
+          }
+          else
+          {
+            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
+          }
+        });
+      }
+      else
+      {
+        console.log('update');
+        Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
+        .$promise.then(function(data){
 
-        toastr.error('Status code: ' + error.status + ' Error data: ' + error.data, 'Error!');
-      });
-
-      /*$timeout(function() {
-        $location.path('/');
-      }, 200);*/
+          toastr.success($scope.guideline.title, 'Lagret');
+        }, function(error){
+          if(error.status == 401)
+          {
+            toastr.warning('Logg inn for å lagre');
+          }
+          else
+          {
+            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
+          }
+        });
+      }
     };
 
     $scope.removeGuideline = function(index) {
