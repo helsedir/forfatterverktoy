@@ -26,7 +26,6 @@ angular.module('webUiApp')
     $scope.updateGuideline = function() {
       if($scope.guideline.guidelineId == null)
       {
-        console.log('$save');
         $scope.guideline.$save().then(function(data){
             toastr.success('Opprettet: ' + data.title);
             $location.path('/guideline/'+ data.guidelineId);
@@ -44,7 +43,6 @@ angular.module('webUiApp')
       }
       else
       {
-        console.log('update');
         Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
         .$promise.then(function(data){
 
@@ -63,11 +61,15 @@ angular.module('webUiApp')
     };
 
     $scope.removeGuideline = function(index) {
-    	$scope.guidelines.splice(index, 1)
+    	
     };
 
-    $scope.addAuthor = function(guidelineId) {
+    $scope.addAuthor = function() {
       $location.path('/addAuthor');
     };
+
+    $scope.addSection = function(){
+      $location.path('/section/0').search('guidelineId', guidelineId);
+    }
 
   }]);
