@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('MainCtrl',['$scope', '$resource', 'Guideline','toastr', function ($scope, $resource, Guideline, toastr) {
+  .controller('MainCtrl',['$scope', '$resource', 'Guideline','toastr', '$location', function ($scope, $resource, Guideline, toastr, $location) {
 
 
   	Guideline.query().$promise.then(function(guidelines){
@@ -17,5 +17,9 @@ angular.module('webUiApp')
   	}, function(error){
   		console.log(error);
   		toastr.error(error.data.message, 'Error!')
-  	}); 
+  	});
+
+  	$scope.addGuideline = function(){
+		$location.path('/guideline/0');
+  	}; 
   }]);

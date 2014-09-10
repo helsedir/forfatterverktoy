@@ -1,6 +1,6 @@
 <form role="form" ng-submit="updateSection()">
 	<div class="form-group">
-		<label for="heading">Title</label>
+		<label for="heading">Heading</label>
 		<input type="text" class="form-control" id="heading" ng-model="section.heading">
 	</div>
 	<div class="form-group">
@@ -15,14 +15,24 @@
 	<div>CreatedBy: {{section.createdBy}}</div>
 	<div>CreatedDate: {{section.createdDate | date}}</div>
 	<p></p>
-
-		<div class="form-group">
+	<div class="form-group">
+		<label>Sections:</label>
+		<div ng-repeat="childSections in section.childSections">			
+			<a href="#/section/{{childSections.sectionId}}">{{childSections.heading}}</a>
+		</div>
+	</div>
+	<div class="form-group">
 		<label>Recommendations:</label>
 		<div ng-repeat="recommendation in section.recommendations">			
 			<a href="#/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</a>
 		</div>
 	</div>
 
+	<p></p>
+	<p></p>
+	<p></p>
+	<button type="button" class="btn btn-default btn-sm" ng-click="addSection()">Legg til underseksjon</button>
+	<button type="button" class="btn btn-default btn-sm" ng-click="addRecommendation()">Legg til anbefaling</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>
 </form>
 

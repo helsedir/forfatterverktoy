@@ -12,16 +12,10 @@ angular.module('webUiApp')
 
   	var sectionId = $routeParams.sectionId;
     var guidelineId = $routeParams.guidelineId;
-
-    if(sectionId == 0)
-    {
-      $scope.section = new Section();
-      Guideline.get({_id: guidelineId}, function(data){
-        $scope.guideline = data;
-      });
-    }
-    else
-    {      
+    var parentSectionId = $routeParams.parentSectionId;
+    
+    if(sectionId != 0)
+    {    
       Section.get({_id: sectionId}, function(data){
         $scope.section = data;
       });
@@ -30,21 +24,28 @@ angular.module('webUiApp')
     $scope.updateSection = function() {
       if(typeof $scope.section.sectionId === 'undefined')
       {
-        Guideline.addSection({_id: $scope.guideline.guidelineId }).$promise.then(function(data){
-          toastr.success('Lagt til seksjon: ' + $scope.section.heading + ' til retningslinje: ' + $scope.guideline.title);
-          $location.path('/guideline/'+ $scope.guideline.guidelineId);
-        },
-        function(error){
-          if(error.status == 401)
-          {
-            toastr.warning('Logg inn for å lagre');
-          }
-          else
-          {
-            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-          }
-        });
-
+        if(typeof guidelineId !== 'undefined')
+        {
+          Guideline.addSection({id: guidelineId }, $scope.section)
+          .$promise.then(function(data){
+            toastr.success('Opprettet seksjon: ' + data.heading);
+            $location.path('/guideline/'+ guidelineId);
+          },
+          function(error){
+            handlePostError(error);
+          });
+        }
+        if(typeof parentSectionId !== 'undefined')
+        {
+          Section.addSection({id: parentSectionId }, $scope.section)
+          .$promise.then(function(data){
+            toastr.success('Opprettet seksjon: ' + data.heading);
+            $location.path('/section/'+ parentSectionId);
+          },
+          function(error){
+            handlePostError(error);
+          });
+        }
       }
       else
       {
@@ -53,15 +54,30 @@ angular.module('webUiApp')
 
           toastr.success($scope.section.heading, 'Lagret');
         }, function(error){
-          if(error.status == 401)
-          {
-            toastr.warning('Logg inn for å lagre');
-          }
-          else
-          {
-            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-          }
+          handlePostError(error);
         });
       }
     };
+
+    $scope.addSection = function(){
+      $location.path('/section/0').search('parentSectionId', sectionId);
+    };
+
+    $scope.addRecommendation = function(){
+      $location.path('/recommendation/0').search('sectionId', sectionId);
+    };
+
+    //Handles errors when post fails
+    function handlePostError(error)
+    {
+      if(error.status == 401)
+      {
+        toastr.warning('Logg inn for å lagre');
+      }
+      else
+      {
+        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
+      }
+    };
+
   }]);

@@ -8,23 +8,53 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('RecommendationCtrl',['$scope', 'Recommendation', '$routeParams', '$location', '$timeout', function ($scope, Recommendation, $routeParams, $location, $timeout) {
+  .controller('RecommendationCtrl',['$scope', 'Recommendation', '$routeParams', '$location', '$timeout', 'Section', 'toastr', function ($scope, Recommendation, $routeParams, $location, $timeout, Section, toastr) {
   	
   	var recommendationId = $routeParams.recommendationId;
+    var sectionId = $routeParams.sectionId;
   	
-  	Recommendation.get({_id: recommendationId}, function(data){
-  		$scope.recommendation = data;
-  	});
-
+    if(recommendationId != 0)
+    {
+      Recommendation.get({_id: recommendationId}, function(data){
+        $scope.recommendation = data;
+      });
+    }
+  	
     $scope.updateRecommendation = function() {
-    	Recommendation.update({ _id: $scope.recommendation.recommendationId }, $scope.recommendation);
-      	$timeout(function() {
-        	$location.path('/');
-      	}, 200);
+      if(typeof sectionId !== 'undefined')
+      {
+        Section.addRecommendation({id: sectionId}, $scope.recommendation)
+        .$promise.then(function(data){
+          toastr.success($scope.recommendation.heading, 'Lagret');
+          $location.path('/section/'+ sectionId);
+        },function(error){
+          handlePostError(error);
+        });
+      }
+      else{
+      Recommendation.update({ _id: $scope.recommendation.recommendationId }, $scope.recommendation)
+      .$promise.then(function(data){
+          toastr.success($scope.recommendation.heading, 'Lagret');
+        }, function(error){
+          handlePostError(error);
+        });
+    }
     };
 
     $scope.removeRecommendation = function(index) {
     	
     };
 
+    //Handles errors when post fails
+    function handlePostError(error)
+    {
+      if(error.status == 401)
+      {
+        toastr.warning('Logg inn for å lagre');
+      }
+      else
+      {
+        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
+      }
+    };
   }]);
