@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', '$routeParams', '$location', '$timeout', 'toastr', function ($scope, Guideline, $routeParams, $location, $timeout, toastr) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', '$routeParams', '$location', 'toastr', function ($scope, Guideline, $routeParams, $location, toastr) {
 
   	var guidelineId = $routeParams.guidelineId;
     if(guidelineId == 0)
@@ -23,7 +23,7 @@ angular.module('webUiApp')
     }
 
     
-    $scope.updateGuideline = function() {
+    $scope.updateOrCreateGuideline = function() {
       if($scope.guideline.guidelineId == null)
       {
         $scope.guideline.$save().then(function(data){
@@ -64,11 +64,11 @@ angular.module('webUiApp')
     	
     };
 
-    $scope.addAuthor = function() {
+    $scope.addAuthorBtnClick = function() {
       $location.path('/addAuthor');
     };
 
-    $scope.addSection = function(){
+    $scope.addSectionBtnClick = function(){
       $location.path('/section/0').search('guidelineId', guidelineId);
     }
 

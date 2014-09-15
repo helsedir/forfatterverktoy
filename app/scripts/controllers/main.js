@@ -16,10 +16,10 @@ angular.module('webUiApp')
 		$scope.guidelines = guidelines;
   	}, function(error){
   		console.log(error);
-  		toastr.error(error.data.message, 'Error!')
+  		toastr.error(error.data.message, 'Error!');
   	});
 
-  	$scope.addGuideline = function(){
-		$location.path('/guideline/0');
+  	$scope.addGuidelineBtnClick = function(){
+		  $location.path('/guideline/0');
   	}; 
   }]);

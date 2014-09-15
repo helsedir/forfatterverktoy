@@ -1,4 +1,4 @@
-<form role="form" ng-submit="updateSection()">
+<form role="form" ng-submit="updateOrCreateSection()">
 	<div class="form-group">
 		<label for="heading">Heading</label>
 		<input type="text" class="form-control" id="heading" ng-model="section.heading">
@@ -31,8 +31,8 @@
 	<p></p>
 	<p></p>
 	<p></p>
-	<button type="button" class="btn btn-default btn-sm" ng-click="addSection()">Legg til underseksjon</button>
-	<button type="button" class="btn btn-default btn-sm" ng-click="addRecommendation()">Legg til anbefaling</button>
+	<button type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til underseksjon</button>
+	<button type="button" class="btn btn-default btn-sm" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>
 </form>
 

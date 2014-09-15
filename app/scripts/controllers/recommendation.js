@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('RecommendationCtrl',['$scope', 'Recommendation', '$routeParams', '$location', '$timeout', 'Section', 'toastr', function ($scope, Recommendation, $routeParams, $location, $timeout, Section, toastr) {
+  .controller('RecommendationCtrl',['$scope', 'Recommendation', '$routeParams', '$location', 'Section', 'toastr', function ($scope, Recommendation, $routeParams, $location, Section, toastr) {
   	
   	var recommendationId = $routeParams.recommendationId;
     var sectionId = $routeParams.sectionId;

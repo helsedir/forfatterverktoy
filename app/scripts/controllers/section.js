@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$routeParams', '$location', '$timeout', 'toastr', function ($scope, Section, Guideline, $routeParams, $location, $timeout, toastr) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$routeParams', '$location', 'toastr', function ($scope, Section, Guideline, $routeParams, $location, toastr) {
 
   	var sectionId = $routeParams.sectionId;
     var guidelineId = $routeParams.guidelineId;
@@ -21,49 +21,53 @@ angular.module('webUiApp')
       });
     }
     
-    $scope.updateSection = function() {
-      if(typeof $scope.section.sectionId === 'undefined')
+    //If parentsection id is defined we are creating a section under a section
+    //else if guidelineId is defined we are creating a section directly under a guideline
+    $scope.updateOrCreateSection = function() {
+      if(sectionId == 0)
       {
-        if(typeof guidelineId !== 'undefined')
+        if(typeof(parentSectionId) != 'undefined' && parentSectionId != null)
         {
-          Guideline.addSection({id: guidelineId }, $scope.section)
-          .$promise.then(function(data){
-            toastr.success('Opprettet seksjon: ' + data.heading);
-            $location.path('/guideline/'+ guidelineId);
-          },
-          function(error){
-            handlePostError(error);
-          });
+          createSection(Section, parentSectionId);
         }
-        if(typeof parentSectionId !== 'undefined')
+        else if(typeof(guidelineId) != 'undefined' && guidelineId != null)
         {
-          Section.addSection({id: parentSectionId }, $scope.section)
-          .$promise.then(function(data){
-            toastr.success('Opprettet seksjon: ' + data.heading);
-            $location.path('/section/'+ parentSectionId);
-          },
-          function(error){
-            handlePostError(error);
-          });
+          createSection(Guideline, guidelineId);
         }
       }
       else
       {
-        Section.update({ _id: $scope.section.sectionId }, $scope.section)
-        .$promise.then(function(data){
+        updateSection(Section, $scope.section.sectionId);
+      }
+    };
 
+    //Creates a new Section
+    //The resource provided must have an addSection method.
+    var createSection = function (resource, id){
+      resource.addSection({id: id }, $scope.section)
+      .$promise.then(function(data){
+        toastr.success('Opprettet seksjon: ' + data.heading);
+        $location.path('/section/'+ data.sectionId);
+      },
+      function(error){
+        handlePostError(error);
+      });
+    };
+
+    var updateSection = function(resource, id){
+        resource.update({ _id: id }, $scope.section)
+        .$promise.then(function(data){
           toastr.success($scope.section.heading, 'Lagret');
         }, function(error){
           handlePostError(error);
         });
-      }
     };
 
-    $scope.addSection = function(){
+    $scope.addSectionBtnClick = function(){
       $location.path('/section/0').search('parentSectionId', sectionId);
     };
 
-    $scope.addRecommendation = function(){
+    $scope.addRecommendationBtnClick = function(){
       $location.path('/recommendation/0').search('sectionId', sectionId);
     };
 
