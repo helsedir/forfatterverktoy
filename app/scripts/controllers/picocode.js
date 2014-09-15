@@ -8,23 +8,45 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('PicocodeCtrl', ['$scope', 'PicoCode', '$routeParams', '$location', '$timeout', function ($scope, PicoCode, $routeParams, $location, $timeout) {
+  .controller('PicocodeCtrl', ['$scope', 'PicoCode', '$routeParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, $routeParams, Pico, $location, $timeout, toastr) {
   	
   	var picoCodeId = $routeParams.picoCodeId;
+    var picoId = $routeParams.picoId;
   	
-  	PicoCode.get({_id: picoCodeId}, function(data){
-  		$scope.picoCode = data;
-  	});
+    if(picoCodeId != 0){
+      PicoCode.get({_id: picoCodeId}, function(data){
+        $scope.picoCode = data;
+      });      
+    }
 
-    $scope.updatePicoCode = function() {
-    	PicoCode.update({ _id: $scope.picoCode.picoCodeId }, $scope.picoCode);
-      	$timeout(function() {
-        	$location.path('/');
-      	}, 200);
+    $scope.updateOrCreatePicoCode = function() {
+    	if(picoCodeId != 0){
+      PicoCode.update({ _id: picoCodeId }, $scope.picoCode)
+      .$promise.then(function(data){
+          toastr.success(data.ontologyName, 'Lagret');
+          $location.path('/picoCode/'+ data.picoCodeId);
+        }, function(error){
+          handlePostError(error);
+        });
+      }
+
+      else if(typeof(picoId) != 'undefined' && picoId != null)
+      {
+        Pico.addPicoCode({id: picoId}, $scope.picoCode)
+        .$promise.then(function(data){
+          toastr.success(data.ontologyCode, 'Opprettet PicoCode');
+          $location.path('/picoCode/'+ data.picoCodeId);
+        },function(error){
+          handlePostError(error);
+        });
+      }
     };
 
     $scope.removePicoCode = function(index) {
     	
     };
-
+    $scope.addTaxonomyCodeBtnClick = function()
+    {
+      $location.path('/taxonomyCode/0').search('picoCodeId', picoCodeId);
+    }
   }]);

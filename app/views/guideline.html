@@ -39,22 +39,22 @@
 		</select>
 	</div>
 	<!-- List Of Authors -->
-	<div class="form-group">
+	<div class="form-group" ng-show="guideline.guidelineId">
 		<label>Authors:</label>
 		<div ng-repeat="author in guideline.authors">
 			<a href="#/author/{{author.authorId}}">{{author.name}}</a>
 		</div>
 	</div>
-	<button type="button" class="btn btn-default btn-sm" ng-click="addAuthorBtnClick(guideline.guidelineId)">Legg til forfatter</button>
+	<button type="button" ng-show="guideline.guidelineId" class="btn btn-default btn-sm" ng-click="addAuthorBtnClick(guideline.guidelineId)">Legg til forfatter</button>
 	<p></p>
 	<!-- List Of Sections -->
-	<div class="form-group">
+	<div class="form-group" ng-show="guideline.guidelineId">
 		<label>Sections:</label>
 		<div ng-repeat="section in guideline.sections">			
 			<a href="#/section/{{section.sectionId}}">{{section.heading}}</a>
 		</div>
 	</div>
-	<button type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til seksjon</button>
+	<button type="button" ng-show="guideline.guidelineId" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til seksjon</button>
 	<p></p>
 	<p></p>
 	<button type="submit" class="btn btn-primary btn-lg">Lagre</button>

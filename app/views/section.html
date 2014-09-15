@@ -15,13 +15,13 @@
 	<div>CreatedBy: {{section.createdBy}}</div>
 	<div>CreatedDate: {{section.createdDate | date}}</div>
 	<p></p>
-	<div class="form-group">
+	<div class="form-group" ng-show="section.sectionId">
 		<label>Sections:</label>
 		<div ng-repeat="childSections in section.childSections">			
 			<a href="#/section/{{childSections.sectionId}}">{{childSections.heading}}</a>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group" ng-show="section.sectionId">
 		<label>Recommendations:</label>
 		<div ng-repeat="recommendation in section.recommendations">			
 			<a href="#/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</a>
@@ -31,8 +31,8 @@
 	<p></p>
 	<p></p>
 	<p></p>
-	<button type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til underseksjon</button>
-	<button type="button" class="btn btn-default btn-sm" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button>
+	<button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til underseksjon</button>
+	<button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>
 </form>
 

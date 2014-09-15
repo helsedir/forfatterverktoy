@@ -1,4 +1,4 @@
-<form role="form" ng-submit="updatePico()">
+<form role="form" ng-submit="updateOrCreatePico()">
 	<div class="form-group">
 		<label for="summary">Summary</label>
 		<input type="text" class="form-control" id="summary" ng-model="pico.summary">
@@ -37,12 +37,12 @@
 	<div>CreatedDate: {{pico.createdDate | date}}</div>
 	<p></p>
 
-		<div class="form-group">
+		<div class="form-group" ng-show="pico.picoId">
 		<label>Pico Codes:</label>
 		<div ng-repeat="picoCode in pico.picoCodes">			
 			<a href="#/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</a>
 		</div>
 	</div>
-
+	<button ng-show="pico.picoId" type="button" class="btn btn-default btn-sm" ng-click="addPicoCodeBtnClick()">Legg til picoCode</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>
 </form>

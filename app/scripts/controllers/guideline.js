@@ -27,7 +27,7 @@ angular.module('webUiApp')
       if($scope.guideline.guidelineId == null)
       {
         $scope.guideline.$save().then(function(data){
-            toastr.success('Opprettet: ' + data.title);
+            toastr.success(data.title, 'Opprettet Retninglinje');
             $location.path('/guideline/'+ data.guidelineId);
 
         }, function (error){

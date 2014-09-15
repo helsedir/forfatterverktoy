@@ -46,7 +46,7 @@ angular.module('webUiApp')
     var createSection = function (resource, id){
       resource.addSection({id: id }, $scope.section)
       .$promise.then(function(data){
-        toastr.success('Opprettet seksjon: ' + data.heading);
+        toastr.success(data.heading, 'Opprettet seksjon');
         $location.path('/section/'+ data.sectionId);
       },
       function(error){
@@ -57,7 +57,7 @@ angular.module('webUiApp')
     var updateSection = function(resource, id){
         resource.update({ _id: id }, $scope.section)
         .$promise.then(function(data){
-          toastr.success($scope.section.heading, 'Lagret');
+          toastr.success(data.heading, 'Lagret');
         }, function(error){
           handlePostError(error);
         });

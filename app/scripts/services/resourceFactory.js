@@ -34,7 +34,8 @@ angular.module('webUiApp')
   .factory('Pico', ['$resource', function ($resource) {
     return $resource(apiUrl+'picos/:_id',{},
     {
-      update : { method:'PUT' }
+      update : { method:'PUT' },
+      addPicoCode : {method: 'POST', params:{id:'@id'}, url: apiUrl + "picos/:id/picocodes/"},
     });
   }])
   .factory('PicoCode', ['$resource', function ($resource) {

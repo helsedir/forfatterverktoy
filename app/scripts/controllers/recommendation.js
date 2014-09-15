@@ -20,31 +20,37 @@ angular.module('webUiApp')
       });
     }
   	
-    $scope.updateRecommendation = function() {
-      if(typeof sectionId !== 'undefined')
+    $scope.updateOrCreateRecommendation = function() {
+
+      if(recommendationId != 0){
+      Recommendation.update({ _id: recommendationId }, $scope.recommendation)
+      .$promise.then(function(data){
+          toastr.success(data.heading, 'Lagret');
+          $location.path('/recommendation/'+ data.recommendationId);
+        }, function(error){
+          handlePostError(error);
+        });
+      }
+
+      else if(typeof(sectionId) != 'undefined' && sectionId != null)
       {
         Section.addRecommendation({id: sectionId}, $scope.recommendation)
         .$promise.then(function(data){
-          toastr.success($scope.recommendation.heading, 'Lagret');
-          $location.path('/section/'+ sectionId);
+          toastr.success(data.heading, 'Opprettet anbefaling');
+          $location.path('/recommendation/'+ data.recommendationId);
         },function(error){
           handlePostError(error);
         });
       }
-      else{
-      Recommendation.update({ _id: $scope.recommendation.recommendationId }, $scope.recommendation)
-      .$promise.then(function(data){
-          toastr.success($scope.recommendation.heading, 'Lagret');
-        }, function(error){
-          handlePostError(error);
-        });
-    }
     };
 
     $scope.removeRecommendation = function(index) {
     	
     };
 
+    $scope.addPicoBtnClick = function() {
+      $location.path('/pico/0').search('recommendationId', recommendationId);
+    }
     //Handles errors when post fails
     function handlePostError(error)
     {

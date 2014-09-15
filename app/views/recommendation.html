@@ -1,4 +1,4 @@
-<form role="form" ng-submit="updateRecommendation()">
+<form role="form" ng-submit="updateOrCreateRecommendation()">
 	<div class="form-group">
 		<label for="heading">Title</label>
 		<input type="text" class="form-control" id="heading" ng-model="recommendation.heading">
@@ -44,12 +44,12 @@
 	<div>CreatedDate: {{recommendation.createdDate | date}}</div>
 	<p></p>
 
-		<div class="form-group">
+		<div class="form-group" ng-show="recommendation.recommendationId">
 		<label>Picos:</label>
 		<div ng-repeat="pico in recommendation.picos">			
 			<a href="#/pico/{{pico.picoId}}">{{pico.picoId}}</a>
 		</div>
 	</div>
-
+	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addPicoBtnClick()">Legg til pico</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>
 </form>
