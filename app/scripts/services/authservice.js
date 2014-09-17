@@ -36,7 +36,7 @@ angular.module('webUiApp')
  
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
  
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, expires: response[".expires"] });
  
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;

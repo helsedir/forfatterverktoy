@@ -41,7 +41,8 @@ angular.module('webUiApp')
   .factory('PicoCode', ['$resource', function ($resource) {
     return $resource(apiUrl+'picoCodes/:_id',{},
     {
-      update : { method:'PUT' }
+      update : { method:'PUT' },
+      addTaxonomyCode : {method: 'POST', params:{id:'@id'}, url: apiUrl + "picoCodes/:id/taxonomyCode/"},
     });
   }])
   .factory('TaxonomyCode', ['$resource', function ($resource) {
