@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ui.sortable',
     'LocalStorageModule',
-    'toastr'
+    'toastr',
+    'textAngular'
   ])
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');

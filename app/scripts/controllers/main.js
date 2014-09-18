@@ -22,4 +22,6 @@ angular.module('webUiApp')
   	$scope.addGuidelineBtnClick = function(){
 		  $location.path('/guideline/0');
   	}; 
+
+    
   }]);
