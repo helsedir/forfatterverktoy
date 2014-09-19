@@ -23,5 +23,5 @@ angular.module('webUiApp')
 		  $location.path('/guideline/0');
   	}; 
 
-    
+    $scope.textAngularOpts = {};
   }]);

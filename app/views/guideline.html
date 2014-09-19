@@ -10,9 +10,13 @@
 		<label for="englishTitle">English Title</label>
 		<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label for="text">Text</label>
 		<textArea class="form-control" id="text" ng-model="guideline.text"></textArea>
+	</div> -->
+	 <div class="form-group">
+		<label for="text">Text</label>
+		<div  id="text" ng-model="guideline.text" text-angular></div>
 	</div>
 	<div class="form-group">
 		<label for="disclaimer">Disclaimer</label>
