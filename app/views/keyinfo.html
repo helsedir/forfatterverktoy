@@ -1,0 +1,45 @@
+<form role="form" ng-submit="updateOrCreateKeyInfo()">
+	<div class="form-group">
+		<label for="benefits">Benefits</label>
+		<input type="text" class="form-control" id="benefits" ng-model="keyInfo.benefits">
+	</div>
+	<div class="form-group">
+		<label for="benefitsStrength">Benefits Strength</label>
+		<input type="text" class="form-control" id="benefitsStrength" ng-model="keyInfo.benefitsStrength">
+	</div>
+	<div class="form-group">
+		<label for="evidence">Evidence</label>
+		<input type="text" class="form-control" id="evidence" ng-model="keyInfo.evidence">
+	</div>
+	<div class="form-group">
+		<label for="evidenceStrength">Evidence Strength</label>
+		<input type="text" class="form-control" id="control" ng-model="keyInfo.evidenceStrength">
+	</div>
+	<div class="form-group">
+		<label for="preference">Preference</label>
+		<input type="text" class="form-control" id="preference" ng-model="keyInfo.preference">
+	</div>
+	<div class="form-group">
+		<label for="preferencesStrength">Preference Strength</label>
+		<input type="text" class="form-control" id="preferencesStrength" ng-model="keyInfo.preferencesStrength">
+	</div>
+	<div class="form-group">
+		<label for="resources">Resources</label>
+		<input type="text" class="form-control" id="resources" ng-model="keyInfo.resources">
+	</div>
+	<div class="form-group">
+		<label for="resourcesStrength">Resources Strength</label>
+		<input type="text" class="form-control" id="resourcesStrength" ng-model="keyInfo.resourcesStrength">
+	</div>
+	
+	<p></p>
+	<div>UpdatedBy: {{keyInfo.updatedBy}}</div>
+	<div>UpdatedDate: {{keyInfo.updatedDate | date}}</div>
+	<p></p>
+	<div>CreatedBy: {{keyInfo.createdBy}}</div>
+	<div>CreatedDate: {{keyInfo.createdDate | date}}</div>
+	<p></p>
+
+	
+	<button type="submit" class="btn btn-primary">Lagre</button>
+</form>

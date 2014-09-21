@@ -81,6 +81,10 @@ angular
         templateUrl: 'views/emrInfo.html',
         controller: 'EmrInfoCtrl'
       })
+      .when('/keyinfo/:keyInfoId', {
+        templateUrl: 'views/keyInfo.html',
+        controller: 'KeyInfoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

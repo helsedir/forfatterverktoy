@@ -30,6 +30,7 @@ angular.module('webUiApp')
       update : { method:'PUT' },
       addPico : {method: 'POST', params:{id:'@id'}, url: apiUrl + "recommendations/:id/picos/"},
       addEmrInfo: {method: 'POST', params:{id:'@id'}, url: apiUrl + "recommendations/:id/emrinfos/"},
+      addKeyInfo: {method: 'POST', params:{id:'@id'}, url: apiUrl + "recommendations/:id/keyinfo/"},
     });
   }])  
   .factory('Pico', ['$resource', function ($resource) {
@@ -57,4 +58,10 @@ angular.module('webUiApp')
     {
       update : { method:'PUT' },      
     });
-  }])  ;
+  }])
+   .factory('KeyInfo', ['$resource', function ($resource) {
+    return $resource(apiUrl+'keyinfos/:_id',{},
+    {
+      update : { method:'PUT' },      
+    });
+  }]);

@@ -60,7 +60,14 @@
 			<a href="#/emrinfo/{{emr.emrInfoId}}">{{emr.name}}</a>
 		</div>
 	</div>
+	<div class="form-group" ng-show="recommendation.recommendationId">
+		<label>KeyInfos:</label>
+		<div ng-repeat="key in recommendation.keyInfo">			
+			<a href="#/keyinfo/{{key.keyInfoId}}">{{key.keyInfoId}}</a>
+		</div>
+	</div>
 	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addPicoBtnClick()">Legg til pico</button>
 	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addEmrInfoBtnClick()">Legg til emr info</button>
+	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addKeyInfoBtnClick()">Legg til key info</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>
 </form>

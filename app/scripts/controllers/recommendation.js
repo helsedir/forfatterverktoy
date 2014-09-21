@@ -55,6 +55,10 @@ angular.module('webUiApp')
     $scope.addEmrInfoBtnClick = function() {
       $location.path('/emrinfo/0').search('recommendationId', recommendationId);
     }    
+
+    $scope.addKeyInfoBtnClick = function() {
+      $location.path('/keyinfo/0').search('recommendationId', recommendationId);
+    } 
     //Handles errors when post fails
     function handlePostError(error)
     {
