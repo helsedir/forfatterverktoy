@@ -24,7 +24,7 @@ angular.module('webUiApp')
         KeyInfo.update({ _id: keyInfoId }, $scope.keyInfo)
         .$promise.then(function(data){
             toastr.success(data.summary, 'Lagret');
-            $location.path('/KeyInfo/'+ data.keyInfoId);
+            $location.path('/keyinfo/'+ data.keyInfoId);
           }, function(error){
             handlePostError(error);
           });
@@ -35,7 +35,7 @@ angular.module('webUiApp')
         Recommendation.addKeyInfo({id: recommendationId}, $scope.keyInfo)
         .$promise.then(function(data){
           toastr.success(data.summary, 'Opprettet KeyInfo');
-          $location.path('/KeyInfo/'+ data.keyInfoId);
+          $location.path('/keyinfo/'+ data.keyInfoId);
         },function(error){
           handlePostError(error);
         });

@@ -24,7 +24,7 @@ angular.module('webUiApp')
         EmrInfo.update({ _id: emrInfoId }, $scope.emrInfo)
         .$promise.then(function(data){
             toastr.success(data.summary, 'Lagret');
-            $location.path('/EmrInfo/'+ data.emrInfoId);
+            $location.path('/emrinfo/'+ data.emrInfoId);
           }, function(error){
             handlePostError(error);
           });
@@ -35,7 +35,7 @@ angular.module('webUiApp')
         Recommendation.addEmrInfo({id: recommendationId}, $scope.emrInfo)
         .$promise.then(function(data){
           toastr.success(data.summary, 'Opprettet EmrInfo');
-          $location.path('/EmrInfo/'+ data.emrInfoId);
+          $location.path('/emrinfo/'+ data.emrInfoId);
         },function(error){
           handlePostError(error);
         });

@@ -1,0 +1,25 @@
+<form role="form" ng-submit="updateOrCreatePicoContinousOutcome()">
+    <div class="form-group">
+        <label for="absoluteDifference">AbsoluteDifference</label>
+        <input type="number" step="any" class="form-control" id="absoluteDifference" ng-model="picoContinousOutcome.absoluteDifference">
+    </div>
+    <div class="form-group">
+        <label for="absoluteDifferenceType">AbsoluteDifferenceType</label>
+        <input type="text" class="form-control" id="absoluteDifferenceType" ng-model="picoContinousOutcome.absoluteDifferenceType">
+    </div>
+    <div class="form-group">
+        <label for="absoluteDifferenceHigh">AbsoluteDifferenceHigh</label>
+        <input type="number" step="any" class="form-control" id="absoluteDifferenceHigh" ng-model="picoContinousOutcome.absoluteDifferenceHigh">
+    </div>
+
+
+    <p></p>
+    <div>UpdatedBy: {{picoContinousOutcome.updatedBy}}</div>
+    <div>UpdatedDate: {{picoContinousOutcome.updatedDate | date}}</div>
+    <p></p>
+    <div>CreatedBy: {{picoContinousOutcome.createdBy}}</div>
+    <div>CreatedDate: {{picoContinousOutcome.createdDate | date}}</div>
+    <p></p>
+
+    <button type="submit" class="btn btn-primary">Lagre</button>
+</form>
