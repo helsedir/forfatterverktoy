@@ -51,6 +51,10 @@ angular.module('webUiApp')
     $scope.addPicoBtnClick = function() {
       $location.path('/pico/0').search('recommendationId', recommendationId);
     }
+
+    $scope.addEmrInfoBtnClick = function() {
+      $location.path('/emrinfo/0').search('recommendationId', recommendationId);
+    }    
     //Handles errors when post fails
     function handlePostError(error)
     {

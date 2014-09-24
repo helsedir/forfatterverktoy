@@ -77,6 +77,10 @@ angular
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
       })
+      .when('/emrinfo/:emrInfoId', {
+        templateUrl: 'views/emrInfo.html',
+        controller: 'EmrInfoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
