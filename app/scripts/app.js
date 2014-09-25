@@ -93,6 +93,10 @@ angular
                 templateUrl: 'views/picoOutcome.html',
                 controller: 'PicoOutcomeCtrl'
             })
+            .when('/reference/:referenceId', {
+                templateUrl: 'views/reference.html',
+                controller: 'ReferenceCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

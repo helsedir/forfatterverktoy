@@ -30,7 +30,8 @@ angular.module('webUiApp')
                 update: { method: 'PUT' },
                 addPico: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/picos/"},
                 addEmrInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/emrinfos/"},
-                addKeyInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/keyinfo/"}
+                addKeyInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/keyinfo/"},
+                addReference: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/references/"}
             });
     }])
     .factory('Pico', ['$resource', function ($resource) {
@@ -50,7 +51,7 @@ angular.module('webUiApp')
             });
     }])
     .factory('TaxonomyCode', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'taxonomyCode/:_id', {},
+        return $resource(apiUrl + 'taxonomycodes/:_id', {},
             {
                 update: { method: 'PUT' }
             });
@@ -68,13 +69,19 @@ angular.module('webUiApp')
             });
     }])
     .factory('PicoContinousOutcome', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'picocontinousoutcome/:_id', {},
+        return $resource(apiUrl + 'picocontinousoutcomes/:_id', {},
             {
                 update: { method: 'PUT' }
             });
     }])
     .factory('PicoOutcome', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'picooutcome/:_id', {},
+        return $resource(apiUrl + 'picooutcomes/:_id', {},
+            {
+                update: { method: 'PUT' }
+            });
+    }])
+    .factory('Reference', ['$resource', function ($resource) {
+        return $resource(apiUrl + 'referances/:_id', {},
             {
                 update: { method: 'PUT' }
             });

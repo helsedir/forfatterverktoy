@@ -54,6 +54,12 @@
 			<a href="#/pico/{{pico.picoId}}">{{pico.picoId}}</a>
 		</div>
 	</div>
+    <div class="form-group" ng-show="recommendation.recommendationId">
+        <label>References:</label>
+        <div ng-repeat="reference in recommendation.references">
+            <a href="#/reference/{{reference.referenceId}}">{{reference.referenceId}}</a>
+        </div>
+    </div>
 	<div class="form-group" ng-show="recommendation.recommendationId">
 		<label>EmrInfos:</label>
 		<div ng-repeat="emr in recommendation.emrInfo">			
@@ -67,6 +73,7 @@
 		</div>
 	</div>
 	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addPicoBtnClick()">Legg til pico</button>
+    <button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addReferenceBtnClick()">Legg til reference</button>
 	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addEmrInfoBtnClick()">Legg til emr info</button>
 	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addKeyInfoBtnClick()">Legg til key info</button>
 	<button type="submit" class="btn btn-primary">Lagre</button>

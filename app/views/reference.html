@@ -1,0 +1,41 @@
+<form role="form" ng-submit="updateOrCreateReference()">
+    <div class="form-group">
+        <label for="sortOrder">SortOrder</label>
+        <input type="number" class="form-control" id="sortOrder" ng-model="reference.sortOrder">
+    </div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" ng-model="reference.title">
+    </div>
+    <div class="form-group">
+        <label for="shortName">ShortName</label>
+        <input type="text" class="form-control" id="shortName" ng-model="reference.shortName">
+    </div>
+    <div class="form-group">
+        <label for="url">Url</label>
+        <input type="text" class="form-control" id="url" ng-model="reference.url">
+    </div>
+    <div class="form-group">
+        <label for="doi">Doi</label>
+        <input type="text" class="form-control" id="doi" ng-model="reference.doi">
+    </div>
+    <div class="form-group">
+        <label for="pmid">Pmid</label>
+        <input type="text" class="form-control" id="pmid" ng-model="reference.pmid">
+    </div>
+    <div class="form-group">
+        <label for="abstractText">AbstractText</label>
+        <input type="text" class="form-control" id="abstractText" ng-model="reference.abstractText">
+    </div>
+
+    <p></p>
+    <div>UpdatedBy: {{reference.updatedBy}}</div>
+    <div>UpdatedDate: {{reference.updatedDate | date}}</div>
+    <p></p>
+    <div>CreatedBy: {{reference.createdBy}}</div>
+    <div>CreatedDate: {{reference.createdDate | date}}</div>
+    <p></p>
+
+
+    <button type="submit" class="btn btn-primary">Lagre</button>
+</form>
