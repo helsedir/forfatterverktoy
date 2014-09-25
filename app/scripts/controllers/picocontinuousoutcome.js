@@ -59,6 +59,5 @@ angular.module('webUiApp')
             {
                 toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
             }
-        };
-
+        }
     }]);

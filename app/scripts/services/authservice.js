@@ -70,7 +70,7 @@ angular.module('webUiApp')
             _authentication.userName = authData.userName;
         }
  
-    }
+    };
  
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.login = _login;

@@ -43,15 +43,15 @@ angular.module('webUiApp')
 
         $scope.addPicoCodeBtnClick = function () {
             $location.path('/picoCode/0').search('picoId', picoId);
-        }
+        };
 
         $scope.addPicoContinuousOutcomeBtnClick = function () {
             $location.path('/picocontinousoutcome/0').search('picoId', picoId);
-        }
+        };
 
         $scope.addPicoOutcomeBtnClick = function () {
             $location.path('/picooutcome/0').search('picoId', picoId);
-        }
+        };
 
         $scope.removePico = function (index) {
 
@@ -63,6 +63,5 @@ angular.module('webUiApp')
             else {
                 toastr.error('Status code: ' + error.status + ' ' + error.statusText + ' Error data: ' + error.data.message, 'Error!');
             }
-        };
-
+        }
     }]);
