@@ -346,7 +346,7 @@ module.exports = function (grunt) {
         overwrite: true,                 // overwrite matched source files
         replacements: [{
           from: "http://localhost:50500/",
-          to: "http://hdirapi.azurewebsites.net/"
+          to: "http://digitalguidelines.azurewebsites.net/"
         }]
       }
     },

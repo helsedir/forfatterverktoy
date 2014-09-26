@@ -47,6 +47,6 @@ angular.module('webUiApp')
     };
     $scope.addTaxonomyCodeBtnClick = function()
     {
-      $location.path('/taxonomyCode/0').search('picoCodeId', picoCodeId);
+      $location.path('/taxonomyCode/0').search('picoCodeId', picoCodeId).search('schemaSystem', $scope.picoCode.ontologyName).search('schemaId', $scope.picoCode.ontologyName);
     }
   }]);
