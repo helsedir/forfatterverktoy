@@ -8,9 +8,9 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', '$routeParams', '$location', 'toastr', function ($scope, Guideline, $routeParams, $location, toastr) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Guideline, $stateParams, $location, toastr) {
 
-  	var guidelineId = $routeParams.guidelineId;
+  	var guidelineId = $stateParams.guidelineId;
     if(guidelineId == 0)
     {
       $scope.guideline = new Guideline();

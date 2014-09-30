@@ -14,10 +14,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('PicoOutcomeCtrl', ['$scope', 'PicoOutcome', '$routeParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoOutcome, $routeParams, Pico, $location, $timeout, toastr) {
+    .controller('PicoOutcomeCtrl', ['$scope', 'PicoOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoOutcome, $stateParams, Pico, $location, $timeout, toastr) {
 
-        var picoOutcomeId = $routeParams.picoOutcomeId;
-        var picoId = $routeParams.picoId;
+        var picoOutcomeId = $stateParams.picoOutcomeId;
+        var picoId = $stateParams.picoId;
 
         if(picoOutcomeId != 0){
             PicoOutcome.get({_id: picoOutcomeId}, function(data){

@@ -8,10 +8,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('KeyInfoCtrl', ['$scope', 'KeyInfo', '$routeParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, KeyInfo, $routeParams, Recommendation, $location, $timeout, toastr) {
+  .controller('KeyInfoCtrl', ['$scope', 'KeyInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, KeyInfo, $stateParams, Recommendation, $location, $timeout, toastr) {
   	
-  	var keyInfoId = $routeParams.keyInfoId;
-    var recommendationId = $routeParams.recommendationId;
+  	var keyInfoId = $stateParams.keyInfoId;
+    var recommendationId = $stateParams.recommendationId;
   	
     if(keyInfoId != 0){
       KeyInfo.get({_id: keyInfoId}, function(data){

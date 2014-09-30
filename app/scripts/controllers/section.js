@@ -8,11 +8,11 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$routeParams', '$location', 'toastr', function ($scope, Section, Guideline, $routeParams, $location, toastr) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Section, Guideline, $stateParams, $location, toastr) {
 
-  	var sectionId = $routeParams.sectionId;
-    var guidelineId = $routeParams.guidelineId;
-    var parentSectionId = $routeParams.parentSectionId;
+  	var sectionId = $stateParams.sectionId;
+    var guidelineId = $stateParams.guidelineId;
+    var parentSectionId = $stateParams.parentSectionId;
     
     if(sectionId != 0)
     {    

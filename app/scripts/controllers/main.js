@@ -24,4 +24,5 @@ angular.module('webUiApp')
   	}; 
 
     $scope.textAngularOpts = {};
+
   }]);

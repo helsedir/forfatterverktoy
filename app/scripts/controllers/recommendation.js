@@ -8,10 +8,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('RecommendationCtrl', ['$scope', 'Recommendation', '$routeParams', '$location', 'Section', 'toastr', function ($scope, Recommendation, $routeParams, $location, Section, toastr) {
+    .controller('RecommendationCtrl', ['$scope', 'Recommendation', '$stateParams', '$location', 'Section', 'toastr', function ($scope, Recommendation, $stateParams, $location, Section, toastr) {
 
-        var recommendationId = $routeParams.recommendationId;
-        var sectionId = $routeParams.sectionId;
+        var recommendationId = $stateParams.recommendationId;
+        var sectionId = $stateParams.sectionId;
 
         if (recommendationId != 0) {
             Recommendation.get({_id: recommendationId}, function (data) {

@@ -8,10 +8,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('EmrInfoCtrl', ['$scope', 'EmrInfo', '$routeParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, EmrInfo, $routeParams, Recommendation, $location, $timeout, toastr) {
+  .controller('EmrInfoCtrl', ['$scope', 'EmrInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, EmrInfo, $stateParams, Recommendation, $location, $timeout, toastr) {
   	
-  	var emrInfoId = $routeParams.emrInfoId;
-    var recommendationId = $routeParams.recommendationId;
+  	var emrInfoId = $stateParams.emrInfoId;
+    var recommendationId = $stateParams.recommendationId;
   	
     if(emrInfoId != 0){
       EmrInfo.get({_id: emrInfoId}, function(data){

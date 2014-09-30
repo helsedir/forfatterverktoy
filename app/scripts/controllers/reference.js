@@ -14,10 +14,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('ReferenceCtrl', ['$scope', 'Reference', '$routeParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, Reference, $routeParams, Recommendation, $location, $timeout, toastr) {
+    .controller('ReferenceCtrl', ['$scope', 'Reference', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, Reference, $stateParams, Recommendation, $location, $timeout, toastr) {
 
-        var referenceId = $routeParams.referenceId;
-        var recommendationId = $routeParams.recommendationId;
+        var referenceId = $stateParams.referenceId;
+        var recommendationId = $stateParams.recommendationId;
 
         if(referenceId != 0){
             Reference.get({_id: referenceId}, function(data){

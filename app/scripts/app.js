@@ -13,13 +13,14 @@ angular
         'ngAnimate',
         'ngCookies',
         'ngResource',
-        'ngRoute',
         'ngSanitize',
         'ngTouch',
         'ui.sortable',
         'LocalStorageModule',
         'toastr',
-        'textAngular'
+        'textAngular',
+        'ui.router.state',
+        'ncy-angular-breadcrumb'
     ])
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
@@ -27,77 +28,214 @@ angular
     .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
         localStorageServiceProvider.setPrefix('ls');
     }])
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/', {
+    .config(function($breadcrumbProvider) {
+        $breadcrumbProvider.setOptions({
+            prefixStateName: 'home',
+            template: 'bootstrap2'
+        });
+    })
+    .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('home', {
+                url: '/',
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                controller:'MainCtrl',
+                data: {
+                    ncyBreadcrumbLabel: 'Retningslinjer'
+                }
             })
-            .when('/guideline/:guidelineId', {
+            .state('guideline', {
+                url: '/guideline/{guidelineId}',
                 templateUrl: 'views/guideline.html',
-                controller: 'GuidelineCtrl'
+                controller: 'GuidelineCtrl',
+
+                data: {
+                    ncyBreadcrumbLabel: 'Retningslinje {{guideline.guidelineId}}'
+                }
             })
-            .when('/section/:sectionId', {
-                templateUrl: 'views/section.html',
-                controller: 'SectionCtrl'
+            .state('section', {
+                url: '/section/{sectionId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/section.html',
+                        controller: 'SectionCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Seksjon {{section.sectionId}}'
+                }
             })
-            .when('/recommendation/:recommendationId', {
-                templateUrl: 'views/recommendation.html',
-                controller: 'RecommendationCtrl'
+            .state('recommendation', {
+                url: '/recommendation/{recommendationId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/recommendation.html',
+                        controller: 'RecommendationCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Anbefalling {{recommendation.recommendationId}}'
+                }
             })
-            .when('/author/:authorId', {
-                templateUrl: 'views/author.html',
-                controller: 'AuthorCtrl'
+            .state('author', {
+                url: '/author/{authorId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/author.html',
+                        controller: 'AuthorCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Author {{author.authorId}}'
+                }
             })
-            .when('/pico/:picoId', {
-                templateUrl: 'views/pico.html',
-                controller: 'PicoCtrl'
+            .state('pico', {
+                url: '/pico/{picoId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/pico.html',
+                        controller: 'PicoCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Pico {{pico.picoId}}'
+                }
             })
-            .when('/picoCode/:picoCodeId', {
-                templateUrl: 'views/picocode.html',
-                controller: 'PicocodeCtrl'
+            .state('picoCode', {
+                url: '/picoCode/{picoCodeId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/picocode.html',
+                        controller: 'PicocodeCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Pico kode {{picoCode.picoCodeId}}'
+                }
             })
-            .when('/taxonomyCode/:taxonomyCodeId', {
-                templateUrl: 'views/taxonomycode.html',
-                controller: 'TaxonomycodeCtrl'
+            .state('taxonomyCode', {
+                url: '/taxonomyCode/{taxonomyCodeId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/taxonomycode.html',
+                        controller: 'TaxonomycodeCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Taxonomy kode {{taxonomyCode.taxonomyCodeId}}'
+                }
             })
-            .when('/addAuthor/', {
-                templateUrl: 'views/addauthor.html',
-                controller: 'AddauthorCtrl'
+            .state('addAuthor', {
+                url: '/addAuthor',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/addauthor.html',
+                        controller: 'AddauthorCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Add author'
+                }
             })
-            .when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl'
+            .state('about', {
+                url: '/about',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/about.html',
+                        controller: 'AboutCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Om '
+                }
             })
-            .when('/login', {
-                templateUrl: 'views/login.html',
-                controller: 'LoginCtrl'
+            .state('login', {
+                url: '/login',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/login.html',
+                        controller: 'LoginCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Login'
+                }
             })
-            .when('/register', {
-                templateUrl: 'views/register.html',
-                controller: 'RegisterCtrl'
+            .state('register', {
+                url: '/register',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/register.html',
+                        controller: 'RegisterCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Register'
+                }
             })
-            .when('/emrinfo/:emrInfoId', {
-                templateUrl: 'views/emrInfo.html',
-                controller: 'EmrInfoCtrl'
+            .state('emrinfo', {
+                url: '/emrinfo/{emrInfoId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/emrInfo.html',
+                        controller: 'EmrInfoCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Emr Info {{emrinfo.emrInfoId}}'
+                }
             })
-            .when('/keyinfo/:keyInfoId', {
-                templateUrl: 'views/keyInfo.html',
-                controller: 'KeyInfoCtrl'
+            .state('keyinfo', {
+                url: '/keyinfo/{keyInfoId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/keyInfo.html',
+                        controller: 'KeyInfoCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Key Info {{keyinfo.keyInfoId}}'
+                }
             })
-            .when('/picocontinousoutcome/:picoContinousOutcomeId', {
-                templateUrl: 'views/picoContinousOutcome.html',
-                controller: 'PicoContinousOutcomeCtrl'
+            .state('picocontinousoutcome', {
+                url: '/picocontinousoutcome/{picoContinousOutcomeId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/picoContinousOutcome.html',
+                        controller: 'PicoContinousOutcomeCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Pico continuous outcome {{picocontinousoutcome.picoContinousOutcomeId}}'
+                }
             })
-            .when('/picooutcome/:picoOutcomeId', {
-                templateUrl: 'views/picoOutcome.html',
-                controller: 'PicoOutcomeCtrl'
+            .state('picooutcome', {
+                url: '/picooutcome/{picoOutcomeId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/picoOutcome.html',
+                        controller: 'PicoOutcomeCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Pico outcome {{picooutcome.picoOutcomeId}}'
+                }
             })
-            .when('/reference/:referenceId', {
-                templateUrl: 'views/reference.html',
-                controller: 'ReferenceCtrl'
+            .state('reference', {
+                url: '/reference/{referenceId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'views/reference.html',
+                        controller: 'ReferenceCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbLabel: 'Referense {{reference.referenceId}}'
+                }
             })
-            .otherwise({
-                redirectTo: '/'
-            });
-    }]);
+        ;
+
+        $urlRouterProvider.otherwise('/');
+
+    })
+;

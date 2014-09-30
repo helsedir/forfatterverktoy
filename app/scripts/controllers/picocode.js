@@ -8,10 +8,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('PicocodeCtrl', ['$scope', 'PicoCode', '$routeParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, $routeParams, Pico, $location, $timeout, toastr) {
+  .controller('PicocodeCtrl', ['$scope', 'PicoCode', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, $stateParams, Pico, $location, $timeout, toastr) {
   	
-  	var picoCodeId = $routeParams.picoCodeId;
-    var picoId = $routeParams.picoId;
+  	var picoCodeId = $stateParams.picoCodeId;
+    var picoId = $stateParams.picoId;
   	
     if(picoCodeId != 0){
       PicoCode.get({_id: picoCodeId}, function(data){

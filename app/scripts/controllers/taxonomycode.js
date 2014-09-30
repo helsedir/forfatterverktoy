@@ -8,13 +8,13 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('TaxonomycodeCtrl', ['$scope', 'TaxonomyCode', '$routeParams', 'PicoCode', '$location', '$timeout', 'toastr', function ($scope, TaxonomyCode, $routeParams, PicoCode, $location, $timeout, toastr) {
+    .controller('TaxonomycodeCtrl', ['$scope', 'TaxonomyCode', '$stateParams', 'PicoCode', '$location', '$timeout', 'toastr', function ($scope, TaxonomyCode, $stateParams, PicoCode, $location, $timeout, toastr) {
 
-        var taxonomyCodeId = $routeParams.taxonomyCodeId;
-        var picoCodeId = $routeParams.picoCodeId;
+        var taxonomyCodeId = $stateParams.taxonomyCodeId;
+        var picoCodeId = $stateParams.picoCodeId;
         $scope.taxonomyCode ={};
-        $scope.taxonomyCode.schemaId = $routeParams.schemaId;
-        $scope.taxonomyCode.schemaSystem = $routeParams.schemaSystem;
+        $scope.taxonomyCode.schemaId = $stateParams.schemaId;
+        $scope.taxonomyCode.schemaSystem = $stateParams.schemaSystem;
 
         if (taxonomyCodeId != 0) {
             TaxonomyCode.get({_id: taxonomyCodeId}, function (data) {

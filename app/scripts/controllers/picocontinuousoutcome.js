@@ -11,10 +11,10 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('PicoContinousOutcomeCtrl', ['$scope', 'PicoContinousOutcome', '$routeParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoContinousOutcome, $routeParams, Pico, $location, $timeout, toastr) {
+    .controller('PicoContinousOutcomeCtrl', ['$scope', 'PicoContinousOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoContinousOutcome, $stateParams, Pico, $location, $timeout, toastr) {
 
-        var picoContinousOutcomeId = $routeParams.picoContinousOutcomeId;
-        var picoId = $routeParams.picoId;
+        var picoContinousOutcomeId = $stateParams.picoContinousOutcomeId;
+        var picoId = $stateParams.picoId;
 
         if(picoContinousOutcomeId != 0){
             PicoContinousOutcome.get({_id: picoContinousOutcomeId}, function(data){
