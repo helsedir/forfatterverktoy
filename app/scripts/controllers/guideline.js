@@ -60,8 +60,10 @@ angular.module('webUiApp')
       }
     };
 
-    $scope.removeGuideline = function(index) {
-    	
+    $scope.removeGuidelineBtnClick = function(index) {
+      $scope.guideline.isDeleted = true;
+    	Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
+      $location.path('#');
     };
 
     $scope.addAuthorBtnClick = function() {

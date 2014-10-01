@@ -10,7 +10,7 @@
 angular.module('webUiApp')
     .factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
  
-    var serviceBase = 'http://localhost:50500/';
+    var serviceBase = 'http://digitalguidelines.azurewebsites.net/';
     var authServiceFactory = {};
  
     var _authentication = {
