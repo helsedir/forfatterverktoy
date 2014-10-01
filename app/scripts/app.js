@@ -31,7 +31,10 @@ angular
     .config(function($breadcrumbProvider) {
         $breadcrumbProvider.setOptions({
             prefixStateName: 'home',
-            template: 'bootstrap2'
+            template: '<ol class="breadcrumb">' +
+                '<li ng-repeat="step in steps | limitTo:(steps.length-1)"><a href="{{step.ncyBreadcrumbLink}}{{$scope.parentId}}">{{step.ncyBreadcrumbLabel}}</a></li>' +
+                '<li ng-repeat="step in steps | limitTo:-1" class="active"><span>{{step.ncyBreadcrumbLabel}}</span></li>' +
+                '</ol>'
         });
     })
     .config(function($stateProvider, $urlRouterProvider) {
@@ -44,7 +47,8 @@ angular
                     ncyBreadcrumbLabel: 'Retningslinjer'
                 }
             })
-            .state('guideline', {
+            .state({
+                name: 'guideline',
                 url: '/guideline/{guidelineId}',
                 templateUrl: 'views/guideline.html',
                 controller: 'GuidelineCtrl',
@@ -62,6 +66,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'guideline',
                     ncyBreadcrumbLabel: 'Seksjon {{section.sectionId}}'
                 }
             })
@@ -74,6 +79,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent:'section' ,
                     ncyBreadcrumbLabel: 'Anbefalling {{recommendation.recommendationId}}'
                 }
             })
@@ -98,6 +104,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'recommendation',
                     ncyBreadcrumbLabel: 'Pico {{pico.picoId}}'
                 }
             })
@@ -110,6 +117,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'pico',
                     ncyBreadcrumbLabel: 'Pico kode {{picoCode.picoCodeId}}'
                 }
             })
@@ -122,6 +130,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'picoCode',
                     ncyBreadcrumbLabel: 'Taxonomy kode {{taxonomyCode.taxonomyCodeId}}'
                 }
             })
@@ -182,6 +191,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'recommendation',
                     ncyBreadcrumbLabel: 'Emr Info {{emrinfo.emrInfoId}}'
                 }
             })
@@ -194,6 +204,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'recommendation',
                     ncyBreadcrumbLabel: 'Key Info {{keyinfo.keyInfoId}}'
                 }
             })
@@ -206,6 +217,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'pico',
                     ncyBreadcrumbLabel: 'Pico continuous outcome {{picocontinousoutcome.picoContinousOutcomeId}}'
                 }
             })
@@ -218,6 +230,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'pico',
                     ncyBreadcrumbLabel: 'Pico outcome {{picooutcome.picoOutcomeId}}'
                 }
             })
@@ -230,6 +243,7 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'recommendation',
                     ncyBreadcrumbLabel: 'Referense {{reference.referenceId}}'
                 }
             })

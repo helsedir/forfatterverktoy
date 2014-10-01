@@ -13,7 +13,7 @@ angular.module('webUiApp')
   	var sectionId = $stateParams.sectionId;
     var guidelineId = $stateParams.guidelineId;
     var parentSectionId = $stateParams.parentSectionId;
-    
+    $scope.parentId = 1;
     if(sectionId != 0)
     {    
       Section.get({_id: sectionId}, function(data){
