@@ -60,8 +60,23 @@ angular.module('webUiApp')
       }
     };
 
-    $scope.removeGuideline = function(index) {
-    	
+    $scope.removeGuidelineBtnClick = function() {
+      $scope.guideline.isDeleted = true;
+    	Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
+      .$promise.then(function(){
+
+        toastr.success($scope.guideline.title, 'Slettet');
+        $location.path('/');
+      }, function(error){
+            if(error.status == 401)
+            {
+              toastr.warning('Logg inn for å slette');
+            }
+            else
+            {
+              toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
+            }
+        });
     };
 
     $scope.addAuthorBtnClick = function() {
