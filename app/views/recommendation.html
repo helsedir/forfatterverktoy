@@ -3,17 +3,13 @@
 		<label for="heading">Title</label>
 		<input type="text" class="form-control" id="heading" ng-model="recommendation.heading">
 	</div>
-	<!-- <div class="form-group">
-		<label for="text">Text</label>
-		<textArea type="text" class="form-control" id="text" ng-model="recommendation.text"></textArea>
-	</div> -->
 	<div class="form-group">
 		<label for="text">Text</label>
 		<div  id="text" ng-model="recommendation.text" text-angular></div>
 	</div>
 	<div class="form-group">
 		<label for="practicalAdvice">Practical Advice</label>
-		<textArea type="text" class="form-control" id="practicalAdvice" ng-model="recommendation.practicalAdvice"></textArea>
+		<div id="practicalAdvice" ng-model="recommendation.practicalAdvice" text-angular></div>
 	</div>
 	<div class="form-group">
 		<label for="rational">Rational</label>

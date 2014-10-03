@@ -11,7 +11,7 @@ angular.module('webUiApp')
     .controller('PicoCtrl', ['$scope', 'Pico', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, Pico, $stateParams, Recommendation, $location, $timeout, toastr) {
 
         var picoId = $stateParams.picoId;
-        var recommendationId = $stateParams.recommendationId;
+        var recommendationId = $location.search().recommendationId;
 
         if (picoId != 0) {
             Pico.get({_id: picoId}, function (data) {

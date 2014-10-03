@@ -14,7 +14,7 @@ angular.module('webUiApp')
     .controller('PicoContinousOutcomeCtrl', ['$scope', 'PicoContinousOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoContinousOutcome, $stateParams, Pico, $location, $timeout, toastr) {
 
         var picoContinousOutcomeId = $stateParams.picoContinousOutcomeId;
-        var picoId = $stateParams.picoId;
+        var picoId = $location.search().picoId;
 
         if(picoContinousOutcomeId != 0){
             PicoContinousOutcome.get({_id: picoContinousOutcomeId}, function(data){

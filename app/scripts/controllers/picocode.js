@@ -11,7 +11,7 @@ angular.module('webUiApp')
   .controller('PicocodeCtrl', ['$scope', 'PicoCode', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, $stateParams, Pico, $location, $timeout, toastr) {
   	
   	var picoCodeId = $stateParams.picoCodeId;
-    var picoId = $stateParams.picoId;
+    var picoId = $location.search().picoId;
   	
     if(picoCodeId != 0){
       PicoCode.get({_id: picoCodeId}, function(data){

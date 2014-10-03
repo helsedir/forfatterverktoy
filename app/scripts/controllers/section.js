@@ -11,8 +11,8 @@ angular.module('webUiApp')
   .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Section, Guideline, $stateParams, $location, toastr) {
 
   	var sectionId = $stateParams.sectionId;
-    var guidelineId = $stateParams.guidelineId;
-    var parentSectionId = $stateParams.parentSectionId;
+    var guidelineId = $location.search().guidelineId;
+    var parentSectionId = $location.search().parentSectionId;
     $scope.parentId = 1;
     if(sectionId != 0)
     {    
