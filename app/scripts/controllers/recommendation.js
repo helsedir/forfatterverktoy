@@ -11,7 +11,7 @@ angular.module('webUiApp')
     .controller('RecommendationCtrl', ['$scope', 'Recommendation', '$stateParams', '$location', 'Section', 'toastr', function ($scope, Recommendation, $stateParams, $location, Section, toastr) {
 
         var recommendationId = $stateParams.recommendationId;
-        var sectionId = $stateParams.sectionId;
+        var sectionId = $location.search().sectionId;
 
         if (recommendationId != 0) {
             Recommendation.get({_id: recommendationId}, function (data) {

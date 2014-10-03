@@ -17,7 +17,7 @@ angular.module('webUiApp')
     .controller('ReferenceCtrl', ['$scope', 'Reference', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, Reference, $stateParams, Recommendation, $location, $timeout, toastr) {
 
         var referenceId = $stateParams.referenceId;
-        var recommendationId = $stateParams.recommendationId;
+        var recommendationId = $location.search().recommendationId;
 
         if(referenceId != 0){
             Reference.get({_id: referenceId}, function(data){

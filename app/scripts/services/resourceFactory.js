@@ -13,7 +13,7 @@ angular.module('webUiApp')
         return $resource(apiUrl + 'guidelines/:_id', {},
             {
                 update: { method: 'PUT' },
-                addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + "guidelines/:id/sections/"},
+                addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + "guidelines/:id/sections/"}
             });
     }])
     .factory('Section', ['$resource', function ($resource) {
