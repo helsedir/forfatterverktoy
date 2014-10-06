@@ -21,7 +21,11 @@
 	</div>
 	<div class="form-group">
 		<label for="strength">Strength</label>
-		<textArea type="text" class="form-control" id="strength" ng-model="recommendation.strength"></textArea>
+		<select id="strength" ng-model="recommendation.strength" class="form-control">
+			<option value="null">None</option>
+			<option value="Weak">Weak</option>
+			<option value="Strong">Strong</option>
+		</select>
 	</div>
 	<div class="form-group">
 		<label for="tool">Tool</label>
