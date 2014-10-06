@@ -134,18 +134,6 @@ angular
                     ncyBreadcrumbLabel: 'Taxonomy kode {{taxonomyCode.taxonomyCodeId}}'
                 }
             })
-            .state('addAuthor', {
-                url: '/addAuthor',
-                views: {
-                    "@" : {
-                        templateUrl: 'views/addauthor.html',
-                        controller: 'AddauthorCtrl'
-                    }
-                },
-                data: {
-                    ncyBreadcrumbLabel: 'Add author'
-                }
-            })
             .state('about', {
                 url: '/about',
                 views: {

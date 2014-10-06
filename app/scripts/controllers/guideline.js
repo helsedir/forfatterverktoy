@@ -80,7 +80,7 @@ angular.module('webUiApp')
     };
 
     $scope.addAuthorBtnClick = function() {
-      $location.path('/addAuthor');
+      $location.path('/author/0').search('guidelineId', guidelineId);
     };
 
     $scope.addSectionBtnClick = function(){

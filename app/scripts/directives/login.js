@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name webUiApp.directive:logIn
- * @description
+ * @description 
  * # logIn
  */
 angular.module('webUiApp')
@@ -21,7 +21,7 @@ angular.module('webUiApp')
               var expiresDate = new Date(scope.authData.expires);
               if(dateNow>expiresDate)
               {
-                  console.log("authorizationData has expired");
+                  console.log('authorizationData has expired');
                   localStorageService.remove('authorizationData');
               }
             }

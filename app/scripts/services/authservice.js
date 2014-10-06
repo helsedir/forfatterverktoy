@@ -15,7 +15,7 @@ angular.module('webUiApp')
  
     var _authentication = {
         isAuth: false,
-        userName : ""
+        userName : ''
     };
  
     var _saveRegistration = function (registration) {
@@ -30,13 +30,13 @@ angular.module('webUiApp')
  
     var _login = function (loginData) {
  
-        var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
+        var data = 'grant_type=password&username=' + loginData.userName + '&password=' + loginData.password;
  
         var deferred = $q.defer();
  
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
  
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, expires: response[".expires"] });
+            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, expires: response['.expires'] });
  
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
@@ -57,7 +57,7 @@ angular.module('webUiApp')
         localStorageService.remove('authorizationData');
  
         _authentication.isAuth = false;
-        _authentication.userName = "";
+        _authentication.userName = '';
  
     };
  

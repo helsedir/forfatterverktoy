@@ -13,41 +13,48 @@ angular.module('webUiApp')
         return $resource(apiUrl + 'guidelines/:_id', {},
             {
                 update: { method: 'PUT' },
-                addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + "guidelines/:id/sections/"}
+                addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'guidelines/:id/sections/'},
+                addAuthor: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'guidelines/:id/authors/'}
             });
     }])
     .factory('Section', ['$resource', function ($resource) {
         return $resource(apiUrl + 'sections/:_id', {},
             {
                 update: { method: 'PUT' },
-                addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + "sections/:id/sections/"},
-                addRecommendation: {method: 'POST', params: {id: '@id'}, url: apiUrl + "sections/:id/recommendations/"}
+                addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/sections/'},
+                addRecommendation: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/recommendations/'}
             });
     }])
     .factory('Recommendation', ['$resource', function ($resource) {
         return $resource(apiUrl + 'recommendations/:_id', {},
             {
                 update: { method: 'PUT' },
-                addPico: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/picos/"},
-                addEmrInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/emrinfos/"},
-                addKeyInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/keyinfo/"},
-                addReference: {method: 'POST', params: {id: '@id'}, url: apiUrl + "recommendations/:id/references/"}
+                addPico: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/picos/'},
+                addEmrInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/emrinfos/'},
+                addKeyInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/keyinfo/'},
+                addReference: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/references/'}
+            });
+    }])
+    .factory('Author', ['$resource', function ($resource) {
+        return $resource(apiUrl + 'authors/:_id', {},
+            {
+                update: {method: 'PUT'}
             });
     }])
     .factory('Pico', ['$resource', function ($resource) {
         return $resource(apiUrl + 'picos/:_id', {},
             {
                 update: { method: 'PUT' },
-                addPicoCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + "picos/:id/picocodes/"},
-                addPicoContinousOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + "picos/:id/picocontinousoutcomes/"},
-                addPicoOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + "picos/:id/picooutcomes/"}
+                addPicoCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picocodes/'},
+                addPicoContinousOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picocontinousoutcomes/'},
+                addPicoOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picooutcomes/'}
             });
     }])
     .factory('PicoCode', ['$resource', function ($resource) {
         return $resource(apiUrl + 'picoCodes/:_id', {},
             {
                 update: { method: 'PUT' },
-                addTaxonomyCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + "picoCodes/:id/taxonomyCode/"}
+                addTaxonomyCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picoCodes/:id/taxonomyCode/'}
             });
     }])
     .factory('TaxonomyCode', ['$resource', function ($resource) {

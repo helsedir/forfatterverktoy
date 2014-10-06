@@ -4,7 +4,7 @@
  * @ngdoc service
  * @name webUiApp.authInterceptorService
  * @description
- * # authInterceptorService
+ * # authInterceptorService  
  * Factory in the webUiApp.
  */
 angular.module('webUiApp')

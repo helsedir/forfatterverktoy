@@ -1,1 +1,28 @@
-<p>This is the author view.</p>
+<form role="form" ng-submit="updateOrCreateAuthor()">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" class="form-control" id="name" ng-model="author.name" />
+	</div>
+	<div class="form-group">
+		<label for="phone">Phone</label>
+		<input type="text" class="form-control" id="phone" ng-model="author.phoneNr" />
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input type="email" class="form-control" id="email" ng-model="author.email" />
+	</div>
+	<div class="form-group">
+		<label for="address">Address</label>
+		<input type="text" class="form-control" id="address" ng-model="author.adress" />
+	</div>
+
+	<p></p>
+	<div>UpdatedBy: {{author.updatedBy}}</div>
+	<div>UpdatedDate: {{author.updatedDate | date}}</div>
+	<p></p>
+	<div>CreatedBy: {{author.createdBy}}</div>
+	<div>CreatedDate: {{author.createdDate | date}}</div>
+	<p></p>
+
+	<button type="submit" class="btn btn-primary">Lagre</button>
+</form>
