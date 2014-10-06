@@ -71,6 +71,17 @@ angular.module('webUiApp')
       $location.path('/recommendation/0').search('sectionId', sectionId);
     };
 
+    $scope.removeSectionBtnClick = function(){
+      $scope.section.isDeleted = true;
+      Section.update({ _id: $scope.section.sectionId }, $scope.section)
+      .$promise.then(function(){
+        toastr.success($scope.section.heading, 'Slettet sekjson');
+        $location.path('/');
+      }, function(error){
+           handlePostError(error);
+    });
+  };
+
     //Handles errors when post fails
     function handlePostError(error)
     {

@@ -34,9 +34,13 @@
 
 	<p></p>
 	<p></p>
-	<p></p>
-	<button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til underseksjon</button>
-	<button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button>
-	<button type="submit" class="btn btn-primary">Lagre</button>
+	<p><button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til underseksjon</button>
+	<button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button></p>
+	
+	<p>
+		<button type="submit" class="btn btn-primary">Lagre</button>
+		<button ng-show="section.sectionId" type="button" class="btn btn-danger" ng-click="removeSectionBtnClick(section.sectionId)">Slett</button>
+	</p>
+	
 </form>
 
