@@ -19,7 +19,7 @@ angular.module('webUiApp')
   	} 
 
   	$scope.updateOrCreateAuthor = function() {
-      if(authorId !== 0){
+      if(authorId != 0){
         Author.update({_id: authorId}, $scope.author)
         .$promise.then(function (data){
           toastr.success(data.name, 'Lagret forfatter');
@@ -36,7 +36,7 @@ angular.module('webUiApp')
   		resource.addAuthor({id: id}, $scope.author)
   		.$promise.then(function(data){ 
   			toastr.success(data.name, 'Opprettet forfatter');
-  			$location.path('/guidelines/'+guidelineId);
+  			$location.path('/guideline/'+guidelineId);
   		}, 
   		function(error){
   			handlePostError(error);

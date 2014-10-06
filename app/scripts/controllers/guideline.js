@@ -83,6 +83,10 @@ angular.module('webUiApp')
       $location.path('/author/0').search('guidelineId', guidelineId);
     };
 
+    $scope.removeAuthorBtnClick = function(index){
+      Guideline.deleteAuthor({_id: index});
+    }
+
     $scope.addSectionBtnClick = function(){
       $location.path('/section/0').search('guidelineId', guidelineId);
     }
