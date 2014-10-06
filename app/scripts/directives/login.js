@@ -7,7 +7,7 @@
  * # logIn
  */
 angular.module('webUiApp')
-  .directive('logIn',['localStorageService', '$rootScope', function (localStorageService, $rootScope) {
+  .directive('logIn',['localStorageService', function (localStorageService) {
     return {
       templateUrl: 'views/partials/_login.html',
       restrict: 'E',

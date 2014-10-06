@@ -43,7 +43,7 @@ angular.module('webUiApp')
     };
 
     
-    $scope.removeKeyInfo = function(index) {
+    $scope.removeKeyInfo = function() {
     	
     };
     function handlePostError(error)

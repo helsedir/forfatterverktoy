@@ -43,7 +43,7 @@ angular.module('webUiApp')
     };
 
     
-    $scope.removeEmrInfo = function(index) {
+    $scope.removeEmrInfo = function() {
     	
     };
     function handlePostError(error)

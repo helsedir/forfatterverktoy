@@ -19,14 +19,14 @@ angular.module('webUiApp')
         var referenceId = $stateParams.referenceId;
         var recommendationId = $location.search().recommendationId;
 
-        if(referenceId !== 0){
+        if(referenceId != 0){
             Reference.get({_id: referenceId}, function(data){
                 $scope.reference = data;
             });
         }
 
         $scope.updateOrCreateReference = function() {
-            if(referenceId !== 0){
+            if(referenceId != 0){
                 Reference.update({ _id: referenceId }, $scope.reference)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Lagret');
@@ -36,7 +36,7 @@ angular.module('webUiApp')
                     });
             }
 
-            else if(typeof(recommendationId) !== 'undefined' && recommendationId !== null)
+            else if(typeof(recommendationId) != 'undefined' && recommendationId != null)
             {
                 Recommendation.addReference({id: recommendationId}, $scope.reference)
                     .$promise.then(function(data){
@@ -49,7 +49,7 @@ angular.module('webUiApp')
         };
 
 
-        $scope.removeReference = function(index) {
+        $scope.removeReference = function() {
 
         };
         function handlePostError(error)

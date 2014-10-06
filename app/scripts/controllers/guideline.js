@@ -5,7 +5,7 @@
  * @name webUiApp.controller:GuidelineCtrl
  * @description
  * # GuidelineCtrl
- * Controller of the webUiApp
+ * Controller of the webUiApp  
  */
 angular.module('webUiApp')
   .controller('GuidelineCtrl',['$scope', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Guideline, $stateParams, $location, toastr) {
@@ -24,7 +24,7 @@ angular.module('webUiApp')
 
     
     $scope.updateOrCreateGuideline = function() {
-      if($scope.guideline.guidelineId == null)
+      if($scope.guideline.guidelineId === null)
       {
         $scope.guideline.$save().then(function(data){
             toastr.success(data.title, 'Opprettet Retninglinje');
@@ -44,7 +44,7 @@ angular.module('webUiApp')
       else
       {
         Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
-        .$promise.then(function(data){
+        .$promise.then(function(){
 
           toastr.success($scope.guideline.title, 'Lagret');
         }, function(error){
@@ -85,10 +85,10 @@ angular.module('webUiApp')
 
     $scope.removeAuthorBtnClick = function(index){
       Guideline.deleteAuthor({_id: index});
-    }
+    };
 
     $scope.addSectionBtnClick = function(){
       $location.path('/section/0').search('guidelineId', guidelineId);
-    }
+    };
 
   }]);

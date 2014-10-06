@@ -46,7 +46,7 @@ angular.module('webUiApp')
         };
 
 
-        $scope.removePicoContinousOutcome = function(index) {
+        $scope.removePicoContinousOutcome = function() {
 
         };
         function handlePostError(error)

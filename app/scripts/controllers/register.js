@@ -23,7 +23,7 @@ angular.module('webUiApp')
  
     $scope.signUp = function () {
  
-        authService.saveRegistration($scope.registration).then(function (response) {
+        authService.saveRegistration($scope.registration).then(function () {
  
             $scope.savedSuccessfully = true;
             $scope.message = 'User has been registered successfully, you will be redicted to login page in 2 seconds.';
@@ -46,6 +46,6 @@ angular.module('webUiApp')
             $timeout.cancel(timer);
             $location.path('/login');
         }, 2000);
-    }
+    };
  
 }]);

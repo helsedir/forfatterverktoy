@@ -42,7 +42,7 @@ angular.module('webUiApp')
             }
         };
 
-        $scope.removeRecommendation = function (index) {
+        $scope.removeRecommendation = function () {
 
         };
 

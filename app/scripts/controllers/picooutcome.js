@@ -49,7 +49,7 @@ angular.module('webUiApp')
         };
 
 
-        $scope.removePicoOutcome = function(index) {
+        $scope.removePicoOutcome = function() {
 
         };
         function handlePostError(error)

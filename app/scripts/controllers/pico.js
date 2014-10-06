@@ -53,7 +53,7 @@ angular.module('webUiApp')
             $location.path('/picooutcome/0').search('picoId', picoId);
         };
 
-        $scope.removePico = function (index) {
+        $scope.removePico = function () {
 
         };
         function handlePostError(error) {

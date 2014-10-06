@@ -12,14 +12,14 @@ angular.module('webUiApp')
   	var authorId = $stateParams.authorId;
   	var guidelineId = $location.search().guidelineId;
 
-  	if(authorId != 0){
+  	if(authorId > 0){
       Author.get({_id: authorId}, function(data){
   		  $scope.author = data;
       });
   	} 
 
   	$scope.updateOrCreateAuthor = function() {
-      if(authorId != 0){
+      if(authorId > 0){
         Author.update({_id: authorId}, $scope.author)
         .$promise.then(function (data){
           toastr.success(data.name, 'Lagret forfatter');
@@ -30,7 +30,7 @@ angular.module('webUiApp')
       else{
   		createAuthor(Guideline, guidelineId);
       }
-  	}
+  	};
 
   	var createAuthor = function (resource, id){
   		resource.addAuthor({id: id}, $scope.author)

@@ -42,11 +42,24 @@ angular.module('webUiApp')
       }
     };
 
-    $scope.removePicoCode = function(index) {
+    $scope.removePicoCode = function() {
     	
     };
     $scope.addTaxonomyCodeBtnClick = function()
     {
       $location.path('/taxonomyCode/0').search('picoCodeId', picoCodeId).search('schemaSystem', $scope.picoCode.ontologyName).search('schemaId', $scope.picoCode.ontologyName);
+    };
+
+    //Handles errors when post fails
+    function handlePostError(error)
+    {
+      if(error.status == 401)
+      {
+        toastr.warning('Logg inn for å lagre');
+      }
+      else
+      {
+        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
+      }
     }
   }]);
