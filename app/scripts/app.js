@@ -28,7 +28,7 @@ angular
     .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
         localStorageServiceProvider.setPrefix('ls');
     }])
-    .config(function($breadcrumbProvider) {
+    .config(['$breadcrumbProvider', function($breadcrumbProvider) {
         $breadcrumbProvider.setOptions({
             prefixStateName: 'home',
             template: '<ol class="breadcrumb">' +
@@ -36,8 +36,8 @@ angular
                 '<li ng-repeat="step in steps | limitTo:-1" class="active"><span>{{step.ncyBreadcrumbLabel}}</span></li>' +
                 '</ol>'
         });
-    })
-    .config(function($stateProvider, $urlRouterProvider) {
+    }])
+    .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
                 url: '/',
@@ -234,10 +234,8 @@ angular
                     ncyBreadcrumbParent: 'recommendation',
                     ncyBreadcrumbLabel: 'Referanse {{reference.referenceId}}'
                 }
-            })
-        ;
+            });
 
         $urlRouterProvider.otherwise('/');
 
-    })
-;
+    }]);
