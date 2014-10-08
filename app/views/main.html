@@ -1,6 +1,33 @@
 <div class="container">
-<h2>Retningslinjer</h2>
+<h1>Retningslinjer</h1>
 <!-- Guideline liste -->
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Tittel</th>
+			<th>Sist oppdatert</th>
+			<th>Språk</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="guideline in guidelines">
+			<td>{{guideline.guidelineId}}</td>
+			<td>{{guideline.title}}</td>
+			<td>{{guideline.updatedDate | date}}</td>
+			<td>{{guideline.language}}</td>
+			<td>
+				<div class="btn-group pull-right">
+				<button type="button" class="btn btn-default btn-sm" ng-click="addGuidelineBtnClick()"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+				<button type="button" class="btn btn-danger btn-sm" ng-click="addGuidelineBtnClick()"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+				</div>
+				</td>
+				
+		</tr>
+	</tbody>
+</table>
 <p class="input-group move" ng-repeat="guideline in guidelines">
   <a href="#/guideline/{{guideline.guidelineId}}">{{guideline.title}}</a>
 </p>
