@@ -10,7 +10,7 @@
 angular.module('webUiApp')
   .controller('AuthorCtrl', ['$scope', 'Guideline', 'Author', '$stateParams', '$location', 'toastr', function ($scope, Guideline, Author, $stateParams, $location, toastr){
   	var authorId = $stateParams.authorId;
-  	var guidelineId = $location.search().guidelineId;
+  	var guidelineId = $stateParams.guidelineId;
 
   	if(authorId > 0){
       Author.get({_id: authorId}, function(data){

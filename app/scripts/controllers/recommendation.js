@@ -9,9 +9,12 @@
  */
 angular.module('webUiApp')
     .controller('RecommendationCtrl', ['$scope', 'Recommendation', '$stateParams', '$location', 'Section', 'toastr', function ($scope, Recommendation, $stateParams, $location, Section, toastr) {
-
+        $scope.guidelineId = $stateParams.guidelineId;
+        $scope.sectionId = $stateParams.sectionId;
+        
+        var guidelineId = $stateParams.guidelineId;
         var recommendationId = $stateParams.recommendationId;
-        var sectionId = $location.search().sectionId;
+        var sectionId = $stateParams.sectionId;
 
         if (recommendationId != 0) {
             Recommendation.get({_id: recommendationId}, function (data) {
@@ -35,7 +38,7 @@ angular.module('webUiApp')
                 Section.addRecommendation({id: sectionId}, $scope.recommendation)
                     .$promise.then(function (data) {
                         toastr.success(data.heading, 'Opprettet anbefaling');
-                        $location.path('/recommendation/' + data.recommendationId);
+                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
                     }, function (error) {
                         handlePostError(error);
                     });
@@ -47,19 +50,19 @@ angular.module('webUiApp')
         };
 
         $scope.addPicoBtnClick = function () {
-            $location.path('/pico/0').search('recommendationId', recommendationId);
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/0');
         };
 
         $scope.addEmrInfoBtnClick = function () {
-            $location.path('/emrinfo/0').search('recommendationId', recommendationId);
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/0');
         };
 
         $scope.addKeyInfoBtnClick = function () {
-            $location.path('/keyinfo/0').search('recommendationId', recommendationId);
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/keyinfo/0');
         };
 
         $scope.addReferenceBtnClick = function () {
-            $location.path('/reference/0').search('recommendationId', recommendationId);
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/0');
         };
         //Handles errors when post fails
         function handlePostError(error) {

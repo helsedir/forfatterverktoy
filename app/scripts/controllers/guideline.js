@@ -9,7 +9,6 @@
  */
 angular.module('webUiApp')
   .controller('GuidelineCtrl',['$scope', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Guideline, $stateParams, $location, toastr) {
-
   	var guidelineId = $stateParams.guidelineId;
     if(guidelineId == 0)
     {
@@ -80,7 +79,7 @@ angular.module('webUiApp')
     };
 
     $scope.addAuthorBtnClick = function() {
-      $location.path('/author/0').search('guidelineId', guidelineId);
+      $location.path('/guideline/'+guidelineId+'/author/0');
     };
 
     $scope.removeAuthorBtnClick = function(index){
@@ -88,7 +87,8 @@ angular.module('webUiApp')
     };
 
     $scope.addSectionBtnClick = function(){
-      $location.path('/section/0').search('guidelineId', guidelineId);
+      $location.path('/guideline/'+guidelineId+'/section/0');
     };
+
 
   }]);

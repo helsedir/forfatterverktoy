@@ -15,9 +15,14 @@
  */
 angular.module('webUiApp')
     .controller('PicoOutcomeCtrl', ['$scope', 'PicoOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoOutcome, $stateParams, Pico, $location, $timeout, toastr) {
-
+        var guidelineId = $stateParams.guidelineId;
+        var sectionId = $stateParams.sectionId;
+        var recommendationId = $stateParams.recommendationId;
+        var picoId = $stateParams.picoId;
         var picoOutcomeId = $stateParams.picoOutcomeId;
-        var picoId = $location.search().picoId;
+
+        var baseUrl = '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picooutcome/';
+        $scope.baseUrl = baseUrl;
 
         if(picoOutcomeId != 0){
             PicoOutcome.get({_id: picoOutcomeId}, function(data){
@@ -30,7 +35,7 @@ angular.module('webUiApp')
                 PicoOutcome.update({ _id: picoOutcomeId }, $scope.picoOutcome)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Lagret');
-                        $location.path('/picooutcome/'+ data.picoOutcomeId);
+                        $location.path(baseUrl + data.picoOutcomeId);
                     }, function(error){
                         handlePostError(error);
                     });
@@ -41,7 +46,7 @@ angular.module('webUiApp')
                 Pico.addPicoOutcome({id: picoId}, $scope.picoOutcome)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Opprettet PicoOutcome');
-                        $location.path('/picooutcome/'+ data.picoOutcomeId);
+                        $location.path(baseUrl + data.picoOutcomeId);
                     },function(error){
                         handlePostError(error);
                     });

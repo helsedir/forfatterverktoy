@@ -15,9 +15,11 @@
  */
 angular.module('webUiApp')
     .controller('ReferenceCtrl', ['$scope', 'Reference', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, Reference, $stateParams, Recommendation, $location, $timeout, toastr) {
-
+        var guidelineId = $stateParams.guidelineId;
+        var sectionId = $stateParams.sectionId;
+        var recommendationId = $stateParams.recommendationId;
         var referenceId = $stateParams.referenceId;
-        var recommendationId = $location.search().recommendationId;
+       
 
         if(referenceId != 0){
             Reference.get({_id: referenceId}, function(data){
@@ -30,7 +32,7 @@ angular.module('webUiApp')
                 Reference.update({ _id: referenceId }, $scope.reference)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Lagret');
-                        $location.path('/reference/'+ data.referenceId);
+                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/'+ data.referenceId);
                     }, function(error){
                         handlePostError(error);
                     });
@@ -41,7 +43,7 @@ angular.module('webUiApp')
                 Recommendation.addReference({id: recommendationId}, $scope.reference)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Opprettet Reference');
-                        $location.path('/reference/'+ data.referenceId);
+                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/'+ data.referenceId);
                     },function(error){
                         handlePostError(error);
                     });

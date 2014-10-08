@@ -38,7 +38,7 @@
 		<div class="form-group" ng-show="picoCode.picoCodeId">
 		<label>Taxonomy Codes:</label>
 		<div ng-repeat="taxonomyCode in picoCode.taxonomyCodes">			
-			<a href="#/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.schemaSystem}} : {{taxonomyCode.code}}</a>
+			<a href="#{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.schemaSystem}} : {{taxonomyCode.code}}</a>
 		</div>
 	</div>
 	<button ng-show="picoCode.picoCodeId" type="button" class="btn btn-default btn-sm" ng-click="addTaxonomyCodeBtnClick()">Legg til Taxonomy Code</button>

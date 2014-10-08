@@ -9,9 +9,15 @@
  */
 angular.module('webUiApp')
     .controller('PicoCtrl', ['$scope', 'Pico', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, Pico, $stateParams, Recommendation, $location, $timeout, toastr) {
-
+        var guidelineId = $stateParams.guidelineId;
+        var sectionId = $stateParams.sectionId;
+        var recommendationId = $stateParams.recommendationId;
         var picoId = $stateParams.picoId;
-        var recommendationId = $location.search().recommendationId;
+        var baseUrl = '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/';
+
+        $scope.baseUrl = baseUrl;
+
+        
 
         if (picoId != 0) {
             Pico.get({_id: picoId}, function (data) {
@@ -24,7 +30,7 @@ angular.module('webUiApp')
                 Pico.update({ _id: picoId }, $scope.pico)
                     .$promise.then(function (data) {
                         toastr.success(data.summary, 'Lagret');
-                        $location.path('/pico/' + data.picoId);
+                        $location.path(baseUrl + data.picoId);
                     }, function (error) {
                         handlePostError(error);
                     });
@@ -34,7 +40,7 @@ angular.module('webUiApp')
                 Recommendation.addPico({id: recommendationId}, $scope.pico)
                     .$promise.then(function (data) {
                         toastr.success(data.summary, 'Opprettet Pico');
-                        $location.path('/pico/' + data.picoId);
+                        $location.path(baseUrl + data.picoId);
                     }, function (error) {
                         handlePostError(error);
                     });
@@ -42,15 +48,15 @@ angular.module('webUiApp')
         };
 
         $scope.addPicoCodeBtnClick = function () {
-            $location.path('/picoCode/0').search('picoId', picoId);
+            $location.path(baseUrl + picoId + '/picoCode/0');
         };
 
         $scope.addPicoContinuousOutcomeBtnClick = function () {
-            $location.path('/picocontinousoutcome/0').search('picoId', picoId);
+            $location.path(baseUrl + picoId + '/picocontinousoutcome/0');
         };
 
         $scope.addPicoOutcomeBtnClick = function () {
-            $location.path('/picooutcome/0').search('picoId', picoId);
+            $location.path(baseUrl + picoId + '/picooutcome/0');
         };
 
         $scope.removePico = function () {

@@ -43,21 +43,21 @@
         <label>Pico Codes:</label>
 
         <div ng-repeat="picoCode in pico.picoCodes">
-            <a href="#/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</a>
+            <a href="#{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</a>
         </div>
     </div>
     <div class="form-group" ng-show="pico.picoId">
         <label>Pico Continuous Outcomes:</label>
 
         <div ng-repeat="pcoutcome in pico.picoContinousOutcomes">
-            <a href="#/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.picoContinousOutcomeId}}</a>
+            <a href="#{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.picoContinousOutcomeId}}</a>
         </div>
     </div>
     <div class="form-group" ng-show="pico.picoOutcomes">
         <label>Pico Outcomes:</label>
 
         <div ng-repeat="picoOutcome in pico.picoOutcomes">
-            <a href="#/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.picoOutcomeId}}</a>
+            <a href="#{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.picoOutcomeId}}</a>
         </div>
     </div>
     <button ng-show="pico.picoId" type="button" class="btn btn-default btn-sm" ng-click="addPicoCodeBtnClick()">Legg til picoCode</button>

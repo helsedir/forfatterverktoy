@@ -10,11 +10,19 @@
 angular.module('webUiApp')
     .controller('TaxonomycodeCtrl', ['$scope', 'TaxonomyCode', '$stateParams', 'PicoCode', '$location', '$timeout', 'toastr', function ($scope, TaxonomyCode, $stateParams, PicoCode, $location, $timeout, toastr) {
 
-        var taxonomyCodeId = $stateParams.taxonomyCodeId;
-        var picoCodeId = $location.search().picoCodeId;
         $scope.taxonomyCode ={};
         $scope.taxonomyCode.schemaId = $stateParams.schemaId;
         $scope.taxonomyCode.schemaSystem = $stateParams.schemaSystem;
+
+        var guidelineId = $stateParams.guidelineId;
+        var sectionId = $stateParams.sectionId;
+        var recommendationId = $stateParams.recommendationId;
+        var picoCodeId = $stateParams.picoCodeId;
+        var picoId = $stateParams.picoId;
+        var taxonomyCodeId = $stateParams.taxonomyCodeId;
+
+        var baseUrl = '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picoCode/'+picoCodeId+'/taxonomyCode/';
+        $scope.baseUrl = baseUrl;
 
         if (taxonomyCodeId != 0) {
             TaxonomyCode.get({_id: taxonomyCodeId}, function (data) {
@@ -27,7 +35,7 @@ angular.module('webUiApp')
                 TaxonomyCode.update({ _id: taxonomyCodeId }, $scope.taxonomyCode)
                     .$promise.then(function (data) {
                         toastr.success(data.name, 'Lagret');
-                        $location.path('/taxonomyCode/' + data.taxonomyCodeId);
+                        $location.path(baseUrl + data.taxonomyCodeId);
                     }, function (error) {
                         handlePostError(error);
                     });
@@ -37,7 +45,7 @@ angular.module('webUiApp')
                 PicoCode.addTaxonomyCode({id: picoCodeId}, $scope.taxonomyCode)
                     .$promise.then(function (data) {
                         toastr.success(data.name, 'Opprettet TaxonomyCode');
-                        $location.path('/taxonomyCode/' + data.taxonomyCodeId);
+                        $location.path(baseUrl + data.taxonomyCodeId);
                     }, function (error) {
                         handlePostError(error);
                     });

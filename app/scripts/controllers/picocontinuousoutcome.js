@@ -13,8 +13,14 @@
 angular.module('webUiApp')
     .controller('PicoContinousOutcomeCtrl', ['$scope', 'PicoContinousOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoContinousOutcome, $stateParams, Pico, $location, $timeout, toastr) {
 
+        var guidelineId = $stateParams.guidelineId;
+        var sectionId = $stateParams.sectionId;
+        var recommendationId = $stateParams.recommendationId;
+        var picoId = $stateParams.picoId;
         var picoContinousOutcomeId = $stateParams.picoContinousOutcomeId;
-        var picoId = $location.search().picoId;
+
+        var baseUrl = '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picocontinousoutcome/';
+        $scope.baseUrl = baseUrl;
 
         if(picoContinousOutcomeId != 0){
             PicoContinousOutcome.get({_id: picoContinousOutcomeId}, function(data){
@@ -27,7 +33,7 @@ angular.module('webUiApp')
                 PicoContinousOutcome.update({ _id: picoContinousOutcomeId }, $scope.picoContinousOutcome)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Lagret');
-                        $location.path('/picocontinousoutcome/'+ data.picoContinousOutcomeId);
+                        $location.path(baseUrl+ data.picoContinousOutcomeId);
                     }, function(error){
                         handlePostError(error);
                     });
@@ -38,7 +44,7 @@ angular.module('webUiApp')
                 Pico.addPicoContinousOutcome({id: picoId}, $scope.picoContinousOutcome)
                     .$promise.then(function(data){
                         toastr.success(data.summary, 'Opprettet PicoContinousOutcome');
-                        $location.path('/picocontinousoutcome/'+ data.picoContinousOutcomeId);
+                        $location.path(baseUrl+ data.picoContinousOutcomeId);
                     },function(error){
                         handlePostError(error);
                     });

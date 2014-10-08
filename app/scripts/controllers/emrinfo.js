@@ -9,10 +9,11 @@
  */
 angular.module('webUiApp')
   .controller('EmrInfoCtrl', ['$scope', 'EmrInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, EmrInfo, $stateParams, Recommendation, $location, $timeout, toastr) {
-  	
+  	var guidelineId = $stateParams.guidelineId;
+    var sectionId = $stateParams.sectionId;
+    var recommendationId = $stateParams.recommendationId;
   	var emrInfoId = $stateParams.emrInfoId;
-    var recommendationId = $location.search().recommendationId;
-  	
+
     if(emrInfoId != 0){
       EmrInfo.get({_id: emrInfoId}, function(data){
       $scope.emrInfo = data;
@@ -24,7 +25,7 @@ angular.module('webUiApp')
         EmrInfo.update({ _id: emrInfoId }, $scope.emrInfo)
         .$promise.then(function(data){
             toastr.success(data.summary, 'Lagret');
-            $location.path('/emrinfo/'+ data.emrInfoId);
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/'+ data.emrInfoId);
           }, function(error){
             handlePostError(error);
           });
@@ -35,7 +36,7 @@ angular.module('webUiApp')
         Recommendation.addEmrInfo({id: recommendationId}, $scope.emrInfo)
         .$promise.then(function(data){
           toastr.success(data.summary, 'Opprettet EmrInfo');
-          $location.path('/emrinfo/'+ data.emrInfoId);
+          $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/'+ data.emrInfoId);
         },function(error){
           handlePostError(error);
         });

@@ -54,11 +54,11 @@ angular
                 controller: 'GuidelineCtrl',
 
                 data: {
-                    ncyBreadcrumbLabel: 'Retningslinje {{guideline.guidelineId}}'
+                    ncyBreadcrumbLabel: 'Retningslinje {{guideline.title}}'
                 }
             })
             .state('section', {
-                url: '/section/{sectionId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/section.html',
@@ -67,11 +67,11 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'guideline',
-                    ncyBreadcrumbLabel: 'Seksjon {{section.sectionId}}'
+                    ncyBreadcrumbLabel: 'Seksjon {{section.heading}}'
                 }
             })
             .state('recommendation', {
-                url: '/recommendation/{recommendationId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/recommendation.html',
@@ -80,11 +80,11 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent:'section' ,
-                    ncyBreadcrumbLabel: 'Anbefalling {{recommendation.recommendationId}}'
+                    ncyBreadcrumbLabel: 'Anbefaling {{recommendation.heading}}'
                 }
             })
             .state('author', {
-                url: '/author/{authorId}',
+                url: '/guideline/{guidelineId}/author/{authorId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/author.html',
@@ -92,11 +92,11 @@ angular
                     }
                 },
                 data: {
-                    ncyBreadcrumbLabel: 'Author {{author.authorId}}'
+                    ncyBreadcrumbLabel: 'Forfatter {{author.authorId}}'
                 }
             })
             .state('pico', {
-                url: '/pico/{picoId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/pico.html',
@@ -109,7 +109,7 @@ angular
                 }
             })
             .state('picoCode', {
-                url: '/picoCode/{picoCodeId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picoCode/{picoCodeId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/picocode.html',
@@ -122,7 +122,7 @@ angular
                 }
             })
             .state('taxonomyCode', {
-                url: '/taxonomyCode/{taxonomyCodeId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picoCode/{picoCodeId}/taxonomyCode/{taxonomyCodeId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/taxonomycode.html',
@@ -171,7 +171,7 @@ angular
                 }
             })
             .state('emrinfo', {
-                url: '/emrinfo/{emrInfoId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/emrinfo/{emrInfoId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/emrInfo.html',
@@ -184,7 +184,7 @@ angular
                 }
             })
             .state('keyinfo', {
-                url: '/keyinfo/{keyInfoId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/keyinfo/{keyInfoId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/keyInfo.html',
@@ -197,7 +197,7 @@ angular
                 }
             })
             .state('picocontinousoutcome', {
-                url: '/picocontinousoutcome/{picoContinousOutcomeId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picocontinousoutcome/{picoContinousOutcomeId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/picoContinousOutcome.html',
@@ -210,7 +210,7 @@ angular
                 }
             })
             .state('picooutcome', {
-                url: '/picooutcome/{picoOutcomeId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picooutcome/{picoOutcomeId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/picoOutcome.html',
@@ -223,7 +223,7 @@ angular
                 }
             })
             .state('reference', {
-                url: '/reference/{referenceId}',
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/reference/{referenceId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/reference.html',
@@ -232,7 +232,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'recommendation',
-                    ncyBreadcrumbLabel: 'Referense {{reference.referenceId}}'
+                    ncyBreadcrumbLabel: 'Referanse {{reference.referenceId}}'
                 }
             })
         ;

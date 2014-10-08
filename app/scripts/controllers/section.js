@@ -9,9 +9,12 @@
  */
 angular.module('webUiApp')
   .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Section, Guideline, $stateParams, $location, toastr) {
-
+    if($stateParams.guidelineId){
+      $scope.guidelineId = $stateParams.guidelineId;
+    }
+    
   	var sectionId = $stateParams.sectionId;
-    var guidelineId = $location.search().guidelineId;
+    var guidelineId = $stateParams.guidelineId;
     var parentSectionId = $location.search().parentSectionId;
     $scope.parentId = 1;
     if(sectionId != 0)
@@ -47,7 +50,7 @@ angular.module('webUiApp')
       resource.addSection({id: id }, $scope.section)
       .$promise.then(function(data){
         toastr.success(data.heading, 'Opprettet seksjon');
-        $location.path('/section/'+ data.sectionId);
+        $location.path('/guideline/'+guidelineId+'/section/'+ data.sectionId);
       },
       function(error){
         handlePostError(error);
@@ -64,11 +67,11 @@ angular.module('webUiApp')
     };
 
     $scope.addSectionBtnClick = function(){
-      $location.path('/section/0').search('parentSectionId', sectionId);
+      $location.path('/guideline/'+guidelineId+'/section/0').search('parentSectionId', sectionId);
     };
 
     $scope.addRecommendationBtnClick = function(){
-      $location.path('/recommendation/0').search('sectionId', sectionId);
+      $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/0');
     };
 
     $scope.removeSectionBtnClick = function(){

@@ -9,9 +9,10 @@
  */
 angular.module('webUiApp')
   .controller('KeyInfoCtrl', ['$scope', 'KeyInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, KeyInfo, $stateParams, Recommendation, $location, $timeout, toastr) {
-  	
+  	var guidelineId = $stateParams.guidelineId;
+    var sectionId = $stateParams.sectionId;
+    var recommendationId = $stateParams.recommendationId;
   	var keyInfoId = $stateParams.keyInfoId;
-    var recommendationId = $location.search().recommendationId;
   	
     if(keyInfoId != 0){
       KeyInfo.get({_id: keyInfoId}, function(data){
@@ -24,7 +25,7 @@ angular.module('webUiApp')
         KeyInfo.update({ _id: keyInfoId }, $scope.keyInfo)
         .$promise.then(function(data){
             toastr.success(data.summary, 'Lagret');
-            $location.path('/keyinfo/'+ data.keyInfoId);
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/keyinfo/'+ data.keyInfoId);
           }, function(error){
             handlePostError(error);
           });
@@ -35,7 +36,7 @@ angular.module('webUiApp')
         Recommendation.addKeyInfo({id: recommendationId}, $scope.keyInfo)
         .$promise.then(function(data){
           toastr.success(data.summary, 'Opprettet KeyInfo');
-          $location.path('/keyinfo/'+ data.keyInfoId);
+          $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/keyinfo/'+ data.keyInfoId);
         },function(error){
           handlePostError(error);
         });

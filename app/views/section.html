@@ -28,7 +28,7 @@
 	<div class="form-group" ng-show="section.sectionId">
 		<label>Recommendations:</label>
 		<div ng-repeat="recommendation in section.recommendations">			
-			<a href="#/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</a>
+			<a href="#/guideline/{{guidelineId}}/section/{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</a>
 		</div>
 	</div>
 

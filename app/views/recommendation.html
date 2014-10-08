@@ -55,25 +55,25 @@
 	<div class="form-group" ng-show="recommendation.recommendationId">
 		<label>Picos:</label>
 		<div ng-repeat="pico in recommendation.picos">			
-			<a href="#/pico/{{pico.picoId}}">{{pico.picoId}}</a>
+			<a href="#/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.picoId}}</a>
 		</div>
 	</div>
     <div class="form-group" ng-show="recommendation.recommendationId">
         <label>References:</label>
         <div ng-repeat="reference in recommendation.references">
-            <a href="#/reference/{{reference.referenceId}}">{{reference.referenceId}}</a>
+            <a href="#/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}">{{reference.referenceId}}</a>
         </div>
     </div>
 	<div class="form-group" ng-show="recommendation.recommendationId">
 		<label>EmrInfos:</label>
 		<div ng-repeat="emr in recommendation.emrInfo">			
-			<a href="#/emrinfo/{{emr.emrInfoId}}">{{emr.name}}</a>
+			<a href="#/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.name}}</a>
 		</div>
 	</div>
 	<div class="form-group" ng-show="recommendation.recommendationId">
 		<label>KeyInfos:</label>
 		<div ng-repeat="key in recommendation.keyInfo">			
-			<a href="#/keyinfo/{{key.keyInfoId}}">{{key.keyInfoId}}</a>
+			<a href="#/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.keyInfoId}}</a>
 		</div>
 	</div>
 	<button ng-show="recommendation.recommendationId" type="button" class="btn btn-default btn-sm" ng-click="addPicoBtnClick()">Legg til pico</button>

@@ -59,7 +59,7 @@
 	<div class="form-group" ng-show="guideline.guidelineId">
 		<label>Sections:</label>
 		<div ng-repeat="section in guideline.sections">			
-			<a href="#/section/{{section.sectionId}}">{{section.heading}}</a>
+			<a href="#/guideline/{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.heading}}</a>
 		</div>
 	</div>
 	<button type="button" ng-show="guideline.guidelineId" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til seksjon</button>
