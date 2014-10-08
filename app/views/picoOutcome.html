@@ -1,3 +1,6 @@
+<article>
+    
+
 <form role="form" ng-submit="updateOrCreatePicoOutcome()">
     <div class="form-group">
         <label for="absoluteDifference">AbsoluteDifference</label>
@@ -134,7 +137,11 @@
         <input type="text" class="form-control" id="relativeEffectReferenceId" ng-model="picoOutcome.relativeEffectReferenceId">
     </div>
 
-
+    <div class="pull-right">
+        <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+        <button ng-show="picoOutcome.picoOutcomeId" type="button" class="btn btn-danger btn-lg" ng-click="removeRecommendationBtnClick()">Slett</button>
+    </div>
+    <br><br><br>
     <p></p>
     <div>UpdatedBy: {{picoOutcome.updatedBy}}</div>
     <div>UpdatedDate: {{picoOutcome.updatedDate | date}}</div>
@@ -145,3 +152,4 @@
 
     <button type="submit" class="btn btn-primary">Lagre</button>
 </form>
+</article>

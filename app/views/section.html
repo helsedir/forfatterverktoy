@@ -1,3 +1,15 @@
+<article>
+	<small ng-show="section.sectionId">
+	<p>
+	Opprettet av: {{section.createdBy}}, {{section.createdDate | date}}
+	</p>
+	<p>
+	Oppdatert av: {{section.updatedBy}}, {{section.updatedDate | date}}
+	</p>
+	</small>
+<section id="Section">
+	
+
 <form role="form" ng-submit="updateOrCreateSection()">
 	<div class="form-group">
 		<label for="heading">Heading</label>
@@ -12,35 +24,75 @@
 		<div  id="text" ng-model="section.text" text-angular></div>
 	</div>
 
-	<p></p>
-	<div>UpdatedBy: {{section.updatedBy}}</div>
-	<div>UpdatedDate: {{section.updatedDate | date}}</div>
-	<p></p>
-	<div>CreatedBy: {{section.createdBy}}</div>
-	<div>CreatedDate: {{section.createdDate | date}}</div>
-	<p></p>
-	<div class="form-group" ng-show="section.sectionId">
-		<label>Sections:</label>
-		<div ng-repeat="childSections in section.childSections">			
-			<a href="#/section/{{childSections.sectionId}}">{{childSections.heading}}</a>
-		</div>
-	</div>
-	<div class="form-group" ng-show="section.sectionId">
-		<label>Recommendations:</label>
-		<div ng-repeat="recommendation in section.recommendations">			
-			<a href="#/guideline/{{guidelineId}}/section/{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</a>
-		</div>
-	</div>
-
-	<p></p>
-	<p></p>
-	<p><button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til underseksjon</button>
-	<button ng-show="section.sectionId" type="button" class="btn btn-default btn-sm" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button></p>
 	
-	<p>
-		<button type="submit" class="btn btn-primary">Lagre</button>
-		<button ng-show="section.sectionId" type="button" class="btn btn-danger" ng-click="removeSectionBtnClick(section.sectionId)">Slett</button>
-	</p>
-	
+	<div class="pull-right">
+		<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+		<button ng-show="section.sectionId" type="button" class="btn btn-danger btn-lg" ng-click="removeSectionBtnClick(section.sectionId)">Slett</button>
+	</div>
+	<br><br><br>
 </form>
+</section>
+<section id="Sections" class="well" ng-show="section.sectionId">
+	<h3>Seksjoner</h3>
+	<table class="table" >
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Tittel</th>
+				<th>Opprettet</th>
+				<th>Oppdatert</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="childSections in section.childSections">
+				<td>{{childSections.sectionId}}</td>
+				<td>{{childSections.heading}}</td>
+				<td>{{childSections.createdDate | date}}</td>
+				<td>{{childSections.updatedDate | date}}</td>
+				<td>
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-default btn-sm" btn-href="/section/{{childSections.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+					</div>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<button ng-show="section.sectionId" type="button" class="btn btn-primary" ng-click="addSectionBtnClick()">Legg til</button>
+</section>
+<section id="Recommendations" class="well" ng-show="section.sectionId">
+	<h3>Anbefalinger</h3>
+	<table class="table" >
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Tittel</th>
+				<th>Opprettet</th>
+				<th>Oppdatert</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="recommendation in section.recommendations">
+				<td>{{recommendation.recommendationId}}</td>
+				<td>{{recommendation.heading}}</td>
+				<td>{{recommendation.createdDate | date}}</td>
+				<td>{{recommendation.updatedDate | date}}</td>
+				<td>
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteRecommendationBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette anbefalingen {{recommendation.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+					</div>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
 
+	<button ng-show="section.sectionId" type="button" class="btn btn-primary" ng-click="addRecommendationBtnClick()">Legg til</button></p>
+
+</section>
+
+</article>

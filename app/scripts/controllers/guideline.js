@@ -8,7 +8,7 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Guideline, $stateParams, $location, toastr) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', '$stateParams', '$location', 'toastr', function ($scope, Guideline, Section, $stateParams, $location, toastr) {
   	var guidelineId = $stateParams.guidelineId;
     if(guidelineId == 0)
     {
@@ -78,17 +78,37 @@ angular.module('webUiApp')
         });
     };
 
+    $scope.deleteSectionBtnClick = function(index) {
+      var sectionToDelete = $scope.guideline.sections[index];
+      Section.delete({ _id: sectionToDelete.sectionId })
+      .$promise.then(function(){
+        toastr.success(sectionToDelete.heading, 'Slettet');
+        $scope.guideline.sections.splice(index, 1);
+      }, function(error){
+        handlePostError(error);
+      });
+    };
+
     $scope.addAuthorBtnClick = function() {
       $location.path('/guideline/'+guidelineId+'/author/0');
     };
 
-    $scope.removeAuthorBtnClick = function(index){
-      Guideline.deleteAuthor({_id: index});
+    $scope.removeAuthorBtnClick = function(){
+      //TODO
     };
 
     $scope.addSectionBtnClick = function(){
       $location.path('/guideline/'+guidelineId+'/section/0');
     };
 
+    //Handles errors when post fails
+    function handlePostError(error) {
+        if (error.status == 401) {
+            toastr.warning('Logg inn for å lagre');
+        }
+        else {
+            toastr.error('Status code: ' + error.status + ' ' + error.statusText + ' Error data: ' + error.data.message, 'Error!');
+        }
+    }
 
   }]);

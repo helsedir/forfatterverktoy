@@ -1,3 +1,16 @@
+<article>
+
+	<small ng-show="taxonomyCode.taxonomyCodeId">
+	<p>
+	Opprettet av: {{taxonomyCode.createdBy}}, {{taxonomyCode.createdDate | date}}
+	</p>
+	<p>
+	Oppdatert av: {{taxonomyCode.updatedBy}}, {{taxonomyCode.updatedDate | date}}
+	</p>
+	</small>
+<section>
+		
+	
 <form role="form" ng-submit="updateOrCreateTaxonomyCode()">
 	<div class="form-group">
 		<label for="name">Name</label>
@@ -27,15 +40,11 @@
 		<label for="schemaId">SchemaId</label>
 		<input type="text" class="form-control" id="schemaId" ng-model="taxonomyCode.schemaId" readonly>
 	</div>
-
-
-	<p></p>
-	<div>UpdatedBy: {{taxonomyCode.updatedBy}}</div>
-	<div>UpdatedDate: {{taxonomyCode.updatedDate | date}}</div>
-	<p></p>
-	<div>CreatedBy: {{taxonomyCode.createdBy}}</div>
-	<div>CreatedDate: {{taxonomyCode.createdDate | date}}</div>
-	<p></p>
-
-	<button type="submit" class="btn btn-primary">Lagre</button>
+<div class="pull-right">
+                <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+                <button ng-show="taxonomyCode.taxonomyCodeId" type="button" class="btn btn-danger btn-lg" ng-click="removeRecommendationBtnClick()">Slett</button>
+            </div>
+            <br><br><br>
 </form>
+</section>
+</article>

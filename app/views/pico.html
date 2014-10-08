@@ -1,67 +1,131 @@
-<form role="form" ng-submit="updateOrCreatePico()">
-    <div class="form-group">
-        <label for="summary">Summary</label>
-        <input type="text" class="form-control" id="summary" ng-model="pico.summary">
-    </div>
-    <div class="form-group">
-        <label for="population">Population</label>
-        <input type="text" class="form-control" id="population" ng-model="pico.population">
-    </div>
-    <div class="form-group">
-        <label for="intervention">Intervention</label>
-        <input type="text" class="form-control" id="intervention" ng-model="pico.intervention">
-    </div>
-    <div class="form-group">
-        <label for="control">Control</label>
-        <input type="text" class="form-control" id="control" ng-model="pico.control">
-    </div>
-    <div class="form-group">
-        <label for="outcome">Outcome</label>
-        <input type="text" class="form-control" id="outcome" ng-model="pico.outcome">
-    </div>
-    <div class="form-group">
-        <label for="newEvidence">New Evidence</label>
-        <input type="text" class="form-control" id="newEvidence" ng-model="pico.newEvidence">
-    </div>
-    <div class="form-group">
-        <label for="referance">Referance</label>
-        <input type="text" class="form-control" id="referance" ng-model="pico.referance">
-    </div>
-
-
-    <p></p>
-
-    <div>UpdatedBy: {{pico.updatedBy}}</div>
-    <div>UpdatedDate: {{pico.updatedDate | date}}</div>
-    <p></p>
-
-    <div>CreatedBy: {{pico.createdBy}}</div>
-    <div>CreatedDate: {{pico.createdDate | date}}</div>
-    <p></p>
-
-    <div class="form-group" ng-show="pico.picoId">
-        <label>Pico Codes:</label>
-
-        <div ng-repeat="picoCode in pico.picoCodes">
-            <a href="#{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</a>
-        </div>
-    </div>
-    <div class="form-group" ng-show="pico.picoId">
-        <label>Pico Continuous Outcomes:</label>
-
-        <div ng-repeat="pcoutcome in pico.picoContinousOutcomes">
-            <a href="#{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.picoContinousOutcomeId}}</a>
-        </div>
-    </div>
-    <div class="form-group" ng-show="pico.picoOutcomes">
-        <label>Pico Outcomes:</label>
-
-        <div ng-repeat="picoOutcome in pico.picoOutcomes">
-            <a href="#{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.picoOutcomeId}}</a>
-        </div>
-    </div>
-    <button ng-show="pico.picoId" type="button" class="btn btn-default btn-sm" ng-click="addPicoCodeBtnClick()">Legg til picoCode</button>
-    <button ng-show="pico.picoId" type="button" class="btn btn-default btn-sm" ng-click="addPicoContinuousOutcomeBtnClick()">Legg til Pico Continuous Outcome</button>
-    <button ng-show="pico.picoId" type="button" class="btn btn-default btn-sm" ng-click="addPicoOutcomeBtnClick()">Legg til Pico Outcome</button>
-    <button type="submit" class="btn btn-primary">Lagre</button>
-</form>
+<article>
+    <small ng-show="pico.picoId">
+    <p>
+    Opprettet av: {{pico.createdBy}}, {{pico.createdDate | date}}
+    </p>
+    <p>
+    Oppdatert av: {{pico.updatedBy}}, {{pico.updatedDate | date}}
+    </p>
+    </small>
+    <section>
+        <form role="form" ng-submit="updateOrCreatePico()">
+            <div class="form-group">
+                <label for="summary">Summary</label>
+                <input type="text" class="form-control" id="summary" ng-model="pico.summary">
+            </div>
+            <div class="form-group">
+                <label for="population">Population</label>
+                <input type="text" class="form-control" id="population" ng-model="pico.population">
+            </div>
+            <div class="form-group">
+                <label for="intervention">Intervention</label>
+                <input type="text" class="form-control" id="intervention" ng-model="pico.intervention">
+            </div>
+            <div class="form-group">
+                <label for="control">Control</label>
+                <input type="text" class="form-control" id="control" ng-model="pico.control">
+            </div>
+            <div class="form-group">
+                <label for="outcome">Outcome</label>
+                <input type="text" class="form-control" id="outcome" ng-model="pico.outcome">
+            </div>
+            <div class="form-group">
+                <label for="newEvidence">New Evidence</label>
+                <input type="text" class="form-control" id="newEvidence" ng-model="pico.newEvidence">
+            </div>
+            <div class="form-group">
+                <label for="referance">Referance</label>
+                <input type="text" class="form-control" id="referance" ng-model="pico.referance">
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+                <button ng-show="pico.picoId" type="button" class="btn btn-danger btn-lg" ng-click="removeRecommendationBtnClick()">Slett</button>
+            </div>
+        </form>
+    </section>
+    <br><br><br>
+    <section class="well" id="Pico-codes" ng-show="pico.picoId">
+        <h3>Pico Codes</h3>
+        <table class="table" ng-show="pico.picoCodes.length > 0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Opprettet</th>
+                    <th>Oppdatert</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="picoCode in pico.picoCodes">
+                    <td>{{picoCode.picoCodeId}}</td>
+                    <td>{{picoCode.createdDate | date}}</td>
+                    <td>{{picoCode.updatedDate | date}}</td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                        </div>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoCodeBtnClick()">Legg til</button>
+    </section>
+    <section class="well" id="Pico-continuous-outcomes" ng-show="pico.picoId">
+        <h3>Pico Continuous Outcomes</h3>
+        <table class="table"  ng-show="pico.picoContinousOutcomes.length > 0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Opprettet</th>
+                    <th>Oppdatert</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pcoutcome in pico.picoContinousOutcomes">
+                    <td>{{pcoutcome.picoContinousOutcomeId}}</td>
+                    <td>{{pcoutcome.createdDate | date}}</td>
+                    <td>{{pcoutcome.updatedDate | date}}</td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                        </div>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoContinuousOutcomeBtnClick()">Legg til</button>
+    </section>
+    <section class="well" id="Pico-outcomes" ng-show="pico.picoId">
+        <h3>Pico Outcomes</h3>
+        <table class="table" ng-show="pico.picoOutcomes.length > 0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Opprettet</th>
+                    <th>Oppdatert</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="picoOutcome in pico.picoOutcomes">
+                    <td>{{picoOutcome.picoOutcomeId}}</td>
+                    <td>{{picoOutcome.createdDate | date}}</td>
+                    <td>{{picoOutcome.updatedDate | date}}</td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                        </div>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoOutcomeBtnClick()">Legg til</button>
+    </section>
+</article>

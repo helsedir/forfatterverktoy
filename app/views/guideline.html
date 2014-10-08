@@ -1,83 +1,125 @@
-
-<h3>{{guideline.title}}</h3>
-
-<form role="form" ng-submit="updateOrCreateGuideline()">
-	<div class="form-group">
-		<label for="title">Title</label>
-		<input type="text" class="form-control" id="title" ng-model="guideline.title">
-	</div>
-    <div class="form-group">
-        <label for="shortTitle">Short Title</label>
-        <input type="text" class="form-control" id="shortTitle" ng-model="guideline.shortTitle">
-    </div>
-	<div class="form-group">
-		<label for="englishTitle">English Title</label>
-		<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
-	</div>
-	<!-- <div class="form-group">
-		<label for="text">Text</label>
-		<textArea class="form-control" id="text" ng-model="guideline.text"></textArea>
-	</div> -->
-	 <div class="form-group">
-		<label for="text">Text</label>
-		<div  id="text" ng-model="guideline.text" text-angular></div>
-	</div>
-	<div class="form-group">
-		<label for="disclaimer">Disclaimer</label>
-		<input type="text" class="form-control" id="disclaimer" ng-model="guideline.disclaimer">
-	</div>
-	<div class="form-group">
-		<label for="language">Language</label>
-		<input type="text" class="form-control" id="language" ng-model="guideline.language">
-	</div>
-	<div class="form-group">
-		<label for="sponsors">Sponsors</label>
-		<input type="text" class="form-control" id="sponsors" ng-model="guideline.sponsors">
-	</div>
-	<div class="form-group">
-		<label for="owner">Owner</label>
-		<input type="text" class="form-control" id="owner" ng-model="guideline.owner">
-	</div>
-	<div class="form-group">
-		<label for="type">Type</label>
-		<select class="form-control" id="type" ng-model="guideline.type">
-		  <option value="0">None</option>
-		  <option value="1">Guideline</option>
-		  <option value="2">Circulara</option>
-		</select>
-	</div>
-	<!-- List Of Authors -->
-	<div class="form-group" ng-show="guideline.guidelineId">
-		<label>Authors:</label>
-		<div ng-repeat="author in guideline.authors">
-			<a href="#/author/{{author.authorId}}">{{author.name}}</a>
-		</div>
-	</div>
-	<button type="button" ng-show="guideline.guidelineId" class="btn btn-default btn-sm" ng-click="addAuthorBtnClick(guideline.guidelineId)">Legg til forfatter</button>
-	<p></p>
-	<!-- List Of Sections -->
-	<div class="form-group" ng-show="guideline.guidelineId">
-		<label>Sections:</label>
-		<div ng-repeat="section in guideline.sections">			
-			<a href="#/guideline/{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.heading}}</a>
-		</div>
-	</div>
-	<button type="button" ng-show="guideline.guidelineId" class="btn btn-default btn-sm" ng-click="addSectionBtnClick()">Legg til seksjon</button>
-	<p></p>
-	<p></p>
-	
-		<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-		<button ng-show="guideline.guidelineId" type="button" class="btn btn-danger btn-lg" ng-click="removeGuidelineBtnClick(guideline.guidelineId)">Slett</button>
-	
-	<p></p>
-	<p></p>
-	<small>
-	<div>UpdatedBy: {{guideline.updatedBy}}</div>
-	<div>UpdatedDate: {{guideline.updatedDate | date}}</div>
-	<p></p>
-	<div>CreatedBy: {{guideline.createdBy}}</div>
-	<div>CreatedDate: {{guideline.createdDate | date}}</div>
-	<p></p>
+<article>
+	<h1 ng-show="guideline.guidelineId">{{guideline.title}}</h1>
+	<small ng-show="guideline.guidelineId">
+	<p>
+	Opprettet av: {{guideline.createdBy}}, {{guideline.createdDate | date}}
+	</p>
+	<p>
+	Oppdatert av: {{guideline.updatedBy}}, {{guideline.updatedDate | date}}
+	</p>
 	</small>
-</form>
-<p></p>
+	<section>
+		<form role="form" ng-submit="updateOrCreateGuideline()">
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input type="text" class="form-control" id="title" ng-model="guideline.title">
+			</div>
+			<div class="form-group">
+				<label for="shortTitle">Short Title</label>
+				<input type="text" class="form-control" id="shortTitle" ng-model="guideline.shortTitle">
+			</div>
+			<div class="form-group">
+				<label for="englishTitle">English Title</label>
+				<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
+			</div>
+			<div class="form-group">
+				<label for="text">Text</label>
+				<div  id="text" ng-model="guideline.text" text-angular></div>
+			</div>
+			<div class="form-group">
+				<label for="disclaimer">Disclaimer</label>
+				<input type="text" class="form-control" id="disclaimer" ng-model="guideline.disclaimer">
+			</div>
+			<div class="form-group">
+				<label for="language">Language</label>
+				<input type="text" class="form-control" id="language" ng-model="guideline.language">
+			</div>
+			<div class="form-group">
+				<label for="sponsors">Sponsors</label>
+				<input type="text" class="form-control" id="sponsors" ng-model="guideline.sponsors">
+			</div>
+			<div class="form-group">
+				<label for="owner">Owner</label>
+				<input type="text" class="form-control" id="owner" ng-model="guideline.owner">
+			</div>
+			<div class="form-group">
+				<label for="type">Type</label>
+				<select class="form-control" id="type" ng-model="guideline.type">
+					<option value="0">None</option>
+					<option value="1">Guideline</option>
+					<option value="2">Circulara</option>
+				</select>
+			</div>
+			<div class="pull-right">
+				<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+				<button ng-show="guideline.guidelineId" type="button" class="btn btn-danger btn-lg" ng-click="removeGuidelineBtnClick(guideline.guidelineId)">Slett</button>
+			</div>
+		</form>
+	</section>
+	<br><br><br>
+	<section id="authors" class="well" ng-show="guideline.guidelineId">
+		<h3>Forfattere</h3>
+		<table class="table" >
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Navn</th>
+					<th>Epost</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="author in guideline.authors">
+					<td>{{author.authorId}}</td>
+					<td>{{author.name}}</td>
+					<td>{{author.email}}</td>
+					<td>
+						<div class="btn-group pull-right">
+							<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guideline.guidelineId}}/author/{{author.authorId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+							<button type="button" class="btn btn-danger btn-sm" ng-click="deleteAuthorBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette forfatteren {{author.name}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+						</div>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-default" ng-click="addAuthorBtnClick()">Legg til forfatter</button>
+	</section>
+	<!-- List Of Sections -->
+	<section id="sections" class="well" ng-show="guideline.guidelineId">
+		<h3>Seksjoner</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Tittel</th>
+					<th>Opprettet</th>
+					<th>Oppdatert</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="section in guideline.sections">
+					<td>{{section.sectionId}}</td>
+					<td>{{section.heading}}</td>
+					<td>{{section.createdDate | date}}</td>
+					<td>{{section.updatedDate | date}}</td>
+					<td>
+						<div class="btn-group pull-right">
+							<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guideline.guidelineId}}/section/{{section.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+							<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{section.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+						</div>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-default" ng-click="addSectionBtnClick()">Legg til seksjon</button>
+	</section>
+	
+	
+	
+	
+	
+	
+</article>

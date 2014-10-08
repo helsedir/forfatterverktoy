@@ -79,7 +79,7 @@ angular.module('webUiApp')
       Section.update({ _id: $scope.section.sectionId }, $scope.section)
       .$promise.then(function(){
         toastr.success($scope.section.heading, 'Slettet sekjson');
-        $location.path('/');
+        $location.path('/guideline/'+guidelineId);
       }, function(error){
            handlePostError(error);
     });

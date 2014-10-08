@@ -54,7 +54,7 @@ angular
                 controller: 'GuidelineCtrl',
 
                 data: {
-                    ncyBreadcrumbLabel: 'Retningslinje {{guideline.title}}'
+                    ncyBreadcrumbLabel: 'Retningslinje'
                 }
             })
             .state('section', {
@@ -67,7 +67,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'guideline',
-                    ncyBreadcrumbLabel: 'Seksjon {{section.heading}}'
+                    ncyBreadcrumbLabel: 'Seksjon'
                 }
             })
             .state('recommendation', {
@@ -80,7 +80,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent:'section' ,
-                    ncyBreadcrumbLabel: 'Anbefaling {{recommendation.heading}}'
+                    ncyBreadcrumbLabel: 'Anbefaling'
                 }
             })
             .state('author', {
@@ -92,7 +92,7 @@ angular
                     }
                 },
                 data: {
-                    ncyBreadcrumbLabel: 'Forfatter {{author.authorId}}'
+                    ncyBreadcrumbLabel: 'Forfatter'
                 }
             })
             .state('pico', {
@@ -105,7 +105,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'recommendation',
-                    ncyBreadcrumbLabel: 'Pico {{pico.picoId}}'
+                    ncyBreadcrumbLabel: 'Pico'
                 }
             })
             .state('picoCode', {
@@ -118,7 +118,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'pico',
-                    ncyBreadcrumbLabel: 'Pico kode {{picoCode.picoCodeId}}'
+                    ncyBreadcrumbLabel: 'Pico kode'
                 }
             })
             .state('taxonomyCode', {
@@ -131,7 +131,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'picoCode',
-                    ncyBreadcrumbLabel: 'Taxonomy kode {{taxonomyCode.taxonomyCodeId}}'
+                    ncyBreadcrumbLabel: 'Taxonomy kode'
                 }
             })
             .state('about', {
@@ -180,7 +180,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'recommendation',
-                    ncyBreadcrumbLabel: 'Emr Info {{emrinfo.emrInfoId}}'
+                    ncyBreadcrumbLabel: 'Emr Info'
                 }
             })
             .state('keyinfo', {
@@ -193,7 +193,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'recommendation',
-                    ncyBreadcrumbLabel: 'Key Info {{keyinfo.keyInfoId}}'
+                    ncyBreadcrumbLabel: 'Key Info'
                 }
             })
             .state('picocontinousoutcome', {
@@ -206,7 +206,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'pico',
-                    ncyBreadcrumbLabel: 'Pico continuous outcome {{picocontinousoutcome.picoContinousOutcomeId}}'
+                    ncyBreadcrumbLabel: 'Pico continuous outcome'
                 }
             })
             .state('picooutcome', {
@@ -219,7 +219,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'pico',
-                    ncyBreadcrumbLabel: 'Pico outcome {{picooutcome.picoOutcomeId}}'
+                    ncyBreadcrumbLabel: 'Pico outcome'
                 }
             })
             .state('reference', {
@@ -232,7 +232,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'recommendation',
-                    ncyBreadcrumbLabel: 'Referanse {{reference.referenceId}}'
+                    ncyBreadcrumbLabel: 'Referanse'
                 }
             });
 
