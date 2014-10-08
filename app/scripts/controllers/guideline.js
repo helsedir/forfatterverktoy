@@ -23,7 +23,7 @@ angular.module('webUiApp')
 
     
     $scope.updateOrCreateGuideline = function() {
-      if($scope.guideline.guidelineId === null)
+      if($scope.guideline.guidelineId == null)
       {
         $scope.guideline.$save().then(function(data){
             toastr.success(data.title, 'Opprettet Retninglinje');
