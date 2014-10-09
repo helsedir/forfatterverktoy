@@ -99,7 +99,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="section in guideline.sections">
+				<tr ng-repeat="section in guideline.sections" ng-hide="section.isDeleted">
 					<td>{{section.sectionId}}</td>
 					<td>{{section.heading}}</td>
 					<td>{{section.createdDate | date}}</td>

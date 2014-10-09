@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('PicocodeCtrl', ['$scope', 'PicoCode', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, $stateParams, Pico, $location, $timeout, toastr) {
+  .controller('PicocodeCtrl', ['$scope', 'PicoCode', 'TaxonomyCode', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, TaxonomyCode, $stateParams, Pico, $location, $timeout, toastr) {
   	var guidelineId = $stateParams.guidelineId;
     var sectionId = $stateParams.sectionId;
     var recommendationId = $stateParams.recommendationId;
@@ -47,12 +47,31 @@ angular.module('webUiApp')
       }
     };
 
-    $scope.removePicoCode = function() {
-    	
+    $scope.deletePicoCodeBtnClick = function() {
+    	var picoCodeToDelete = $scope.picoCode;
+      PicoCode.delete({ _id: picoCodeToDelete.picoCodeId })
+          .$promise.then(function(){
+          toastr.success('picoCode: ' + picoCodeToDelete.picoCodeId, 'Slettet');
+          $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId);
+        }, function(error){
+          handlePostError(error);
+        });
     };
+
     $scope.addTaxonomyCodeBtnClick = function()
     {
       $location.path(baseUrl + picoCodeId + '/taxonomyCode/0').search('schemaSystem', $scope.picoCode.ontologyName).search('schemaId', $scope.picoCode.ontologyName);
+    };
+
+    $scope.deleteTaxonomyCodeBtnClick = function(index) {
+      var taxonomyCodeToDelete = $scope.picoCode.taxonomyCodes[index];
+      TaxonomyCode.delete({ _id: taxonomyCodeToDelete.taxonomyCodeId })
+          .$promise.then(function(){
+          toastr.success('taxonomyCode: ' + taxonomyCodeToDelete.taxonomyCodeId, 'Slettet');
+          $scope.picoCode.taxonomyCodes.splice(index, 1);
+        }, function(error){
+          handlePostError(error);
+        });
     };
 
     //Handles errors when post fails

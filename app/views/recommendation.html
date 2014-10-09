@@ -55,7 +55,7 @@
 			</div>
 			<div class="pull-right">
 				<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-				<button ng-show="recommendation.recommendationId" type="button" class="btn btn-danger btn-lg" ng-click="removeRecommendationBtnClick()">Slett</button>
+				<button ng-show="recommendation.recommendationId" type="button" class="btn btn-danger btn-lg" ng-click="deleteRecommendationBtnClick()">Slett</button>
 			</div>
 			<br><br><br>
 		</section>
@@ -71,14 +71,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="pico in recommendation.picos">
+					<tr ng-repeat="pico in recommendation.picos" ng-hide="pico.isDeleted">
 						<td>{{pico.picoId}}</td>
 						<td>{{pico.createdDate | date}}</td>
 						<td>{{pico.updatedDate | date}}</td>
 						<td>
 							<div class="btn-group pull-right">
 								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette PICO med id {{pico.picoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 							</div>
 						</td>
 						
@@ -99,14 +99,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="reference in recommendation.references">
+					<tr ng-repeat="reference in recommendation.references" ng-hide="reference.isDeleted">
 						<td>{{reference.referenceId}}</td>
 						<td>{{reference.createdDate | date}}</td>
 						<td>{{reference.updatedDate | date}}</td>
 						<td>
 							<div class="btn-group pull-right">
 								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteReferenceBtnClick($index)" ng-confirm-click="Er du sikker på at du vil referanse med ID {{reference.referenceId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 							</div>
 						</td>
 						
@@ -127,14 +127,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="emr in recommendation.emrInfo">
+					<tr ng-repeat="emr in recommendation.emrInfo" ng-hide="emr.isDeleted">
 						<td>{{emr.emrInfoId}}</td>
 						<td>{{emr.createdDate | date}}</td>
 						<td>{{emr.updatedDate | date}}</td>
 						<td>
 							<div class="btn-group pull-right">
 								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteEmrInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette EMR info med id {{emr.emrInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 							</div>
 						</td>
 						
@@ -155,14 +155,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="key in recommendation.keyInfo">
+					<tr ng-repeat="key in recommendation.keyInfo" ng-hide="key.isDeleted">
 						<td>{{key.keyInfoId}}</td>
 						<td>{{key.createdDate | date}}</td>
 						<td>{{key.updatedDate | date}}</td>
 						<td>
 							<div class="btn-group pull-right">
 								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteKeyInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette key info med id {{key.keyInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 							</div>
 						</td>
 						

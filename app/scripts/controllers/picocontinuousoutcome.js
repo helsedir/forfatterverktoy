@@ -52,9 +52,17 @@ angular.module('webUiApp')
         };
 
 
-        $scope.removePicoContinousOutcome = function() {
-
+        $scope.deletePicoContinousOutcomeBtnClick = function() {
+            var picoContinousOutcomeToDelete = $scope.picoContinousOutcome;
+            PicoContinousOutcome.delete({ _id: picoContinousOutcomeToDelete.picoContinousOutcomeId })
+                .$promise.then(function(){
+                toastr.success('Pico Continous Outcome: ' + picoContinousOutcomeToDelete.picoContinousOutcomeId, 'Slettet');
+                $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId);
+            }, function(error){
+                handlePostError(error);
+            });
         };
+        
         function handlePostError(error)
         {
             if(error.status == 401)

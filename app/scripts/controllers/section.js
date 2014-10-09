@@ -69,7 +69,7 @@ angular.module('webUiApp')
     };
 
     $scope.addSectionBtnClick = function(){
-      $location.path(baseUrl + '/0').search('parentSectionId', sectionId);
+      $location.path(baseUrl + '0').search('parentSectionId', sectionId);
     };
 
     $scope.addRecommendationBtnClick = function(){
