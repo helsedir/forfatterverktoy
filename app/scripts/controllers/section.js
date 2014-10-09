@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', '$stateParams', '$location', 'toastr', function ($scope, Section, Guideline, $stateParams, $location, toastr) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr) {
     if($stateParams.guidelineId){
       $scope.guidelineId = $stateParams.guidelineId;
     }
@@ -16,6 +16,8 @@ angular.module('webUiApp')
   	var sectionId = $stateParams.sectionId;
     var guidelineId = $stateParams.guidelineId;
     var parentSectionId = $location.search().parentSectionId;
+    var baseUrl = '/guideline/' + guidelineId + '/section/';
+    $scope.baseUrl = baseUrl;
     $scope.parentId = 1;
     if(sectionId != 0)
     {    
@@ -50,7 +52,7 @@ angular.module('webUiApp')
       resource.addSection({id: id }, $scope.section)
       .$promise.then(function(data){
         toastr.success(data.heading, 'Opprettet seksjon');
-        $location.path('/guideline/'+guidelineId+'/section/'+ data.sectionId);
+        $location.path(baseUrl + data.sectionId);
       },
       function(error){
         handlePostError(error);
@@ -67,23 +69,51 @@ angular.module('webUiApp')
     };
 
     $scope.addSectionBtnClick = function(){
-      $location.path('/guideline/'+guidelineId+'/section/0').search('parentSectionId', sectionId);
+      $location.path(baseUrl + '/0').search('parentSectionId', sectionId);
     };
 
     $scope.addRecommendationBtnClick = function(){
-      $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/0');
+      $location.path(baseUrl + sectionId + '/recommendation/0');
     };
 
-    $scope.removeSectionBtnClick = function(){
-      $scope.section.isDeleted = true;
-      Section.update({ _id: $scope.section.sectionId }, $scope.section)
-      .$promise.then(function(){
-        toastr.success($scope.section.heading, 'Slettet sekjson');
-        $location.path('/guideline/'+guidelineId);
-      }, function(error){
-           handlePostError(error);
-    });
-  };
+    $scope.deleteSectionBtnClick = function(index){
+      var sectionToDelete;
+
+      //If deleting childsection
+      if(typeof index != 'undefined'){
+        sectionToDelete = $scope.section.childSections[index];
+      }
+      else{
+        sectionToDelete = $scope.section;
+      } 
+      Section.delete({ _id: sectionToDelete.sectionId })
+        .$promise.then(function(){
+          toastr.success(sectionToDelete.heading, 'Slettet');
+
+          if(typeof index != 'undefined'){
+            $scope.section.childSections.splice(index, 1);
+          }
+          else{
+            $location.path('/guideline/'+guidelineId);
+          }
+        }, function(error){
+          handlePostError(error);
+        });
+    };
+
+    $scope.deleteRecommendationBtnClick = function(index){
+      var recommendationToDelete = $scope.section.recommendations[index];
+      Recommendation.delete({_id: recommendationToDelete.recommendationId})
+          .$promise.then(function(){
+
+            toastr.success(recommendationToDelete.heading, 'Slettet');
+            $scope.section.recommendations.splice(index, 1);
+
+            }, function(error){
+            handlePostError(error);
+          });
+      };
+
 
     //Handles errors when post fails
     function handlePostError(error)

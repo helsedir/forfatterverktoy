@@ -10,6 +10,9 @@
 angular.module('webUiApp')
   .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', '$stateParams', '$location', 'toastr', function ($scope, Guideline, Section, $stateParams, $location, toastr) {
   	var guidelineId = $stateParams.guidelineId;
+    var baseUrl = '/guideline/';
+    $scope.baseUrl = baseUrl;
+
     if(guidelineId == 0)
     {
       $scope.guideline = new Guideline();
@@ -27,7 +30,7 @@ angular.module('webUiApp')
       {
         $scope.guideline.$save().then(function(data){
             toastr.success(data.title, 'Opprettet Retninglinje');
-            $location.path('/guideline/'+ data.guidelineId);
+            $location.path(baseUrl + data.guidelineId);
 
         }, function (error){
           if(error.status == 401)
@@ -90,7 +93,7 @@ angular.module('webUiApp')
     };
 
     $scope.addAuthorBtnClick = function() {
-      $location.path('/guideline/'+guidelineId+'/author/0');
+      $location.path(baseUrl + guidelineId + '/author/0');
     };
 
     $scope.removeAuthorBtnClick = function(){
@@ -98,7 +101,7 @@ angular.module('webUiApp')
     };
 
     $scope.addSectionBtnClick = function(){
-      $location.path('/guideline/'+guidelineId+'/section/0');
+      $location.path(baseUrl + guidelineId + '/section/0');
     };
 
     //Handles errors when post fails

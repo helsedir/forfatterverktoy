@@ -75,7 +75,7 @@
 					<td>{{author.email}}</td>
 					<td>
 						<div class="btn-group pull-right">
-							<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guideline.guidelineId}}/author/{{author.authorId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+							<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{guideline.guidelineId}}/author/{{author.authorId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							<button type="button" class="btn btn-danger btn-sm" ng-click="deleteAuthorBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette forfatteren {{author.name}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 						</div>
 					</td>
@@ -106,7 +106,7 @@
 					<td>{{section.updatedDate | date}}</td>
 					<td>
 						<div class="btn-group pull-right">
-							<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guideline.guidelineId}}/section/{{section.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+							<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{section.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 						</div>
 					</td>

@@ -23,6 +23,7 @@ angular.module('webUiApp')
         Author.update({_id: authorId}, $scope.author)
         .$promise.then(function (data){
           toastr.success(data.name, 'Lagret forfatter');
+          $location.path('/guideline/'+guidelineId);
         }, function (error){
           handlePostError(error);
         });

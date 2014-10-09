@@ -27,13 +27,13 @@
 	
 	<div class="pull-right">
 		<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-		<button ng-show="section.sectionId" type="button" class="btn btn-danger btn-lg" ng-click="removeSectionBtnClick(section.sectionId)">Slett</button>
+		<button ng-show="section.sectionId" type="button" class="btn btn-danger btn-lg" ng-click="deleteSectionBtnClick()">Slett</button>
 	</div>
 	<br><br><br>
 </form>
 </section>
 <section id="Sections" class="well" ng-show="section.sectionId">
-	<h3>Seksjoner</h3>
+	<h3>Underseksjoner</h3>
 	<table class="table" >
 		<thead>
 			<tr>
@@ -52,7 +52,7 @@
 				<td>{{childSections.updatedDate | date}}</td>
 				<td>
 					<div class="btn-group pull-right">
-						<button type="button" class="btn btn-default btn-sm" btn-href="/section/{{childSections.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+						<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{childSections.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSections.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 					</div>
 				</td>
@@ -82,7 +82,7 @@
 				<td>{{recommendation.updatedDate | date}}</td>
 				<td>
 					<div class="btn-group pull-right">
-						<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+						<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteRecommendationBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette anbefalingen {{recommendation.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
 					</div>
 				</td>
