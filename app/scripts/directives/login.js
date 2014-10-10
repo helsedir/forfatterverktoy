@@ -7,13 +7,13 @@
  * # logIn
  */
 angular.module('webUiApp')
-  .directive('logIn',['localStorageService', function (localStorageService) {
+  .directive('logIn',['localStorageService', 'authService', function (localStorageService, authService) {
     return {
       templateUrl: 'views/partials/_login.html',
       restrict: 'E',
       replace: 'true',
       link: function (scope, element, attrs) {
-        scope.$on('$routeChangeSuccess', function(){
+        scope.$on('$stateChangeSuccess', function(){
           scope.authData = localStorageService.get('authorizationData'); 
             if(scope.authData)
             {
@@ -25,6 +25,10 @@ angular.module('webUiApp')
                   localStorageService.remove('authorizationData');
               }
             }
+        scope.logOutBtnClick = function(){
+          authService.logOut();
+          scope.authData = null;
+        };
   	    });  
       }
     };

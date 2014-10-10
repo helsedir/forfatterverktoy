@@ -1,5 +1,5 @@
 <article>
-	<h1 ng-show="guideline.guidelineId">{{guideline.title}}</h1>
+	<h1 ng-show="guideline.guidelineId">{{guideline.shortTitle}}</h1>
 	<small ng-show="guideline.guidelineId">
 	<p>
 	Opprettet av: {{guideline.createdBy}}, {{guideline.createdDate | date}}
@@ -11,12 +11,12 @@
 	<section>
 		<form role="form" ng-submit="updateOrCreateGuideline()">
 			<div class="form-group">
-				<label for="title">Title</label>
-				<input type="text" class="form-control" id="title" ng-model="guideline.title">
+				<label for="shortTitle">Short Title</label>
+				<input type="text" class="form-control" id="shortTitle" ng-model="guideline.shortTitle" required>
 			</div>
 			<div class="form-group">
-				<label for="shortTitle">Short Title</label>
-				<input type="text" class="form-control" id="shortTitle" ng-model="guideline.shortTitle">
+				<label for="title">Title</label>
+				<input type="text" class="form-control" id="title" ng-model="guideline.title" required>
 			</div>
 			<div class="form-group">
 				<label for="englishTitle">English Title</label>

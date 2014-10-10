@@ -6,7 +6,7 @@
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Tittel</th>
+			<th>Korttittel</th>
 			<th>Sist oppdatert</th>
 			<th>Språk</th>
 			<th></th>
@@ -15,7 +15,7 @@
 	<tbody>
 		<tr ng-repeat="guideline in guidelines">
 			<td>{{guideline.guidelineId}}</td>
-			<td>{{guideline.title}}</td>
+			<td>{{guideline.shortTitle}}</td>
 			<td>{{guideline.updatedDate | date}}</td>
 			<td>{{guideline.language}}</td>
 			<td>
