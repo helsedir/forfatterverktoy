@@ -26,19 +26,26 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+     <div class="container">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">Nasjonale faglige retningslinjer</a>
+       </div>
+       <div class="navbar-collapse collapse">
+        <log-In></log-In>
+       </div><!--/.nav-collapse -->
+     </div>
+   </div>
+
 <div class="container">
-    <div class="header">
-        
-        <h3 class="text-muted" style="display: inline-block"><a ng-href="#">Nasjonale faglige retningslinjer</a></h3>
-            
-        
-        
-            
-            <log-In></log-In>
-            
-        
-        
-    </div>
+
     <div ncy-breadcrumb></div>
     <div ui-view=""></div>
     <br>
@@ -90,7 +97,6 @@
 <script src="scripts/services/authservice.js"></script>
 <script src="scripts/services/authinterceptorservice.js"></script>
 <script src="scripts/controllers/section.js"></script>
-<script src="scripts/controllers/addauthor.js"></script>
 <script src="scripts/controllers/emrinfo.js"></script>
 <script src="scripts/controllers/keyinfo.js"></script>
 <script src="scripts/directives/login.js"></script>

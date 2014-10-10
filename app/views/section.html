@@ -69,7 +69,6 @@
 			<tr>
 				<th>#</th>
 				<th>Tittel</th>
-				<th>Opprettet</th>
 				<th>Oppdatert</th>
 				<th></th>
 			</tr>
@@ -78,9 +77,8 @@
 			<tr ng-repeat="recommendation in section.recommendations" ng-hide="recommendation.isDeleted">
 				<td>{{recommendation.recommendationId}}</td>
 				<td>{{recommendation.heading}}</td>
-				<td>{{recommendation.createdDate | date}}</td>
 				<td>{{recommendation.updatedDate | date}}</td>
-				<td>
+				<td class="col-md-4">
 					<div class="btn-group pull-right">
 						<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteRecommendationBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette anbefalingen {{recommendation.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
