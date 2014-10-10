@@ -92,7 +92,9 @@ angular
                     }
                 },
                 data: {
+                    ncyBreadcrumbParent: 'guideline',
                     ncyBreadcrumbLabel: 'Forfatter'
+
                 }
             })
             .state('pico', {
