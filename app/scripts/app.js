@@ -20,7 +20,8 @@ angular
         'toastr',
         'textAngular',
         'ui.router.state',
-        'ncy-angular-breadcrumb'
+        'ncy-angular-breadcrumb',
+        'angularModalService'
     ])
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');

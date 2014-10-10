@@ -1,0 +1,38 @@
+<div class="modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Velg forfatter</h4>
+              </div>
+              <div class="modal-body">
+
+              	<table class="table" >
+              		<thead>
+              			<tr>
+              				<th>#</th>
+              				<th>Navn</th>
+              				<th>Epost</th>
+              				<th>Velg</th>
+              			</tr>
+              		</thead>
+              		<tbody>
+              			<tr ng-repeat="author in authors" ng-class="{success: author.checked}">
+              				<td>{{author.authorId}}</td>
+              				<td>{{author.name}}</td>
+              				<td>{{author.email}}</td>
+              				<td>
+              					<input type="checkbox" ng-model="author.checked"> 
+              				</td>
+              				
+              			</tr>
+              		</tbody>
+              	</table>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="addNewAuthorBtnClick()" data-dismiss="modal"  aria-hidden="true">Opprett ny forfatter</button>
+              </div>
+            </div>
+          </div>
+</div>

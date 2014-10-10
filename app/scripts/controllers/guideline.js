@@ -8,7 +8,7 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', '$stateParams', '$location', 'toastr', function ($scope, Guideline, Section, $stateParams, $location, toastr) {
+  .controller('GuidelineCtrl',['$scope','ModalService', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', function ($scope, ModalService, Guideline, Section, Author, $stateParams, $location, toastr) {
   	var guidelineId = $stateParams.guidelineId;
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
@@ -92,9 +92,9 @@ angular.module('webUiApp')
       });
     };
 
-    $scope.addAuthorBtnClick = function() {
-      $location.path(baseUrl + guidelineId + '/author/0');
-    };
+    //$scope.addAuthorBtnClick = function() {
+    //  $location.path(baseUrl + guidelineId + '/author/0');
+    //};
 
     $scope.removeAuthorBtnClick = function(){
       //TODO
@@ -103,6 +103,50 @@ angular.module('webUiApp')
     $scope.addSectionBtnClick = function(){
       $location.path(baseUrl + guidelineId + '/section/0');
     };
+
+    $scope.addAuthorBtnClick = function() {
+      console.log("hei");
+
+            ModalService.showModal({
+                templateUrl: 'views/partials/_authormodal.html',
+                controller: function($scope, close){
+                  Author.query().$promise.then(function(authors){
+                  $scope.authors = authors;
+                  for (var i = $scope.authors.length - 1; i >= 0; i--) {
+                    checkAuthor($scope.authors[i]);
+                  }
+                  }, function(error){
+                    console.log(error);
+                    toastr.error(error.data.message, 'Error!');
+                  });
+                  
+
+                  $scope.close = function(result) {
+                    close(result, 500); // close, but give 500ms for bootstrap to animate
+                   };
+
+                  $scope.addNewAuthorBtnClick = function(){
+                    
+                    $location.path(baseUrl + guidelineId + '/author/0');
+                    close('Cancel');
+                  };
+
+                }
+            }).then(function(modal) {
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    $scope.message = "You said " + result;
+                });
+            });
+        };
+
+    function checkAuthor(author) {
+      for (var i = $scope.guideline.authors.length - 1; i >= 0; i--) {
+        if($scope.guideline.authors[i].authorId == author.authorId){
+          author.checked = true;
+        }
+      }
+    }
 
     //Handles errors when post fails
     function handlePostError(error) {
