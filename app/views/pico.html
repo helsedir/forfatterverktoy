@@ -56,11 +56,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="picoCode in pico.picoCodes" ng-hide="picoCode.isDeleted" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">
-                    <td>{{picoCode.picoCodeId}}</td>
-                    <td>{{picoCode.createdDate | date}}</td>
-                    <td>{{picoCode.updatedDate | date}}</td>
-                    <td>
+                <tr ng-repeat="picoCode in pico.picoCodes" ng-hide="picoCode.isDeleted">
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</td>
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.createdDate | date}}</td>
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.updatedDate | date}}</td>
+                    <td class="col-md-3">
                         <div class="btn-group pull-right">
                             <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
                             <button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette Pico code med id {{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
@@ -84,11 +84,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="pcoutcome in pico.picoContinousOutcomes" ng-hide="pcoutcome.isDeleted" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">
-                    <td>{{pcoutcome.picoContinousOutcomeId}}</td>
-                    <td>{{pcoutcome.createdDate | date}}</td>
-                    <td>{{pcoutcome.updatedDate | date}}</td>
-                    <td>
+                <tr ng-repeat="pcoutcome in pico.picoContinousOutcomes" ng-hide="pcoutcome.isDeleted" >
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.picoContinousOutcomeId}}</td>
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.createdDate | date}}</td>
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.updatedDate | date}}</td>
+                    <td class="col-md-3">
                         <div class="btn-group pull-right">
                             <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
                             <button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoContinuousOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico cont. outcome med id {{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
@@ -112,11 +112,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="picoOutcome in pico.picoOutcomes" ng-hide="picoOutcome.isDeleted" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">
-                    <td>{{picoOutcome.picoOutcomeId}}</td>
-                    <td>{{picoOutcome.createdDate | date}}</td>
-                    <td>{{picoOutcome.updatedDate | date}}</td>
-                    <td>
+                <tr ng-repeat="picoOutcome in pico.picoOutcomes" ng-hide="picoOutcome.isDeleted" >
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.picoOutcomeId}}</td>
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.createdDate | date}}</td>
+                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.updatedDate | date}}</td>
+                    <td class="col-md-3">
                         <div class="btn-group pull-right">
                             <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
                             <button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico outcome med id {{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>

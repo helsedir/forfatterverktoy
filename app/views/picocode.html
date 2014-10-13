@@ -59,13 +59,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes" ng-hide="taxonomyCode.isDeleted" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">
-					<td>{{taxonomyCode.taxonomyCodeId}}</td>
-					<td>{{taxonomyCode.createdDate | date}}</td>
-					<td>{{taxonomyCode.updatedDate | date}}</td>
-					<td>{{taxonomyCode.schemaSystem}}</td>
-					<td>{{taxonomyCode.code}}</td>
-					<td>
+				<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes" ng-hide="taxonomyCode.isDeleted" >
+					<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.taxonomyCodeId}}</td>
+					<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.createdDate | date}}</td>
+					<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.updatedDate | date}}</td>
+					<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.schemaSystem}}</td>
+					<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.code}}</td>
+					<td class="col-md-3">
 						<div class="btn-group pull-right">
 							<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							<button type="button" class="btn btn-danger btn-sm" ng-click="deleteTaxonomyCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette taxonomy code med id {{taxonomyCode.taxonomyCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>

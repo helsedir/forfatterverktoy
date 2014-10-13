@@ -15,12 +15,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="guideline in guidelines" btn-href="/guideline/{{guideline.guidelineId}}">
-			<td>{{guideline.guidelineId}}</td>
-			<td>{{guideline.shortTitle}}</td>
-			<td>{{guideline.updatedDate | date}}</td>
-			<td>{{guideline.language}}</td>
-			<td>
+		<tr ng-repeat="guideline in guidelines">
+			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.guidelineId}}</td>
+			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.shortTitle}}</td>
+			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.updatedDate | date}}</td>
+			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.language}}</td>
+			<td class="col-md-3">
 				<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guideline.guidelineId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 				<button type="button" class="btn btn-danger btn-sm" ng-click="deleteGuidelineBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette retningslinjen {{guideline.title}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>

@@ -28,7 +28,7 @@ angular.module('webUiApp')
                 Recommendation.update({ _id: recommendationId }, $scope.recommendation)
                     .$promise.then(function (data) {
                         toastr.success(data.heading, 'Lagret');
-                        $location.path('/recommendation/' + data.recommendationId);
+                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
                     }, function (error) {
                         handlePostError(error);
                     });

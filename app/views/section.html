@@ -45,12 +45,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="childSection in section.childSections" ng-hide="childSection.isDeleted" btn-href="{{baseUrl}}{{childSection.sectionId}}">
-				<td>{{childSection.sectionId}}</td>
-				<td>{{childSection.heading}}</td>
-				<td>{{childSection.createdDate | date}}</td>
-				<td>{{childSection.updatedDate | date}}</td>
-				<td>
+			<tr ng-repeat="childSection in section.childSections" ng-hide="childSection.isDeleted">
+				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.sectionId}}</td>
+				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.heading}}</td>
+				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.createdDate | date}}</td>
+				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.updatedDate | date}}</td>
+				<td class="col-md-3">
 					<div class="btn-group pull-right">
 						<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{childSection.sectionId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{childSection.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
@@ -74,11 +74,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="recommendation in section.recommendations" ng-hide="recommendation.isDeleted" btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">
-				<td>{{recommendation.recommendationId}}</td>
-				<td>{{recommendation.heading}}</td>
-				<td>{{recommendation.updatedDate | date}}</td>
-				<td class="col-md-4">
+			<tr ng-repeat="recommendation in section.recommendations" ng-hide="recommendation.isDeleted" >
+				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.recommendationId}}</td>
+				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</td>
+				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.updatedDate | date}}</td>
+				<td class="col-md-3">
 					<div class="btn-group pull-right">
 						<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteRecommendationBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette anbefalingen {{recommendation.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
