@@ -105,7 +105,6 @@ angular.module('webUiApp')
     };
 
     $scope.addAuthorBtnClick = function() {
-      console.log("hei");
 
             ModalService.showModal({
                 templateUrl: 'views/partials/_authormodal.html',
@@ -113,7 +112,10 @@ angular.module('webUiApp')
                   Author.query().$promise.then(function(authors){
                   $scope.authors = authors;
                   for (var i = $scope.authors.length - 1; i >= 0; i--) {
-                    checkAuthor($scope.authors[i]);
+                    //If author is in guideline, make checkbox checked
+                    if(isAuthorInGuideline($scope.authors[i])){
+                      $scope.authors[i].checked = true;
+                    }
                   }
                   }, function(error){
                     console.log(error);
@@ -125,27 +127,51 @@ angular.module('webUiApp')
                     close(result, 500); // close, but give 500ms for bootstrap to animate
                    };
 
+                   $scope.save = function () {
+                    for (var i = $scope.authors.length - 1; i >= 0; i--) {
+                      //If checked and not in guideline add author to guideline
+                      if($scope.authors[i].checked && !isAuthorInGuideline($scope.authors[i])){
+                        addAuthorToGuideline($scope.authors[i]);
+                      }
+                      //If unchecked remove author from guideline
+                      else if(!$scope.authors[i].checked){
+
+                      }
+                    }
+                   };
+
                   $scope.addNewAuthorBtnClick = function(){
-                    
-                    $location.path(baseUrl + guidelineId + '/author/0');
                     close('Cancel');
+                    $location.path(baseUrl + guidelineId + '/author/0');
                   };
 
                 }
             }).then(function(modal) {
                 modal.element.modal();
                 modal.close.then(function(result) {
-                    $scope.message = "You said " + result;
+                    console.log("You said " + result);
                 });
             });
         };
 
-    function checkAuthor(author) {
+    //Check if author passed is in this guideline's collection of authors
+    function isAuthorInGuideline(author) {
       for (var i = $scope.guideline.authors.length - 1; i >= 0; i--) {
         if($scope.guideline.authors[i].authorId == author.authorId){
-          author.checked = true;
+          return true;
         }
       }
+    }
+
+    function addAuthorToGuideline(author){
+      Guideline.addAuthor({id: $scope.guideline.guidelineId }, author)
+      .$promise.then(function(data){ 
+        toastr.success(data.name, 'La til forfatter');
+        $scope.guideline.authors.push(author);
+      }, 
+      function(error){
+        handlePostError(error);
+      });
     }
 
     //Handles errors when post fails
