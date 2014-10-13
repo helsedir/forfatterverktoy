@@ -46,7 +46,7 @@
     <br><br><br>
     <section class="well" id="Pico-codes" ng-show="pico.picoId">
         <h3>Pico Codes</h3>
-        <table class="table" ng-show="pico.picoCodes.length > 0">
+        <table class="table table-hover" ng-show="pico.picoCodes.length > 0">
             <thead>
                 <tr>
                     <th>#</th>
@@ -56,7 +56,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="picoCode in pico.picoCodes" ng-hide="picoCode.isDeleted">
+                <tr ng-repeat="picoCode in pico.picoCodes" ng-hide="picoCode.isDeleted" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">
                     <td>{{picoCode.picoCodeId}}</td>
                     <td>{{picoCode.createdDate | date}}</td>
                     <td>{{picoCode.updatedDate | date}}</td>
@@ -74,7 +74,7 @@
     </section>
     <section class="well" id="Pico-continuous-outcomes" ng-show="pico.picoId">
         <h3>Pico Continuous Outcomes</h3>
-        <table class="table"  ng-show="pico.picoContinousOutcomes.length > 0">
+        <table class="table table-hover"  ng-show="pico.picoContinousOutcomes.length > 0">
             <thead>
                 <tr>
                     <th>#</th>
@@ -84,7 +84,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="pcoutcome in pico.picoContinousOutcomes" ng-hide="pcoutcome.isDeleted">
+                <tr ng-repeat="pcoutcome in pico.picoContinousOutcomes" ng-hide="pcoutcome.isDeleted" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">
                     <td>{{pcoutcome.picoContinousOutcomeId}}</td>
                     <td>{{pcoutcome.createdDate | date}}</td>
                     <td>{{pcoutcome.updatedDate | date}}</td>
@@ -102,7 +102,7 @@
     </section>
     <section class="well" id="Pico-outcomes" ng-show="pico.picoId">
         <h3>Pico Outcomes</h3>
-        <table class="table" ng-show="pico.picoOutcomes.length > 0">
+        <table class="table table-hover" ng-show="pico.picoOutcomes.length > 0">
             <thead>
                 <tr>
                     <th>#</th>
@@ -112,7 +112,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="picoOutcome in pico.picoOutcomes" ng-hide="picoOutcome.isDeleted">
+                <tr ng-repeat="picoOutcome in pico.picoOutcomes" ng-hide="picoOutcome.isDeleted" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">
                     <td>{{picoOutcome.picoOutcomeId}}</td>
                     <td>{{picoOutcome.createdDate | date}}</td>
                     <td>{{picoOutcome.updatedDate | date}}</td>

@@ -61,7 +61,7 @@
 		</section>
 		<section id="Picos" ng-show="recommendation.recommendationId" class="well">
 			<h3>Picos</h3>
-			<table class="table" >
+			<table class="table table-hover" >
 				<thead>
 					<tr>
 						<th>#</th>
@@ -71,7 +71,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="pico in recommendation.picos" ng-hide="pico.isDeleted">
+					<tr ng-repeat="pico in recommendation.picos" ng-hide="pico.isDeleted" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">
 						<td>{{pico.picoId}}</td>
 						<td>{{pico.createdDate | date}}</td>
 						<td>{{pico.updatedDate | date}}</td>
@@ -89,7 +89,7 @@
 		</section>
 		<section id="References" ng-show="recommendation.recommendationId" class="well">
 			<h3>Referanser</h3>
-			<table class="table" >
+			<table class="table table-hover" >
 				<thead>
 					<tr>
 						<th>#</th>
@@ -99,7 +99,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="reference in recommendation.references" ng-hide="reference.isDeleted">
+					<tr ng-repeat="reference in recommendation.references" ng-hide="reference.isDeleted" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}">
 						<td>{{reference.referenceId}}</td>
 						<td>{{reference.createdDate | date}}</td>
 						<td>{{reference.updatedDate | date}}</td>
@@ -117,7 +117,7 @@
 		</section>
 		<section id="Emrinfos" ng-show="recommendation.recommendationId" class="well">
 			<h3>Emr info</h3>
-			<table class="table" >
+			<table class="table table-hover" >
 				<thead>
 					<tr>
 						<th>#</th>
@@ -127,7 +127,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="emr in recommendation.emrInfo" ng-hide="emr.isDeleted">
+					<tr ng-repeat="emr in recommendation.emrInfo" ng-hide="emr.isDeleted" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">
 						<td>{{emr.emrInfoId}}</td>
 						<td>{{emr.createdDate | date}}</td>
 						<td>{{emr.updatedDate | date}}</td>
@@ -145,7 +145,7 @@
 		</section>
 		<section id="Keyinfos" ng-show="recommendation.recommendationId" class="well">
 			<h3>Key info</h3>
-			<table class="table" >
+			<table class="table table-hover" >
 				<thead>
 					<tr>
 						<th>#</th>
@@ -155,7 +155,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="key in recommendation.keyInfo" ng-hide="key.isDeleted">
+					<tr ng-repeat="key in recommendation.keyInfo" ng-hide="key.isDeleted" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">
 						<td>{{key.keyInfoId}}</td>
 						<td>{{key.createdDate | date}}</td>
 						<td>{{key.updatedDate | date}}</td>
@@ -171,12 +171,4 @@
 			</table>
 			<button type="button" class="btn btn-default" ng-click="addKeyInfoBtnClick()">Legg til key info</button>
 		</section>
-		
-		
-		
-		
-		
-		
-		
-		
 	</article>

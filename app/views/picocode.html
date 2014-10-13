@@ -47,7 +47,7 @@
 	<br><br><br>
 	<section class="well" id="Taxonomy-codes" ng-show="picoCode.picoCodeId">
 		<h3>Taxonomy codes</h3>
-		<table class="table" ng-show="picoCode.taxonomyCodes.length > 0">
+		<table class="table table-hover" ng-show="picoCode.taxonomyCodes.length > 0">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -59,7 +59,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes" ng-hide="taxonomyCode.isDeleted">
+				<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes" ng-hide="taxonomyCode.isDeleted" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">
 					<td>{{taxonomyCode.taxonomyCodeId}}</td>
 					<td>{{taxonomyCode.createdDate | date}}</td>
 					<td>{{taxonomyCode.updatedDate | date}}</td>
