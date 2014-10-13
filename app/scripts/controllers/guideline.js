@@ -118,7 +118,6 @@ angular.module('webUiApp')
                     }
                   }
                   }, function(error){
-                    console.log(error);
                     toastr.error(error.data.message, 'Error!');
                   });
                   
@@ -134,8 +133,8 @@ angular.module('webUiApp')
                         addAuthorToGuideline($scope.authors[i]);
                       }
                       //If unchecked remove author from guideline
-                      else if(!$scope.authors[i].checked){
-
+                      else if(!$scope.authors[i].checked && isAuthorInGuideline($scope.authors[i])){
+                        removeAuthorFromGuideline($scope.authors[i]);
                       }
                     }
                    };
@@ -148,9 +147,7 @@ angular.module('webUiApp')
                 }
             }).then(function(modal) {
                 modal.element.modal();
-                modal.close.then(function(result) {
-                    console.log("You said " + result);
-                });
+                
             });
         };
 
@@ -164,11 +161,27 @@ angular.module('webUiApp')
     }
 
     function addAuthorToGuideline(author){
-      Guideline.addAuthor({id: $scope.guideline.guidelineId }, author)
-      .$promise.then(function(data){ 
-        toastr.success(data.name, 'La til forfatter');
+      Guideline.addAuthor({id: $scope.guideline.guidelineId, authorId: author.authorId})
+      .$promise.then(function(){ 
+        toastr.success(author.name, 'La til forfatter i retningslinje');
         $scope.guideline.authors.push(author);
       }, 
+      function(error){
+        handlePostError(error);
+      });
+    }
+
+    function removeAuthorFromGuideline(author){
+      Guideline.deleteAuthor({id: $scope.guideline.guidelineId, authorId: author.authorId})
+      .$promise.then(function(){
+        toastr.success(author.name,'Slettet forfatter');
+        //Remove author from list
+        for (var i = $scope.guideline.authors.length - 1; i >= 0; i--) {
+          if($scope.guideline.authors[i].authorId == author.authorId){
+            $scope.guideline.authors.splice(i, 1);
+          }
+        }
+      },
       function(error){
         handlePostError(error);
       });

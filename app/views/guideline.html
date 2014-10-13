@@ -71,20 +71,14 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="author in guideline.authors">
-					<td btn-href="{{baseUrl}}{{guideline.guidelineId}}/author/{{author.authorId}}">{{author.authorId}}</td>
-					<td btn-href="{{baseUrl}}{{guideline.guidelineId}}/author/{{author.authorId}}">{{author.name}}</td>
-					<td btn-href="{{baseUrl}}{{guideline.guidelineId}}/author/{{author.authorId}}">{{author.email}}</td>
-					<td class="col-md-3">
-						<div class="btn-group pull-right">
-							<button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{guideline.guidelineId}}/author/{{author.authorId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-							<button type="button" class="btn btn-danger btn-sm" ng-click="deleteAuthorBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette forfatteren {{author.name}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-						</div>
-					</td>
+					<td>{{author.authorId}}</td>
+					<td>{{author.name}}</td>
+					<td>{{author.email}}</td>
 					
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" class="btn btn-default" ng-click="addAuthorBtnClick()">Legg til forfatter</button>
+		<button type="button" class="btn btn-default" ng-click="addAuthorBtnClick()">Rediger forfatterlisten</button>
 	</section>
 
 	<!-- List Of Sections -->

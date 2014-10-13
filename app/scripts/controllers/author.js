@@ -16,32 +16,39 @@ angular.module('webUiApp')
       Author.get({_id: authorId}, function(data){
   		  $scope.author = data;
       });
-  	} 
+  	}
+    else{
+      $scope.author = new Author();
+    } 
 
   	$scope.updateOrCreateAuthor = function() {
       if(authorId > 0){
+        
         Author.update({_id: authorId}, $scope.author)
         .$promise.then(function (data){
+          
           toastr.success(data.name, 'Lagret forfatter');
           $location.path('/guideline/'+guidelineId);
+        
         }, function (error){
           handlePostError(error);
         });
       }
       else{
-  		createAuthor(Guideline, guidelineId);
-      }
-  	};
+        $scope.author.$save().then(function(data){ 
+        toastr.success(data.name, 'Opprettet forfatter');
+        
+        //If the request comes from a guideline
+        if(guidelineId){
 
-  	var createAuthor = function (resource, id){
-  		resource.addAuthor({id: id}, $scope.author)
-  		.$promise.then(function(data){ 
-  			toastr.success(data.name, 'Opprettet forfatter');
-  			$location.path('/guideline/'+guidelineId);
-  		}, 
-  		function(error){
-  			handlePostError(error);
-  		});
+          $location.path('/guideline/'+guidelineId);
+
+        }
+      }, 
+      function(error){
+        handlePostError(error);
+      });
+      }
   	};
 
   	//Handles errors when post fails

@@ -14,7 +14,8 @@ angular.module('webUiApp')
             {
                 update: { method: 'PUT' },
                 addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'guidelines/:id/sections/'},
-                addAuthor: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'guidelines/:id/authors/'}
+                addAuthor: {method: 'POST', params: {id: '@id', authorId: '@authorId'}, url: apiUrl + 'guidelines/:id/authors/:authorId'},
+                deleteAuthor: {method: 'DELETE', params: {id: '@id', authorId: '@authorId'}, url: apiUrl + 'guidelines/:id/authors/:authorId'}
             });
     }])
     .factory('Section', ['$resource', function ($resource) {
