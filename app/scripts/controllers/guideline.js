@@ -8,7 +8,7 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope','ModalService', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', function ($scope, ModalService, Guideline, Section, Author, $stateParams, $location, toastr) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService) {
   	var guidelineId = $stateParams.guidelineId;
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
@@ -108,7 +108,7 @@ angular.module('webUiApp')
 
             ModalService.showModal({
                 templateUrl: 'views/partials/_authormodal.html',
-                controller: function($scope, close){
+                controller: ['ModalService', '$scope', 'Author', function (ModalService, $scope, Author) {
                   Author.query().$promise.then(function(authors){
                   $scope.authors = authors;
                   for (var i = $scope.authors.length - 1; i >= 0; i--) {
@@ -144,12 +144,13 @@ angular.module('webUiApp')
                     $location.path(baseUrl + guidelineId + '/author/0');
                   };
 
-                }
+                }]
             }).then(function(modal) {
                 modal.element.modal();
                 
             });
         };
+    $scope.addAuthorBtnClick.$inject = ['$scope', 'ModalService'];
 
     //Check if author passed is in this guideline's collection of authors
     function isAuthorInGuideline(author) {

@@ -21,7 +21,8 @@ angular
         'textAngular',
         'ui.router.state',
         'ncy-angular-breadcrumb',
-        'angularModalService'
+        'angularModalService',
+        'ui.bootstrap'
     ])
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
