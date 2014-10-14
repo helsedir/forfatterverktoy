@@ -27,7 +27,51 @@
         <label for="abstractText">AbstractText</label>
         <input type="text" class="form-control" id="abstractText" ng-model="reference.abstractText">
     </div>
-
+    <div class="form-group">
+        <label for="outcomesText">outcomesText</label>
+        <input type="text" class="form-control" id="outcomesText" ng-model="reference.outcomesText">
+    </div>
+    <div class="form-group">
+        <label for="comments">comments</label>
+        <input type="text" class="form-control" id="comments" ng-model="reference.comments">
+    </div>
+    <div class="form-group">
+        <label for="year">year</label>
+        <input type="number" class="form-control" id="year" ng-model="reference.year">
+    </div>
+    <div class="form-group">
+        <label for="pageStart">pageStart</label>
+        <input type="number" class="form-control" id="pageStart" ng-model="reference.pageStart">
+    </div>
+    <div class="form-group">
+        <label for="pageEnd">pageEnd</label>
+        <input type="number" class="form-control" id="pageEnd" ng-model="reference.pageEnd">
+    </div>
+    <div class="form-group">
+        <label for="issue">issue</label>
+        <input type="text" class="form-control" id="issue" ng-model="reference.issue">
+    </div>
+    <div class="form-group">
+        <label for="volume">volume</label>
+        <input type="text" class="form-control" id="volume" ng-model="reference.volume">
+    </div>
+    <div class="form-group">
+        <label for="journal">journal</label>
+        <input type="text" class="form-control" id="journal" ng-model="reference.journal">
+    </div>
+    <div class="form-group">
+        <label for="author">author</label>
+        <input type="text" class="form-control" id="author" ng-model="reference.author">
+    </div>
+    <div class="form-group">
+        <label for="studyType">studyType</label>
+        <input type="text" class="form-control" id="studyType" ng-model="reference.studyType">
+    </div>
+    <div class="form-group">
+        <label for="referanceType">referanceType</label>
+        <input type="text" class="form-control" id="referanceType" ng-model="reference.referanceType">
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
     <p></p>
     <div>UpdatedBy: {{reference.updatedBy}}</div>
     <div>UpdatedDate: {{reference.updatedDate | date}}</div>
@@ -35,7 +79,4 @@
     <div>CreatedBy: {{reference.createdBy}}</div>
     <div>CreatedDate: {{reference.createdDate | date}}</div>
     <p></p>
-
-
-    <button type="submit" class="btn btn-primary">Lagre</button>
 </form>
