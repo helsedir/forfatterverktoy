@@ -38,12 +38,10 @@
 				</select>
 			</div>
 		
-		<div class="pull-right">
 			<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-			<button ng-show="picoCode.picoCodeId" type="button" class="btn btn-danger btn-lg" ng-click="deletePicoCodeBtnClick()">Slett</button>
-		</div>
+			<button ng-show="picoCode.picoCodeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico code?" ng-click="deletePicoCodeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
 		</form>
 	</section>
-	<br><br><br>
+	<br><br>
 	<taxonomycodes-list></taxonomycodes-list>
 </article>

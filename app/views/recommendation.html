@@ -53,11 +53,9 @@
 				<label for="target_group">Target group</label>
 				<textArea type="text" class="form-control" id="target_group" ng-model="recommendation.target_group"></textArea>
 			</div>
-			<div class="pull-right">
 				<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-				<button ng-show="recommendation.recommendationId" type="button" class="btn btn-danger btn-lg" ng-click="deleteRecommendationBtnClick()">Slett</button>
-			</div>
-			<br><br><br>
+				<button ng-show="recommendation.recommendationId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette anbefaling {{recommendation.heading}}" ng-click="deleteRecommendationBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+			<br><br>
 		</section>
 		<picos-list></picos-list>
 		<references-list></references-list>

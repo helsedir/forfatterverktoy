@@ -1,5 +1,4 @@
 <article>
-
 	<small ng-show="taxonomyCode.taxonomyCodeId">
 	<p>
 	Opprettet av: {{taxonomyCode.createdBy}}, {{taxonomyCode.createdDate | date}}
@@ -8,43 +7,41 @@
 	Oppdatert av: {{taxonomyCode.updatedBy}}, {{taxonomyCode.updatedDate | date}}
 	</p>
 	</small>
-<section>
+	<section>
 		
-	
-<form role="form" ng-submit="updateOrCreateTaxonomyCode()">
-	<div class="form-group">
-		<label for="name">Name</label>
-		<input type="text" class="form-control" id="name" ng-model="taxonomyCode.name">
-	</div>
-		<div class="form-group">
-		<label for="shortName">Short Name</label>
-		<input type="text" class="form-control" id="shortName" ng-model="taxonomyCode.shortName">
-	</div>
-	<div class="form-group">
-		<label for="code">Code</label>
-		<input type="text" class="form-control" id="code" ng-model="taxonomyCode.code">
-	</div>
-	<div class="form-group">
-		<label for="description">Description</label>
-		<input type="text" class="form-control" id="description" ng-model="taxonomyCode.description">
-	</div>
-		<div class="form-group">
-		<label for="querySource">QuerySource</label>
-		<input type="text" class="form-control" id="querySource" ng-model="taxonomyCode.querySource">
-	</div>
-		<div class="form-group">
-		<label for="schemaSystem">SchemaSystem</label>
-		<input type="text" class="form-control" id="schemaSystem" ng-model="taxonomyCode.schemaSystem" readonly>
-	</div>
-		<div class="form-group">
-		<label for="schemaId">SchemaId</label>
-		<input type="text" class="form-control" id="schemaId" ng-model="taxonomyCode.schemaId" readonly>
-	</div>
-<div class="pull-right">
-                <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-                <button ng-show="taxonomyCode.taxonomyCodeId" type="button" class="btn btn-danger btn-lg" ng-click="removeRecommendationBtnClick()">Slett</button>
-            </div>
-            <br><br><br>
-</form>
-</section>
+		
+		<form role="form" ng-submit="updateOrCreateTaxonomyCode()">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" id="name" ng-model="taxonomyCode.name">
+			</div>
+			<div class="form-group">
+				<label for="shortName">Short Name</label>
+				<input type="text" class="form-control" id="shortName" ng-model="taxonomyCode.shortName">
+			</div>
+			<div class="form-group">
+				<label for="code">Code</label>
+				<input type="text" class="form-control" id="code" ng-model="taxonomyCode.code">
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<input type="text" class="form-control" id="description" ng-model="taxonomyCode.description">
+			</div>
+			<div class="form-group">
+				<label for="querySource">QuerySource</label>
+				<input type="text" class="form-control" id="querySource" ng-model="taxonomyCode.querySource">
+			</div>
+			<div class="form-group">
+				<label for="schemaSystem">SchemaSystem</label>
+				<input type="text" class="form-control" id="schemaSystem" ng-model="taxonomyCode.schemaSystem" readonly>
+			</div>
+			<div class="form-group">
+				<label for="schemaId">SchemaId</label>
+				<input type="text" class="form-control" id="schemaId" ng-model="taxonomyCode.schemaId" readonly>
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+			<button ng-show="taxonomyCode.taxonomyCodeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette taxonomy code?" ng-click="removeTaxonomyCodeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+			<br><br>
+		</form>
+	</section>
 </article>

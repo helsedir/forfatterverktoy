@@ -137,11 +137,9 @@
         <input type="text" class="form-control" id="relativeEffectReferenceId" ng-model="picoOutcome.relativeEffectReferenceId">
     </div>
 
-    <div class="pull-right">
         <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-        <button ng-show="picoOutcome.picoOutcomeId" type="button" class="btn btn-danger btn-lg" ng-click="deletePicoOutcomeBtnClick()">Slett</button>
-    </div>
-    <br><br><br>
+        <button ng-show="picoOutcome.picoOutcomeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico  outcome?" ng-click="deletePicoOutcomeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+    <br><br>
     <p></p>
     <div>UpdatedBy: {{picoOutcome.updatedBy}}</div>
     <div>UpdatedDate: {{picoOutcome.updatedDate | date}}</div>

@@ -52,7 +52,16 @@ angular.module('webUiApp')
             }
         };
 
-        $scope.removeTaxonomyCode = function () {
+        $scope.removeTaxonomyCodeBtnClick = function () {
+
+                var taxonomyCodeToDelete = $scope.taxonomyCode;
+                TaxonomyCode.delete({ _id: taxonomyCodeToDelete.taxonomyCodeId })
+                    .$promise.then(function(){
+                    toastr.success('taxonomy code: ' + taxonomyCodeToDelete.picoId, 'Slettet');
+                    $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picoCode/'+picoCodeId);
+                }, function(error){
+                    handlePostError(error);
+                });
 
         };
         //Handles errors when post fails
