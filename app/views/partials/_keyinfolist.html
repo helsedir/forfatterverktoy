@@ -14,16 +14,13 @@
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.keyInfoId}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.createdDate | date}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.updatedDate | date}}</td>
-				<td class="col-md-3">
-					<div class="btn-group pull-right">
-						
-						<button type="button" class="btn btn-default btn-sm" ng-click="deleteKeyInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette key info med id {{key.keyInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-						<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-					</div>
+				<td class="text-right col-sm-3">
+					<button type="button" class="btn btn-link btn-delete" ng-click="deleteKeyInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette key info med id {{key.keyInfoId}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
+					
+					<button type="button" class="btn btn-link" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
 				</td>
-				
 			</tr>
 		</tbody>
 	</table>
-	<button type="button" class="btn btn-default" ng-click="addKeyInfoBtnClick()">Legg til key info</button>
+	<button type="button" class="btn btn-secondary" ng-click="addKeyInfoBtnClick()">Legg til key info</button>
 </section>

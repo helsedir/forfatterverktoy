@@ -14,18 +14,16 @@
 				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.recommendationId}}</td>
 				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</td>
 				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.updatedDate | date}}</td>
-				<td class="col-md-3">
-					<div class="btn-group pull-right">
-						
-						<button type="button" class="btn btn-default btn-sm" ng-click="deleteRecommendationBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette anbefalingen {{recommendation.heading}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-						<button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-					</div>
+				<td class="text-right  col-sm-3">
+					<button type="button" class="btn btn-link btn-delete"  ng-click="deleteRecommendationBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette anbefalingen {{recommendation.heading}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
+					
+					<button type="button" class="btn btn-link" btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
 				</td>
 				
 			</tr>
 		</tbody>
 	</table>
 
-	<button ng-show="section.sectionId" type="button" class="btn btn-default" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button></p>
+	<button ng-show="section.sectionId" type="button" class="btn btn-secondary" ng-click="addRecommendationBtnClick()">Legg til anbefaling</button></p>
 
 </section>

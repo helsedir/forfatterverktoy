@@ -7,33 +7,26 @@
 	Oppdatert av: {{section.updatedBy}}, {{section.updatedDate | date}}
 	</p>
 	</small>
-<section id="Section">
-	
-
-<form role="form" ng-submit="updateOrCreateSection()">
-	<div class="form-group">
-		<label for="heading">Heading</label>
-		<input type="text" class="form-control" id="heading" ng-model="section.heading">
-	</div>
-	<!-- <div class="form-group">
-		<label for="text">Text</label>
-		<textArea type="text" class="form-control" id="text" ng-model="section.text"></textArea>
-	</div> -->
-	<div class="form-group">
-		<label for="text">Text</label>
-		<div  id="text" ng-model="section.text" text-angular></div>
-	</div>
-
-	
-	<div class="pull-right">
-		<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
-		<button ng-show="section.sectionId" type="button" class="btn btn-danger btn-lg" ng-click="deleteSectionBtnClick()">Slett</button>
-	</div>
-	<br><br><br>
-</form>
-</section>
-
-<subsections-list></subsections-list>
-<recommendations-list></recommendations-list>
-
+	<section id="Section">
+		
+		<form role="form" ng-submit="updateOrCreateSection()">
+			<div class="form-group">
+				<label for="heading">Heading</label>
+				<input type="text" class="form-control" id="heading" ng-model="section.heading">
+			</div>
+			<!-- <div class="form-group">
+					<label for="text">Text</label>
+					<textArea type="text" class="form-control" id="text" ng-model="section.text"></textArea>
+			</div> -->
+			<div class="form-group">
+				<label for="text">Text</label>
+				<div  id="text" ng-model="section.text" text-angular></div>
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+			<button ng-show="section.sectionId" type="button" class="btn btn-link btn-delete" ng-click="deleteSectionBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+		</form>
+	</section>
+	<br><br>
+	<subsections-list></subsections-list>
+	<recommendations-list></recommendations-list>
 </article>

@@ -14,15 +14,14 @@
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.picoContinousOutcomeId}}</td>
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.createdDate | date}}</td>
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.updatedDate | date}}</td>
-                <td class="col-md-3">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoContinuousOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico cont. outcome med id {{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-                        <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                    </div>
+                <td class="text-right col-sm-3">
+                    <button type="button" class="btn btn-link btn-delete" ng-click="deletePicoContinuousOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico cont. outcome med id {{pcoutcome.picoContinousOutcomeId}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
+                    
+                    <button type="button" class="btn btn-link" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
                 </td>
                 
             </tr>
         </tbody>
     </table>
-    <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoContinuousOutcomeBtnClick()">Legg til</button>
+    <button ng-show="pico.picoId" type="button" class="btn btn-secondary" ng-click="addPicoContinuousOutcomeBtnClick()">Legg til</button>
 </section>

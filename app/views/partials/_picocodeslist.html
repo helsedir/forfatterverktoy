@@ -14,15 +14,13 @@
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</td>
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.createdDate | date}}</td>
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.updatedDate | date}}</td>
-                <td class="col-md-3">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette Pico code med id {{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-                        <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                    </div>
+                <td class="text-right col-sm-3">
+                    <button type="button" class="btn btn-link btn-delete" ng-click="deletePicoCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette Pico code med id {{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-remove">Slett <span class="glyphicon glyphicon-remove"></span></button>
+                    
+                    <button type="button" class="btn btn-link" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
                 </td>
-                
             </tr>
         </tbody>
     </table>
-    <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoCodeBtnClick()">Legg til</button>
+    <button ng-show="pico.picoId" type="button" class="btn btn-secondary" ng-click="addPicoCodeBtnClick()">Legg til</button>
 </section>
