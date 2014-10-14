@@ -44,89 +44,11 @@
         </form>
     </section>
     <br><br><br>
-    <section class="well" id="Pico-codes" ng-show="pico.picoId">
-        <h3>Pico Codes</h3>
-        <table class="table table-hover" ng-show="pico.picoCodes.length > 0">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Opprettet</th>
-                    <th>Oppdatert</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="picoCode in pico.picoCodes" ng-hide="picoCode.isDeleted">
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</td>
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.createdDate | date}}</td>
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.updatedDate | date}}</td>
-                    <td class="col-md-3">
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette Pico code med id {{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-                            <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                        </div>
-                    </td>
-                    
-                </tr>
-            </tbody>
-        </table>
-        <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoCodeBtnClick()">Legg til</button>
-    </section>
-    <section class="well" id="Pico-continuous-outcomes" ng-show="pico.picoId">
-        <h3>Pico Continuous Outcomes</h3>
-        <table class="table table-hover"  ng-show="pico.picoContinousOutcomes.length > 0">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Opprettet</th>
-                    <th>Oppdatert</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="pcoutcome in pico.picoContinousOutcomes" ng-hide="pcoutcome.isDeleted" >
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.picoContinousOutcomeId}}</td>
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.createdDate | date}}</td>
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.updatedDate | date}}</td>
-                    <td class="col-md-3">
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoContinuousOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico cont. outcome med id {{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-                            <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                        </div>
-                    </td>
-                    
-                </tr>
-            </tbody>
-        </table>
-        <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoContinuousOutcomeBtnClick()">Legg til</button>
-    </section>
-    <section class="well" id="Pico-outcomes" ng-show="pico.picoId">
-        <h3>Pico Outcomes</h3>
-        <table class="table table-hover" ng-show="pico.picoOutcomes.length > 0">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Opprettet</th>
-                    <th>Oppdatert</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="picoOutcome in pico.picoOutcomes" ng-hide="picoOutcome.isDeleted" >
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.picoOutcomeId}}</td>
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.createdDate | date}}</td>
-                    <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.updatedDate | date}}</td>
-                    <td class="col-md-3">
-                        <div class="btn-group pull-right">
-                            
-                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico outcome med id {{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-                            <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                        </div>
-                    </td>
-                    
-                </tr>
-            </tbody>
-        </table>
-        <button ng-show="pico.picoId" type="button" class="btn btn-default" ng-click="addPicoOutcomeBtnClick()">Legg til</button>
-    </section>
+
+    <picocodes-list></picocodes-list>
+
+    <picocont-list></picocont-list>
+
+    <picooutcomes-list></picooutcomes-list>
+
 </article>

@@ -1,0 +1,29 @@
+<section id="References" ng-show="recommendation.recommendationId" class="well">
+	<h3>Referanser</h3>
+	<table class="table table-hover" >
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Opprettet</th>
+				<th>Oppdatert</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="reference in recommendation.references" ng-hide="reference.isDeleted" >
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}">{{reference.referenceId}}</td>
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}">{{reference.createdDate | date}}</td>
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}">{{reference.updatedDate | date}}</td>
+				<td class="col-md-3">
+					<div class="btn-group pull-right">
+						
+						<button type="button" class="btn btn-default btn-sm" ng-click="deleteReferenceBtnClick($index)" ng-confirm-click="Er du sikker på at du vil referanse med ID {{reference.referenceId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+						<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+					</div>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-default" ng-click="addReferenceBtnClick()">Legg til referanse</button>
+</section>

@@ -1,0 +1,29 @@
+<section id="Emrinfos" ng-show="recommendation.recommendationId" class="well">
+	<h3>Emr info</h3>
+	<table class="table table-hover" >
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Opprettet</th>
+				<th>Oppdatert</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="emr in recommendation.emrInfo" ng-hide="emr.isDeleted" >
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.emrInfoId}}</td>
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.createdDate | date}}</td>
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.updatedDate | date}}</td>
+				<td class="col-md-3">
+					<div class="btn-group pull-right">
+						
+						<button type="button" class="btn btn-default btn-sm" ng-click="deleteEmrInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette EMR info med id {{emr.emrInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+						<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+					</div>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-default" ng-click="addEmrInfoBtnClick()">Legg til emr info</button>
+</section>

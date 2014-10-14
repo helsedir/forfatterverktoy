@@ -23,8 +23,8 @@
 			<td class="col-xs-4">
 				<div class="btn-group pull-right">
 				
-				<button type="button" class="btn btn-default btn-sm" ng-click="deleteGuidelineBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette retningslinjen {{guideline.title}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
-				<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guideline.guidelineId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+				<button type="button" class="btn btn-link btn-delete" ng-click="deleteGuidelineBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette retningslinjen {{guideline.title}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
+				<button type="button" class="btn btn-link" btn-href="/guideline/{{guideline.guidelineId}}">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
 				</div>
 				</td>
 				

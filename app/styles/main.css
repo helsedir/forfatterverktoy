@@ -20,3 +20,25 @@
   	border:0 #eee solid;
   	border-right-width:4px;
 }
+
+.btn-delete{
+  color: #d85451;
+}
+
+.btn-delete:hover{
+  color: #BF3B38;
+}
+
+.btn-link{
+  padding: 0 0 0 10px;
+}
+
+.btn-secondary{
+  background: #6a6a6a;
+  color: #ffffff;
+}
+
+.btn-secondary:hover{
+  background: #515151;
+  color: #ffffff;
+}

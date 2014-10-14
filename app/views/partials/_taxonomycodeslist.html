@@ -1,0 +1,34 @@
+<section class="well" id="Taxonomy-codes" ng-show="picoCode.picoCodeId">
+	<h3>Taxonomy codes</h3>
+	<table class="table table-hover" ng-show="picoCode.taxonomyCodes.length > 0">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Opprettet</th>
+				<th>Oppdatert</th>
+				<th>Schemasystem</th>
+				<th>Code</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes" ng-hide="taxonomyCode.isDeleted" >
+				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.taxonomyCodeId}}</td>
+				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.createdDate | date}}</td>
+				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.updatedDate | date}}</td>
+				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.schemaSystem}}</td>
+				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.code}}</td>
+				<td class="col-md-3">
+					<div class="btn-group pull-right">
+						
+						<button type="button" class="btn btn-default btn-sm" ng-click="deleteTaxonomyCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette taxonomy code med id {{taxonomyCode.taxonomyCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+						<button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
+					</div>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<button ng-show="picoCode.picoCodeId" type="button" class="btn btn-default btn-sm" ng-click="addTaxonomyCodeBtnClick()">Legg til Taxonomy Code</button>
+	
+</section>
