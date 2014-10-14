@@ -62,8 +62,8 @@
                     <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.updatedDate | date}}</td>
                     <td class="col-md-3">
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                            <button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette Pico code med id {{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette Pico code med id {{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                            <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
                         </div>
                     </td>
                     
@@ -90,8 +90,8 @@
                     <td btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}">{{pcoutcome.updatedDate | date}}</td>
                     <td class="col-md-3">
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                            <button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoContinuousOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico cont. outcome med id {{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoContinuousOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico cont. outcome med id {{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                            <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picocontinousoutcome/{{pcoutcome.picoContinousOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
                         </div>
                     </td>
                     
@@ -118,8 +118,9 @@
                     <td btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}">{{picoOutcome.updatedDate | date}}</td>
                     <td class="col-md-3">
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-                            <button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico outcome med id {{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                            
+                            <button type="button" class="btn btn-default btn-sm" ng-click="deletePicoOutcomeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette pico outcome med id {{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+                            <button type="button" class="btn btn-success btn-sm" btn-href="{{baseUrl}}{{pico.picoId}}/picooutcome/{{picoOutcome.picoOutcomeId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
                         </div>
                     </td>
                     

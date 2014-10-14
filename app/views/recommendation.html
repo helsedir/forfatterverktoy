@@ -77,8 +77,9 @@
 						<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.updatedDate | date}}</td>
 						<td class="col-md-3">
 							<div class="btn-group pull-right">
-								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deletePicoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette PICO med id {{pico.picoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								
+								<button type="button" class="btn btn-default btn-sm" ng-click="deletePicoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette PICO med id {{pico.picoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							</div>
 						</td>
 						
@@ -105,8 +106,9 @@
 						<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}">{{reference.updatedDate | date}}</td>
 						<td class="col-md-3">
 							<div class="btn-group pull-right">
-								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteReferenceBtnClick($index)" ng-confirm-click="Er du sikker på at du vil referanse med ID {{reference.referenceId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								
+								<button type="button" class="btn btn-default btn-sm" ng-click="deleteReferenceBtnClick($index)" ng-confirm-click="Er du sikker på at du vil referanse med ID {{reference.referenceId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/reference/{{reference.referenceId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							</div>
 						</td>
 						
@@ -133,8 +135,9 @@
 						<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.updatedDate | date}}</td>
 						<td class="col-md-3">
 							<div class="btn-group pull-right">
-								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteEmrInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette EMR info med id {{emr.emrInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								
+								<button type="button" class="btn btn-default btn-sm" ng-click="deleteEmrInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette EMR info med id {{emr.emrInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							</div>
 						</td>
 						
@@ -161,8 +164,9 @@
 						<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.updatedDate | date}}</td>
 						<td class="col-md-3">
 							<div class="btn-group pull-right">
-								<button type="button" class="btn btn-default btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
-								<button type="button" class="btn btn-danger btn-sm" ng-click="deleteKeyInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette key info med id {{key.keyInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								
+								<button type="button" class="btn btn-default btn-sm" ng-click="deleteKeyInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette key info med id {{key.keyInfoId}}"><span class="glyphicon glyphicon-remove"></span> Slett</button>
+								<button type="button" class="btn btn-success btn-sm" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}"><span class="glyphicon glyphicon-edit"></span> Rediger</button>
 							</div>
 						</td>
 						
