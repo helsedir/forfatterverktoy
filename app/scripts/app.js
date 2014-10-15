@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+
 angular
     .module('webUiApp', [
         'ngAnimate',
@@ -22,8 +23,18 @@ angular
         'ui.router.state',
         'ncy-angular-breadcrumb',
         'angularModalService',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angular-redactor'
     ])
+    .config(['redactorOptions', function (redactorOptions){
+        redactorOptions.buttonSource = true;
+        redactorOptions.minHeight = 200;
+        redactorOptions.buttons = [ 'formatting', 'bold', 'italic', 'underline',
+        'unorderedlist', 'orderedlist', 'link'];
+        redactorOptions.formatting = ['p', 'h1', 'h2', 'h3', 'h4'];
+        redactorOptions.plugins = ['table'];
+        redactorOptions.cleanOnPaste = true;
+    }])
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
     }])

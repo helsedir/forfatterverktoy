@@ -15,21 +15,17 @@
 			</div>
 			<div class="form-group">
 				<label for="text">Text</label>
-				<div  id="text" ng-model="recommendation.text" text-angular></div>
+				<textarea  id="text" ng-model="recommendation.text" redactor></textarea>
 			</div>
 			<div class="form-group">
 				<label for="practicalAdvice">Practical Advice</label>
-				<div id="practicalAdvice" ng-model="recommendation.practicalAdvice" text-angular></div>
+				<textarea id="practicalAdvice" ng-model="recommendation.practicalAdvice" redactor="{minHeight: 200}"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="rational">Rational</label>
-				<textArea type="text" class="form-control" id="rational" ng-model="recommendation.rational"></textArea>
+				<textArea type="text" class="form-control" id="rational" ng-model="recommendation.rational" redactor="{minHeight: 200}"></textArea>
 			</div>
-			<div class="form-group">
-				<label for="remarks">Remarks</label>
-				<textArea type="text" class="form-control" id="remarks" ng-model="recommendation.remarks"></textArea>
-			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="strength">Strength</label>
 				<select id="strength" ng-model="recommendation.strength" class="form-control">
 					<option value="null">None</option>
@@ -37,21 +33,17 @@
 					<option value="strong">Strong</option>
 				</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="tool">Tool</label>
-				<textArea type="text" class="form-control" id="tool" ng-model="recommendation.tool"></textArea>
+				<input type="text" class="form-control" id="tool" ng-model="recommendation.tool">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="adaption">Adaption</label>
-				<textArea type="text" class="form-control" id="adaption" ng-model="recommendation.adaption"></textArea>
+				<input type="text" class="form-control" id="adaption" ng-model="recommendation.adaption">
 			</div>
-			<div class="form-group">
-				<label for="refs">Refs</label>
-				<textArea type="text" class="form-control" id="refs" ng-model="recommendation.refs"></textArea>
-			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="target_group">Target group</label>
-				<textArea type="text" class="form-control" id="target_group" ng-model="recommendation.target_group"></textArea>
+				<input type="text" class="form-control" id="target_group" ng-model="recommendation.target_group">
 			</div>
 				<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
 				<button ng-show="recommendation.recommendationId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette anbefaling {{recommendation.heading}}" ng-click="deleteRecommendationBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>

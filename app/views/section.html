@@ -20,7 +20,7 @@
 			</div> -->
 			<div class="form-group">
 				<label for="text">Text</label>
-				<div  id="text" ng-model="section.text" text-angular></div>
+				<textarea ng-model="section.text" redactor></textarea>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
 			<button ng-show="section.sectionId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{section.heading}}" ng-click="deleteSectionBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
