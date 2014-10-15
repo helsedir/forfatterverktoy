@@ -140,7 +140,6 @@ angular.module('webUiApp')
                    };
 
                   $scope.addNewAuthorBtnClick = function(){
-                    close('Cancel');
                     $location.path(baseUrl + guidelineId + '/author/0');
                   };
 
