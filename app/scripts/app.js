@@ -29,10 +29,10 @@ angular
     .config(['redactorOptions', function (redactorOptions){
         redactorOptions.buttonSource = true;
         redactorOptions.minHeight = 200;
-        redactorOptions.buttons = [ 'formatting', 'bold', 'italic', 'underline',
+        redactorOptions.buttons = [ 'html', 'formatting', 'bold', 'italic', 'underline',
         'unorderedlist', 'orderedlist', 'link'];
         redactorOptions.formatting = ['p', 'h1', 'h2', 'h3', 'h4'];
-        redactorOptions.plugins = ['table'];
+        redactorOptions.plugins = ['table', 'classHack'];
         redactorOptions.cleanOnPaste = true;
     }])
     .config(['$httpProvider', function ($httpProvider) {
