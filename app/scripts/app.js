@@ -34,6 +34,7 @@ angular
         redactorOptions.formatting = ['p', 'h1', 'h2', 'h3', 'h4'];
         redactorOptions.plugins = ['table', 'classHack'];
         redactorOptions.cleanOnPaste = true;
+        redactorOptions.toolbarFixed = false;
     }])
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptorService');
