@@ -52,7 +52,7 @@ angular.module('webUiApp')
       Author.get({_id: authorId}).$promise.then(function(author){
         
         ModalService.showModal({
-              templateUrl: "views/partials/_createorupdateauthormodal.html",
+              templateUrl: 'views/partials/_createorupdateauthormodal.html',
               controller: ['$scope', 'author', 'Author', 'close', function ($scope, author, Author, close) {
                 
                 //set this scope's author to the injected author
@@ -85,6 +85,35 @@ angular.module('webUiApp')
       });
     };
 
+    $scope.createAuthorBtnClick = function (){
+      ModalService.showModal({
+        templateUrl: 'views/partials/_createorupdateauthormodal.html',
+        controller: ['$scope', 'Author', 'close', function ($scope, Author, close){
+          
+          $scope.author = new Author();
+          $scope.save = function (){
+
+            $scope.author.$save().then(function (data){
+              
+              toastr.success(data.name, 'Opprettet forfatter');
+              close(data, 500);
+            
+            }, function (error){
+
+              handlePostError(error);
+
+            });
+          };
+
+        }]
+      }).then(function (modal) {
+        modal.element.modal();
+        modal.close.then(function (result){
+          $scope.authors.push(result);
+        });
+      });
+    };
+
     $scope.deleteAuthorBtnClick = function(index){
       var authorToDelete = $scope.authors[index];
       Author.delete({ _id: authorToDelete.authorId })
@@ -94,7 +123,7 @@ angular.module('webUiApp')
       }, function(error){
         handlePostError(error);
       });
-    }
+    };
 
   	//Handles errors when post fails
   	function handlePostError(error)
