@@ -170,7 +170,7 @@ angular.module('webUiApp')
     function removeAuthorFromGuideline(author){
       Guideline.deleteAuthor({id: $scope.guideline.guidelineId, authorId: author.authorId})
       .$promise.then(function(){
-        toastr.success(author.name,'Slettet forfatter');
+        toastr.success(author.name,'Fjernet forfatter fra retningslinjen');
         //Remove author from list
         for (var i = $scope.guideline.authors.length - 1; i >= 0; i--) {
           if($scope.guideline.authors[i].authorId == author.authorId){
