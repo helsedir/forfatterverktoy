@@ -13,6 +13,7 @@ angular.module('webUiApp')
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
 
+
     if(guidelineId == 0)
     {
       $scope.guideline = new Guideline();
@@ -23,7 +24,6 @@ angular.module('webUiApp')
         $scope.guideline = data;
       });
     }
-
     
     $scope.updateOrCreateGuideline = function() {
       if($scope.guideline.guidelineId == null)
@@ -92,13 +92,6 @@ angular.module('webUiApp')
       });
     };
 
-    //$scope.addAuthorBtnClick = function() {
-    //  $location.path(baseUrl + guidelineId + '/author/0');
-    //};
-
-    $scope.removeAuthorBtnClick = function(){
-      //TODO
-    };
 
     $scope.addSectionBtnClick = function(){
       $location.path(baseUrl + guidelineId + '/section/0');

@@ -98,7 +98,7 @@ angular
                 }
             })
             .state('author', {
-                url: '/guideline/{guidelineId}/author/{authorId}',
+                url: '/author/{authorId}',
                 views: {
                     "@" : {
                         templateUrl: 'views/author.html',
@@ -106,7 +106,6 @@ angular
                     }
                 },
                 data: {
-                    ncyBreadcrumbParent: 'guideline',
                     ncyBreadcrumbLabel: 'Forfatter'
 
                 }
