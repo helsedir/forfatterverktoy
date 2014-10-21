@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('RecommendationCtrl', ['$scope', 'Recommendation', 'Pico', 'EmrInfo', 'Reference', 'KeyInfo', '$stateParams', '$location', 'Section', 'toastr', function ($scope, Recommendation, Pico, EmrInfo, Reference, KeyInfo, $stateParams, $location, Section, toastr) {
+    .controller('RecommendationCtrl', ['$scope', 'Recommendation', 'Pico', 'EmrInfo', 'Reference', 'KeyInfo', '$stateParams', '$location', 'Section', 'toastr', 'ModalService', function ($scope, Recommendation, Pico, EmrInfo, Reference, KeyInfo, $stateParams, $location, Section, toastr, ModalService) {
         $scope.guidelineId = $stateParams.guidelineId;
         $scope.sectionId = $stateParams.sectionId;
         
@@ -101,20 +101,88 @@ angular.module('webUiApp')
               });
         };
 
-        $scope.addReferenceBtnClick = function () {
-            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/0');
-        };
+        $scope.editReferencesBtnClick = function() {
 
-        $scope.deleteReferenceBtnClick = function (index){
-            var referenceToDelete = $scope.recommendation.references[index];
-            Reference.delete({ _id: referenceToDelete.referenceId })
-                .$promise.then(function(){
-                toastr.success('reference: ' + referenceToDelete.referenceId, 'Slettet');
-                $scope.recommendation.references.splice(index, 1);
-              }, function(error){
-                handlePostError(error);
-              });
-        };
+                ModalService.showModal({
+                    templateUrl: 'views/partials/_referencesmodal.html',
+                    controller: ['ModalService', '$scope', 'Reference', function (ModalService, $scope, Reference) {
+                      Reference.query().$promise.then(function(references){
+                      $scope.references = references;
+                      for (var i = $scope.references.length - 1; i >= 0; i--) {
+                        //If reference is in recommendation, make checkbox checked
+                        if(isReferenceInRecommendation($scope.references[i])){
+                          $scope.references[i].checked = true;
+                        }
+                      }
+                      }, function(error){
+                        toastr.error(error.data.message, 'Error!');
+                      });
+                      
+
+                      $scope.close = function(result) {
+                        this.close(result, 500); // close, but give 500ms for bootstrap to animate
+                       };
+
+                       $scope.save = function () {
+                        for (var i = $scope.references.length - 1; i >= 0; i--) {
+                          //If checked and not in recommendation add reference to recommendation
+                          if($scope.references[i].checked && !isReferenceInRecommendation($scope.references[i])){
+                            addReferenceToRecommendation($scope.references[i]);
+                          }
+                          //If unchecked remove reference from recommendation
+                          else if(!$scope.references[i].checked && isReferenceInRecommendation($scope.references[i])){
+                            removeReferenceFromRecommendation($scope.references[i]);
+                          }
+                        }
+                       };
+
+                      $scope.addNewReferenceBtnClick = function(){
+                        $location.path('newreference');
+                      };
+
+                    }]
+                }).then(function(modal) {
+                    modal.element.modal();
+                    
+                });
+            };
+        $scope.editReferencesBtnClick.$inject = ['$scope', 'ModalService'];
+
+        //Check if reference passed is in this recommendation's collection of references
+        function isReferenceInRecommendation(reference) {
+          for (var i = $scope.recommendation.references.length - 1; i >= 0; i--) {
+            if($scope.recommendation.references[i].referenceId == reference.referenceId){
+              return true;
+            }
+          }
+        }
+
+        function addReferenceToRecommendation(reference){
+          Recommendation.addReference({id: $scope.recommendation.recommendationId, referenceId: reference.referenceId})
+          .$promise.then(function(){ 
+            toastr.success('La til referanse i anbefalingen');
+            $scope.recommendation.references.push(reference);
+          }, 
+          function(error){
+            handlePostError(error);
+          });
+        }
+
+        function removeReferenceFromRecommendation(reference){
+          Recommendation.deleteReference({id: $scope.recommendation.recommendationId, referenceId: reference.referenceId})
+          .$promise.then(function(){
+            toastr.success('Fjernet referanse fra anbefalingen');
+            //Remove reference from list
+            for (var i = $scope.recommendation.references.length - 1; i >= 0; i--) {
+              if($scope.recommendation.references[i].referenceId == reference.referenceId){
+                $scope.recommendation.references.splice(i, 1);
+              }
+            }
+          },
+          function(error){
+            handlePostError(error);
+          });
+        }
 
         //Handles errors when post fails
         function handlePostError(error) {
