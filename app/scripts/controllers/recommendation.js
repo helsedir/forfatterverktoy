@@ -117,11 +117,6 @@ angular.module('webUiApp')
                       }, function(error){
                         toastr.error(error.data.message, 'Error!');
                       });
-                      
-
-                      $scope.close = function(result) {
-                        this.close(result, 500); // close, but give 500ms for bootstrap to animate
-                       };
 
                        $scope.save = function () {
                         for (var i = $scope.references.length - 1; i >= 0; i--) {

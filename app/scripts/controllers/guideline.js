@@ -122,10 +122,6 @@ angular.module('webUiApp')
                   });
                   
 
-                  $scope.close = function(result) {
-                    this.close(result, 500); // close, but give 500ms for bootstrap to animate
-                   };
-
                    $scope.save = function () {
                     for (var i = $scope.authors.length - 1; i >= 0; i--) {
                       //If checked and not in guideline add author to guideline
