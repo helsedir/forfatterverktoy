@@ -43,6 +43,20 @@
   color: #ffffff;
 }
 
+.btn-secondary:focus{
+
+  color: #ffffff;
+}
+
 .referencelist li{
   padding: 15px;
+}
+
+.newauthor{
+  overflow: hidden;
+}
+
+.closeicon{
+  cursor: pointer;
+  padding: 10px;
 }

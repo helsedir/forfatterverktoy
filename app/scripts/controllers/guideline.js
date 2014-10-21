@@ -102,6 +102,7 @@ angular.module('webUiApp')
             ModalService.showModal({
                 templateUrl: 'views/partials/_authormodal.html',
                 controller: ['ModalService', '$scope', 'Author', function (ModalService, $scope, Author) {
+                  $scope.isCollapsed = true;
                   Author.query().$promise.then(function(authors){
                   $scope.authors = authors;
                   for (var i = $scope.authors.length - 1; i >= 0; i--) {
@@ -113,6 +114,28 @@ angular.module('webUiApp')
                   }, function(error){
                     toastr.error(error.data.message, 'Error!');
                   });
+
+                  $scope.openCreateAuthor = function (){
+
+                    $scope.isCollapsed = false;
+                    $scope.author = new Author();
+                  };
+
+                  $scope.saveAuthor = function (){
+                    //$scope.author = new Author();
+                    $scope.author.$save().then(function (data){
+                      
+                      toastr.success(data.name, 'Opprettet forfatter');
+                      data.checked = true;
+                      $scope.authors.push(data);
+                      $scope.isCollapsed = true;
+                    
+                    }, function (error){
+
+                      handlePostError(error);
+
+                    });
+                  };
                   
 
                    $scope.save = function () {
@@ -127,10 +150,6 @@ angular.module('webUiApp')
                       }
                     }
                    };
-
-                  $scope.addNewAuthorBtnClick = function(){
-                    $location.path(baseUrl + guidelineId + '/author/0');
-                  };
 
                 }]
             }).then(function(modal) {
