@@ -54,40 +54,47 @@ angular.module('webUiApp')
         ModalService.showModal({
               templateUrl: "views/partials/_createorupdateauthormodal.html",
               controller: ['$scope', 'author', 'Author', 'close', function ($scope, author, Author, close) {
+                
+                //set this scope's author to the injected author
                 $scope.author = author;
 
+                //update author
                 $scope.save = function () {
                  Author.update({_id: author.authorId}, $scope.author)
                  .$promise.then(function (data){
         
-                   //toastr.success(data.name, 'Lagret forfatter');
+                   toastr.success(data.name, 'Lagret forfatter');
                    close(data, 500); // close, but give 500ms for bootstrap to animate
 
-                   
-                 
                  }, function (error){
                    handlePostError(error);
                  });
                 };
-               
-
               }],
               inputs: {
-                author: author
+                author: author //inject the author returned from promise object
               }
             }).then(function(modal) {
-
-    //it's a bootstrap element, use 'modal' to show it
-    modal.element.modal();
-    modal.close.then(function(result) {
-      $scope.authors[arrayIndex] = result;
-      console.log(result);
-    });
-  });
+              //it's a bootstrap element, use 'modal' to show it
+              modal.element.modal();
+              modal.close.then(function(result) {
+              //set author element in scope to the updated element
+              $scope.authors[arrayIndex] = result;
+            });
+          });
       });
-  };
+    };
 
-
+    $scope.deleteAuthorBtnClick = function(index){
+      var authorToDelete = $scope.authors[index];
+      Author.delete({ _id: authorToDelete.authorId })
+      .$promise.then(function(){
+        toastr.success(authorToDelete.name, 'Slettet');
+        $scope.authors.splice(index, 1);
+      }, function(error){
+        handlePostError(error);
+      });
+    }
 
   	//Handles errors when post fails
   	function handlePostError(error)
