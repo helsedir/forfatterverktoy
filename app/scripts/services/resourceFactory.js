@@ -90,7 +90,7 @@ angular.module('webUiApp')
             });
     }])
     .factory('Reference', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'referances/:_id', {},
+        return $resource(apiUrl + 'references/:_id', {},
             {
                 update: { method: 'PUT' }
             });
