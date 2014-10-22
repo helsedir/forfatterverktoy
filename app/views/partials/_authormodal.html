@@ -16,8 +16,6 @@
             </div>
       </div>
       <div class="modal-body">
-        
-
         <table class="table" >
           <thead>
             <tr>
@@ -29,9 +27,9 @@
           </thead>
           <tbody>
             <tr ng-repeat="author in authors | filter:searchText" ng-class="{success: author.checked}">
-              <td>{{author.authorId}}</td>
-              <td>{{author.name}}</td>
-              <td>{{author.email}}</td>
+              <td ng-click="author.checked = !author.checked">{{author.authorId}}</td>
+              <td ng-click="author.checked = !author.checked">{{author.name}}</td>
+              <td ng-click="author.checked = !author.checked">{{author.email}}</td>
               <td>
                 <input type="checkbox" ng-model="author.checked">
               </td>
@@ -39,11 +37,12 @@
             </tr>
           </tbody>
         </table>
+
+        <button type="button" class="btn btn-secondary pull-right" ng-click="openCreateAuthor()" aria-hidden="true">Opprett ny forfatter <span ng-class="{ 'glyphicon-chevron-up': !isCollapsed, 'glyphicon-chevron-down': isCollapsed}" class="glyphicon"></span></button>
+        <br><br><br>
+
         <div collapse="isCollapsed">
           <div class="well newauthor">
-            <div class="row">
-              <span class="glyphicon glyphicon-remove pull-right closeicon" ng-click="isCollapsed = true"></span>
-            </div>
             
             <form role="form" ng-submit="saveAuthor()">
             <div class="form-group col-sm-6">
@@ -68,9 +67,11 @@
         </form>
         </div>
       </div>
+
+
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" ng-click="openCreateAuthor()" ng-class="{disabled: !isCollapsed}" aria-hidden="true">Opprett ny forfatter</button>
+      
       <button type="button" class="btn btn-primary" ng-click="save()" data-dismiss="modal"  aria-hidden="true" ng-class="{disabled: !isCollapsed}">Lagre</button>
     </div>
   </div>

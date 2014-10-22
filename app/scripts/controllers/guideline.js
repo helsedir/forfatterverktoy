@@ -117,7 +117,7 @@ angular.module('webUiApp')
 
                   $scope.openCreateAuthor = function (){
 
-                    $scope.isCollapsed = false;
+                    $scope.isCollapsed = !$scope.isCollapsed;
                     $scope.author = new Author();
                   };
 

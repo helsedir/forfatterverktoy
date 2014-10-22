@@ -19,31 +19,33 @@
 				<label for="title">Title</label>
 				<input type="text" class="form-control" id="title" ng-model="guideline.title" required>
 			</div>
-			<div class="form-group">
-				<label for="englishTitle">English Title</label>
-				<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
-			</div>
+			
 			<div class="form-group">
 				<label for="text">Text</label>
 				<textarea ng-model="guideline.text" redactor="block.setClass('red')"></textarea>
 			</div>
-			<div class="form-group">
+
+			<div class="form-group col-md-6">
+				<label for="englishTitle">English Title</label>
+				<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
+			</div>
+			<div class="form-group col-md-6">
 				<label for="disclaimer">Disclaimer</label>
 				<input type="text" class="form-control" id="disclaimer" ng-model="guideline.disclaimer">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="language">Language</label>
 				<input type="text" class="form-control" id="language" ng-model="guideline.language">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="sponsors">Sponsors</label>
 				<input type="text" class="form-control" id="sponsors" ng-model="guideline.sponsors">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="owner">Owner</label>
 				<input type="text" class="form-control" id="owner" ng-model="guideline.owner">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="type">Type</label>
 				<select class="form-control" id="type" ng-model="guideline.type">
 					<option value="0">None</option>
@@ -51,9 +53,12 @@
 					<option value="2">Circulara</option>
 				</select>
 			</div>
-			
+
 				<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
 				<button ng-show="guideline.guidelineId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette retningslinjen {{guideline.shortTitle}}" ng-click="removeGuidelineBtnClick(guideline.guidelineId)">Slett <span class="glyphicon glyphicon-remove"></span></button>
+		
+			
+				
 			
 		</form>
 	</section>
