@@ -64,3 +64,11 @@
 .searchbox{
   margin-top: 20px;
 }
+
+.searchboxmodal{
+  margin: 0;
+}
+
+.modal-header{
+  overflow: hidden;
+}
