@@ -69,6 +69,6 @@
   margin: 0;
 }
 
-.modal-header{
+.modal-header, .modal-footer{
   overflow: hidden;
 }
