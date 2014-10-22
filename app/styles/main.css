@@ -80,3 +80,11 @@
 .referencepreview{
   min-height: 50px;
 }
+
+.navbar-nav li{
+  font-size: 1.2em;
+}
+
+.navbar-nav li:hover{
+  
+}

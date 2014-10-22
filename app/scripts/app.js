@@ -98,7 +98,7 @@ angular
                 }
             })
             .state('author', {
-                url: '/author/{authorId}',
+                url: '/author',
                 views: {
                     "@" : {
                         templateUrl: 'views/author.html',
@@ -246,7 +246,6 @@ angular
                     }
                 },
                 data: {
-                    ncyBreadcrumbParent: 'recommendation',
                     ncyBreadcrumbLabel: 'Referanse'
                 }
             });

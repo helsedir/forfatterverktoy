@@ -1,7 +1,20 @@
 <div>
 	
 
-<h1>Retningslinjer</h1>
+
+<div class="col-md-6">
+    <h2>Retningslinjer</h2>
+</div>
+
+<div class="form-group col-md-4 searchbox pull-right">
+    <div class="input-group">
+        <input id="search" ng-model="searchText" class="form-control">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </div>
+</div>
+
 <!-- Guideline liste -->
 
 <table class="table table-hover">
@@ -15,7 +28,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="guideline in guidelines">
+		<tr ng-repeat="guideline in guidelines | filter:searchText">
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.guidelineId}}</td>
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.shortTitle}}</td>
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.updatedDate | date}}</td>
