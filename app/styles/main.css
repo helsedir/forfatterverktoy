@@ -56,6 +56,10 @@
   overflow: hidden;
 }
 
+.overflowhidden{
+  overflow: hidden;
+}
+
 .closeicon{
   cursor: pointer;
   padding: 10px;
@@ -71,4 +75,8 @@
 
 .modal-header, .modal-footer, .modal-body{
   overflow: hidden;
+}
+
+.referencepreview{
+  min-height: 50px;
 }

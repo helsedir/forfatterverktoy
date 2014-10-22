@@ -106,6 +106,7 @@ angular.module('webUiApp')
                 ModalService.showModal({
                     templateUrl: 'views/partials/_referencesmodal.html',
                     controller: ['ModalService', '$scope', 'Reference', function (ModalService, $scope, Reference) {
+                      $scope.isCollapsed = true;
                       Reference.query().$promise.then(function(references){
                       $scope.references = references;
                       for (var i = $scope.references.length - 1; i >= 0; i--) {
@@ -131,8 +132,25 @@ angular.module('webUiApp')
                         }
                        };
 
-                      $scope.addNewReferenceBtnClick = function(){
-                        $location.path('newreference');
+                      $scope.openCreateReference = function (){
+                        $scope.isCollapsed = !$scope.isCollapsed;
+                        $scope.reference = new Reference();
+                      };
+
+                      $scope.saveReference = function (){
+                        //$scope.author = new Author();
+                        $scope.reference.$save().then(function (data){
+                          
+                          toastr.success('Opprettet referanse');
+                          data.checked = true;
+                          $scope.references.push(data);
+                          $scope.isCollapsed = true;
+                        
+                        }, function (error){
+
+                          handlePostError(error);
+
+                        });
                       };
 
                     }]
