@@ -36,14 +36,16 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#">Nasjonale faglige retningslinjer</a>
+         <a class="navbar-brand" href="#"><img src="../images/helsedir.png"> Nasjonale faglige retningslinjer</a>
        </div>
        <ul class="nav navbar-nav">
-           <li ng-class="{ active: isActive('/')}"><a href="#/" title="">Hjem</a></li>
-           <li ng-class="{ active: isActive('/author')}"><a href="#/author" title="" >Forfattere</a></li>
-           <li ng-class="{ active: isActive('/reference')}"><a href="#/reference" title="">Referanser</a></li>
+           <li class="divider-vertical" ng-class="{ active: isActive('/')}"><a href="#/" title="">Hjem</a></li>
+           <li class="divider-vertical" ng-class="{ active: isActive('/author')}"><a href="#/author" title="" >Alle forfattere</a></li>
+           <li class="divider-vertical" ng-class="{ active: isActive('/reference')}"><a href="#/reference" title="">Alle referanser</a></li>
+           <li class="divider-vertical"><a class="previewlink" href="http://digitalguidelinespreview.azurewebsites.net" target="_new">Forhåndsvisning  <span class="glyphicon glyphicon-new-window"></span></a></li>
        </ul>
        <div class="navbar-collapse collapse">
+
         <log-In></log-In>
        </div><!--/.nav-collapse -->
      </div>
