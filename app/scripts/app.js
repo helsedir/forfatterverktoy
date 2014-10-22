@@ -238,7 +238,7 @@ angular
                 }
             })
             .state('reference', {
-                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/reference/{referenceId}',
+                url: '/reference',
                 views: {
                     "@" : {
                         templateUrl: 'views/reference.html',
