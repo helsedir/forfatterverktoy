@@ -115,3 +115,6 @@
   position: relative;
 }
 
+.table-pointer tbody tr{
+  cursor: pointer;
+}
