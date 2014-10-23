@@ -1,6 +1,18 @@
 
 <article>
-	<h1 ng-show="guideline.guidelineId">{{guideline.shortTitle}}</h1>
+	<div class="row relative">
+		<div class="col-md-8">
+			<h1>Retningslinje</h1>
+		</div>
+		<div class="col-md-4 previewbuttoncontainer">
+			<preview-button></preview-button>
+		</div>
+	</div>
+		
+	
+		
+
+	
 	<small ng-show="guideline.guidelineId">
 	<p>
 	Opprettet av: {{guideline.createdBy}}, {{guideline.createdDate | date}}
