@@ -1,12 +1,18 @@
 
 <div ng-if="guideline.publishedStage == 0" class="alert alert-warning">
 	{{resource}} er lagret som kladd
+	  <button type="button" class="btn btn-default pull-right" ng-click="guideline.publishedStage = 1">Publiser til høring</button>
 </div>
 <div ng-if="guideline.publishedStage == 1" class="alert alert-info">
 	{{resource}} er sendt på høring
+	<div class="btn-group pull-right">
+	  <button type="button" class="btn btn-default" ng-click="guideline.publishedStage = 0">Trekk fra høring</button>
+	  <button type="button" class="btn btn-default" ng-click="guideline.publishedStage = 2">Publiser</button>
+	</div>
 </div>
 <div ng-if="guideline.publishedStage == 2" class="alert alert-success">
 	{{resource}} er publisert
+	  <button type="button" class="btn btn-default pull-right" ng-click="guideline.publishedStage = 0">Avpubliser</button>
 </div>
 
 <div ng-if="section.publishedStage == 0" class="alert alert-warning">
