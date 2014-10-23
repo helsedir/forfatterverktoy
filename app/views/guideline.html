@@ -78,7 +78,7 @@
 	<authors-list></authors-list>
 
 	<small ng-show="guideline.guidelineId">
-		<metadata resource="guideline"></metadata>
+		<p><b>Opprettet av:</b> {{guideline.createdBy}}, <i>{{guideline.createdDate | date}}</i> <b>Oppdatert av:</b> {{guideline.updatedBy}}, <i>{{guideline.updatedDate | date}}</i></p>
 	</small>
 
 	

@@ -8,14 +8,6 @@
 		</div>
 	</div>
 	<published-status></published-status>
-	<small ng-show="section.sectionId">
-	<p>
-	Opprettet av: {{section.createdBy}}, {{section.createdDate | date}}
-	</p>
-	<p>
-	Oppdatert av: {{section.updatedBy}}, {{section.updatedDate | date}}
-	</p>
-	</small>
 	<section id="Section">
 		
 		<form role="form" ng-submit="updateOrCreateSection()">
@@ -48,5 +40,7 @@
 	<recommendations-list></recommendations-list>
 
 	<subsections-list></subsections-list>
-	
+	<small ng-show="section.sectionId">
+		<p><b>Opprettet av:</b> {{section.createdBy}}, <i>{{section.createdDate | date}}</i> <b>Oppdatert av:</b> {{section.updatedBy}}, <i>{{section.updatedDate | date}}</i></p>
+	</small>
 </article>

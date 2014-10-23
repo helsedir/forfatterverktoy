@@ -1,7 +1,7 @@
 <article>
 	<div class="row relative">
 		
-		<published-status></published-status>
+		
 		<div class="col-md-8">
 			<h1>Anbefaling</h1>
 		</div>
@@ -9,15 +9,8 @@
 			<preview-button></preview-button>
 		</div>
 	</div>
+	<published-status></published-status>
 	
-	<small ng-show="recommendation.recommendationId">
-	<p>
-	Opprettet av: {{recommendation.createdBy}}, {{recommendation.createdDate | date}}
-	</p>
-	<p>
-	Oppdatert av: {{recommendation.updatedBy}}, {{recommendation.updatedDate | date}}
-	</p>
-	</small>
 	<section id="Recommendation">
 		<form role="form" ng-submit="updateOrCreateRecommendation()">
 			<div class="form-group">
@@ -72,4 +65,7 @@
 		<references-list></references-list>
 		<emrinfo-list></emrinfo-list>
 		<keyinfo-list></keyinfo-list>
+		<small ng-show="recommendation.recommendationId">
+			<p><b>Opprettet av:</b> {{recommendation.createdBy}}, <i>{{recommendation.createdDate | date}}</i> <b>Oppdatert av:</b> {{recommendation.updatedBy}}, <i>{{recommendation.updatedDate | date}}</i></p>
+		</small>
 	</article>

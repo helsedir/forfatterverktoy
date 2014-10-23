@@ -13,6 +13,6 @@ angular.module('webUiApp')
     	scope: {
     	    resource: '@'
     	},
-    	template:  '<p><b>Opprettet av:</b> {{resource.createdBy}}, <i>{{resource.createdDate | date}}</i> <b>Oppdatert av:</b> {{resource.updatedBy}}, <i>{{resource.updatedDate | date}}</i></p>'
+    	template:  ''
     };
   });
