@@ -7,7 +7,7 @@
  * # Guideline
  * Factory in the webUiApp.
  */
-var apiUrl = 'http://digitalguidelines.azurewebsites.net/api/v1/';
+var apiUrl = 'http://localhost:50500/api/v1/';
 angular.module('webUiApp')
     .factory('Guideline', ['$resource', function ($resource) {
         return $resource(apiUrl + 'guidelines/:_id', {},
