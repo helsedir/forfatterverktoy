@@ -19,7 +19,6 @@ angular
         'ui.sortable',
         'LocalStorageModule',
         'toastr',
-        'textAngular',
         'ui.router.state',
         'ncy-angular-breadcrumb',
         'angularModalService',
