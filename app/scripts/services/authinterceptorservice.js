@@ -21,7 +21,9 @@ angular.module('webUiApp')
 
             config.headers.Authorization = 'Bearer ' + authData.token;
         }
-
+        else {
+            $location.path('/login');
+        }
         return config;
     };
 
