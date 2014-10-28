@@ -19,8 +19,16 @@ angular.module('webUiApp')
         if (recommendationId != 0) {
             Recommendation.get({_id: recommendationId}, function (data) {
                 $scope.recommendation = data;
+                if($scope.recommendation.strength == null)
+                  $scope.recommendation.strength = 'null';
             });
         }
+        else {
+          $scope.recommendation = new Recommendation();
+          $scope.recommendation.strength = 'null';
+        }
+
+
 
         $scope.updateOrCreateRecommendation = function () {
 
