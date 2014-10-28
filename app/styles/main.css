@@ -119,6 +119,10 @@
   cursor: pointer;
 }
 
+.table-sortable tbody tr{
+  cursor: move;
+}
+
 .breakall{
  -ms-word-break: break-all;
       word-break: break-all;

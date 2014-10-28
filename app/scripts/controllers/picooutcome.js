@@ -1,9 +1,4 @@
-/**
- * Created by gkarabeg on 24.09.2014.
- */
-/**
- * Created by gkarabeg on 24.09.2014.
- */
+
 'use strict';
 
 /**

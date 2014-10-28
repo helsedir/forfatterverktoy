@@ -19,8 +19,16 @@ angular.module('webUiApp')
         if (recommendationId != 0) {
             Recommendation.get({_id: recommendationId}, function (data) {
                 $scope.recommendation = data;
+                if($scope.recommendation.strength == null)
+                  $scope.recommendation.strength = 'null';
             });
         }
+        else {
+          $scope.recommendation = new Recommendation();
+          $scope.recommendation.strength = 'null';
+        }
+
+
 
         $scope.updateOrCreateRecommendation = function () {
 
@@ -196,6 +204,72 @@ angular.module('webUiApp')
             handlePostError(error);
           });
         }
+
+        $scope.editSortOrderPicosBtnClick = function() {
+                ModalService.showModal({
+                    templateUrl: 'views/partials/_sortordermodal.html',
+                    controller: ['ModalService', '$scope', 'picos', 'Pico', function (ModalService, $scope, picos, Pico) {
+                      //set this scope's picos to the injected picos
+                      $scope.resource = picos;
+
+                      $scope.save = function (){
+
+                        //Loop through the elements and update if sortorder is changed
+                        for (var i =  0; i < $scope.resource.length; i++) {
+                          if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
+                            console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
+                            $scope.resource[i].sortOrder = i;
+                            Pico.update({ _id: $scope.resource[i].picoId }, $scope.resource[i])
+                            .$promise.then(function(){
+                              
+                            });
+                          }
+                        }
+                      };
+                    }],
+                    inputs: {
+                      picos: $scope.recommendation.picos //inject the picos
+                    }
+                }).then(function(modal) {
+                    modal.element.modal();
+                    
+                });
+            };
+
+        $scope.editSortOrderPicosBtnClick.$inject = ['$scope', 'ModalService'];
+
+        $scope.editSortOrderReferencesBtnClick = function() {
+                ModalService.showModal({
+                    templateUrl: 'views/partials/_sortordermodal.html',
+                    controller: ['ModalService', '$scope', 'references', 'Reference', function (ModalService, $scope, references, Reference) {
+                      //set this scope's references to the injected references
+                      $scope.resource = references;
+
+                      $scope.save = function (){
+
+                        //Loop through the elements and update if sortorder is changed
+                        for (var i =  0; i < $scope.resource.length; i++) {
+                          if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
+                            console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
+                            $scope.resource[i].sortOrder = i;
+                            Reference.update({ _id: $scope.resource[i].referenceId }, $scope.resource[i])
+                            .$promise.then(function(){
+                              
+                            });
+                          }
+                        }
+                      };
+                    }],
+                    inputs: {
+                      references: $scope.recommendation.references //inject the references
+                    }
+                }).then(function(modal) {
+                    modal.element.modal();
+                    
+                });
+            };
+
+        $scope.editSortOrderReferencesBtnClick.$inject = ['$scope', 'ModalService'];
 
         //Handles errors when post fails
         function handlePostError(error) {
