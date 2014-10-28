@@ -14,19 +14,19 @@
 	<section id="Recommendation">
 		<form role="form" ng-submit="updateOrCreateRecommendation()">
 			<div class="form-group">
-				<label for="heading">Title</label>
+				<label for="heading">Tittel</label>
 				<input type="text" class="form-control" id="heading" ng-model="recommendation.heading" required>
 			</div>
 			<div class="form-group">
-				<label for="text">Text</label>
+				<label for="text">Tekst</label>
 				<textarea  id="text" ng-model="recommendation.text" redactor></textarea>
 			</div>
 			<div class="form-group">
-				<label for="practicalAdvice">Practical Advice</label>
+				<label for="practicalAdvice">Praktisk info</label>
 				<textarea id="practicalAdvice" ng-model="recommendation.practicalAdvice" redactor="{minHeight: 200}"></textarea>
 			</div>
 			<div class="form-group">
-				<label for="rational">Rational</label>
+				<label for="rational">Begrunnelse</label>
 				<textArea type="text" class="form-control" id="rational" ng-model="recommendation.rational" redactor="{minHeight: 200}"></textArea>
 			</div>
 			<div class="form-group col-md-6">
@@ -46,8 +46,14 @@
 				<input type="text" class="form-control" id="adaption" ng-model="recommendation.adaption">
 			</div>
 			<div class="form-group col-md-6">
-				<label for="target_group">Target group</label>
-				<input type="text" class="form-control" id="target_group" ng-model="recommendation.target_group">
+				<label for="target_group">Målgruppe</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="target_group" ng-model="recommendation.target_group">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-info-sign" popover="Målgruppe for anbefalingen" popover-append-to-body="true"></span>
+					</span>
+				</div>
+				
 			</div>
 			<div class="form-group col-md-12">
 				<label for="type">Publiseringsstatus</label>
