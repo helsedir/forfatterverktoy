@@ -8,20 +8,21 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService, $rootScope) {
   	var guidelineId = $stateParams.guidelineId;
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
 
-
     if(guidelineId == 0)
     {
       $scope.guideline = new Guideline();
+      $rootScope.guidelineLabel = ' - ny retningslinje';
     }
     else
     {      
       Guideline.get({_id: guidelineId}, function(data){
         $scope.guideline = data;
+        $rootScope.guidelineLabel = ' - ' + data.shortTitle;
       });
     }
     

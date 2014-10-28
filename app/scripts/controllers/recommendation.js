@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('RecommendationCtrl', ['$scope', 'Recommendation', 'Pico', 'EmrInfo', 'Reference', 'KeyInfo', '$stateParams', '$location', 'Section', 'toastr', 'ModalService', function ($scope, Recommendation, Pico, EmrInfo, Reference, KeyInfo, $stateParams, $location, Section, toastr, ModalService) {
+    .controller('RecommendationCtrl', ['$scope', 'Recommendation', 'Pico', 'EmrInfo', 'Reference', 'KeyInfo', '$stateParams', '$location', 'Section', 'toastr', 'ModalService', '$rootScope', function ($scope, Recommendation, Pico, EmrInfo, Reference, KeyInfo, $stateParams, $location, Section, toastr, ModalService, $rootScope) {
         $scope.guidelineId = $stateParams.guidelineId;
         $scope.sectionId = $stateParams.sectionId;
         
@@ -16,16 +16,20 @@ angular.module('webUiApp')
         var recommendationId = $stateParams.recommendationId;
         var sectionId = $stateParams.sectionId;
 
+
         if (recommendationId != 0) {
             Recommendation.get({_id: recommendationId}, function (data) {
                 $scope.recommendation = data;
-                if($scope.recommendation.strength == null)
+                if($scope.recommendation.strength == null){
                   $scope.recommendation.strength = 'null';
+                }
+                $rootScope.recommendationLabel = ' - ' + data.heading;
             });
         }
         else {
           $scope.recommendation = new Recommendation();
           $scope.recommendation.strength = 'null';
+          $rootScope.recommendationLabel = ' - ny anbefaling';
         }
 
 

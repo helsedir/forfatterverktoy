@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope) {
     if($stateParams.guidelineId){
       $scope.guidelineId = $stateParams.guidelineId;
     }
@@ -19,10 +19,14 @@ angular.module('webUiApp')
     var baseUrl = '/guideline/' + guidelineId + '/section/';
     $scope.baseUrl = baseUrl;
     $scope.parentId = 1;
+
+    $rootScope.sectionLabel = ' - ny seksjon';
+
     if(sectionId != 0)
     {    
       Section.get({_id: sectionId}, function(data){
         $scope.section = data;
+        $rootScope.sectionLabel = ' - ' + data.heading;
       });
     }
     
