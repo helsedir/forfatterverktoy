@@ -202,8 +202,6 @@ angular.module('webUiApp')
                   //set this scope's sections to the injected sections
                   $scope.resource = sections;
 
-                  
-
                   $scope.save = function (){
 
                     //Loop through the elements and update if sortorder is changed
