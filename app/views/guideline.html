@@ -12,11 +12,12 @@
 	<section>
 		<form role="form" ng-submit="updateOrCreateGuideline()">
 			<div class="form-group">
-				<label for="shortTitle">Short Title</label>
+				<label for="shortTitle">Korttittel</label>
 				<input type="text" class="form-control" id="shortTitle" ng-model="guideline.shortTitle" required>
+
 			</div>
 			<div class="form-group">
-				<label for="title">Title</label>
+				<label for="title">Tittel</label>
 				<input type="text" class="form-control" id="title" ng-model="guideline.title" required>
 			</div>
 			
@@ -26,24 +27,42 @@
 			</div>
 
 			<div class="form-group col-md-6">
-				<label for="englishTitle">English Title</label>
-				<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
+				<label for="englishTitle">Engelsk Tittel</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-info-sign" popover="Engelsk tittel for retningslinjen" popover-append-to-body="true"></span>
+					</span>
+				</div>
+				
 			</div>
 			<div class="form-group col-md-6">
 				<label for="disclaimer">Disclaimer</label>
 				<input type="text" class="form-control" id="disclaimer" ng-model="guideline.disclaimer">
 			</div>
 			<div class="form-group col-md-6">
-				<label for="language">Language</label>
-				<input type="text" class="form-control" id="language" ng-model="guideline.language">
+				<label for="language">Språk</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="language" ng-model="guideline.language" placeholder="Norsk">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-info-sign" popover="Språket retningslinjen er skrevet på" popover-append-to-body="true"></span>
+					</span>
+				</div>
+				
 			</div>
 			<div class="form-group col-md-6">
-				<label for="sponsors">Sponsors</label>
+				<label for="sponsors">Sponsorer</label>
 				<input type="text" class="form-control" id="sponsors" ng-model="guideline.sponsors">
 			</div>
 			<div class="form-group col-md-6">
-				<label for="owner">Owner</label>
-				<input type="text" class="form-control" id="owner" ng-model="guideline.owner">
+				<label for="owner">Eier</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="owner" ng-model="guideline.owner" placeholder="Helsedirektoratet">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-info-sign" popover="Navn på eier av retningslinjen" popover-append-to-body="true"></span>
+					</span>
+				</div>
+				
 			</div>
 			<div class="form-group col-md-6">
 				<label for="type">Type</label>
