@@ -11,8 +11,8 @@ angular.module('webUiApp')
     .controller('TaxonomycodeCtrl', ['$scope', 'TaxonomyCode', '$stateParams', 'PicoCode', '$location', '$timeout', 'toastr', function ($scope, TaxonomyCode, $stateParams, PicoCode, $location, $timeout, toastr) {
 
         $scope.taxonomyCode ={};
-        $scope.taxonomyCode.schemaId = $stateParams.schemaId;
-        $scope.taxonomyCode.schemaSystem = $stateParams.schemaSystem;
+        $scope.taxonomyCode.schemaId = ($location.search()).schemaId;
+        $scope.taxonomyCode.schemaSystem = ($location.search()).schemaSystem;
 
         var guidelineId = $stateParams.guidelineId;
         var sectionId = $stateParams.sectionId;
