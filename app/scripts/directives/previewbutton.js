@@ -13,7 +13,7 @@ angular.module('webUiApp')
       restrict: 'E',
       /*jshint unused: false */
       link: function postLink(scope, element, attrs) {
-      	var baseUrl = 'http://digitalguidelinespreview.azurewebsites.net/#/';
+      	var baseUrl = 'http://digitalguidelinesweb.azurewebsites.net/preview/#/';
       	switch($state.current.name){
       		case 'guideline':
       			scope.text = 'retningslinje';
