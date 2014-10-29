@@ -83,25 +83,25 @@
   min-height: 50px;
 }
 
-.navbar-nav li{
+.navbar-collapse li{
   border-left: 1px solid #dfdfdf;
   font-size: 1.2em;
 }
 
-.navbar-nav li:hover{
+.navbar-collapse li:hover{
   background-color: #e7e7e7;
 }
 
-.navbar-nav li:last-child{
+.navbar-collapse li:last-child{
   border-right: 1px solid #dfdfdf;
 
 }
 
-.navbar-nav .previewlink span{
+.navbar-collapse .previewlink span{
   font-size: 0.9em;
 }
 
-.navbar-nav, .navbar-right li{
+.navbar-collapse, .navbar-right li{
   font-size: 1em;
 }
 
