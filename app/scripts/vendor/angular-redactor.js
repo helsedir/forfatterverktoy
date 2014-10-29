@@ -9,14 +9,6 @@
    *
    */
 
-  var redactorOptions = {blurCallback : function(){
-            var html = this.code.get();
-            
-            html = html.replace("<ul>", "<ul class='bulletlist'>");
-            html = html.replace("<ol>", "<ol class='orderedlist'>");
-            this.code.set(html)
-        }};
-
   angular.module('angular-redactor', [])
     .constant('redactorOptions', redactorOptions)
     .directive('redactor', ['$timeout', function ($timeout) {
