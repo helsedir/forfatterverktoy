@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="styles/redactor.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- endbuild -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 </head>
 <body ng-app="webUiApp">
 <!--[if lt IE 8]>
@@ -36,15 +35,15 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#"><img src="../images/helsedir.png"> Nasjonale faglige retningslinjer</a>
+         <a class="navbar-brand" href="#"><img src="images/helsedir.png"> Nasjonale faglige retningslinjer</a>
        </div>
-       <ul class="nav navbar-nav">
-           <li class="divider-vertical" ng-class="{ active: isActive('/')}"><a href="#/" title="">Hjem</a></li>
-           <li class="divider-vertical" ng-class="{ active: isActive('/author')}"><a href="#/author" title="" >Alle forfattere</a></li>
-           <li class="divider-vertical" ng-class="{ active: isActive('/reference')}"><a href="#/reference" title="">Alle referanser</a></li>
-       </ul>
-       <div class="navbar-collapse collapse">
 
+       <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="divider-vertical" ng-class="{ active: isActive('/')}"><a href="#/" title="">Hjem</a></li>
+            <li class="divider-vertical" ng-class="{ active: isActive('/author')}"><a href="#/author" title="" >Alle forfattere</a></li>
+            <li class="divider-vertical" ng-class="{ active: isActive('/reference')}"><a href="#/reference" title="">Alle referanser</a></li>
+        </ul>
         <log-In></log-In>
        </div><!--/.nav-collapse -->
      </div>
@@ -67,7 +66,6 @@
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
 <!-- endbuild -->
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -84,7 +82,6 @@
 <script src="bower_components/angular-ui-sortable/sortable.js"></script>
 <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
 <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
-<script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
@@ -96,7 +93,7 @@
 
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/vendor//angular-redactor.js"></script>
+<script src="scripts/vendor/angular-redactor.js"></script>
 <script src="scripts/vendor/redactor.js"></script>
 <script src="scripts/vendor/redactor_table.js"></script>
 <script src="scripts/app.js"></script>
@@ -117,14 +114,9 @@
 <script src="scripts/controllers/reference.js"></script>
 <script src="scripts/controllers/pico.js"></script>
 <script src="scripts/controllers/picocode.js"></script>
-<script src="scripts/controllers/picocontinuousoutcome.js"></script>
 <script src="scripts/controllers/picooutcome.js"></script>
 <script src="scripts/controllers/taxonomycode.js"></script>
 <script src="scripts/controllers/header.js"></script>
-<script src="scripts/services/underscore.js"></script>
-<script src="scripts/textangular/textAngular.js"></script>
-<script src="scripts/textangular/textAngularSetup.js"></script>
-<script src="scripts/textangular/textAngular-sanitize.js"></script>
 <script src="scripts/directives/btnhref.js"></script>
 <script src="scripts/directives/authorsList.js"></script>
 <script src="scripts/directives/sectionslist.js"></script>
@@ -135,12 +127,12 @@
 <script src="scripts/directives/referenceslist.js"></script>
 <script src="scripts/directives/picoslist.js"></script>
 <script src="scripts/directives/picocodeslist.js"></script>
-<script src="scripts/directives/picocontlist.js"></script>
 <script src="scripts/directives/picooutcomeslist.js"></script>
 <script src="scripts/directives/taxonomycodeslist.js"></script>
 <script src="scripts/directives/previewbutton.js"></script>
 <script src="scripts/directives/metadata.js"></script>
 <script src="scripts/directives/publishedstatus.js"></script>
+<script src="scripts/directives/deleteauthorbtn.js"></script>
 <!-- endbuild -->
 </body>
 </html>

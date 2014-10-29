@@ -8,20 +8,21 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService, $rootScope) {
   	var guidelineId = $stateParams.guidelineId;
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
 
-
     if(guidelineId == 0)
     {
       $scope.guideline = new Guideline();
+      $rootScope.guidelineLabel = ' - ny retningslinje';
     }
     else
     {      
       Guideline.get({_id: guidelineId}, function(data){
         $scope.guideline = data;
+        $rootScope.guidelineLabel = ' - ' + data.shortTitle;
       });
     }
     
@@ -194,6 +195,39 @@ angular.module('webUiApp')
         handlePostError(error);
       });
     }
+
+    $scope.editSortOrderBtnClick = function() {
+            ModalService.showModal({
+                templateUrl: 'views/partials/_sortordermodal.html',
+                controller: ['ModalService', '$scope', 'sections', 'Section', function (ModalService, $scope, sections, Section) {
+                  //set this scope's sections to the injected sections
+                  $scope.resource = sections;
+
+                  $scope.save = function (){
+
+                    //Loop through the elements and update if sortorder is changed
+                    for (var i =  0; i < $scope.resource.length; i++) {
+                      if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
+                        console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
+                        $scope.resource[i].sortOrder = i;
+                        Section.update({ _id: $scope.resource[i].sectionId }, $scope.resource[i])
+                        .$promise.then(function(){
+                          
+                        });
+                      }
+                    }
+                  };
+                }],
+                inputs: {
+                  sections: $scope.guideline.sections //inject the sections
+                }
+            }).then(function(modal) {
+                modal.element.modal();
+                
+            });
+        };
+
+    $scope.editSortOrderBtnClick.$inject = ['$scope', 'ModalService'];
 
     //Handles errors when post fails
     function handlePostError(error) {

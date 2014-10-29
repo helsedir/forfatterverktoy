@@ -19,7 +19,6 @@ angular
         'ui.sortable',
         'LocalStorageModule',
         'toastr',
-        'textAngular',
         'ui.router.state',
         'ncy-angular-breadcrumb',
         'angularModalService',
@@ -68,7 +67,7 @@ angular
                 controller: 'GuidelineCtrl',
 
                 data: {
-                    ncyBreadcrumbLabel: 'Retningslinje'
+                    ncyBreadcrumbLabel: 'Retningslinje {{guidelineLabel}}'
                 }
             })
             .state('section', {
@@ -81,7 +80,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent: 'guideline',
-                    ncyBreadcrumbLabel: 'Seksjon'
+                    ncyBreadcrumbLabel: 'Seksjon {{sectionLabel}}'
                 }
             })
             .state('recommendation', {
@@ -94,7 +93,7 @@ angular
                 },
                 data: {
                     ncyBreadcrumbParent:'section' ,
-                    ncyBreadcrumbLabel: 'Anbefaling'
+                    ncyBreadcrumbLabel: 'Anbefaling {{recommendationLabel}}'
                 }
             })
             .state('author', {
@@ -147,18 +146,6 @@ angular
                 data: {
                     ncyBreadcrumbParent: 'picoCode',
                     ncyBreadcrumbLabel: 'Taxonomy kode'
-                }
-            })
-            .state('about', {
-                url: '/about',
-                views: {
-                    "@" : {
-                        templateUrl: 'views/about.html',
-                        controller: 'AboutCtrl'
-                    }
-                },
-                data: {
-                    ncyBreadcrumbLabel: 'Om '
                 }
             })
             .state('login', {

@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="pico in recommendation.picos" ng-hide="pico.isDeleted" >
-				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.picoId}}</td>
+				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{$index}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.createdDate | date}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.updatedDate | date}}</td>
 				<td class="text-right col-sm-3">
@@ -23,4 +23,6 @@
 		</tbody>
 	</table>
 	<button type="button" class="btn btn-secondary" ng-click="addPicoBtnClick()">Legg til pico</button>
+	<button type="button" class="btn btn-secondary" ng-click="editSortOrderPicosBtnClick()">Endre rekkefølge</button>
+
 </section>

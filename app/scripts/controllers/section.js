@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope) {
     if($stateParams.guidelineId){
       $scope.guidelineId = $stateParams.guidelineId;
     }
@@ -19,10 +19,14 @@ angular.module('webUiApp')
     var baseUrl = '/guideline/' + guidelineId + '/section/';
     $scope.baseUrl = baseUrl;
     $scope.parentId = 1;
+
+    $rootScope.sectionLabel = ' - ny seksjon';
+
     if(sectionId != 0)
     {    
       Section.get({_id: sectionId}, function(data){
         $scope.section = data;
+        $rootScope.sectionLabel = ' - ' + data.heading;
       });
     }
     
@@ -114,6 +118,71 @@ angular.module('webUiApp')
           });
       };
 
+    $scope.editSortOrderRecommendationBtnClick = function() {
+            ModalService.showModal({
+                templateUrl: 'views/partials/_sortordermodal.html',
+                controller: ['ModalService', '$scope', 'recommendations', 'Recommendation', function (ModalService, $scope, recommendations, Recommendation) {
+                  //set this scope's recommendations to the injected recommendations
+                  $scope.resource = recommendations;
+
+                  $scope.save = function (){
+
+                    //Loop through the elements and update if sortorder is changed
+                    for (var i =  0; i < $scope.resource.length; i++) {
+                      if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
+                        console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
+                        $scope.resource[i].sortOrder = i;
+                        Recommendation.update({ _id: $scope.resource[i].recommendationId }, $scope.resource[i])
+                        .$promise.then(function(){
+                          
+                        });
+                      }
+                    }
+                  };
+                }],
+                inputs: {
+                  recommendations: $scope.section.recommendations //inject the recommendations
+                }
+            }).then(function(modal) {
+                modal.element.modal();
+                
+            });
+        };
+
+    $scope.editSortOrderRecommendationBtnClick.$inject = ['$scope', 'ModalService'];
+
+    $scope.editSortOrderSubsectionsBtnClick = function() {
+            ModalService.showModal({
+                templateUrl: 'views/partials/_sortordermodal.html',
+                controller: ['ModalService', '$scope', 'sections', 'Section', function (ModalService, $scope, sections, Section) {
+                  //set this scope's sections to the injected sections
+                  $scope.resource = sections;
+
+                  $scope.save = function (){
+
+                    //Loop through the elements and update if sortorder is changed
+                    for (var i =  0; i < $scope.resource.length; i++) {
+                      if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
+                        console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
+                        $scope.resource[i].sortOrder = i;
+                        Section.update({ _id: $scope.resource[i].sectionId }, $scope.resource[i])
+                        .$promise.then(function(){
+                          
+                        });
+                      }
+                    }
+                  };
+                }],
+                inputs: {
+                  sections: $scope.section.childSections //inject the sections
+                }
+            }).then(function(modal) {
+                modal.element.modal();
+                
+            });
+        };
+
+    $scope.editSortOrderSubsectionsBtnClick.$inject = ['$scope', 'ModalService'];
 
     //Handles errors when post fails
     function handlePostError(error)

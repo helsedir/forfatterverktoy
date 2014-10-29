@@ -12,7 +12,9 @@ angular.module('webUiApp')
       templateUrl: 'views/partials/_publishedstage.html',
       restrict: 'E',
       
+      /*jshint unused: false */
       link: function postLink(scope, element, attrs) {
+
         switch($state.current.name){
         	case 'guideline':
         		scope.resource = 'Retningslinjen';
