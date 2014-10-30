@@ -338,6 +338,10 @@ module.exports = function (grunt) {
         replacements: [{
           from: "http://localhost:50500/",
           to: "http://digitalguidelines.azurewebsites.net/"
+        },
+        {
+          from: "http://localhost:8000/",
+          to: "http://digitalguidelinesweb.azurewebsites.net/preview/"
         }]
       }
     },
