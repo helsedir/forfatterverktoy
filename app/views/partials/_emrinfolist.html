@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="emr in recommendation.emrInfo" ng-hide="emr.isDeleted" >
+			<tr ng-repeat="emr in recommendation.emrInfo">
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.emrInfoId}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.createdDate | date}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.updatedDate | date}}</td>
