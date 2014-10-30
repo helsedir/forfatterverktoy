@@ -23,5 +23,5 @@
 		</tbody>
 	</table>
 	<button type="button" class="btn btn-secondary" ng-click="addSectionBtnClick()">Legg til seksjon</button>
-	<button type="button" class="btn btn-secondary" ng-click="editSortOrderBtnClick()">Endre rekkefølge</button>
+	<button ng-show="guideline.sections.length > 1" type="button" class="btn btn-secondary" ng-click="editSortOrderBtnClick()">Endre rekkefølge</button>
 </section>
