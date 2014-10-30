@@ -8,7 +8,7 @@
  * Service in the webUiApp.
  */
 angular.module('webUiApp')
-  .service('Crud', function crud(EmrInfo, KeyInfo, toastr, $location) {
+  .service('Crud', ['EmrInfo', 'KeyInfo', 'toastr', '$location', function crud(EmrInfo, KeyInfo, toastr, $location) {
 
     this.delete= function(item, location, type, id){
         eval(type).delete({ _id: eval(id) })
@@ -20,7 +20,11 @@ angular.module('webUiApp')
        });
     };
 
-    this.handlePostError = function (error){
+    this.handlePostError = function(error){
+      handlePostError(error);
+    };
+
+    var handlePostError = function (error){
       if(error.status == 401) {
         toastr.warning('Logg inn for å lagre');
       }
@@ -29,4 +33,4 @@ angular.module('webUiApp')
       }
     };  
        
-  });
+  }]);
