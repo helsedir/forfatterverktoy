@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="key in recommendation.keyInfo" ng-hide="key.isDeleted" >
+			<tr ng-repeat="key in recommendation.keyInfo">
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.keyInfoId}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.createdDate | date}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/keyinfo/{{key.keyInfoId}}">{{key.updatedDate | date}}</td>

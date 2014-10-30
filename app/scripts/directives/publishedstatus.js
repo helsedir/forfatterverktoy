@@ -11,21 +11,5 @@ angular.module('webUiApp')
     return {
       templateUrl: 'views/partials/_publishedstage.html',
       restrict: 'E',
-      
-      /*jshint unused: false */
-      link: function postLink(scope, element, attrs) {
-
-        switch($state.current.name){
-        	case 'guideline':
-        		scope.resource = 'Retningslinjen';
-        		break;
-        	case 'section':
-        		scope.resource = 'Seksjonen';
-        		break;
-        	case 'recommendation':
-        		scope.resource = 'Anbefalingen';
-        		break;
-        }
-      }
     };
   });

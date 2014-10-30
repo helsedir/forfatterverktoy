@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="recommendation in section.recommendations" ng-hide="recommendation.isDeleted" >
+			<tr ng-repeat="recommendation in section.recommendations">
 				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.recommendationId}}</td>
 				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.heading}}</td>
 				<td btn-href="{{baseUrl}}{{section.sectionId}}/recommendation/{{recommendation.recommendationId}}">{{recommendation.updatedDate | date}}</td>

@@ -11,7 +11,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="childSection in section.childSections" ng-hide="childSection.isDeleted">
+			<tr ng-repeat="childSection in section.childSections">
 				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.sectionId}}</td>
 				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.heading}}</td>
 				<td btn-href="{{baseUrl}}{{childSection.sectionId}}">{{childSection.createdDate | date}}</td>

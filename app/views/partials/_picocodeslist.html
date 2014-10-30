@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="picoCode in pico.picoCodes" ng-hide="picoCode.isDeleted">
+            <tr ng-repeat="picoCode in pico.picoCodes">
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.picoCodeId}}</td>
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.createdDate | date}}</td>
                 <td btn-href="{{baseUrl}}{{pico.picoId}}/picoCode/{{picoCode.picoCodeId}}">{{picoCode.updatedDate | date}}</td>

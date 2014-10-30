@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="pico in recommendation.picos" ng-hide="pico.isDeleted" >
+			<tr ng-repeat="pico in recommendation.picos">
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{$index}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.createdDate | date}}</td>
 				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/pico/{{pico.picoId}}">{{pico.updatedDate | date}}</td>

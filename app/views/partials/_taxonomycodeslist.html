@@ -12,7 +12,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes" ng-hide="taxonomyCode.isDeleted" >
+			<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes">
 				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.taxonomyCodeId}}</td>
 				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.createdDate | date}}</td>
 				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.updatedDate | date}}</td>
