@@ -4,8 +4,8 @@
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>Opprettet</th>
-				<th>Oppdatert</th>
+				<th class="hidden-xs">Opprettet</th>
+				<th class="hidden-xs">Oppdatert</th>
 				<th>Schemasystem</th>
 				<th>Code</th>
 				<th></th>
@@ -13,11 +13,11 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="taxonomyCode in picoCode.taxonomyCodes">
-				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.taxonomyCodeId}}</td>
-				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.createdDate | date}}</td>
-				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.updatedDate | date}}</td>
-				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.schemaSystem}}</td>
-				<td btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.code}}</td>
+				<td class="col-sm-1" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{$index+1}}</td>
+				<td class="col-sm-2 hidden-xs" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.createdDate | date}}</td>
+				<td class="col-sm-2 hidden-xs" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.updatedDate | date}}</td>
+				<td class="col-sm-2" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.schemaSystem}}</td>
+				<td class="col-sm-2 breakall" btn-href="{{baseUrl}}{{picoCode.picoCodeId}}/taxonomyCode/{{taxonomyCode.taxonomyCodeId}}">{{taxonomyCode.code}}</td>
 				<td class="text-right col-sm-3">
 					<button type="button" class="btn btn-link btn-delete" ng-click="deleteTaxonomyCodeBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette taxonomy code med id {{taxonomyCode.taxonomyCodeId}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
 					

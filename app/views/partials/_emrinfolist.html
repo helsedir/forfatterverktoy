@@ -4,16 +4,16 @@
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>Opprettet</th>
+				<th class="hidden-xs">Opprettet</th>
 				<th>Oppdatert</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="emr in recommendation.emrInfo">
-				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.emrInfoId}}</td>
-				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.createdDate | date}}</td>
-				<td btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.updatedDate | date}}</td>
+				<td class="col-sm-1" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{$index+1}}</td>
+				<td class="col-sm-2 hidden-xs" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.createdDate | date}}</td>
+				<td class="col-sm-2" btn-href="/guideline/{{guidelineId}}/section/{{sectionId}}/recommendation/{{recommendation.recommendationId}}/emrinfo/{{emr.emrInfoId}}">{{emr.updatedDate | date}}</td>
 				<td class="text-right col-sm-3">
 					<button type="button" class="btn btn-link btn-delete" ng-click="deleteEmrInfoBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette EMR info med id {{emr.emrInfoId}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
 					

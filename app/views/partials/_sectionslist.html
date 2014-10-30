@@ -3,16 +3,18 @@
 	<table class="table table-hover table-pointer">
 		<thead>
 			<tr>
+				<th class="hidden-xs">#</th>
 				<th>Tittel</th>
-				<th>Oppdatert</th>
+				<th class="text-right hidden-xs">Oppdatert</th>
 				<th>&nbsp;</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr ng-repeat="section in guideline.sections | orderBy : section.sortOrder">
-				<td class="col-md-5" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.heading}}</td>
-				<td btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.updatedDate | date:'dd.MM.yy'}}</td>
+				<td class="col-sm-1 hidden-xs" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{$index+1}}</td>
+				<td class="breakall" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.heading}}</td>
+				<td class="text-right col-sm-2 hidden-xs" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.updatedDate | date:'dd.MM.yy'}}</td>
 				<td class="text-right col-sm-3">
 					<button type="button" class="btn btn-link btn-delete" ng-click="deleteSectionBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette seksjonen {{section.heading}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
 					

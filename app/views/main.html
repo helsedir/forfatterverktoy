@@ -29,7 +29,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="guideline in guidelines | filter:searchText">
-			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.guidelineId}}</td>
+			<td btn-href="/guideline/{{guideline.guidelineId}}">{{$index+1}}</td>
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.shortTitle}}</td>
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.updatedDate | date}}</td>
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.language}}</td>
