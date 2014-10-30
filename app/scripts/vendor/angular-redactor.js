@@ -9,6 +9,8 @@
    *
    */
 
+  var redactorOptions = {};
+
   angular.module('angular-redactor', [])
     .constant('redactorOptions', redactorOptions)
     .directive('redactor', ['$timeout', function ($timeout) {
