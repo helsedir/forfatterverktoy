@@ -23,13 +23,13 @@ angular.module('webUiApp')
                 if($scope.recommendation.strength == null){
                   $scope.recommendation.strength = 'null';
                 }
-                $rootScope.recommendationLabel = ' - ' + data.heading;
+                $rootScope.recommendationLabel = ' - ' + data.heading; //update breadcrumb
             });
         }
         else {
           $scope.recommendation = new Recommendation();
           $scope.recommendation.strength = 'null';
-          $rootScope.recommendationLabel = ' - ny anbefaling';
+          $rootScope.recommendationLabel = ' - ny anbefaling'; //update breadcrumb
         }
 
 
@@ -39,6 +39,7 @@ angular.module('webUiApp')
             if (recommendationId != 0) {
                 Recommendation.update({ _id: recommendationId }, $scope.recommendation)
                     .$promise.then(function (data) {
+                        $rootScope.recommendationLabel = ' - ' + data.heading; //update breadcrumb
                         toastr.success(data.heading, 'Lagret');
                         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
                     }, function (error) {
@@ -49,6 +50,7 @@ angular.module('webUiApp')
             else if (typeof(sectionId) != 'undefined' && sectionId != null) {
                 Section.addRecommendation({id: sectionId}, $scope.recommendation)
                     .$promise.then(function (data) {
+                        $rootScope.recommendationLabel = ' - ' + data.heading; //update breadcrumb
                         toastr.success(data.heading, 'Opprettet anbefaling');
                         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
                     }, function (error) {
