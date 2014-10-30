@@ -30,4 +30,5 @@
 
 	
 	<button type="submit" class="btn btn-primary">Lagre</button>
+	<button ng-show="emrInfo.emrInfoId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette EMR info {{emrInfo.name}}" ng-click="deleteEmrInfoBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
 </form>

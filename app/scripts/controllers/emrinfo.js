@@ -43,10 +43,17 @@ angular.module('webUiApp')
       }
     };
 
-    
-    $scope.removeEmrInfo = function() {
-    	
+    $scope.deleteEmrInfoBtnClick = function () {
+        var emrInfoToDelete = $scope.emrInfo;
+        EmrInfo.delete({ _id: emrInfoToDelete.emrInfoId })
+            .$promise.then(function(){
+            toastr.success('Emr info: ' + emrInfoToDelete.name, 'Slettet');
+            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId);
+        }, function(error){
+            handlePostError(error);
+        });
     };
+
     function handlePostError(error)
     {
       if(error.status == 401)
