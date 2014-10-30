@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('PicocodeCtrl', ['$scope', 'PicoCode', 'TaxonomyCode', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoCode, TaxonomyCode, $stateParams, Pico, $location, $timeout, toastr) {
+  .controller('PicocodeCtrl', ['$scope', 'PicoCode', 'TaxonomyCode', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', 'Crud', function ($scope, PicoCode, TaxonomyCode, $stateParams, Pico, $location, $timeout, toastr, Crud) {
   	var guidelineId = $stateParams.guidelineId;
     var sectionId = $stateParams.sectionId;
     var recommendationId = $stateParams.recommendationId;
@@ -31,7 +31,7 @@ angular.module('webUiApp')
           toastr.success(data.ontologyName, 'Lagret');
           $location.path(baseUrl + data.picoCodeId);
         }, function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
       }
 
@@ -42,7 +42,7 @@ angular.module('webUiApp')
           toastr.success(data.ontologyCode, 'Opprettet PicoCode');
           $location.path(baseUrl + data.picoCodeId);
         },function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
       }
     };
@@ -54,7 +54,7 @@ angular.module('webUiApp')
           toastr.success('picoCode: ' + picoCodeToDelete.picoCodeId, 'Slettet');
           $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId);
         }, function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
     };
 
@@ -70,20 +70,8 @@ angular.module('webUiApp')
           toastr.success('taxonomyCode: ' + taxonomyCodeToDelete.taxonomyCodeId, 'Slettet');
           $scope.picoCode.taxonomyCodes.splice(index, 1);
         }, function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
     };
 
-    //Handles errors when post fails
-    function handlePostError(error)
-    {
-      if(error.status == 401)
-      {
-        toastr.warning('Logg inn for å lagre');
-      }
-      else
-      {
-        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-      }
-    }
   }]);

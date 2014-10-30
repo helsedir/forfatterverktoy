@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', 'Crud', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope, Crud) {
     if($stateParams.guidelineId){
       $scope.guidelineId = $stateParams.guidelineId;
     }
@@ -59,7 +59,7 @@ angular.module('webUiApp')
         $location.path(baseUrl + data.sectionId);
       },
       function(error){
-        handlePostError(error);
+        Crud.handlePostError(error);
       });
     };
 
@@ -68,7 +68,7 @@ angular.module('webUiApp')
         .$promise.then(function(data){
           toastr.success(data.heading, 'Lagret');
         }, function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
     };
 
@@ -101,7 +101,7 @@ angular.module('webUiApp')
             $location.path('/guideline/'+guidelineId);
           }
         }, function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
     };
 
@@ -114,7 +114,7 @@ angular.module('webUiApp')
             $scope.section.recommendations.splice(index, 1);
 
             }, function(error){
-            handlePostError(error);
+            Crud.handlePostError(error);
           });
       };
 
@@ -184,16 +184,4 @@ angular.module('webUiApp')
 
     $scope.editSortOrderSubsectionsBtnClick.$inject = ['$scope', 'ModalService'];
 
-    //Handles errors when post fails
-    function handlePostError(error)
-    {
-      if(error.status == 401)
-      {
-        toastr.warning('Logg inn for å lagre');
-      }
-      else
-      {
-        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-      }
-    }
     }]);

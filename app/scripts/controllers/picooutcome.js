@@ -9,7 +9,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('PicoOutcomeCtrl', ['$scope', 'PicoOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', function ($scope, PicoOutcome, $stateParams, Pico, $location, $timeout, toastr) {
+    .controller('PicoOutcomeCtrl', ['$scope', 'PicoOutcome', '$stateParams', 'Pico', '$location', '$timeout', 'toastr', 'Crud', function ($scope, PicoOutcome, $stateParams, Pico, $location, $timeout, toastr, Crud) {
         var guidelineId = $stateParams.guidelineId;
         var sectionId = $stateParams.sectionId;
         var recommendationId = $stateParams.recommendationId;
@@ -32,7 +32,7 @@ angular.module('webUiApp')
                         toastr.success(data.summary, 'Lagret');
                         $location.path(baseUrl + data.picoOutcomeId);
                     }, function(error){
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
 
@@ -43,7 +43,7 @@ angular.module('webUiApp')
                         toastr.success(data.summary, 'Opprettet PicoOutcome');
                         $location.path(baseUrl + data.picoOutcomeId);
                     },function(error){
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
         };
@@ -56,19 +56,8 @@ angular.module('webUiApp')
                 toastr.success('Pico Outcome: ' + picoOutcomeToDelete.picoOutcomeId, 'Slettet');
                 $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId);
             }, function(error){
-                handlePostError(error);
+                Crud.handlePostError(error);
             });
         };
 
-        function handlePostError(error)
-        {
-            if(error.status == 401)
-            {
-                toastr.warning('Logg inn for å lagre');
-            }
-            else
-            {
-                toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-            }
-        }
     }]);

@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('RecommendationCtrl', ['$scope', 'Recommendation', 'Pico', 'EmrInfo', 'Reference', 'KeyInfo', '$stateParams', '$location', 'Section', 'toastr', 'ModalService', '$rootScope', function ($scope, Recommendation, Pico, EmrInfo, Reference, KeyInfo, $stateParams, $location, Section, toastr, ModalService, $rootScope) {
+    .controller('RecommendationCtrl', ['$scope', 'Recommendation', 'Pico', 'EmrInfo', 'Reference', 'KeyInfo', '$stateParams', '$location', 'Section', 'toastr', 'ModalService', '$rootScope', 'Crud', function ($scope, Recommendation, Pico, EmrInfo, Reference, KeyInfo, $stateParams, $location, Section, toastr, ModalService, $rootScope, Crud) {
         $scope.guidelineId = $stateParams.guidelineId;
         $scope.sectionId = $stateParams.sectionId;
         
@@ -43,7 +43,7 @@ angular.module('webUiApp')
                         toastr.success(data.heading, 'Lagret');
                         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
                     }, function (error) {
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
 
@@ -54,7 +54,7 @@ angular.module('webUiApp')
                         toastr.success(data.heading, 'Opprettet anbefaling');
                         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
                     }, function (error) {
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
         };
@@ -66,7 +66,7 @@ angular.module('webUiApp')
                 toastr.success('Anbefaling: ' + recommendationToDelete.heading, 'Slettet');
                 $location.path('/guideline/' + guidelineId + '/section/'+sectionId);
               }, function(error){
-                handlePostError(error);
+                Crud.handlePostError(error);
               });
         };
 
@@ -81,7 +81,7 @@ angular.module('webUiApp')
                 toastr.success('Pico: ' + picoToDelete.picoId, 'Slettet');
                 $scope.recommendation.picos.splice(index, 1);
               }, function(error){
-                handlePostError(error);
+                Crud.handlePostError(error);
               });
         };
 
@@ -96,7 +96,7 @@ angular.module('webUiApp')
                 toastr.success('emrInfo: ' + emrInfoToDelete.emrInfoId, 'Slettet');
                 $scope.recommendation.emrInfo.splice(index, 1);
               }, function(error){
-                handlePostError(error);
+                Crud.handlePostError(error);
               });
         };
 
@@ -111,7 +111,7 @@ angular.module('webUiApp')
                 toastr.success('keyInfo: ' + keyInfoToDelete.keyInfoId, 'Slettet');
                 $scope.recommendation.keyInfo.splice(index, 1);
               }, function(error){
-                handlePostError(error);
+                Crud.handlePostError(error);
               });
         };
 
@@ -162,7 +162,7 @@ angular.module('webUiApp')
                         
                         }, function (error){
 
-                          handlePostError(error);
+                          Crud.handlePostError(error);
 
                         });
                       };
@@ -191,7 +191,7 @@ angular.module('webUiApp')
             $scope.recommendation.references.push(reference);
           }, 
           function(error){
-            handlePostError(error);
+            Crud.handlePostError(error);
           });
         }
 
@@ -207,17 +207,7 @@ angular.module('webUiApp')
             }
           },
           function(error){
-            handlePostError(error);
+            Crud.handlePostError(error);
           });
-        }
-
-        //Handles errors when post fails
-        function handlePostError(error) {
-            if (error.status == 401) {
-                toastr.warning('Logg inn for å lagre');
-            }
-            else {
-                toastr.error('Status code: ' + error.status + ' ' + error.statusText + ' Error data: ' + error.data.message, 'Error!');
-            }
         }
     }]);

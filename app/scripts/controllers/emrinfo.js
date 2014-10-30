@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('EmrInfoCtrl', ['$scope', 'EmrInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, EmrInfo, $stateParams, Recommendation, $location, $timeout, toastr) {
+  .controller('EmrInfoCtrl', ['$scope', 'EmrInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'Crud', function ($scope, EmrInfo, $stateParams, Recommendation, $location, $timeout, toastr, Crud) {
   	var guidelineId = $stateParams.guidelineId;
     var sectionId = $stateParams.sectionId;
     var recommendationId = $stateParams.recommendationId;
@@ -27,7 +27,7 @@ angular.module('webUiApp')
             toastr.success(data.summary, 'Lagret');
             $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/'+ data.emrInfoId);
           }, function(error){
-            handlePostError(error);
+            Crud.handlePostError(error);
           });
       }
 
@@ -38,31 +38,12 @@ angular.module('webUiApp')
           toastr.success(data.summary, 'Opprettet EmrInfo');
           $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/'+ data.emrInfoId);
         },function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
       }
     };
 
     $scope.deleteEmrInfoBtnClick = function () {
-        var emrInfoToDelete = $scope.emrInfo;
-        EmrInfo.delete({ _id: emrInfoToDelete.emrInfoId })
-            .$promise.then(function(){
-            toastr.success('Emr info: ' + emrInfoToDelete.name, 'Slettet');
-            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId);
-        }, function(error){
-            handlePostError(error);
-        });
+        Crud.delete($scope.emrInfo, '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId, 'EmrInfo', 'item.emrInfoId');
     };
-
-    function handlePostError(error)
-    {
-      if(error.status == 401)
-      {
-        toastr.warning('Logg inn for å lagre');
-      }
-      else
-      {
-        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-      }
-    }
     }]);

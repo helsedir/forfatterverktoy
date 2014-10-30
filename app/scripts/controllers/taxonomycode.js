@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('TaxonomycodeCtrl', ['$scope', 'TaxonomyCode', '$stateParams', 'PicoCode', '$location', '$timeout', 'toastr', function ($scope, TaxonomyCode, $stateParams, PicoCode, $location, $timeout, toastr) {
+    .controller('TaxonomycodeCtrl', ['$scope', 'TaxonomyCode', '$stateParams', 'PicoCode', '$location', '$timeout', 'toastr', 'Crud', function ($scope, TaxonomyCode, $stateParams, PicoCode, $location, $timeout, toastr, Crud) {
 
         $scope.taxonomyCode ={};
         $scope.taxonomyCode.schemaId = ($location.search()).schemaId;
@@ -37,7 +37,7 @@ angular.module('webUiApp')
                         toastr.success(data.name, 'Lagret');
                         $location.path(baseUrl + data.taxonomyCodeId);
                     }, function (error) {
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
 
@@ -47,7 +47,7 @@ angular.module('webUiApp')
                         toastr.success(data.name, 'Opprettet TaxonomyCode');
                         $location.path(baseUrl + data.taxonomyCodeId);
                     }, function (error) {
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
         };
@@ -60,20 +60,8 @@ angular.module('webUiApp')
                     toastr.success('taxonomy code: ' + taxonomyCodeToDelete.picoId, 'Slettet');
                     $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picoCode/'+picoCodeId);
                 }, function(error){
-                    handlePostError(error);
+                    Crud.handlePostError(error);
                 });
 
         };
-        //Handles errors when post fails
-        function handlePostError(error)
-        {
-          if(error.status == 401)
-          {
-            toastr.warning('Logg inn for å lagre');
-          }
-          else
-          {
-            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-          }
-        }
     }]);

@@ -18,6 +18,7 @@ angular.module('webUiApp')
       scope: {
         'publishedStage': '=publishedstage'
       },
+      /*jshint unused: false */
       link: function(scope, element, attrs){
         var baseUrl = 'http://localhost:8000/#/';
         switch($state.current.name){

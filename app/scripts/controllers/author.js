@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('AuthorCtrl', ['$scope', 'Guideline', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', function ($scope, Guideline, Author, $stateParams, $location, toastr, ModalService){
+  .controller('AuthorCtrl', ['$scope', 'Guideline', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', 'Crud', function ($scope, Guideline, Author, $stateParams, $location, toastr, ModalService, Crud){
   	var authorId = $stateParams.authorId;
   	var guidelineId = $stateParams.guidelineId;
 
@@ -27,7 +27,7 @@ angular.module('webUiApp')
           $location.path('/guideline/'+guidelineId);
         
         }, function (error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
       }
       else{
@@ -42,7 +42,7 @@ angular.module('webUiApp')
         }
       }, 
       function(error){
-        handlePostError(error);
+        Crud.handlePostError(error);
       });
       }
   	};
@@ -67,7 +67,7 @@ angular.module('webUiApp')
                    close(data, 500); // close, but give 500ms for bootstrap to animate
 
                  }, function (error){
-                   handlePostError(error);
+                   Crud.handlePostError(error);
                  });
                 };
               }],
@@ -100,7 +100,7 @@ angular.module('webUiApp')
             
             }, function (error){
 
-              handlePostError(error);
+              Crud.handlePostError(error);
 
             });
           };
@@ -121,20 +121,7 @@ angular.module('webUiApp')
         toastr.success(authorToDelete.name, 'Slettet');
         $scope.authors.splice(index, 1);
       }, function(error){
-        handlePostError(error);
+        Crud.handlePostError(error);
       });
     };
-
-  	//Handles errors when post fails
-  	function handlePostError(error)
-  	{
-  	  if(error.status == 401)
-  	  {
-  	    toastr.warning('Logg inn for å lagre');
-  	  }
-  	  else
-  	  {
-  	    toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-  	  }
-  	}
   }]);

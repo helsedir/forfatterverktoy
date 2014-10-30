@@ -8,7 +8,7 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService, $rootScope) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', 'Crud',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService, $rootScope, Crud) {
   	var guidelineId = $stateParams.guidelineId;
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
@@ -34,14 +34,7 @@ angular.module('webUiApp')
             $location.path(baseUrl + data.guidelineId);
 
         }, function (error){
-          if(error.status == 401)
-          {
-            toastr.warning('Logg inn for å lagre');
-          }
-          else
-          {
-            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-          }
+            Crud.handlePostError(error);
         });
       }
       else
@@ -51,14 +44,7 @@ angular.module('webUiApp')
 
           toastr.success($scope.guideline.title, 'Lagret');
         }, function(error){
-          if(error.status == 401)
-          {
-            toastr.warning('Logg inn for å lagre');
-          }
-          else
-          {
-            toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-          }
+            Crud.handlePostError(error);
         });
       }
     };
@@ -71,14 +57,7 @@ angular.module('webUiApp')
         toastr.success($scope.guideline.title, 'Slettet');
         $location.path('/');
       }, function(error){
-            if(error.status == 401)
-            {
-              toastr.warning('Logg inn for å slette');
-            }
-            else
-            {
-              toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-            }
+            Crud.handlePostError(error);
         });
     };
 
@@ -89,7 +68,7 @@ angular.module('webUiApp')
         toastr.success(sectionToDelete.heading, 'Slettet');
         $scope.guideline.sections.splice(index, 1);
       }, function(error){
-        handlePostError(error);
+        Crud.handlePostError(error);
       });
     };
 
@@ -133,7 +112,7 @@ angular.module('webUiApp')
                     
                     }, function (error){
 
-                      handlePostError(error);
+                      Crud.handlePostError(error);
 
                     });
                   };
@@ -176,7 +155,7 @@ angular.module('webUiApp')
         $scope.guideline.authors.push(author);
       }, 
       function(error){
-        handlePostError(error);
+        Crud.handlePostError(error);
       });
     }
 
@@ -192,7 +171,7 @@ angular.module('webUiApp')
         }
       },
       function(error){
-        handlePostError(error);
+        Crud.handlePostError(error);
       });
     }
 
@@ -229,14 +208,5 @@ angular.module('webUiApp')
 
     $scope.editSortOrderBtnClick.$inject = ['$scope', 'ModalService'];
 
-    //Handles errors when post fails
-    function handlePostError(error) {
-        if (error.status == 401) {
-            toastr.warning('Logg inn for å lagre');
-        }
-        else {
-            toastr.error('Status code: ' + error.status + ' ' + error.statusText + ' Error data: ' + error.data.message, 'Error!');
-        }
-    }
 
   }]);

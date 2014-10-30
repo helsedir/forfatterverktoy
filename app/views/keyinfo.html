@@ -16,6 +16,7 @@
 		<textarea redactor="{ minHeight: 100, toolbar: false, plugins:[],  pastePlainText: true}" class="form-control" id="resources" ng-model="keyInfo.resources"></textarea>
 	</div>
 	<button type="submit" class="btn btn-lg btn-primary">Lagre</button>
+	<button ng-show="keyInfo.keyInfoId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette Key info?" ng-click="deleteKeyInfoBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
 	<p></p>
 	<div>UpdatedBy: {{keyInfo.updatedBy}}</div>
 	<div>UpdatedDate: {{keyInfo.updatedDate | date}}</div>

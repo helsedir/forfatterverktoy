@@ -14,7 +14,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('ReferenceCtrl', ['$scope', 'Reference', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'ModalService', function ($scope, Reference, $stateParams, Recommendation, $location, $timeout, toastr, ModalService) {
+    .controller('ReferenceCtrl', ['$scope', 'Reference', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'ModalService', 'Crud', function ($scope, Reference, $stateParams, Recommendation, $location, $timeout, toastr, ModalService, Crud) {
         var guidelineId = $stateParams.guidelineId;
         var sectionId = $stateParams.sectionId;
         var recommendationId = $stateParams.recommendationId;
@@ -33,7 +33,7 @@ angular.module('webUiApp')
                         toastr.success(data.summary, 'Lagret');
                         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/'+ data.referenceId);
                     }, function(error){
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
 
@@ -44,7 +44,7 @@ angular.module('webUiApp')
                         toastr.success(data.summary, 'Opprettet Reference');
                         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/'+ data.referenceId);
                     },function(error){
-                        handlePostError(error);
+                        Crud.handlePostError(error);
                     });
             }
         };
@@ -69,7 +69,7 @@ angular.module('webUiApp')
                        close(data, 500); // close, but give 500ms for bootstrap to animate
 
                      }, function (error){
-                       handlePostError(error);
+                       Crud.handlePostError(error);
                      });
                     };
                   }],
@@ -102,7 +102,7 @@ angular.module('webUiApp')
                 
                 }, function (error){
 
-                  handlePostError(error);
+                  Crud.handlePostError(error);
 
                 });
               };
@@ -123,23 +123,8 @@ angular.module('webUiApp')
             toastr.success(referenceToDelete.name, 'Slettet');
             $scope.references.splice(index, 1);
           }, function(error){
-            handlePostError(error);
+            Crud.handlePostError(error);
           });
         };
 
-
-        $scope.removeReference = function() {
-
-        };
-        function handlePostError(error)
-        {
-            if(error.status == 401)
-            {
-                toastr.warning('Logg inn for å lagre');
-            }
-            else
-            {
-                toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-            }
-        }
     }]);

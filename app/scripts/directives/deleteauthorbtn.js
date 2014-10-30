@@ -11,6 +11,7 @@ angular.module('webUiApp')
     return {
       template: '<div></div>',
       restrict: 'E',
+      /*jshint unused: false */
       link: function postLink(scope, element, attrs) {
         element.text('this is the deleteAuthorBtn directive');
       }

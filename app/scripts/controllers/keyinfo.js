@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('KeyInfoCtrl', ['$scope', 'KeyInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', function ($scope, KeyInfo, $stateParams, Recommendation, $location, $timeout, toastr) {
+  .controller('KeyInfoCtrl', ['$scope', 'KeyInfo', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'Crud', function ($scope, KeyInfo, $stateParams, Recommendation, $location, $timeout, toastr, Crud) {
   	var guidelineId = $stateParams.guidelineId;
     var sectionId = $stateParams.sectionId;
     var recommendationId = $stateParams.recommendationId;
@@ -27,7 +27,7 @@ angular.module('webUiApp')
             toastr.success(data.summary, 'Lagret');
             $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/keyinfo/'+ data.keyInfoId);
           }, function(error){
-            handlePostError(error);
+            Crud.handlePostError(error);
           });
       }
 
@@ -38,24 +38,14 @@ angular.module('webUiApp')
           toastr.success(data.summary, 'Opprettet KeyInfo');
           $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/keyinfo/'+ data.keyInfoId);
         },function(error){
-          handlePostError(error);
+          Crud.handlePostError(error);
         });
       }
     };
 
     
-    $scope.removeKeyInfo = function() {
-    	
+    $scope.deleteKeyInfoBtnClick = function () {
+        Crud.delete($scope.keyInfo, '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId, 'KeyInfo', 'item.keyInfoId');
     };
-    function handlePostError(error)
-    {
-      if(error.status == 401)
-      {
-        toastr.warning('Logg inn for å lagre');
-      }
-      else
-      {
-        toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
-      }
-    }
+    
     }]);
