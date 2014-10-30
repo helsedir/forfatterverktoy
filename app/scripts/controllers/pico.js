@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('PicoCtrl', ['$scope', 'Pico', 'PicoCode', 'PicoOutcome', 'PicoContinousOutcome', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'Crud', function ($scope, Pico, PicoCode, PicoContinousOutcome, PicoOutcome, $stateParams, Recommendation, $location, $timeout, toastr, Crud) {
+    .controller('PicoCtrl', ['$scope', 'Pico', 'PicoCode', 'PicoOutcome', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'Crud', function ($scope, Pico, PicoCode, PicoOutcome, $stateParams, Recommendation, $location, $timeout, toastr, Crud) {
         var guidelineId = $stateParams.guidelineId;
         var sectionId = $stateParams.sectionId;
         var recommendationId = $stateParams.recommendationId;
@@ -57,21 +57,6 @@ angular.module('webUiApp')
                 .$promise.then(function(){
                 toastr.success('picoCode: ' + picoCodeToDelete.picoCodeId, 'Slettet');
                 $scope.pico.picoCodes.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
-        };
-
-        $scope.addPicoContinuousOutcomeBtnClick = function () {
-            $location.path(baseUrl + picoId + '/picocontinousoutcome/0');
-        };
-
-        $scope.deletePicoContinuousOutcomeBtnClick = function (index){
-            var picoContinuousOutcomeToDelete = $scope.pico.picoContinousOutcomes[index];
-            PicoContinousOutcome.delete({ _id: picoContinuousOutcomeToDelete.picoContinousOutcomeId })
-                .$promise.then(function(){
-                toastr.success('Pico Continuous Outcome: ' + picoContinuousOutcomeToDelete.picoContinousOutcomeId, 'Slettet');
-                $scope.pico.picoContinousOutcomes.splice(index, 1);
               }, function(error){
                 Crud.handlePostError(error);
               });

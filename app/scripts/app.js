@@ -198,19 +198,6 @@ angular
                     ncyBreadcrumbLabel: 'Key Info'
                 }
             })
-            .state('picocontinousoutcome', {
-                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picocontinousoutcome/{picoContinousOutcomeId}',
-                views: {
-                    "@" : {
-                        templateUrl: 'views/picoContinousOutcome.html',
-                        controller: 'PicoContinousOutcomeCtrl'
-                    }
-                },
-                data: {
-                    ncyBreadcrumbParent: 'pico',
-                    ncyBreadcrumbLabel: 'Pico continuous outcome'
-                }
-            })
             .state('picooutcome', {
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picooutcome/{picoOutcomeId}',
                 views: {

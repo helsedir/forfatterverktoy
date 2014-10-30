@@ -48,7 +48,6 @@ angular.module('webUiApp')
             {
                 update: { method: 'PUT' },
                 addPicoCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picocodes/'},
-                addPicoContinousOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picocontinousoutcomes/'},
                 addPicoOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picooutcomes/'}
             });
     }])
@@ -73,12 +72,6 @@ angular.module('webUiApp')
     }])
     .factory('KeyInfo', ['$resource', function ($resource) {
         return $resource(apiUrl + 'keyinfos/:_id', {},
-            {
-                update: { method: 'PUT' }
-            });
-    }])
-    .factory('PicoContinousOutcome', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'picocontinousoutcomes/:_id', {},
             {
                 update: { method: 'PUT' }
             });
