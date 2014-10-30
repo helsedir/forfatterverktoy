@@ -100,9 +100,7 @@
 	<!-- List Of Authors in guideline -->
 	<authors-list></authors-list>
 
-	<small ng-show="guideline.guidelineId">
-		<p><b>Opprettet av:</b> {{guideline.createdBy}}, <i>{{guideline.createdDate | date}}</i> <b>Oppdatert av:</b> {{guideline.updatedBy}}, <i>{{guideline.updatedDate | date}}</i></p>
-	</small>
+	<metadata created-by="{{guideline.createdBy}}" updated-by="{{guideline.updatedBy}}" created-date="{{guideline.createdDate}}" updated-date="{{guideline.updatedDate}}"></metadata>
 
 	
 </article>

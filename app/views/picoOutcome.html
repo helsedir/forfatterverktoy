@@ -146,14 +146,9 @@
 
         <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
         <button ng-show="picoOutcome.picoOutcomeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico  outcome?" ng-click="deletePicoOutcomeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
-    <br><br>
-    <p></p>
-    <div>UpdatedBy: {{picoOutcome.updatedBy}}</div>
-    <div>UpdatedDate: {{picoOutcome.updatedDate | date}}</div>
-    <p></p>
-    <div>CreatedBy: {{picoOutcome.createdBy}}</div>
-    <div>CreatedDate: {{picoOutcome.createdDate | date}}</div>
-    <p></p>
+
 
 </form>
+
+<metadata ng-show="picoOutcome.picoOutcomeId" created-by="{{picoOutcome.createdBy}}" updated-by="{{picoOutcome.updatedBy}}" created-date="{{picoOutcome.createdDate}}" updated-date="{{picoOutcome.updatedDate}}"></metadata>
 </article>

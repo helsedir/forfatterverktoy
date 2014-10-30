@@ -1,14 +1,4 @@
 <article>
-	<small ng-show="taxonomyCode.taxonomyCodeId">
-	<p>
-	Opprettet av: {{taxonomyCode.createdBy}}, {{taxonomyCode.createdDate | date}}
-	</p>
-	<p>
-	Oppdatert av: {{taxonomyCode.updatedBy}}, {{taxonomyCode.updatedDate | date}}
-	</p>
-	</small>
-	<section>
-		
 		
 		<form role="form" ng-submit="updateOrCreateTaxonomyCode()">
 			<div class="form-group">
@@ -43,5 +33,6 @@
 			<button ng-show="taxonomyCode.taxonomyCodeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette taxonomy code?" ng-click="removeTaxonomyCodeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
 			<br><br>
 		</form>
-	</section>
+
+	<metadata ng-show="taxonomyCode.taxonomyCodeId" created-by="{{taxonomyCode.createdBy}}" updated-by="{{taxonomyCode.updatedBy}}" created-date="{{taxonomyCode.createdDate}}" updated-date="{{taxonomyCode.updatedDate}}"></metadata>
 </article>

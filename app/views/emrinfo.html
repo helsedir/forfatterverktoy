@@ -20,15 +20,9 @@
 		<input type="text" class="form-control" id="outcome" ng-model="emrInfo.type">
 	</div>
 	
-	<p></p>
-	<div>UpdatedBy: {{emrInfo.updatedBy}}</div>
-	<div>UpdatedDate: {{emrInfo.updatedDate | date}}</div>
-	<p></p>
-	<div>CreatedBy: {{emrInfo.createdBy}}</div>
-	<div>CreatedDate: {{emrInfo.createdDate | date}}</div>
-	<p></p>
-
-	
 	<button type="submit" class="btn btn-primary">Lagre</button>
 	<button ng-show="emrInfo.emrInfoId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette EMR info {{emrInfo.name}}" ng-click="deleteEmrInfoBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+
 </form>
+
+<metadata ng-show="emrInfo.emrInfoId" created-by="{{emrInfo.createdBy}}" updated-by="{{emrInfo.updatedBy}}" created-date="{{emrInfo.createdDate}}" updated-date="{{emrInfo.updatedDate}}"></metadata>

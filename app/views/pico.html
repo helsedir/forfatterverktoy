@@ -1,12 +1,5 @@
 <article>
-    <small ng-show="pico.picoId">
-    <p>
-    Opprettet av: {{pico.createdBy}}, {{pico.createdDate | date}}
-    </p>
-    <p>
-    Oppdatert av: {{pico.updatedBy}}, {{pico.updatedDate | date}}
-    </p>
-    </small>
+
     <section>
         <form role="form" ng-submit="updateOrCreatePico()">
             <div class="form-group">
@@ -49,5 +42,8 @@
     <picocont-list></picocont-list>
 
     <picooutcomes-list></picooutcomes-list>
+
+
+    <metadata ng-show="pico.picoId" created-by="{{pico.createdBy}}" updated-by="{{pico.updatedBy}}" created-date="{{pico.createdDate}}" updated-date="{{pico.updatedDate}}"></metadata>
 
 </article>

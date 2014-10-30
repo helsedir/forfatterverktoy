@@ -1,12 +1,4 @@
 <article>
-	<small ng-show="picoCode.picoCodeId">
-	<p>
-	Opprettet av: {{picoCode.createdBy}}, {{picoCode.createdDate | date}}
-	</p>
-	<p>
-	Oppdatert av: {{picoCode.updatedBy}}, {{picoCode.updatedDate | date}}
-	</p>
-	</small>
 	<section id="Pico">
 		
 		<form role="form" ng-submit="updateOrCreatePicoCode()">
@@ -44,4 +36,6 @@
 	</section>
 	<br><br>
 	<taxonomycodes-list></taxonomycodes-list>
+
+	<metadata ng-show="picoCode.picoCodeId" created-by="{{picoCode.createdBy}}" updated-by="{{picoCode.updatedBy}}" created-date="{{picoCode.createdDate}}" updated-date="{{picoCode.updatedDate}}"></metadata>
 </article>

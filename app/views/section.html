@@ -44,7 +44,6 @@
 	<recommendations-list></recommendations-list>
 
 	<subsections-list></subsections-list>
-	<small ng-show="section.sectionId">
-		<p><b>Opprettet av:</b> {{section.createdBy}}, <i>{{section.createdDate | date}}</i> <b>Oppdatert av:</b> {{section.updatedBy}}, <i>{{section.updatedDate | date}}</i></p>
-	</small>
+	
+	<metadata ng-show="section.sectionId" created-by="{{section.createdBy}}" updated-by="{{section.updatedBy}}" created-date="{{section.createdDate}}" updated-date="{{section.updatedDate}}"></metadata>
 </article>

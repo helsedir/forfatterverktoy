@@ -71,7 +71,6 @@
 		<references-list></references-list>
 		<emrinfo-list></emrinfo-list>
 		<keyinfo-list></keyinfo-list>
-		<small ng-show="recommendation.recommendationId">
-			<p><b>Opprettet av:</b> {{recommendation.createdBy}}, <i>{{recommendation.createdDate | date}}</i> <b>Oppdatert av:</b> {{recommendation.updatedBy}}, <i>{{recommendation.updatedDate | date}}</i></p>
-		</small>
+		
+		<metadata ng-show="recommendation.recommendationId" created-by="{{recommendation.createdBy}}" updated-by="{{recommendation.updatedBy}}" created-date="{{recommendation.createdDate}}" updated-date="{{recommendation.updatedDate}}"></metadata>
 	</article>
