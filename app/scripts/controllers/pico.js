@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-    .controller('PicoCtrl', ['$scope', 'Pico', 'PicoCode', 'PicoOutcome', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'Crud', function ($scope, Pico, PicoCode, PicoOutcome, $stateParams, Recommendation, $location, $timeout, toastr, Crud) {
+    .controller('PicoCtrl', ['$scope', 'Pico', 'PicoCode', 'PicoOutcome', '$stateParams', 'Recommendation', '$location', '$timeout', 'toastr', 'Crud','ModalService', function ($scope, Pico, PicoCode, PicoOutcome, $stateParams, Recommendation, $location, $timeout, toastr, Crud, ModalService) {
         var guidelineId = $stateParams.guidelineId;
         var sectionId = $stateParams.sectionId;
         var recommendationId = $stateParams.recommendationId;
@@ -87,4 +87,30 @@ angular.module('webUiApp')
                 Crud.handlePostError(error);
             });
         };
+
+        $scope.populationTaxCodeBtnClick = function(){
+            
+            ModalService.showModal({
+                  templateUrl: 'views/partials/_taxonomycodemodal.html',
+                  controller: ['$scope', 'close', 'picoCodes', function ($scope, close, picoCodes) {
+                    $scope.isCollapsed = true;
+                    $scope.picoCodes = picoCodes;
+                    $scope.picoType = 1;
+
+                    $scope.openCreateCode = function(){
+                        $scope.isCollapsed = !$scope.isCollapsed;
+                    }
+
+                  }],
+                  inputs: {
+                    picoCodes: $scope.pico.picoCodes //inject the author returned from promise object
+                  }
+                }).then(function(modal) {
+                    //it's a bootstrap element, use 'modal' to show it
+                    modal.element.modal();
+                    modal.close.then(function(result) {
+                  
+                    });
+                });
+            };
     }]);
