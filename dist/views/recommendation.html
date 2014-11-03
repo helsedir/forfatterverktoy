@@ -1,0 +1,48 @@
+<article> <div class="row relative"> <div class="col-md-8"> <h1>Anbefaling</h1> </div> <div class="col-md-4 previewbuttoncontainer"> <preview-button></preview-button> </div> </div> <section id="Recommendation"> <form role="form" ng-submit="updateOrCreateRecommendation()"> <div class="form-group"> <label for="heading">Tittel</label> <input type="text" class="form-control" id="heading" ng-model="recommendation.heading" required> </div> <div class="form-group"> <label for="text">Tekst</label> <textarea id="text" ng-model="recommendation.text" redactor></textarea> </div> <div class="form-group"> <label for="practicalAdvice">Praktisk info</label> <textarea id="practicalAdvice" ng-model="recommendation.practicalAdvice" redactor="{minHeight: 200}"></textarea> </div> <div class="form-group"> <label for="rational">Begrunnelse</label> <textarea type="text" class="form-control" id="rational" ng-model="recommendation.rational" redactor="{minHeight: 200}"></textarea>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="strength">Strength</label>
+				<select id="strength" ng-model="recommendation.strength" class="form-control" required>
+					<option value="null">None
+					<option value="weak">Weak
+					<option value="strong">Strong
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="tool">Tool</label>
+				<input type="text" class="form-control" id="tool" ng-model="recommendation.tool">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="adaption">Adaption</label>
+				<input type="text" class="form-control" id="adaption" ng-model="recommendation.adaption">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="target_group">Målgruppe</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="target_group" ng-model="recommendation.target_group">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-info-sign" popover="Målgruppe for anbefalingen" popover-append-to-body="true"></span>
+					</span>
+				</div>
+				
+			</div>
+			<div class="form-group col-md-12">
+				<label for="type">Publiseringsstatus</label>
+				<select class="form-control" id="type" ng-model="recommendation.publishedStage">
+					<option value="0">Kladd
+					<option value="1">På høring
+					<option value="2">Publisert
+				</select>
+			</div>
+				<button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+				<button ng-show="recommendation.recommendationId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette anbefaling {{recommendation.heading}}" ng-click="deleteRecommendationBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+			<br><br>
+		</form></section>
+		<picos-list></picos-list>
+		<references-list></references-list>
+		<emrinfo-list></emrinfo-list>
+		<keyinfo-list></keyinfo-list>
+		<small ng-show="recommendation.recommendationId">
+			<p><b>Opprettet av:</b> {{recommendation.createdBy}}, <i>{{recommendation.createdDate | date}}</i> <b>Oppdatert av:</b> {{recommendation.updatedBy}}, <i>{{recommendation.updatedDate | date}}</i></p>
+		</small>
+	</article>
