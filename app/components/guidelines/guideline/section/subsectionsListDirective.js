@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('subsectionsList', function () {
     return {
-      templateUrl: 'views/partials/_subsectionslist.html',
+      templateUrl: 'components/guidelines/guideline/section/_subsectionslist.html',
       restrict: 'E'
     };
   });

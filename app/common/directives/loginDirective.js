@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('logIn',['localStorageService', 'authService', function (localStorageService, authService) {
     return {
-      templateUrl: 'views/partials/_login.html',
+      templateUrl: 'common/_login.html',
       restrict: 'E',
       replace: 'true',
       link: function (scope, element, attrs) {

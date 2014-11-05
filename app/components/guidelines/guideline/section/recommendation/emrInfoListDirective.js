@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('emrinfoList', function () {
     return {
-      templateUrl: 'views/partials/_emrinfolist.html',
+      templateUrl: 'components/guidelines/guideline/section/recommendation/_emrinfolist.html',
       restrict: 'E'
     };
   });

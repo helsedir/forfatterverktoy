@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('keyinfoList', function () {
     return {
-      templateUrl: 'views/partials/_keyinfolist.html',
+      templateUrl: 'components/guidelines/guideline/section/recommendation/_keyinfolist.html',
       restrict: 'E'
     };
   });

@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('publishedStatus', function () {
     return {
-      templateUrl: 'views/partials/_publishedstage.html',
+      templateUrl: 'common/_publishedstage.html',
       restrict: 'E',
     };
   });

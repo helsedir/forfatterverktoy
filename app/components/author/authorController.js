@@ -52,7 +52,7 @@ angular.module('webUiApp')
       Author.get({_id: authorId}).$promise.then(function(author){
         
         ModalService.showModal({
-              templateUrl: 'views/partials/_createorupdateauthormodal.html',
+              templateUrl: 'components/author/_createorupdateauthormodal.html',
               controller: ['$scope', 'author', 'Author', 'close', function ($scope, author, Author, close) {
                 
                 //set this scope's author to the injected author

@@ -54,7 +54,7 @@ angular.module('webUiApp')
           Reference.get({_id: referenceId}).$promise.then(function(reference){
             
             ModalService.showModal({
-                  templateUrl: 'views/partials/_createorupdatereferencemodal.html',
+                  templateUrl: 'components/reference/_createorupdatereferencemodal.html',
                   controller: ['$scope', 'Reference', 'reference', 'close', function ($scope, Reference, reference, close) {
                     
                     //set this scope's reference to the injected reference

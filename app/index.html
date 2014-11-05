@@ -13,8 +13,8 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/redactor.css">
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/redactor.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- endbuild -->
 </head>
@@ -35,7 +35,7 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#"><img src="images/helsedir.png"> Nasjonale faglige retningslinjer</a>
+         <a class="navbar-brand" href="#"><img src="assets/images/helsedir.png"> Nasjonale faglige retningslinjer</a>
        </div>
 
        <div class="navbar-collapse collapse">
@@ -93,48 +93,58 @@
 
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/vendor/angular-redactor.js"></script>
-<script src="scripts/vendor/redactor.js"></script>
-<script src="scripts/vendor/redactor_table.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/guideline.js"></script>
-<script src="scripts/services/resourceFactory.js"></script>
-<script src="scripts/controllers/author.js"></script>
-<script src="scripts/controllers/login.js"></script>
-<script src="scripts/controllers/register.js"></script>
-<script src="scripts/services/authservice.js"></script>
-<script src="scripts/services/authinterceptorservice.js"></script>
-<script src="scripts/controllers/section.js"></script>
-<script src="scripts/controllers/emrinfo.js"></script>
-<script src="scripts/controllers/keyinfo.js"></script>
-<script src="scripts/directives/login.js"></script>
-<script src="scripts/controllers/recommendation.js"></script>
-<script src="scripts/controllers/reference.js"></script>
-<script src="scripts/controllers/pico.js"></script>
-<script src="scripts/controllers/picocode.js"></script>
-<script src="scripts/controllers/picooutcome.js"></script>
-<script src="scripts/controllers/taxonomycode.js"></script>
-<script src="scripts/controllers/header.js"></script>
-<script src="scripts/directives/btnhref.js"></script>
-<script src="scripts/directives/confirmClick.js"></script>
-<script src="scripts/directives/authorsList.js"></script>
-<script src="scripts/directives/sectionslist.js"></script>
-<script src="scripts/directives/recommendationslist.js"></script>
-<script src="scripts/directives/subsectionslist.js"></script>
-<script src="scripts/directives/keyinfolist.js"></script>
-<script src="scripts/directives/emrinfolist.js"></script>
-<script src="scripts/directives/referenceslist.js"></script>
-<script src="scripts/directives/picoslist.js"></script>
-<script src="scripts/directives/picocodeslist.js"></script>
-<script src="scripts/directives/picooutcomeslist.js"></script>
-<script src="scripts/directives/taxonomycodeslist.js"></script>
-<script src="scripts/directives/previewbutton.js"></script>
-<script src="scripts/directives/metadata.js"></script>
-<script src="scripts/directives/publishedstatus.js"></script>
-<script src="scripts/directives/deleteauthorbtn.js"></script>
-<script src="scripts/directives/onhearing.js"></script>
-<script src="scripts/services/crud.js"></script>
+<script src="assets/libs/angular-redactor.js"></script>
+<script src="assets/libs/redactor.js"></script>
+<script src="assets/libs/redactor_table.js"></script>
+<script src="app.js"></script>
+
+<script src="common/directives/btnHrefDirective.js"></script>
+<script src="common/directives/confirmClickDirective.js"></script>
+<script src="common/directives/loginDirective.js"></script>
+<script src="common/directives/metadataDirective.js"></script>
+<script src="common/directives/onHearingDirective.js"></script>
+<script src="common/directives/previewButtonDirective.js"></script>
+<script src="common/directives/publishedStatusDirective.js"></script>
+<script src="common/directives/sortOrderDirective.js"></script>
+
+<script src="common/services/authInterceptorService.js"></script>
+<script src="common/services/authService.js"></script>
+<script src="common/services/crudService.js"></script>
+<script src="common/services/resourceFactory.js"></script>
+
+<script src="common/header.js"></script>
+
+<script src="components/author/authorController.js"></script>
+<script src="components/reference/referenceController.js"></script>
+<script src="components/guidelines/guidelinesController.js"></script>
+
+<script src="components/guidelines/guideline/guidelineController.js"></script>
+<script src="components/guidelines/guideline/authorsListDirective.js"></script>
+<script src="components/guidelines/guideline/sectionsListDirective.js"></script>
+
+<script src="components/guidelines/guideline/section/sectionController.js"></script>
+<script src="components/guidelines/guideline/section/subsectionsListDirective.js"></script>
+<script src="components/guidelines/guideline/section/recommendationsListDirective.js"></script>
+
+<script src="components/guidelines/guideline/section/recommendation/recommendationController.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/emrInfoListDirective.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/keyInfoListDirective.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/picosListDirective.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/referencesListDirective.js"></script>
+
+<script src="components/guidelines/guideline/section/recommendation/emrinfo/emrInfoController.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/keyinfo/keyInfoController.js"></script>
+
+<script src="components/guidelines/guideline/section/recommendation/pico/picoController.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/pico/picoCodesListDirective.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/pico/picoOutcomesListDirective.js"></script>
+
+<script src="components/guidelines/guideline/section/recommendation/pico/picooutcome/picoOutcomeController.js"></script>
+
+<script src="components/guidelines/guideline/section/recommendation/pico/picocode/picoCodeController.js"></script>
+<script src="components/guidelines/guideline/section/recommendation/pico/picocode/taxonomyCodesListDirective.js"></script>
+
+<script src="components/guidelines/guideline/section/recommendation/pico/picocode/taxonomycode/taxonomyCodeController.js"></script>
 <!-- endbuild -->
 </body>
 </html>
