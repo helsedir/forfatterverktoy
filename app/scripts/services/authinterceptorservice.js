@@ -21,6 +21,9 @@ angular.module('webUiApp')
 
             config.headers.Authorization = 'Bearer ' + authData.token;
         }
+        else if ($location.path() == '/register'){
+            //do nothing
+        }
         else {
             $location.path('/login');
         }
