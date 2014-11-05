@@ -80,7 +80,7 @@ angular.module('webUiApp')
     $scope.addAuthorBtnClick = function() {
 
             ModalService.showModal({
-                templateUrl: 'views/partials/_authormodal.html',
+                templateUrl: 'components/guidelines/guideline/_authormodal.html',
                 controller: ['ModalService', '$scope', 'Author', function (ModalService, $scope, Author) {
                   $scope.isCollapsed = true;
                   Author.query().$promise.then(function(authors){

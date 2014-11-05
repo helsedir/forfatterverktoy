@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('recommendationsList', function () {
     return {
-      templateUrl: 'views/partials/_recommendationslist.html',
+      templateUrl: 'components/guidelines/guideline/section/_recommendationslist.html',
       restrict: 'E',
     };
   });

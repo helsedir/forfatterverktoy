@@ -54,8 +54,8 @@ angular
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'views/main.html',
-                controller:'MainCtrl',
+                templateUrl: 'components/guidelines/guidelines.html',
+                controller:'GuidelinesCtrl',
                 data: {
                     ncyBreadcrumbLabel: 'Retningslinjer'
                 }
@@ -63,7 +63,7 @@ angular
             .state({
                 name: 'guideline',
                 url: '/guideline/{guidelineId}',
-                templateUrl: 'views/guideline.html',
+                templateUrl: 'components/guidelines/guideline/guideline.html',
                 controller: 'GuidelineCtrl',
 
                 data: {
@@ -74,7 +74,7 @@ angular
                 url: '/guideline/{guidelineId}/section/{sectionId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/section.html',
+                        templateUrl: 'components/guidelines/guideline/section/section.html',
                         controller: 'SectionCtrl'
                     }
                 },
@@ -87,7 +87,7 @@ angular
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/recommendation.html',
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/recommendation.html',
                         controller: 'RecommendationCtrl'
                     }
                 },
@@ -100,7 +100,7 @@ angular
                 url: '/author',
                 views: {
                     "@" : {
-                        templateUrl: 'views/author.html',
+                        templateUrl: 'components/author/author.html',
                         controller: 'AuthorCtrl'
                     }
                 },
@@ -113,7 +113,7 @@ angular
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/pico.html',
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/pico/pico.html',
                         controller: 'PicoCtrl'
                     }
                 },
@@ -122,11 +122,24 @@ angular
                     ncyBreadcrumbLabel: 'Pico'
                 }
             })
+            .state('picooutcome', {
+                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picooutcome/{picoOutcomeId}',
+                views: {
+                    "@" : {
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/pico/picooutcome/picoOutcome.html',
+                        controller: 'PicoOutcomeCtrl'
+                    }
+                },
+                data: {
+                    ncyBreadcrumbParent: 'pico',
+                    ncyBreadcrumbLabel: 'Pico outcome'
+                }
+            })
             .state('picoCode', {
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picoCode/{picoCodeId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/picocode.html',
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/pico/picocode/picocode.html',
                         controller: 'PicocodeCtrl'
                     }
                 },
@@ -139,7 +152,7 @@ angular
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picoCode/{picoCodeId}/taxonomyCode/{taxonomyCodeId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/taxonomycode.html',
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/pico/picocode/taxonomycode/taxonomycode.html',
                         controller: 'TaxonomycodeCtrl'
                     }
                 },
@@ -152,7 +165,7 @@ angular
                 url: '/login',
                 views: {
                     "@" : {
-                        templateUrl: 'views/login.html',
+                        templateUrl: 'common/login.html',
                         controller: 'LoginCtrl'
                     }
                 },
@@ -164,7 +177,7 @@ angular
                 url: '/register',
                 views: {
                     "@" : {
-                        templateUrl: 'views/register.html',
+                        templateUrl: 'common/register.html',
                         controller: 'RegisterCtrl'
                     }
                 },
@@ -176,7 +189,7 @@ angular
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/emrinfo/{emrInfoId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/emrInfo.html',
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/emrinfo/emrInfo.html',
                         controller: 'EmrInfoCtrl'
                     }
                 },
@@ -189,7 +202,7 @@ angular
                 url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/keyinfo/{keyInfoId}',
                 views: {
                     "@" : {
-                        templateUrl: 'views/keyInfo.html',
+                        templateUrl: 'components/guidelines/guideline/section/recommendation/keyinfo/keyInfo.html',
                         controller: 'KeyInfoCtrl'
                     }
                 },
@@ -198,24 +211,12 @@ angular
                     ncyBreadcrumbLabel: 'Key Info'
                 }
             })
-            .state('picooutcome', {
-                url: '/guideline/{guidelineId}/section/{sectionId}/recommendation/{recommendationId}/pico/{picoId}/picooutcome/{picoOutcomeId}',
-                views: {
-                    "@" : {
-                        templateUrl: 'views/picoOutcome.html',
-                        controller: 'PicoOutcomeCtrl'
-                    }
-                },
-                data: {
-                    ncyBreadcrumbParent: 'pico',
-                    ncyBreadcrumbLabel: 'Pico outcome'
-                }
-            })
+            
             .state('reference', {
                 url: '/reference',
                 views: {
                     "@" : {
-                        templateUrl: 'views/reference.html',
+                        templateUrl: 'components/reference/reference.html',
                         controller: 'ReferenceCtrl'
                     }
                 },

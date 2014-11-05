@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('taxonomycodesList', function () {
     return {
-      templateUrl: 'views/partials/_taxonomycodeslist.html',
+      templateUrl: 'components/guidelines/guideline/section/recommendation/pico/picocode/_taxonomycodeslist.html',
       restrict: 'E'
     };
   });

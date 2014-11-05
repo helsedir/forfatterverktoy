@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('MainCtrl',['$scope', '$resource', 'Guideline','toastr', '$location', 'Crud', function ($scope, $resource, Guideline, toastr, $location, Crud) {
+  .controller('GuidelinesCtrl',['$scope', '$resource', 'Guideline','toastr', '$location', 'Crud', function ($scope, $resource, Guideline, toastr, $location, Crud) {
 
 
   	Guideline.query().$promise.then(function(guidelines){

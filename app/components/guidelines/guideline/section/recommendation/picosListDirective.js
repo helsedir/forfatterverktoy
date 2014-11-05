@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('picosList', function () {
     return {
-      templateUrl: 'views/partials/_picoslist.html',
+      templateUrl: 'components/guidelines/guideline/section/recommendation/_picoslist.html',
       restrict: 'E'
     };
   });

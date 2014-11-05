@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('picocodesList', function () {
     return {
-      templateUrl: 'views/partials/_picocodeslist.html',
+      templateUrl: 'components/guidelines/guideline/section/recommendation/pico/_picocodeslist.html',
       restrict: 'E'
     };
   });

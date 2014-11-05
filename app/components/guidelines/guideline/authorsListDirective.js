@@ -9,7 +9,7 @@
 angular.module('webUiApp')
   .directive('authorsList', function () {
     return {
-      templateUrl: 'views/partials/_authorslist.html',
+      templateUrl: 'components/guidelines/guideline/_authorslist.html',
       restrict: 'E'
     };
   });
