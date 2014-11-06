@@ -26,10 +26,7 @@
                 <label for="newEvidence">New Evidence</label>
                 <input type="text" class="form-control" id="newEvidence" ng-model="pico.newEvidence">
             </div>
-            <div class="form-group">
-                <label for="referance">Referance</label>
-                <input type="text" class="form-control" id="referance" ng-model="pico.referance">
-            </div>
+
             <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
             <button ng-show="pico.picoId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico?" ng-click="deletePicoBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
 

@@ -118,7 +118,7 @@ angular.module('webUiApp')
         $scope.editReferencesBtnClick = function() {
 
                 ModalService.showModal({
-                    templateUrl: 'views/partials/_referencesmodal.html',
+                    templateUrl: 'components/guidelines/guideline/section/recommendation/_referencesmodal.html',
                     controller: ['ModalService', '$scope', 'Reference', function (ModalService, $scope, Reference) {
                       $scope.isCollapsed = true;
                       Reference.query().$promise.then(function(references){

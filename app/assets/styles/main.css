@@ -1,4 +1,6 @@
-
+.nopadding{
+  padding: 0;
+}
 
 .affix-top,.affix{
 	position: static;
