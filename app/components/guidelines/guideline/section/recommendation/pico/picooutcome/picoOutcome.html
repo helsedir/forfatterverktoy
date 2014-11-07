@@ -48,9 +48,9 @@
                     <div class="col-md-4 nopadding">
                         <label for="relativeEffect" class="sr-only">Relativ effekt</label>
                         <select class="form-control input-sm" id="relativeEffect"  ng-model="picoOutcome.relativeEffects">
-                            <option value="0">Relative risk</option>
-                            <option value="1">Odds ration</option>
-                            <option value="2">Hazard ratio</option>
+                            <option value="1">Relative risk</option>
+                            <option value="2">Odds ratio</option>
+                            <option value="3">Hazard ratio</option>
                         </select>
                     </div>
                     <div class="col-md-8 nopadding">
@@ -119,9 +119,9 @@
                 </div>
                 <div class="col-md-2 nopadding">
                     <label for="absoluteDifferenceType" class="sr-only">AbsoluteDifferenceType</label>
-                    <select class="form-control input-sm" id="absoluteDifferenceType" ng-model="picoOutcome.absoluteDifferenceType">>
-                        <option value="0">fewer</option>
-                        <option value="1">more</option>
+                    <select class="form-control input-sm" id="absoluteDifferenceType" ng-model="picoOutcome.absoluteDifferenceType">
+                        <option value="1">fewer</option>
+                        <option value="2">more</option>
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -143,8 +143,8 @@
                 <div class="col-md-1 nopadding form-group">
                     <label for="absoluteDifferenceLowType" class="sr-only">AbsoluteDifferenceLowType</label>
                     <select class="form-control input-sm" id="absoluteDifferenceLowType" ng-model="picoOutcome.absoluteDifferenceLowType">
-                        <option value="0">fewer</option>
-                        <option value="1">more</option>
+                        <option value="1">fewer</option>
+                        <option value="2">more</option>
                     </select>
 
                 </div>
@@ -159,8 +159,8 @@
                     <div class="col-md-1 nopadding form-group">
                         <label for="absoluteDifferenceHighType" class="sr-only">AbsoluteDifferenceHighType</label>
                         <select class="form-control input-sm" id="absoluteDifferenceHighType" ng-model="picoOutcome.absoluteDifferenceHighType">
-                            <option value="0">fewer</option>
-                            <option value="1">more</option>
+                            <option value="1">fewer</option>
+                            <option value="2">more</option>
                         </select>
                     </div>
 
@@ -193,8 +193,8 @@
     <div class="form-group">
         <label for="studyType">StudyType</label>
         <select class="form-control" id="studyType" ng-model="picoOutcome.studyType">
-        <option value="0">RCT - Randomized control trials</option>
-        <option value="1">Observational studies</option>
+        <option value="1">RCT - Randomized control trials</option>
+        <option value="2">Observational studies</option>
         </select>
     </div>
 </div>
@@ -207,9 +207,9 @@
             <div class="form-group">
             <label for="qualityRisk" class="sr-only">QualityRisk</label>
             <select class="form-control" id="qualityRisk" ng-model="picoOutcome.qualityRisk">
-            <option value="0">None</option>
-                    <option value="1">Serious</option>
-                    <option value="2">Very serious</option>
+            <option value="1">None</option>
+                    <option value="2">Serious</option>
+                    <option value="3">Very serious</option>
             </select>
             </div>
         </div>
@@ -227,9 +227,9 @@
             <div class="form-group">
                 <label for="qualityImprecision" class="sr-only">QualityImprecision</label>
                 <select class="form-control" id="qualityImprecision" ng-model="picoOutcome.qualityImprecision">
-                <option value="0">None</option>
-                    <option value="1">Serious</option>
-                    <option value="2">Very serious</option>
+                <option value="1">None</option>
+                    <option value="2">Serious</option>
+                    <option value="3">Very serious</option>
                 </select>
             </div>
             
@@ -250,9 +250,9 @@
             <div class="form-group">
                 <label for="qualityIndirectness" class="sr-only">QualityIndirectness</label>
                 <select class="form-control" id="qualityIndirectness" ng-model="picoOutcome.qualityIndirectness">
-                <option value="0">None</option>
-                    <option value="1">Serious</option>
-                    <option value="2">Very serious</option>
+                <option value="1">None</option>
+                    <option value="2">Serious</option>
+                    <option value="3">Very serious</option>
                 </select>
             </div>
 
@@ -273,9 +273,9 @@
             <div class="form-group">
                 <label for="qualityRiskHeterogeneity" class="sr-only">QualityRiskHeterogeneity</label>
                 <select class="form-control" id="qualityRiskHeterogeneity" ng-model="picoOutcome.qualityRiskHeterogeneity">
-                    <option value="0">None</option>
-                    <option value="1">Serious</option>
-                    <option value="2">Very serious</option>
+                    <option value="1">None</option>
+                    <option value="2">Serious</option>
+                    <option value="3">Very serious</option>
                 </select>
             </div>
 
@@ -296,9 +296,9 @@
             <div class="form-group">
                 <label for="qualityBias"  class="sr-only">QualityBias</label>
                 <select class="form-control" id="qualityBias"  ng-model="picoOutcome.qualityBias">
-                    <option value="0">None</option>
-                    <option value="1">Serious</option>
-                    <option value="2">Very serious</option>
+                    <option value="1">None</option>
+                    <option value="2">Serious</option>
+                    <option value="3">Very serious</option>
                 </select>
             </div>
 
@@ -318,10 +318,10 @@
         <div class="form-group">
             <label for="certaintyEffect">Confidence</label>
             <select class="form-control" id="certaintyEffect" ng-model="picoOutcome.certaintyEffect">
-                <option value="0">High</option>
-                <option value="1">Moderate</option>
+                <option value="4">High</option>
+                <option value="3">Moderate</option>
                 <option value="2">Low</option>
-                <option value="2">Very low</option>
+                <option value="1">Very low</option>
             </select>
         </div>
     </div>
