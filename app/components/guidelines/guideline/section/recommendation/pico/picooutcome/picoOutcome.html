@@ -1,4 +1,4 @@
-<article>
+<article class="picooutcome">
     
 
 <form role="form" ng-submit="updateOrCreatePicoOutcome()">
@@ -19,124 +19,158 @@
     </div>
 </div>
 <hr>
+<div class="labelsmall">
+    
+
 <h3>Effektestimater (resultater)</h3>
+<section class="effektestimater">
+    
+
 <div class="row">
-    <div class="col-md-3">
-        <div class="form-group col-md-12">
-            <label for="comperatorReference">Estimater fra</label>
-            <input type="number" class="form-control input-sm" id="comperatorReference" ng-model="picoOutcome.comperatorReference">
-        </div>
-        <div class="form-group col-md-12">
-            <label for="controlCount">control</label>
+    <div class="col-md-3 color2">
+        <p class="controlheader" ng-bind="pico.control">&nbsp;</p>
+        <div class="form-group col-md-5 nopadding">
+            <label for="controlCount" class="sr-only">controlcount</label>
             <input type="number" class="form-control input-sm" id="controlCount" ng-model="picoOutcome.controlCount">
         </div>
-    </div>
-    <div class="col-md-9">
-        <div class="row">
-            <div class="form-group col-md-3">
-                <label for="relativeEffectReferenceId">Estimater fra</label>
-                <input type="text" class="form-control input-sm" id="relativeEffectReferenceId" ng-model="picoOutcome.relativeEffectReferenceId">
-            </div>
+        <div class="form-group col-md-7">
+           <i>per 1000</i>
         </div>
-        <div class="row">
-            <div class="form-group col-md-4">
+    </div>
+    <div class="col-md-9 color2">
+        
+        
+            <div class="form-group col-md-3">
                 <div class="form-group">
                     <div class="row">
-                        Relativ effekt
+                        <p class="controlheader col-md-12">Relativ effekt</p>
                     </div>
-                    <div class="col-md-6 nopadding">
+                    <div class="col-md-4 nopadding">
                         <label for="relativeEffect" class="sr-only">Relativ effekt</label>
-                        <input type="number" step="any" class="form-control input-sm" id="relativeEffect" ng-model="picoOutcome.relativeEffect">
+                        <select class="form-control input-sm" id="relativeEffect"  ng-model="picoOutcome.relativeEffects">
+                            <option value="0">Relative risk</option>
+                            <option value="1">Odds ration</option>
+                            <option value="2">Hazard ratio</option>
+                        </select>
                     </div>
-                    <div class="col-md-6 nopadding">
+                    <div class="col-md-8 nopadding">
                         <label for="relativeEffectConfidencePercent" class="sr-only">Relativ effekt prosent</label>
-                        <input type="number" step="any" class="form-control input-sm" id="relativeEffectConfidencePercent" ng-model="picoOutcome.relativeEffectConfidencePercent">
+                        <input type="number" placeholder="0.00" step="any" class="form-control input-sm" id="relativeEffectConfidencePercent" ng-model="picoOutcome.relativeEffectConfidencePercent">
                     </div>
                 </div>
             </div>
             <div class="form-group col-md-4">
                 <div class="form-group">
                     <div class="row">
-                        Konfidensintervall
+                        <p class="controlheader col-md-12">Konfidensintervall</p>
                     </div>
-                    <div class="col-md-5 nopadding">
+                    <div class="col-md-1 nopadding text-lg">
+                        (
+                    </div>
+                    <div class="col-md-4 nopadding">
                         <label for="relativeEffectConfidenceLow" class="sr-only">Relativ effekt konfidensintervall lav</label>
-                        <input type="number" step="any" class="form-control input-sm" id="relativeEffectConfidenceLow" ng-model="picoOutcome.relativeEffectConfidenceLow">
+                        <input type="number" step="any" placeholder="0.00" class="form-control input-sm" id="relativeEffectConfidenceLow" ng-model="picoOutcome.relativeEffectConfidenceLow">
                     </div>
-                    <div class="col-md-2 nopadding text-center">
+                    <div class="col-md-1 nopadding text-center text-lg">
                         -
                     </div>
-                    <div class="col-md-5 nopadding">
+                    <div class="col-md-4 nopadding">
                         <label for="relativeEffectConfidenceHigh" class="sr-only">Relativ effekt konfidensintervall høy</label>
-                        <input type="number" step="any" class="form-control input-sm" id="relativeEffectConfidenceHigh" ng-model="picoOutcome.relativeEffectConfidenceHigh">
+                        <input type="number" step="any" placeholder="0.00" class="form-control input-sm" id="relativeEffectConfidenceHigh" ng-model="picoOutcome.relativeEffectConfidenceHigh">
                     </div>
-                    
+                    <div class="col-md-1 nopadding text-lg">
+                        &nbsp;)
+                    </div>
                 </div>
             </div>
-            <div class="form-group col-md-4">
-                <label for="studies">Deltakere</label>
+            <div class="form-group col-md-5">
+                <p class="controlheader">Deltakere (studier), oppfølging</p>
+                <label for="studies" class="sr-only">Deltakere (studier), oppfølging</label>
                 <input type="text" class="form-control input-sm" id="studies" ng-model="picoOutcome.studies">
             </div>
 
-        </div>
+        
 
         
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-3">
-        <div class="form-group col-md-12">
-            <label for="interventionCount">intervention</label>
+    <div class="col-md-3 color1">
+    <p class="controlheader" ng-bind="pico.intervention">&nbsp;</p>
+        <div class="form-group col-md-5 nopadding">
+            
+            <label for="interventionCount" class="sr-only">interventioncount</label>
             <input type="number" class="form-control input-sm" id="interventionCount" ng-model="picoOutcome.interventionCount">
         </div>
+        <div class="col-md-7">
+            <i>per 1000</i>
+        </div>
     </div>
-    <div class="col-md-9">
-        <div class="row">
-            <div class="form-group col-md-4">
+    <div class="col-md-9 color1">
+        
+            <div class="form-group col-md-5">
                 <div class="row">
-                    Forskjell fra intervensjon
+                    <p class="controlheader col-md-12">Forskjell</p>
                 </div>
-                <div class="col-md-6 nopadding">
+                <div class="col-md-4 nopadding">
                     <label for="absoluteDifference" class="sr-only">Difference with intervention</label>
-                   <input type="number" step="any" class="form-control input-sm" id="absoluteDifference" ng-model="picoOutcome.absoluteDifference">
+                   <input type="number" step="any"  placeholder="0" class="form-control input-sm" id="absoluteDifference" ng-model="picoOutcome.absoluteDifference">
                 </div>
-                <div class="col-md-6 nopadding">
+                <div class="col-md-2 nopadding">
                     <label for="absoluteDifferenceType" class="sr-only">AbsoluteDifferenceType</label>
-                    <input type="text" class="form-control input-sm" id="absoluteDifferenceType" ng-model="picoOutcome.absoluteDifferenceType">
+                    <select class="form-control input-sm" id="absoluteDifferenceType" ng-model="picoOutcome.absoluteDifferenceType">>
+                        <option value="0">fewer</option>
+                        <option value="1">more</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <i>per 1000</i>
                 </div>
                 
             </div>
-            <div class="form-group col-md-8">
+            <div class="col-md-7 nopadding">
                 <div class="row">
-                    Konfidensintervall
+                    <p class="controlheader">Konfidensintervall</p>
                 </div>
-              
-                <div class="col-md-2 nopadding form-group">
-                    <label for="absoluteDifferenceLow" class="sr-only">AbsoluteDifferenceLow</label>
-                    <input type="number" step="any" class="form-control input-sm" id="absoluteDifferenceLow" ng-model="picoOutcome.absoluteDifferenceLow">
+                <div class="col-md-1 nopadding text-lg">
+                    (
                 </div>
                 <div class="col-md-3 nopadding form-group">
-                    <label for="absoluteDifferenceLowType" class="sr-only">AbsoluteDifferenceLowType</label>
-                    <input type="text" class="form-control input-sm" id="absoluteDifferenceLowType" ng-model="picoOutcome.absoluteDifferenceLowType">
+                    <label for="absoluteDifferenceLow" class="sr-only">AbsoluteDifferenceLow</label>
+                    <input type="number" step="any"  placeholder="0.00" class="form-control input-sm" id="absoluteDifferenceLow" ng-model="picoOutcome.absoluteDifferenceLow">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1 nopadding form-group">
+                    <label for="absoluteDifferenceLowType" class="sr-only">AbsoluteDifferenceLowType</label>
+                    <select class="form-control input-sm" id="absoluteDifferenceLowType" ng-model="picoOutcome.absoluteDifferenceLowType">
+                        <option value="0">fewer</option>
+                        <option value="1">more</option>
+                    </select>
+
+                </div>
+                <div class="col-md-2 text-lg">
                     -
                 </div>
-                <div class="col-md-2 nopadding form-group">
+                <div class="col-md-3 nopadding form-group">
                     <label for="absoluteDifferenceHigh" class="sr-only">AbsoluteDifferenceHigh</label>
-                    <input type="number" step="any" class="form-control input-sm" id="absoluteDifferenceHigh" ng-model="picoOutcome.absoluteDifferenceHigh">
+                    <input type="number" step="any"  placeholder="0.00" class="form-control input-sm" id="absoluteDifferenceHigh" ng-model="picoOutcome.absoluteDifferenceHigh">
                 </div>
-                <div class="col-md-3 nopadding">
-                    <div class="form-group">
+
+                    <div class="col-md-1 nopadding form-group">
                         <label for="absoluteDifferenceHighType" class="sr-only">AbsoluteDifferenceHighType</label>
-                        <input type="text" class="form-control input-sm" class="form-control input-sm" id="absoluteDifferenceHighType" ng-model="picoOutcome.absoluteDifferenceHighType">
+                        <select class="form-control input-sm" id="absoluteDifferenceHighType" ng-model="picoOutcome.absoluteDifferenceHighType">
+                            <option value="0">fewer</option>
+                            <option value="1">more</option>
+                        </select>
                     </div>
+
+                <div class="col-md-1 nopadding text-lg">
+                    &nbsp;)
                 </div>
                 
             </div>
 
-        </div>
+        
         
         
     </div>
@@ -150,6 +184,7 @@
     </div>
 </div>
 
+</section>
 <hr>
 
 <h3>Your confidence in the effect estimates (Quality Assessment)</h3>
@@ -157,23 +192,30 @@
 <div class="col-md-3">
     <div class="form-group">
         <label for="studyType">StudyType</label>
-        <input type="text" class="form-control" id="studyType" ng-model="picoOutcome.studyType">
+        <select class="form-control" id="studyType" ng-model="picoOutcome.studyType">
+        <option value="0">RCT - Randomized control trials</option>
+        <option value="1">Observational studies</option>
+        </select>
     </div>
 </div>
 <div class="col-md-9">
+
         Risk of bias
+
     <div class="row">
         <div class="col-md-4">
+            <div class="form-group">
             <label for="qualityRisk" class="sr-only">QualityRisk</label>
             <select class="form-control" id="qualityRisk" ng-model="picoOutcome.qualityRisk">
             <option value="0">None</option>
                     <option value="1">Serious</option>
                     <option value="2">Very serious</option>
             </select>
+            </div>
         </div>
         <div class="col-md-8">
             <label for="qualityRiskComment" class="sr-only">QualityRiskComment</label>
-            <input type="text" class="form-control" id="qualityRiskComment" ng-model="picoOutcome.qualityRiskComment">
+            <input type="text" placeholder="comment..." class="form-control" id="qualityRiskComment" ng-model="picoOutcome.qualityRiskComment">
         </div>
     </div>
 
@@ -195,7 +237,7 @@
         <div class="col-md-8">
             <div class="form-group">
                 <label for="qualityImprecisionComment" class="sr-only">QualityImprecisionComment</label>
-                <input type="text" class="form-control" id="qualityImprecisionComment" ng-model="picoOutcome.qualityImprecisionComment">
+                <input type="text" placeholder="comment..." class="form-control" id="qualityImprecisionComment" ng-model="picoOutcome.qualityImprecisionComment">
             </div>
         </div>
     </div>
@@ -218,7 +260,7 @@
         <div class="col-md-8">
             <div class="form-group">
                 <label for="qualityIndirectnessComment" class="sr-only">QualityIndirectnessComment</label>
-                <input type="text" class="form-control" id="qualityIndirectnessComment" ng-model="picoOutcome.qualityIndirectnessComment">
+                <input type="text" placeholder="comment..." class="form-control" id="qualityIndirectnessComment" ng-model="picoOutcome.qualityIndirectnessComment">
             </div>
         </div>
     </div>
@@ -241,7 +283,7 @@
         <div class="col-md-8">
                         <div class="form-group">
                 <label for="qualityRiskHeterogeneityComment" class="sr-only">QualityRiskHeterogeneityComment</label>
-                <input type="text" class="form-control" id="qualityRiskHeterogeneityComment" ng-model="picoOutcome.qualityRiskHeterogeneityComment">
+                <input type="text" placeholder="comment..." class="form-control" id="qualityRiskHeterogeneityComment" ng-model="picoOutcome.qualityRiskHeterogeneityComment">
             </div>
         </div>
     </div>
@@ -265,7 +307,7 @@
         <div class="col-md-8">
             <div class="form-group">
                 <label for="qualityBiasComment"  class="sr-only">QualityBiasComment</label>
-                <input type="text" class="form-control" id="qualityBiasComment" ng-model="picoOutcome.qualityBiasComment">
+                <input type="text" placeholder="comment..." class="form-control" id="qualityBiasComment" ng-model="picoOutcome.qualityBiasComment">
             </div>
         </div>
     </div>
@@ -274,8 +316,13 @@
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
-            <label for="certaintyEffect">Confidence in effect estimates</label>
-            <input type="text" class="form-control" id="certaintyEffect" ng-model="picoOutcome.certaintyEffect">
+            <label for="certaintyEffect">Confidence</label>
+            <select class="form-control" id="certaintyEffect" ng-model="picoOutcome.certaintyEffect">
+                <option value="0">High</option>
+                <option value="1">Moderate</option>
+                <option value="2">Low</option>
+                <option value="2">Very low</option>
+            </select>
         </div>
     </div>
     <div class="col-md-9">
@@ -290,7 +337,7 @@
 
         <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
         <button ng-show="picoOutcome.picoOutcomeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico  outcome?" ng-click="deletePicoOutcomeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
-
+</div>
 
 </form>
 

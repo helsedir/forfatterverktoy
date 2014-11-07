@@ -19,6 +19,10 @@ angular.module('webUiApp')
         var baseUrl = '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picooutcome/';
         $scope.baseUrl = baseUrl;
 
+        Pico.get({_id: picoId}, function(data){
+          $scope.pico = data;
+        }); 
+        
         if(picoOutcomeId != 0){
             PicoOutcome.get({_id: picoOutcomeId}, function(data){
                 $scope.picoOutcome = data;

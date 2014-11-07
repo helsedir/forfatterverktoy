@@ -64,6 +64,7 @@ angular.module('webUiApp')
 
         $scope.addPicoOutcomeBtnClick = function () {
             $location.path(baseUrl + picoId + '/picooutcome/0');
+
         };
 
         $scope.deletePicoOutcomeBtnClick = function (index){

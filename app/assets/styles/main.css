@@ -155,3 +155,34 @@
       margin-top: 10px;
     }
   }
+
+.labelsmall label{
+  font-weight: normal;
+}
+
+.effektestimater .controlheader{
+  margin-bottom: 5px;
+}
+
+.color1{
+  padding: 10px;
+  overflow: hidden;
+  background-color: #ebebeb;
+}
+
+.color2{
+  padding: 10px;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.text-lg{
+  font-size: 1.3em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
