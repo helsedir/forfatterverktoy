@@ -26,7 +26,7 @@ angular.module('webUiApp')
         authService.saveRegistration($scope.registration).then(function () {
  
             $scope.savedSuccessfully = true;
-            $scope.message = 'User has been registered successfully, you will be redicted to login page in 2 seconds.';
+            $scope.message = 'User has been registered successfully';
             startTimer();
  
         },
