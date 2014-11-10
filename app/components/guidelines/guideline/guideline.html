@@ -29,30 +29,9 @@
 				<label for="text">Text</label>
 				<textarea ng-model="guideline.text" redactor="block.setClass('red')"></textarea>
 			</div>
-
-			<div class="form-group col-md-6">
-				<label for="englishTitle">Engelsk Tittel</label>
-				<div class="input-group">
-					<input type="text" class="form-control" id="englishTitle" ng-model="guideline.englishTitle">
-					<span class="input-group-addon" popover-trigger="mouseenter" popover="Engelsk tittel for retningslinjen" popover-append-to-body="true">
-						<span class="glyphicon glyphicon-info-sign"></span>
-					</span>
-				</div>
-				
-			</div>
 			<div class="form-group col-md-6">
 				<label for="disclaimer">Disclaimer</label>
 				<input type="text" class="form-control" id="disclaimer" ng-model="guideline.disclaimer">
-			</div>
-			<div class="form-group col-md-6">
-				<label for="language">Språk</label>
-				<div class="input-group">
-					<input type="text" class="form-control" id="language" ng-model="guideline.language" placeholder="Norsk">
-					<span class="input-group-addon" popover-trigger="mouseenter" popover="Språket retningslinjen er skrevet på" popover-append-to-body="true">
-						<span class="glyphicon glyphicon-info-sign"></span>
-					</span>
-				</div>
-				
 			</div>
 			<div class="form-group col-md-6">
 				<label for="sponsors">ISBN</label>
@@ -79,9 +58,10 @@
 			<div class="form-group col-md-6">
 				<label for="type">Type</label>
 				<select class="form-control" id="type" ng-model="guideline.type">
-					<option value="0">None</option>
-					<option value="1">Guideline</option>
-					<option value="2">Circulara</option>
+					<option value="1">Nasjonal faglig retningslinje</option>
+					<option value="2">Veileder</option>
+					<option value="3">Pakkeforløp for kreft</option>
+					<option value="4">Prioriteringsveileder</option>
 				</select>
 			</div>
 
