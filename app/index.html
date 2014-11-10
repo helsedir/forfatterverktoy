@@ -6,16 +6,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
+    <!-- build:css(.) assets/styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <!-- endbower -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+    <!-- build:css assets/styles/main.css -->
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/redactor.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- endbuild -->
 </head>
 <body ng-app="webUiApp">
@@ -97,7 +97,6 @@
 <script src="assets/libs/redactor.js"></script>
 <script src="assets/libs/redactor_table.js"></script>
 <script src="app.js"></script>
-
 <script src="common/directives/btnHrefDirective.js"></script>
 <script src="common/directives/confirmClickDirective.js"></script>
 <script src="common/directives/loginDirective.js"></script>
@@ -106,46 +105,35 @@
 <script src="common/directives/previewButtonDirective.js"></script>
 <script src="common/directives/publishedStatusDirective.js"></script>
 <script src="common/directives/sortOrderDirective.js"></script>
-
 <script src="common/services/authInterceptorService.js"></script>
 <script src="common/services/authService.js"></script>
 <script src="common/services/crudService.js"></script>
 <script src="common/services/resourceFactory.js"></script>
-
 <script src="common/header.js"></script>
 <script src="common/loginController.js"></script>
 <script src="common/registerController.js"></script>
-
 <script src="components/author/authorController.js"></script>
 <script src="components/reference/referenceController.js"></script>
 <script src="components/guidelines/guidelinesController.js"></script>
-
 <script src="components/guidelines/guideline/guidelineController.js"></script>
 <script src="components/guidelines/guideline/authorsListDirective.js"></script>
 <script src="components/guidelines/guideline/sectionsListDirective.js"></script>
-
 <script src="components/guidelines/guideline/section/sectionController.js"></script>
 <script src="components/guidelines/guideline/section/subsectionsListDirective.js"></script>
 <script src="components/guidelines/guideline/section/recommendationsListDirective.js"></script>
-
 <script src="components/guidelines/guideline/section/recommendation/recommendationController.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/emrInfoListDirective.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/keyInfoListDirective.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/picosListDirective.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/referencesListDirective.js"></script>
-
 <script src="components/guidelines/guideline/section/recommendation/emrinfo/emrInfoController.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/keyinfo/keyInfoController.js"></script>
-
 <script src="components/guidelines/guideline/section/recommendation/pico/picoController.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/pico/picoCodesListDirective.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/pico/picoOutcomesListDirective.js"></script>
-
 <script src="components/guidelines/guideline/section/recommendation/pico/picooutcome/picoOutcomeController.js"></script>
-
 <script src="components/guidelines/guideline/section/recommendation/pico/picocode/picoCodeController.js"></script>
 <script src="components/guidelines/guideline/section/recommendation/pico/picocode/taxonomyCodesListDirective.js"></script>
-
 <script src="components/guidelines/guideline/section/recommendation/pico/picocode/taxonomycode/taxonomyCodeController.js"></script>
 <!-- endbuild -->
 </body>
