@@ -1,0 +1,200 @@
+.nopadding{
+  padding: 0;
+}
+
+.affix-top,.affix{
+	position: static;
+}
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+  	margin-top:30px;
+  	width:228px;
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+  }
+}
+
+#sidebar li.active {
+  	border:0 #eee solid;
+  	border-right-width:4px;
+}
+
+.btn-delete{
+  color: #d85451;
+}
+
+.btn-delete:hover{
+  color: #BF3B38;
+}
+
+.btn-link{
+  padding: 0 0 0 10px;
+}
+
+.btn-secondary{
+  background: #6a6a6a;
+  color: #ffffff;
+}
+
+.btn-secondary:hover{
+  background: #515151;
+  color: #ffffff;
+}
+
+.btn-secondary:focus{
+
+  color: #ffffff;
+}
+
+.referencelist li{
+  padding: 15px;
+}
+
+.newauthor{
+  overflow: hidden;
+}
+
+.overflowhidden{
+  overflow: hidden;
+}
+
+.closeicon{
+  cursor: pointer;
+  padding: 10px;
+}
+
+.searchbox{
+  margin-top: 20px;
+}
+
+.searchboxmodal{
+  margin: 0;
+}
+
+.modal-header, .modal-footer, .modal-body{
+  overflow: hidden;
+}
+
+.referencepreview{
+  min-height: 50px;
+}
+
+.navbar-collapse li{
+  border-left: 1px solid #dfdfdf;
+  font-size: 1.2em;
+}
+
+.navbar-collapse li:hover{
+  background-color: #e7e7e7;
+}
+
+.navbar-collapse li:last-child{
+  border-right: 1px solid #dfdfdf;
+
+}
+
+.navbar-collapse .previewlink span{
+  font-size: 0.9em;
+}
+
+.navbar-collapse, .navbar-right li{
+  font-size: 1em;
+}
+
+.previewbuttoncontainer{
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+}
+
+.relative{
+  position: relative;
+}
+
+.table-pointer tbody tr{
+  cursor: pointer;
+}
+
+.table-sortable tbody tr{
+  cursor: move;
+}
+
+.breakall{
+ -ms-word-break: break-all;
+      word-break: break-all;
+
+      // Non standard for webkit
+      word-break: break-word;
+
+ -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+         hyphens: auto;
+}
+
+.resourceheader h1{
+  display: inline-block;
+}
+
+.resourceheader span{
+  position: absolute;
+  bottom: 15px;
+  font-size: 1em;
+}
+
+
+  @media (max-width: 530px){
+    .previewbuttoncontainer {
+      position: relative;
+      float: left;
+      margin-top: 10px;
+    }
+  }
+
+.labelsmall label{
+  font-weight: normal;
+}
+
+.effektestimater .controlheader{
+  margin-bottom: 5px;
+}
+
+.color1{
+  padding: 10px;
+  overflow: hidden;
+  background-color: #ebebeb;
+}
+
+.color2{
+  padding: 10px;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.text-lg{
+  font-size: 1.3em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+li {
+    opacity: 1;
+}
+.animate-repeat.ng-enter {
+    -webkit-transition: 1s;
+    transition: 1s;
+    opacity: 0;
+}
+.animate-repeat.ng-enter-active {
+    opacity: 1;
+}

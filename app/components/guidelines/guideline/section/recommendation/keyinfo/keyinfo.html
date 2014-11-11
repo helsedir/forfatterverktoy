@@ -1,0 +1,25 @@
+<form role="form" ng-submit="updateOrCreateKeyInfo()">
+	<div class="form-group">
+		<label for="benefits">Fordeler og ulemper</label>
+		<textarea  class="form-control" id="benefits" ng-model="keyInfo.benefits" redactor="{ minHeight: 100, toolbar: false, plugins:[],  pastePlainText: true}"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="evidence">Kvalitet på dokumentasjonen</label>
+		<textarea redactor="{ minHeight: 100, toolbar: false, plugins:[],  pastePlainText: true}" class="form-control" id="evidence" ng-model="keyInfo.evidence"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="preference">Verdier og preferanser</label>
+		<textarea redactor="{ minHeight: 100, toolbar: false, plugins:[],  pastePlainText: true}" class="form-control" id="preference" ng-model="keyInfo.preference"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="resources">Ressurshensyn</label>
+		<textarea redactor="{ minHeight: 100, toolbar: false, plugins:[],  pastePlainText: true}" class="form-control" id="resources" ng-model="keyInfo.resources"></textarea>
+	</div>
+	<button type="submit" class="btn btn-lg btn-primary">Lagre</button>
+	<button ng-show="keyInfo.keyInfoId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette Key info?" ng-click="deleteKeyInfoBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+
+	<metadata ng-show="keyInfo.keyInfoId" created-by="{{keyInfo.createdBy}}" updated-by="{{keyInfo.updatedBy}}" created-date="{{keyInfo.createdDate}}" updated-date="{{keyInfo.updatedDate}}"></metadata>
+
+	
+	
+</form>

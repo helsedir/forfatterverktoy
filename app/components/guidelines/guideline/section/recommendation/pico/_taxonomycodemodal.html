@@ -1,0 +1,70 @@
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Kodeverk</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li ng-repeat="picoCode in picoCodes" ng-show="picoCode.picoType == picoType" class="animate-repeat">
+            Ontologinavn: {{picoCode.ontologyName}}
+            <ul>
+              <li ng-repeat="taxonomyCode in picoCode.taxonomyCodes" class="animate-repeat">
+                Kode: {{taxonomyCode.code}}, {{taxonomyCode.name}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-secondary pull-right" ng-click="openCreateCode()" aria-hidden="true">Opprett ny kode <span ng-class="{ 'glyphicon-chevron-up': !isCollapsed, 'glyphicon-chevron-down': isCollapsed}" class="glyphicon"></span></button>
+        <br><br><br>
+
+          <div collapse="isCollapsed">
+            <div class="well newauthor">
+              
+              
+              <form role="form" ng-submit="saveCode()">
+                <div class="form-group col-sm-6">
+                <label for="ontologyName">Ontologinavn</label>
+                <select ng-model="picoCode.ontologyName" id="ontologyName" class="form-control" required>
+                  <option value="">Vennligst velg..</option>
+                  <option>ICD-10</option>
+                  <option>ICPC-2</option>
+                  <option>SNOMED</option>
+                  <option>ATC</option>
+                </select>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="phone">Kode</label>
+                  <input type="text" class="form-control" id="phone" ng-model="taxonomyCode.code" required />
+                </div>
+              <div class="form-group col-sm-6">
+                <label for="name">Navn</label>
+                <input type="text" class="form-control" id="name" ng-model="taxonomyCode.name" />
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="name">Kortnavn</label>
+                <input type="text" class="form-control" id="name" ng-model="taxonomyCode.shortName" />
+              </div>
+              <div class="form-group col-sm-12">
+                <label for="phone">Beskrivelse</label>
+                <input type="text" class="form-control" id="phone" ng-model="taxonomyCode.description" />
+              </div>
+              
+             
+              <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Lagre kode</button>
+              </div>
+          </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Avbryt</button>
+        <button type="submit" class="btn btn-primary" ng-click="save()" data-dismiss="modal"  aria-hidden="true" ng-class="{disabled: !isCollapsed}">Lagre</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,49 @@
+<article>
+
+    <section>
+        <form role="form" ng-submit="updateOrCreatePico()" class="form-horizontal">
+            <div class="form-group">
+                <label for="summary">Sammendrag</label>
+                <textarea class="form-control" id="summary" ng-model="pico.summary" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="population" class="col-sm-12">Populasjon</label>    
+                <div class="col-sm-10"><input type="text" class="form-control" id="population" ng-model="pico.population"></div>
+                <button class="btn btn-default col-sm-2" ng-click="populationTaxCodeBtnClick()" type="button" ng-class="{disabled: !pico.picoId}">Kodeverk</button>
+            </div>
+
+            <div class="form-group">
+                <label for="population" class="col-sm-12">Intervensjon</label>    
+                <div class="col-sm-10"><input type="text" class="form-control" id="population" ng-model="pico.intervention"></div>
+                <button class="btn btn-default col-sm-2" ng-click="interventionTaxCodeBtnClick()" type="button" ng-class="{disabled: !pico.picoId}">Kodeverk</button>
+            </div>
+
+           <div class="form-group">
+               <label for="population" class="col-sm-12">Komparator</label>    
+               <div class="col-sm-10"><input type="text" class="form-control" id="population" ng-model="pico.control"></div>
+               <button class="btn btn-default col-sm-2" ng-click="controlrTaxCodeBtnClick()" type="button" ng-class="{disabled: !pico.picoId}">Kodeverk</button>
+           </div>
+
+            <div class="form-group">
+                <label for="population" class="col-sm-12">Utfall</label>    
+                <div class="col-sm-10"><input type="text" class="form-control" id="population" ng-model="pico.outcome"></div>
+                <button class="btn btn-default col-sm-2" ng-click="outcomeTaxCodeBtnClick()" type="button" ng-class="{disabled: !pico.picoId}">Kodeverk</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Lagre</button>
+            <button ng-show="pico.picoId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico?" ng-click="deletePicoBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button>
+
+        </form>
+    </section>
+    <br><br><br>
+
+    <picocodes-list></picocodes-list>
+
+    <picocont-list></picocont-list>
+
+    <picooutcomes-list></picooutcomes-list>
+
+
+    <metadata ng-show="pico.picoId" created-by="{{pico.createdBy}}" updated-by="{{pico.updatedBy}}" created-date="{{pico.createdDate}}" updated-date="{{pico.updatedDate}}"></metadata>
+
+</article>
