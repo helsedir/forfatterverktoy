@@ -89,32 +89,81 @@ angular.module('webUiApp')
             });
         };
 
-        $scope.populationTaxCodeBtnClick = function(){
+        $scope.taxCodeBtnClick = function(picoType){
             
             ModalService.showModal({
                   templateUrl: 'components/guidelines/guideline/section/recommendation/pico/_taxonomycodemodal.html',
-                  controller: ['$scope', 'close', 'pico', 'PicoCode', 'Pico',  function ($scope, close, pico, PicoCode, Pico) {
+                  controller: ['$scope', 'close', 'picoId', 'picoType', 'PicoCode', 'Pico', 'TaxonomyCode',  function ($scope, close, picoId, picoType, PicoCode, Pico, TaxonomyCode) {
+                    //start with form collapsed
                     $scope.isCollapsed = true;
-                    $scope.picoCodes = pico.picoCodes;
-                    $scope.picoType = 0;        
+                    $scope.picoType = picoType;
+                    //create new objects
+                    $scope.taxonomyCode = new TaxonomyCode();
+                    $scope.picoCode = new PicoCode();
+                    $scope.picoCodes = [];
 
-                    $scope.openCreateCode = function(){
+                    var addPicoCodes = function (pico){
+                        var picoCodes = []
+                        //Add all the picoCodes which are the picotype we are using (population = 0, intervention = 1, control = 2, outcome = 3)
+                        for(var i=0; i < pico.picoCodes.length; i++){                
+                            if(pico.picoCodes[i].picoType == picoType){
+                                picoCodes.push(pico.picoCodes[i]);
+                            }
+                        }
+                        return picoCodes;
+                    }
+
+                    //get the pico
+                    var pico; 
+                    Pico.get({_id: picoId}).$promise.then(function (data){
+                        pico = data;
+                        $scope.picoCodes = addPicoCodes(pico);
+                        //If the list is empty, open the accordion
+                        if($scope.picoCodes.length == 0){ 
+                            $scope.isCollapsed = false;
+                        }
+                        else{
+                            $scope.isCollapsed = true;
+                        }
+                    })
+                   
+
+                    
+                           
+
+                    $scope.openCreateCode = function () {
                         $scope.isCollapsed = !$scope.isCollapsed;
-                    }; 
+                    };
 
-                    $scope.saveCode = function(){
-                        
+                    $scope.removeTaxonomyCodeBtnClick = function (parentIndex, index){
+                        var taxonomyCodeToDelete = $scope.picoCodes[parentIndex].taxonomyCodes[index];
+                        TaxonomyCode.delete({ _id: taxonomyCodeToDelete.taxonomyCodeId })
+                            .$promise.then(function(){
+                            toastr.success('taxonomyCode: ' + taxonomyCodeToDelete.taxonomyCodeId, 'Slettet');
+                            $scope.picoCodes[parentIndex].taxonomyCodes.splice(index, 1);
+                          }, function(error){
+                            Crud.handlePostError(error);
+                          });
+                    };
+
+                    $scope.saveCode = function () {
+                        $scope.taxonomyCode.schemaSystem = $scope.picoCode.ontologyName;
+                        $scope.taxonomyCode.schemaId = $scope.picoCode.ontologyName;
+                        $scope.picoCode.picoType = picoType;
+
+                        //Add taxonomyCode
                         var addTaxonomyCode = function(picoCodeId, arrayIndex){
                             PicoCode.addTaxonomyCode({id: picoCodeId}, $scope.taxonomyCode)
                             .$promise.then(function (data) {
-
                                 toastr.success(data.name, 'Opprettet TaxonomyCode');
+
                                 $scope.picoCodes[arrayIndex].taxonomyCodes.push(data);
                                 
                                 }, function (error) {
                                         Crud.handlePostError(error);
                             });
                         };
+
 
                         //Check if picocode ontologyname already exists.
                         var picoCodeId = 0;
@@ -131,9 +180,10 @@ angular.module('webUiApp')
                             Pico.addPicoCode({id: picoId}, $scope.picoCode)
                             .$promise.then(function(data){
                                 toastr.success(data.name, 'Opprettet picocode');
+                                console.log(data);
                                 $scope.picoCodes.push(data);
                                 //create new taxonomy codes array
-                                $scope.picoCodes[arrayIndex].taxonomyCodes = [];
+                                $scope.picoCodes[$scope.picoCodes.length-1].taxonomyCodes = [];
                                 addTaxonomyCode(data.picoCodeId, $scope.picoCodes.length-1);
                             }, function (error) {
                                     Crud.handlePostError(error);
@@ -143,7 +193,10 @@ angular.module('webUiApp')
                             //Add taxonomycode to existing picocode
                             addTaxonomyCode(picoCodeId, arrayIndex);
                         }
-
+                        //Clear the form
+                        //$scope.taxcode.$setPristine;
+                        $scope.taxonomyCode = {};
+                        $scope.picoCode = {};
                         //Close the panel
                         $scope.isCollapsed = true;
                        
@@ -151,7 +204,8 @@ angular.module('webUiApp')
 
                   }],
                   inputs: {
-                    pico: $scope.pico //inject the author returned from promise object
+                    picoId: $scope.pico.picoId,
+                    picoType: picoType 
                   }
                 }).then(function(modal) {
                     //it's a bootstrap element, use 'modal' to show it
