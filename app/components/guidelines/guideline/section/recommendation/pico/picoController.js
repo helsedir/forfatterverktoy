@@ -158,7 +158,7 @@ angular.module('webUiApp')
                                 toastr.success(data.name, 'Opprettet TaxonomyCode');
 
                                 $scope.picoCodes[arrayIndex].taxonomyCodes.push(data);
-                                
+
                                 }, function (error) {
                                         Crud.handlePostError(error);
                             });
@@ -180,7 +180,7 @@ angular.module('webUiApp')
                             Pico.addPicoCode({id: picoId}, $scope.picoCode)
                             .$promise.then(function(data){
                                 toastr.success(data.name, 'Opprettet picocode');
-                                console.log(data);
+
                                 $scope.picoCodes.push(data);
                                 //create new taxonomy codes array
                                 $scope.picoCodes[$scope.picoCodes.length-1].taxonomyCodes = [];
@@ -193,11 +193,6 @@ angular.module('webUiApp')
                             //Add taxonomycode to existing picocode
                             addTaxonomyCode(picoCodeId, arrayIndex);
                         }
-                        //Clear the form
-                        //$scope.taxcode.$setPristine;
-                        $scope.taxonomyCode = {};
-                        $scope.picoCode = {};
-                        //Close the panel
                         $scope.isCollapsed = true;
                        
                     };
