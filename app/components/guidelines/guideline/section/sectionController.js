@@ -120,7 +120,7 @@ angular.module('webUiApp')
 
     $scope.editSortOrderRecommendationBtnClick = function() {
             ModalService.showModal({
-                templateUrl: 'views/partials/_sortordermodal.html',
+                templateUrl: 'common/_sortordermodal.html',
                 controller: ['ModalService', '$scope', 'recommendations', 'Recommendation', function (ModalService, $scope, recommendations, Recommendation) {
                   //set this scope's recommendations to the injected recommendations
                   $scope.resource = recommendations;
@@ -153,7 +153,7 @@ angular.module('webUiApp')
 
     $scope.editSortOrderSubsectionsBtnClick = function() {
             ModalService.showModal({
-                templateUrl: 'views/partials/_sortordermodal.html',
+                templateUrl: 'common/_sortordermodal.html',
                 controller: ['ModalService', '$scope', 'sections', 'Section', function (ModalService, $scope, sections, Section) {
                   //set this scope's sections to the injected sections
                   $scope.resource = sections;

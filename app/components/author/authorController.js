@@ -87,7 +87,7 @@ angular.module('webUiApp')
 
     $scope.createAuthorBtnClick = function (){
       ModalService.showModal({
-        templateUrl: 'views/partials/_createorupdateauthormodal.html',
+        templateUrl: 'components/author/_createorupdateauthormodal.html',
         controller: ['$scope', 'Author', 'close', function ($scope, Author, close){
           
           $scope.author = new Author();

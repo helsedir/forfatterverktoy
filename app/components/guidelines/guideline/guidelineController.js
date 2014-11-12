@@ -177,7 +177,7 @@ angular.module('webUiApp')
 
     $scope.editSortOrderBtnClick = function() {
             ModalService.showModal({
-                templateUrl: 'views/partials/_sortordermodal.html',
+                templateUrl: 'common/_sortordermodal.html',
                 controller: ['ModalService', '$scope', 'sections', 'Section', function (ModalService, $scope, sections, Section) {
                   //set this scope's sections to the injected sections
                   $scope.resource = sections;

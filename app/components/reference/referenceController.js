@@ -89,7 +89,7 @@ angular.module('webUiApp')
 
         $scope.createReferenceBtnClick = function (){
           ModalService.showModal({
-            templateUrl: 'views/partials/_createorupdatereferencemodal.html',
+            templateUrl: 'components/reference/_createorupdatereferencemodal.html',
             controller: ['$scope', 'Reference', 'close', function ($scope, Reference, close){
               
               $scope.reference = new Reference();
