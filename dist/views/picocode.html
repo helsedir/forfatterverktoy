@@ -1,8 +1,0 @@
-<article> <small ng-show="picoCode.picoCodeId"> <p> Opprettet av: {{picoCode.createdBy}}, {{picoCode.createdDate | date}} </p> <p> Oppdatert av: {{picoCode.updatedBy}}, {{picoCode.updatedDate | date}} </p> </small> <section id="Pico"> <form role="form" ng-submit="updateOrCreatePicoCode()"> <div class="form-group"> <label for="ontologyName">OntologyName</label> <!--input type="text" class="form-control" id="ontologyName" ng-model="picoCode.ontologyName"--> <select ng-model="picoCode.ontologyName" id="ontologyName" class="form-control"> <option>ICD-10 <option>ICPC-2 <option>SNOMED <option>ATC </select> </div> <!--<div class="form-group">
-					<label for="ontologyCode">OntologyCode</label>
-					<input type="text" class="form-control" id="ontologyCode" ng-model="picoCode.ontologyCode">
-			</div>
-			<div class="form-group">
-					<label for="schemaSystem">SchemaSystem</label>
-					<input type="text" class="form-control" id="schemaSystem" ng-model="picoCode.schemaSystem">
-			</div>--> <div class="form-group"> <label for="type">Pico Type</label> <select class="form-control" id="type" ng-model="picoCode.picoType"> <option value="0">Population <option value="1">Intervention <option value="2">Control <option value="3">Outcome </select> </div> <button type="submit" class="btn btn-primary btn-lg">Lagre</button> <button ng-show="picoCode.picoCodeId" type="button" class="btn btn-link btn-delete" ng-confirm-click="Er du sikker på at du vil slette pico code?" ng-click="deletePicoCodeBtnClick()">Slett <span class="glyphicon glyphicon-remove"></span></button> </form> </section> <br><br> <taxonomycodes-list></taxonomycodes-list> </article>

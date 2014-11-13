@@ -103,7 +103,7 @@ angular.module('webUiApp')
                     $scope.picoCodes = [];
 
                     var addPicoCodes = function (pico){
-                        var picoCodes = []
+                        var picoCodes = [];
                         //Add all the picoCodes which are the picotype we are using (population = 0, intervention = 1, control = 2, outcome = 3)
                         for(var i=0; i < pico.picoCodes.length; i++){                
                             if(pico.picoCodes[i].picoType == picoType){
@@ -111,7 +111,7 @@ angular.module('webUiApp')
                             }
                         }
                         return picoCodes;
-                    }
+                    };
 
                     //get the pico
                     var pico; 
@@ -125,7 +125,7 @@ angular.module('webUiApp')
                         else{
                             $scope.isCollapsed = true;
                         }
-                    })
+                    });
                    
 
                     
@@ -150,7 +150,7 @@ angular.module('webUiApp')
                         $scope.taxonomyCode.schemaSystem = $scope.picoCode.ontologyName;
                         $scope.taxonomyCode.schemaId = $scope.picoCode.ontologyName;
                         $scope.picoCode.picoType = picoType;
-
+                        
                         //Add taxonomyCode
                         var addTaxonomyCode = function(picoCodeId, arrayIndex){
                             PicoCode.addTaxonomyCode({id: picoCodeId}, $scope.taxonomyCode)
