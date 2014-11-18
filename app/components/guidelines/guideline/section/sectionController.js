@@ -24,8 +24,11 @@ angular.module('webUiApp')
 
     if(sectionId != 0)
     {
-      $scope.section = Section.getSection(sectionId);
-      $rootScope.sectionLabel = ' - ' + $scope.section.heading;
+      Section.getSection(sectionId).then(function () {
+        $scope.section = Section.section;
+        $rootScope.sectionLabel = ' - ' + Section.section.heading;
+      });
+
     }
     
     //If parentsection id is defined we are creating a section under a section
@@ -33,44 +36,27 @@ angular.module('webUiApp')
     $scope.updateOrCreateSection = function() {
       if(sectionId == 0)
       {
+        //section under section
         if(typeof(parentSectionId) != 'undefined' && parentSectionId != null)
         {
-          Section.addSection(parentSectionId, $scope.section);
-          //createSection(Section, parentSectionId);
+          Section.addSection(parentSectionId, $scope.section).then(function () {
+            $location.path(baseUrl + Section.section.sectionId);
+          });
         }
+        //section under guideline
         else if(typeof(guidelineId) != 'undefined' && guidelineId != null)
         {
-          Guideline.addSection(guidelineId, $scope.section);
-          //createSection(Guideline, guidelineId);
+          Guideline.addSection(guidelineId, $scope.section).then(function () {
+            $location.path(baseUrl + Section.section.sectionId);
+          });
         }
       }
       else
       {
-        updateSection(Section, $scope.section.sectionId);
+        Section.updateSection($scope.section);
       }
     };
 
-    //Creates a new Section
-    //The resource provided must have an addSection method.
-    var createSection = function (resource, id){
-      resource.addSection({id: id }, $scope.section)
-      .$promise.then(function(data){
-        toastr.success(data.heading, 'Opprettet seksjon');
-        $location.path(baseUrl + data.sectionId);
-      },
-      function(error){
-        Crud.handlePostError(error);
-      });
-    };
-
-    var updateSection = function(resource, id){
-        resource.update({ _id: id }, $scope.section)
-        .$promise.then(function(data){
-          toastr.success(data.heading, 'Lagret');
-        }, function(error){
-          Crud.handlePostError(error);
-        });
-    };
 
     $scope.addSectionBtnClick = function(){
       $location.path(baseUrl + '0').search('parentSectionId', sectionId);

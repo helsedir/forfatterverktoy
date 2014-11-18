@@ -71,9 +71,11 @@ angular.module('webUiApp')
         };
 
         service.addSection = function (guidelineId, sectionToAdd) {
+            //First create the section, then add it to the guideline
+            Section.createSection(sectionToAdd);
             return resource.addSection({id: guidelineId}, sectionToAdd)
                 .$promise.then(function(data) {
-                    toastr.success(data.heading, 'Opprettet seksjon');
+                    toastr.success(data.heading, 'La til seksjon i retningslinje');
                     //$location.path(baseUrl + data.sectionId);
                 }, function (error){
                     Crud.handlePostError(error);
@@ -128,6 +130,7 @@ angular.module('webUiApp')
     }])
     .factory('Section', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
         var service = {};
+        service.section = {};
 
         var resource = $resource(apiUrl + 'sections/:_id', {},
             {
@@ -135,6 +138,17 @@ angular.module('webUiApp')
                 addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/sections/'},
                 addRecommendation: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/recommendations/'}
             });
+
+        service.createSection = function (section) {
+            return resource.save(section)
+                .$promise.then(function (data) {
+                    //update the object
+                    service.section = data;
+                    toastr.success(data.heading, 'Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
 
         service.deleteSection = function (sectionToDelete) {
             return resource.delete({_id: sectionToDelete.sectionId})
@@ -148,20 +162,26 @@ angular.module('webUiApp')
         service.updateSection = function (sectionToUpdate) {
             return resource.update({_id: sectionToUpdate.sectionId}, sectionToUpdate)
                 .$promise.then(function () {
-                    toastr.success(sectionToUpdate.title, 'Lagret');
+                    toastr.success(sectionToUpdate.heading, 'Lagret');
                 }, function (error){
                     Crud.handlePostError(error);
                 });
         };
 
         service.getSection = function (sectionId) {
-            return resource.get({_id: sectionId});
+            return resource.get({_id: sectionId}).
+                $promise.then(function(data) {
+                    service.section = data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
         };
 
         service.addSection = function (parentSectionId, sectionToAdd) {
             return resource.addSection({id: parentSectionId}, sectionToAdd)
                 .$promise.then(function(data) {
-                    toastr.success(data.heading, 'Opprettet seksjon');
+                    toastr.success(data.heading, 'La til underseksjon');
                     //$location.path(baseUrl + data.sectionId);
                 }, function (error){
                     Crud.handlePostError(error);
