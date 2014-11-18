@@ -19,10 +19,9 @@ angular.module('webUiApp')
       $rootScope.guidelineLabel = ' - ny retningslinje';
     }
     else
-    {      
-      Guideline.get({_id: guidelineId}, function(data){
-        $scope.guideline = data;
-        $rootScope.guidelineLabel = ' - ' + data.shortTitle;
+    {
+      Guideline.getGuideline(guidelineId).then(function () {
+        $scope.guideline = Guideline.guideline;
       });
     }
     

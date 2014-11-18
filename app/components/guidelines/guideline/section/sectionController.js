@@ -23,11 +23,9 @@ angular.module('webUiApp')
     $rootScope.sectionLabel = ' - ny seksjon';
 
     if(sectionId != 0)
-    {    
-      Section.get({_id: sectionId}, function(data){
-        $scope.section = data;
-        $rootScope.sectionLabel = ' - ' + data.heading;
-      });
+    {
+      $scope.section = Section.getSection(sectionId);
+      $rootScope.sectionLabel = ' - ' + $scope.section.heading;
     }
     
     //If parentsection id is defined we are creating a section under a section
@@ -37,11 +35,13 @@ angular.module('webUiApp')
       {
         if(typeof(parentSectionId) != 'undefined' && parentSectionId != null)
         {
-          createSection(Section, parentSectionId);
+          Section.addSection(parentSectionId, $scope.section);
+          //createSection(Section, parentSectionId);
         }
         else if(typeof(guidelineId) != 'undefined' && guidelineId != null)
         {
-          createSection(Guideline, guidelineId);
+          Guideline.addSection(guidelineId, $scope.section);
+          //createSection(Guideline, guidelineId);
         }
       }
       else
@@ -89,20 +89,17 @@ angular.module('webUiApp')
       }
       else{
         sectionToDelete = $scope.section;
-      } 
-      Section.delete({ _id: sectionToDelete.sectionId })
-        .$promise.then(function(){
-          toastr.success(sectionToDelete.heading, 'Slettet');
+      }
 
-          if(typeof index != 'undefined'){
-            $scope.section.childSections.splice(index, 1);
-          }
-          else{
-            $location.path('/guideline/'+guidelineId);
-          }
-        }, function(error){
-          Crud.handlePostError(error);
-        });
+      //Delete the section
+      Section.deleteSection(sectionToDelete).then(function (){
+        if(typeof index != 'undefined'){
+          $scope.section.childSections.splice(index, 1);
+        }
+        else{
+          $location.path('/guideline/'+guidelineId);
+        }
+      });
     };
 
     $scope.deleteRecommendationBtnClick = function(index){
