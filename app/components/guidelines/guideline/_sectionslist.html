@@ -11,7 +11,7 @@
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="section in guideline.sections | orderBy : section.sortOrder">
+			<tr ng-repeat="section in guideline.sections | orderBy:'sortOrder'">
 				<td class="col-sm-1 hidden-xs" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{$index+1}}</td>
 				<td class="breakall" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.heading}}</td>
 				<td class="text-right col-sm-2 hidden-xs" btn-href="{{baseUrl}}{{guideline.guidelineId}}/section/{{section.sectionId}}">{{section.updatedDate | date:'dd.MM.yy'}}</td>

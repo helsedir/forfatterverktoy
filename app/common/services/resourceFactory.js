@@ -9,7 +9,7 @@
  */
 var apiUrl = 'http://localhost:50500/api/v1/';
 angular.module('webUiApp')
-    .factory('Guideline', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+    .factory('Guideline', ['$resource', 'toastr', 'Crud', 'Section', function ($resource, toastr, Crud, Section) {
         var service = {};
         service.guidelines = [];
 
@@ -40,6 +40,26 @@ angular.module('webUiApp')
                 });
         };
 
+        service.saveGuideline = function (guideline) {
+            return resource.save(guideline)
+                .$promise.then(function (data) {
+                    //update the object
+                    service.guideline = data;
+                    toastr.success(data.heading, 'Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.updateGuideline = function (guidelineToUpdate) {
+            return resource.update({_id: guidelineToUpdate.guidelineId}, guidelineToUpdate)
+                .$promise.then(function () {
+                    toastr.success(guidelineToUpdate.title, 'Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
         service.getGuideline = function (guidelineID) {
             return resource.get({_id: guidelineID}).
                 $promise.then(function(data) {
@@ -60,21 +80,64 @@ angular.module('webUiApp')
                 });
         };
 
+        service.deleteSection = function (sectionToDelete, index) {
+            Section.deleteSection(sectionToDelete).then(function () {
+               service.guideline.sections.splice(index, 1);
+            });
+        };
+
+        service.addAuthor = function (author) {
+            return resource.addAuthor({id: service.guideline.guidelineId, authorId: author.authorId})
+                .$promise.then(function(){
+                    toastr.success(author.name, 'La til forfatter i retningslinje');
+                    service.guideline.authors.push(author);
+                },
+                function(error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.removeAuthor = function (author) {
+            return resource.deleteAuthor({id: service.guideline.guidelineId, authorId: author.authorId})
+                .$promise.then(function(){
+                    toastr.success(author.name,'Fjernet forfatter fra retningslinjen');
+                    //Remove author from list
+                    for (var i = service.guideline.authors.length - 1; i >= 0; i--) {
+                        if(service.guideline.authors[i].authorId == author.authorId){
+                            service.guideline.authors.splice(i, 1);
+                        }
+                    }
+                },
+                function(error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.isAuthorInGuideline = function (author) {
+            var authorInGuideline = false;
+            service.guideline.authors.forEach(function (element) {
+               if (element.authorId == author.authorId) {
+                   authorInGuideline = true;
+               }
+            });
+            return authorInGuideline;
+        };
+
         return service;
 
     }])
     .factory('Section', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
-        var resource = {};
+        var service = {};
 
-        var section = $resource(apiUrl + 'sections/:_id', {},
+        var resource = $resource(apiUrl + 'sections/:_id', {},
             {
                 update: { method: 'PUT' },
                 addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/sections/'},
                 addRecommendation: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/recommendations/'}
             });
 
-        resource.deleteSection = function (sectionToDelete) {
-            return section.delete({_id: sectionToDelete.sectionId})
+        service.deleteSection = function (sectionToDelete) {
+            return resource.delete({_id: sectionToDelete.sectionId})
                 .$promise.then(function () {
                     toastr.success(sectionToDelete.heading, 'Slettet');
                 }, function (error){
@@ -82,12 +145,21 @@ angular.module('webUiApp')
                 });
         };
 
-        resource.getSection = function (sectionId) {
-            return section.get({_id: sectionId});
+        service.updateSection = function (sectionToUpdate) {
+            return resource.update({_id: sectionToUpdate.sectionId}, sectionToUpdate)
+                .$promise.then(function () {
+                    toastr.success(sectionToUpdate.title, 'Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
         };
 
-        resource.addSection = function (parentSectionId, sectionToAdd) {
-            return section.addSection({id: parentSectionId}, sectionToAdd)
+        service.getSection = function (sectionId) {
+            return resource.get({_id: sectionId});
+        };
+
+        service.addSection = function (parentSectionId, sectionToAdd) {
+            return resource.addSection({id: parentSectionId}, sectionToAdd)
                 .$promise.then(function(data) {
                     toastr.success(data.heading, 'Opprettet seksjon');
                     //$location.path(baseUrl + data.sectionId);
@@ -96,7 +168,7 @@ angular.module('webUiApp')
                 });
         };
 
-        return resource;
+        return service;
     }])
     .factory('Recommendation', ['$resource', function ($resource) {
         return $resource(apiUrl + 'recommendations/:_id', {},
@@ -109,11 +181,36 @@ angular.module('webUiApp')
                 deleteReference: {method: 'DELETE', params: {id: '@id', referenceId: '@referenceId'}, url: apiUrl + 'recommendations/:id/references/:referenceId'}
             });
     }])
-    .factory('Author', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'authors/:_id', {},
+    .factory('Author', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+        var service = {};
+        service.authors = [];
+
+        var resource =  $resource(apiUrl + 'authors/:_id', {},
             {
                 update: {method: 'PUT'}
             });
+
+        service.getAuthors = function () {
+            return resource.query().
+                $promise.then(function (authors) {
+                    service.authors = authors;
+                }, function(error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.createAuthor = function (author) {
+            return resource.save(author)
+                .$promise.then(function (data) {
+                    //update the object
+                    service.author = data;
+                    toastr.success(data.name, 'Opprettet forfatter');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        return service;
     }])
     .factory('Pico', ['$resource', function ($resource) {
         return $resource(apiUrl + 'picos/:_id', {},
