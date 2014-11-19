@@ -71,11 +71,10 @@ angular.module('webUiApp')
         };
 
         service.addSection = function (guidelineId, sectionToAdd) {
-            //First create the section, then add it to the guideline
-            Section.createSection(sectionToAdd);
             return resource.addSection({id: guidelineId}, sectionToAdd)
                 .$promise.then(function(data) {
                     toastr.success(data.heading, 'La til seksjon i retningslinje');
+                    return data;
                     //$location.path(baseUrl + data.sectionId);
                 }, function (error){
                     Crud.handlePostError(error);
@@ -128,7 +127,7 @@ angular.module('webUiApp')
         return service;
 
     }])
-    .factory('Section', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+    .factory('Section', ['$resource', 'toastr', 'Crud', 'Recommendation', function ($resource, toastr, Crud, Recommendation) {
         var service = {};
         service.section = {};
 
@@ -150,10 +149,13 @@ angular.module('webUiApp')
                 });
         };
 
-        service.deleteSection = function (sectionToDelete) {
+        service.deleteSection = function (sectionToDelete, index) {
             return resource.delete({_id: sectionToDelete.sectionId})
                 .$promise.then(function () {
                     toastr.success(sectionToDelete.heading, 'Slettet');
+                    if (typeof(index) !== 'undefined') {
+                        service.section.childSections.splice(index, 1);
+                    }
                 }, function (error){
                     Crud.handlePostError(error);
                 });
@@ -182,16 +184,37 @@ angular.module('webUiApp')
             return resource.addSection({id: parentSectionId}, sectionToAdd)
                 .$promise.then(function(data) {
                     toastr.success(data.heading, 'La til underseksjon');
+                    service.section = data;
                     //$location.path(baseUrl + data.sectionId);
                 }, function (error){
                     Crud.handlePostError(error);
                 });
         };
 
+        service.addRecommendation = function (sectionId, recommendation) {
+            return resource.addRecommendation({id: sectionId}, recommendation)
+                .$promise.then(function(data) {
+                    toastr.success(data.heading, 'La til anbefaling');
+                    return data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteRecommendation = function (recommendationToDelete, index) {
+            Recommendation.deleteRecommendation(recommendationToDelete).then(function () {
+                service.section.recommendations.splice(index, 1);
+            });
+        };
+
         return service;
     }])
-    .factory('Recommendation', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'recommendations/:_id', {},
+    .factory('Recommendation', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+        var service = {};
+        service.recommendation = {};
+
+        var resource = $resource(apiUrl + 'recommendations/:_id', {},
             {
                 update: { method: 'PUT' },
                 addPico: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/picos/'},
@@ -200,6 +223,47 @@ angular.module('webUiApp')
                 addReference: {method: 'PUT', params: {id: '@id', referenceId: '@referenceId'}, url: apiUrl + 'recommendations/:id/references/:referenceId'},
                 deleteReference: {method: 'DELETE', params: {id: '@id', referenceId: '@referenceId'}, url: apiUrl + 'recommendations/:id/references/:referenceId'}
             });
+
+
+        service.updateRecommendation = function (recommendationToUpdate) {
+            return resource.update({_id: recommendationToUpdate.recommendationId}, recommendationToUpdate)
+                .$promise.then(function () {
+                    toastr.success(recommendationToUpdate.heading, 'Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.getRecommendation = function (recommendationId) {
+            return resource.get({_id: recommendationId}).
+                $promise.then(function(data) {
+                    service.recommendation = data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteRecommendation = function (recommendationToDelete) {
+            return resource.delete({_id: recommendationToDelete.recommendationId})
+                .$promise.then(function () {
+                    toastr.success(recommendationToDelete.heading, 'Slettet');
+                    //If the recommendation we deleted was the same as the one we're keeping the state of
+                    if(recommendationToDelete.recommendationId ===  service.recommendation.recommendationId){
+                        service.recommendation = {};
+                    }
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deletePico = function (index, picoToDelete) {
+            Pico.deletePico(picoToDelete).then(function (){
+                service.recommendation.picos.splice(index, 1);
+            });
+        };
+
+        return service;
     }])
     .factory('Author', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
         var service = {};

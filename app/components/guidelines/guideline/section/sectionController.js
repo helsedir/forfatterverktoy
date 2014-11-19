@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', 'Crud', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope, Crud) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope) {
     if($stateParams.guidelineId){
       $scope.guidelineId = $stateParams.guidelineId;
     }
@@ -40,14 +40,15 @@ angular.module('webUiApp')
         if(typeof(parentSectionId) != 'undefined' && parentSectionId != null)
         {
           Section.addSection(parentSectionId, $scope.section).then(function () {
+            console.log(Section.section.sectionId);
             $location.path(baseUrl + Section.section.sectionId);
           });
         }
         //section under guideline
         else if(typeof(guidelineId) != 'undefined' && guidelineId != null)
         {
-          Guideline.addSection(guidelineId, $scope.section).then(function () {
-            $location.path(baseUrl + Section.section.sectionId);
+          Guideline.addSection(guidelineId, $scope.section).then(function (data) {
+            $location.path(baseUrl + data.sectionId);
           });
         }
       }
@@ -78,11 +79,9 @@ angular.module('webUiApp')
       }
 
       //Delete the section
-      Section.deleteSection(sectionToDelete).then(function (){
-        if(typeof index != 'undefined'){
-          $scope.section.childSections.splice(index, 1);
-        }
-        else{
+      Section.deleteSection(sectionToDelete, index).then(function (){
+        //If we deleted a section (not childsection)
+        if(typeof index == 'undefined'){
           $location.path('/guideline/'+guidelineId);
         }
       });
@@ -90,16 +89,8 @@ angular.module('webUiApp')
 
     $scope.deleteRecommendationBtnClick = function(index){
       var recommendationToDelete = $scope.section.recommendations[index];
-      Recommendation.delete({_id: recommendationToDelete.recommendationId})
-          .$promise.then(function(){
-
-            toastr.success(recommendationToDelete.heading, 'Slettet');
-            $scope.section.recommendations.splice(index, 1);
-
-            }, function(error){
-            Crud.handlePostError(error);
-          });
-      };
+      Section.deleteRecommendation(recommendationToDelete, index);
+    };
 
     $scope.editSortOrderRecommendationBtnClick = function() {
             ModalService.showModal({
