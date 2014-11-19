@@ -29,6 +29,8 @@ angular.module('webUiApp')
     .factory('Recommendation', ['$resource', function ($resource) {
         return $resource(apiUrl + 'recommendations/:_id', {},
             {
+                //method to publish both recommendation and every child of the recommendation
+                publish: {method: 'PUT', params: {id: '@id', publishedStage: '@publishedStage'}, url: apiUrl + 'recommendations/:id/publish?publishedStage=:publishedStage'},
                 update: { method: 'PUT' },
                 addPico: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/picos/'},
                 addEmrInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/emrinfos/'},
