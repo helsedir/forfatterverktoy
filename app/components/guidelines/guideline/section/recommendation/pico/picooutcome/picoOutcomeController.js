@@ -19,48 +19,32 @@ angular.module('webUiApp')
         var baseUrl = '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId+'/picooutcome/';
         $scope.baseUrl = baseUrl;
 
-        Pico.get({_id: picoId}, function(data){
-          $scope.pico = data;
-        }); 
+        Pico.getPico(picoId).then(function () {
+            $scope.pico = Pico.pico;
+        })
         
         if(picoOutcomeId != 0){
-            PicoOutcome.get({_id: picoOutcomeId}, function(data){
-                $scope.picoOutcome = data;
-            });
+            PicoOutcome.getPicoOutcome(picoOutcomeId).then(function () {
+                $scope.picoOutcome = PicoOutcome.picoOutcome;
+            })
         }
 
         $scope.updateOrCreatePicoOutcome = function() {
             if(picoOutcomeId != 0){
-                PicoOutcome.update({ _id: picoOutcomeId }, $scope.picoOutcome)
-                    .$promise.then(function(data){
-                        toastr.success(data.summary, 'Lagret');
-                        $location.path(baseUrl + data.picoOutcomeId);
-                    }, function(error){
-                        Crud.handlePostError(error);
-                    });
+                PicoOutcome.updatePicoOutcome($scope.picoOutcome);
             }
 
             else if(typeof(picoId) != 'undefined' && picoId != null)
             {
-                Pico.addPicoOutcome({id: picoId}, $scope.picoOutcome)
-                    .$promise.then(function(data){
-                        toastr.success(data.summary, 'Opprettet PicoOutcome');
-                        $location.path(baseUrl + data.picoOutcomeId);
-                    },function(error){
-                        Crud.handlePostError(error);
-                    });
+                Pico.addPicoOutcome(picoId, $scope.picoOutcome).then(function (data) {
+                    $location.path(baseUrl + data.picoOutcomeId);
+                });
             }
         };
 
-
         $scope.deletePicoOutcomeBtnClick = function() {
-            var picoOutcomeToDelete = $scope.picoOutcome;
-            PicoOutcome.delete({ _id: picoOutcomeToDelete.picoOutcomeId })
-                .$promise.then(function(){
-                toastr.success('Pico Outcome: ' + picoOutcomeToDelete.picoOutcomeId, 'Slettet');
+            PicoOutcome.deletePicoOutcome($scope.picoOutcome).then(function () {
                 $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/pico/'+picoId);
-            }, function(error){
-                Crud.handlePostError(error);
             });
         };
 

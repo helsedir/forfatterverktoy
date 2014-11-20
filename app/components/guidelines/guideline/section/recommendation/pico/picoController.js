@@ -20,30 +20,20 @@ angular.module('webUiApp')
         
 
         if (picoId != 0) {
-            Pico.get({_id: picoId}, function (data) {
-                $scope.pico = data;
+            Pico.getPico(picoId).then(function () {
+                $scope.pico = Pico.pico;
             });
         }
 
         $scope.updateOrCreatePico = function () {
             if (picoId != 0) {
-                Pico.update({ _id: picoId }, $scope.pico)
-                    .$promise.then(function (data) {
-                        toastr.success(data.summary, 'Lagret');
-                        $location.path(baseUrl + data.picoId);
-                    }, function (error) {
-                        Crud.handlePostError(error);
-                    });
+                Pico.updatePico($scope.pico);
             }
 
             else if (typeof(recommendationId) != 'undefined' && recommendationId != null) {
-                Recommendation.addPico({id: recommendationId}, $scope.pico)
-                    .$promise.then(function (data) {
-                        toastr.success(data.summary, 'Opprettet Pico');
-                        $location.path(baseUrl + data.picoId);
-                    }, function (error) {
-                        Crud.handlePostError(error);
-                    });
+                Recommendation.addPico(recommendationId, $scope.pico).then(function (data) {
+                    $location.path(baseUrl + data.picoId);
+                });
             }
         };
 
@@ -52,40 +42,20 @@ angular.module('webUiApp')
         };
 
         $scope.deletePicoCodeBtnClick = function (index){
-            var picoCodeToDelete = $scope.pico.picoCodes[index];
-            PicoCode.delete({ _id: picoCodeToDelete.picoCodeId })
-                .$promise.then(function(){
-                toastr.success('picoCode: ' + picoCodeToDelete.picoCodeId, 'Slettet');
-                $scope.pico.picoCodes.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            Pico.deletePicoCode(index);
         };
 
         $scope.addPicoOutcomeBtnClick = function () {
             $location.path(baseUrl + picoId + '/picooutcome/0');
-
         };
 
         $scope.deletePicoOutcomeBtnClick = function (index){
-            var picoOutcomeToDelete = $scope.pico.picoOutcomes[index];
-            PicoOutcome.delete({ _id: picoOutcomeToDelete.picoOutcomeId })
-                .$promise.then(function(){
-                toastr.success('Pico Outcome: ' + picoOutcomeToDelete.picoOutcomeId, 'Slettet');
-                $scope.pico.picoOutcomes.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            Pico.deletePicoOutcome(index);
         };
 
         $scope.deletePicoBtnClick = function () {
-            var picoToDelete = $scope.pico;
-            Pico.delete({ _id: picoToDelete.picoId })
-                .$promise.then(function(){
-                toastr.success('pico: ' + picoToDelete.picoId, 'Slettet');
+            Pico.deletePico(Pico.pico).then(function () {
                 $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId);
-            }, function(error){
-                Crud.handlePostError(error);
             });
         };
 
@@ -98,8 +68,8 @@ angular.module('webUiApp')
                     $scope.isCollapsed = true;
                     $scope.picoType = picoType;
                     //create new objects
-                    $scope.taxonomyCode = new TaxonomyCode();
-                    $scope.picoCode = new PicoCode();
+                    //$scope.taxonomyCode = new TaxonomyCode();
+                    //$scope.picoCode = new PicoCode();
                     $scope.picoCodes = [];
 
                     var addPicoCodes = function (pico){
@@ -114,22 +84,18 @@ angular.module('webUiApp')
                     };
 
                     //get the pico
-                    var pico; 
-                    Pico.get({_id: picoId}).$promise.then(function (data){
-                        pico = data;
-                        $scope.picoCodes = addPicoCodes(pico);
-                        //If the list is empty, open the accordion
-                        if($scope.picoCodes.length == 0){ 
-                            $scope.isCollapsed = false;
-                        }
-                        else{
-                            $scope.isCollapsed = true;
-                        }
-                    });
-                   
-
-                    
-                           
+                    var pico;
+                      Pico.getPico(picoId).then(function () {
+                          pico = Pico.pico;
+                          $scope.picoCodes = addPicoCodes(pico);
+                          //If the list is empty, open the accordion
+                          if($scope.picoCodes.length == 0){
+                              $scope.isCollapsed = false;
+                          }
+                          else{
+                              $scope.isCollapsed = true;
+                          }
+                      });
 
                     $scope.openCreateCode = function () {
                         $scope.isCollapsed = !$scope.isCollapsed;
@@ -137,13 +103,9 @@ angular.module('webUiApp')
 
                     $scope.removeTaxonomyCodeBtnClick = function (parentIndex, index){
                         var taxonomyCodeToDelete = $scope.picoCodes[parentIndex].taxonomyCodes[index];
-                        TaxonomyCode.delete({ _id: taxonomyCodeToDelete.taxonomyCodeId })
-                            .$promise.then(function(){
-                            toastr.success('taxonomyCode: ' + taxonomyCodeToDelete.taxonomyCodeId, 'Slettet');
+                        TaxonomyCode.deleteTaxonomyCode(taxonomyCodeToDelete.taxonomyCodeId).then(function () {
                             $scope.picoCodes[parentIndex].taxonomyCodes.splice(index, 1);
-                          }, function(error){
-                            Crud.handlePostError(error);
-                          });
+                        });
                     };
 
                     $scope.saveCode = function () {
@@ -153,14 +115,8 @@ angular.module('webUiApp')
                         
                         //Add taxonomyCode
                         var addTaxonomyCode = function(picoCodeId, arrayIndex){
-                            PicoCode.addTaxonomyCode({id: picoCodeId}, $scope.taxonomyCode)
-                            .$promise.then(function (data) {
-                                toastr.success(data.name, 'Opprettet TaxonomyCode');
-
+                            PicoCode.addTaxonomyCode(picoCodeId, $scope.taxonomyCode).then(function (data) {
                                 $scope.picoCodes[arrayIndex].taxonomyCodes.push(data);
-
-                                }, function (error) {
-                                        Crud.handlePostError(error);
                             });
                         };
 
@@ -177,16 +133,11 @@ angular.module('webUiApp')
 
                         //If picocode ontologyname not found, create new picocode and add the taxonomyCode
                         if(picoCodeId == 0){
-                            Pico.addPicoCode({id: picoId}, $scope.picoCode)
-                            .$promise.then(function(data){
-                                toastr.success(data.name, 'Opprettet picocode');
-
+                            Pico.addPicoCode(picoId, $scope.picoCode).then(function (data) {
                                 $scope.picoCodes.push(data);
                                 //create new taxonomy codes array
                                 $scope.picoCodes[$scope.picoCodes.length-1].taxonomyCodes = [];
                                 addTaxonomyCode(data.picoCodeId, $scope.picoCodes.length-1);
-                            }, function (error) {
-                                    Crud.handlePostError(error);
                             });
                         }
                         else{

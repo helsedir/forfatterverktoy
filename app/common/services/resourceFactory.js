@@ -210,7 +210,8 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('Recommendation', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+    .factory('Recommendation', ['$resource', 'toastr', 'Crud', 'Pico', 'EmrInfo', 'KeyInfo',
+        function ($resource, toastr, Crud, Pico, EmrInfo, KeyInfo) {
         var service = {};
         service.recommendation = {};
 
@@ -257,11 +258,54 @@ angular.module('webUiApp')
                 });
         };
 
+        service.addPico = function (recommendationId, pico) {
+            return resource.addPico({id: recommendationId}, pico)
+                .$promise.then(function(data) {
+                    toastr.success('La til pico');
+                    return data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
         service.deletePico = function (index, picoToDelete) {
             Pico.deletePico(picoToDelete).then(function (){
                 service.recommendation.picos.splice(index, 1);
             });
         };
+
+
+        service.addEmrInfo = function (recommendationId, emrInfo) {
+            return resource.addPico({id: recommendationId}, emrInfo)
+                .$promise.then(function () {
+                    toastr.success('La til emrInfo');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteEmrInfo = function (index, emrInfoToDelete) {
+            EmrInfo.deleteEmrInfo(emrInfoToDelete).then(function (){
+                service.recommendation.emrInfos.splice(index, 1);
+            });
+        };
+
+
+        service.addKeyInfo = function (recommendationId, keyInfo) {
+            return resource.addPico({id: recommendationId}, keyInfo)
+                .$promise.then(function () {
+                    toastr.success('La til keyInfo');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteKeyInfo = function (index, keyInfoToDelete) {
+            KeyInfo.deleteKeyInfo(keyInfoToDelete).then(function (){
+                service.recommendation.keyInfos.splice(index, 1);
+            });
+        };
+
 
         return service;
     }])
@@ -296,49 +340,269 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('Pico', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'picos/:_id', {},
+    .factory('Pico', ['$resource', 'toastr', 'Crud', 'PicoCode', function ($resource, toastr, Crud, PicoCode) {
+        var service = {};
+
+        var resource =  $resource(apiUrl + 'picos/:_id', {},
             {
                 update: { method: 'PUT' },
                 addPicoCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picocodes/'},
                 addPicoOutcome: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picos/:id/picooutcomes/'}
             });
+
+        service.getPico = function (picoId) {
+            return resource.get({_id: picoId}).
+                $promise.then(function(data) {
+                    service.pico = data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.updatePico = function (pico) {
+            return resource.update({_id: pico.picoId}, pico)
+                .$promise.then(function () {
+                    toastr.success('Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deletePico = function (picoToDelete) {
+            return resource.delete({_id: picoToDelete.picoId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                    //If the recommendation we deleted was the same as the one we're keeping the state of
+                    if(picoToDelete.picoId ===  service.pico.picoId){
+                        service.pico = {};
+                    }
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.addPicoCode = function (picoId, picoCode) {
+            return resource.addPicoCode({id: picoId}, picoCode)
+                .$promise.then(function(data) {
+                    toastr.success('La til pico kode');
+                    return data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deletePicoCode = function (index) {
+            var picoCode = service.pico.picoCodes[index];
+            PicoCode.deletePicoCode(picoCode).then(function (){
+                service.pico.picoCodes.splice(index, 1);
+            });
+        };
+
+        service.addPicoOutcome = function (picoId, picoOutcome) {
+            return resource.addPicoOutcome({id: picoId}, picoOutcome)
+                .$promise.then(function(data) {
+                    toastr.success('La til pico outcome');
+                    return data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deletePicoOutcome = function (index) {
+            var picoOutcome = service.pico.picoOutcomes[index];
+            PicoOutcome.deletePicoOutcome(picoOutcome).then(function (){
+                service.pico.picoOutcomes.splice(index, 1);
+            });
+        };
+
+
+        return service;
     }])
-    .factory('PicoCode', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'picoCodes/:_id', {},
+    .factory('PicoCode', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
+        var service = {};
+
+        var resource = $resource(apiUrl + 'picoCodes/:_id', {},
             {
                 update: { method: 'PUT' },
                 addTaxonomyCode: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'picoCodes/:id/taxonomyCodes/'}
             });
+
+        service.deletePicoCode = function (picoCode) {
+            return resource.delete({_id: picoCode.picoCodeId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.addTaxonomyCode = function (picoCodeId, taxonomyCode) {
+            return resource.addTaxonomyCode({id: picoCodeId}, taxonomyCode)
+                .$promise.then(function(data) {
+                    toastr.success('La til taksonomikode');
+                    return data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        return service;
     }])
     .factory('TaxonomyCode', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'taxonomycodes/:_id', {},
+        var service = {};
+
+        var resource = $resource(apiUrl + 'taxonomycodes/:_id', {},
             {
                 update: { method: 'PUT' }
             });
+
+        service.deleteTaxonomyCode = function (taxonomyCodeId) {
+            return resource.delete({_id: taxonomyCodeId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
     }])
-    .factory('EmrInfo', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'emrinfos/:_id', {},
+    .factory('EmrInfo', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+        var service = {};
+
+        var resource = $resource(apiUrl + 'emrinfos/:_id', {},
             {
                 update: { method: 'PUT' }
             });
+
+        service.getEmrInfo = function (emrInfoId) {
+            return resource.get({_id: emrInfoId}).
+                $promise.then(function(data) {
+                    service.emrInfo = data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteEmrInfo = function (emrInfoToDelete) {
+            return resource.delete({_id: emrInfoToDelete.keyInfoId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                    //If the recommendation we deleted was the same as the one we're keeping the state of
+                    if(emrInfoToDelete.emrInfoId ===  service.emrInfo.emrInfoId){
+                        service.emrInfo = {};
+                    }
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+        return service;
     }])
-    .factory('KeyInfo', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'keyinfos/:_id', {},
+    .factory('KeyInfo', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+        var service = {};
+
+        var resource = $resource(apiUrl + 'keyinfos/:_id', {},
             {
                 update: { method: 'PUT' }
             });
+
+        service.getKeyInfo = function (keyInfoId) {
+            return resource.get({_id: keyInfoId}).
+                $promise.then(function(data) {
+                    service.keyInfo = data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteKeyInfo = function (keyInfoToDelete) {
+            return resource.delete({_id: keyInfoToDelete.keyInfoId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                    //If the recommendation we deleted was the same as the one we're keeping the state of
+                    if(keyInfoToDelete.keyInfoId ===  service.keyInfo.keyInfoId){
+                        service.keyInfo = {};
+                    }
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        return service;
     }])
-    .factory('PicoOutcome', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'picooutcomes/:_id', {},
+    .factory('PicoOutcome', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
+        var service = {};
+
+        var resource = $resource(apiUrl + 'picooutcomes/:_id', {},
             {
                 update: { method: 'PUT' }
             });
+
+        service.getPicoOutcome = function (picoOutcomeId) {
+            return resource.get({_id: picoOutcomeId}).
+                $promise.then(function(data) {
+                    service.picoOutcome = data;
+                    //$location.path(baseUrl + data.sectionId);
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.updatePicoOutcome = function (picoOutcome) {
+            return resource.update({_id: picoOutcome.picoOutcomeId}, picoOutcome)
+                .$promise.then(function () {
+                    toastr.success('Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deletePicoOutcome = function (picoOutcome) {
+            return resource.delete({_id: picoOutcome.picoOutcomeId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                    //If the recommendation we deleted was the same as the one we're keeping the state of
+                    if(picoOutcome.picoOutcomeId ===  service.picoOutcome.picoOutcomeId){
+                        service.picoOutcome = {};
+                    }
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        return service;
     }])
-    .factory('Reference', ['$resource', function ($resource) {
-        return $resource(apiUrl + 'referances/:_id', {},
+    .factory('Reference', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
+        var service = {};
+
+        var resource = $resource(apiUrl + 'referances/:_id', {},
             {
                 update: { method: 'PUT' }
             });
+
+        service.getReference = function (referenceId) {
+            return resource.get({_id: referenceId}).
+                $promise.then(function(data) {
+                    service.reference = data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        service.deleteReference = function (reference) {
+            return resource.delete({_id: reference.referenceId})
+                .$promise.then(function () {
+                    toastr.success('Slettet');
+                    //If the recommendation we deleted was the same as the one we're keeping the state of
+                    if(reference.referenceId ===  service.reference.referenceId){
+                        service.reference = {};
+                    }
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
+        return service;
     }])
 ;

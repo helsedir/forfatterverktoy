@@ -72,15 +72,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteKeyInfoBtnClick = function (index){
-            Recommendation.deleteKeyInfo(index, $scope.recommendation.keyinfo[index])
-            var keyInfoToDelete = $scope.recommendation.keyInfo[index];
-            KeyInfo.delete({ _id: keyInfoToDelete.keyInfoId })
-                .$promise.then(function(){
-                toastr.success('keyInfo: ' + keyInfoToDelete.keyInfoId, 'Slettet');
-                $scope.recommendation.keyInfo.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            Recommendation.deleteKeyInfo(index, $scope.recommendation.keyinfo[index]);
         };
 
         $scope.editReferencesBtnClick = function() {

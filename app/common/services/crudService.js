@@ -8,17 +8,7 @@
  * Service in the webUiApp.
  */
 angular.module('webUiApp')
-  .service('Crud', ['EmrInfo', 'KeyInfo', 'toastr', '$location', function crud(EmrInfo, KeyInfo, toastr, $location) {
-
-    this.delete= function(item, location, type, id){
-        eval(type).delete({ _id: eval(id) })
-           .$promise.then(function(){
-           toastr.success(type, 'Slettet');
-           $location.path(location);
-       }, function(error){
-           handlePostError(error);
-       });
-    };
+  .service('Crud', ['toastr', function crud(toastr) {
 
     this.handlePostError = function(error){
       handlePostError(error);
