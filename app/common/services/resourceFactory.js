@@ -7,9 +7,8 @@
  * # Guideline
  * Factory in the webUiApp.
  */
-var apiUrl = 'http://localhost:50500/api/v1/';
 angular.module('webUiApp')
-    .factory('Guideline', ['$resource', 'toastr', 'Crud', 'Section', function ($resource, toastr, Crud, Section) {
+    .factory('Guideline', ['$resource', 'apiUrl', 'toastr', 'Crud', 'Section', 'apiUrl', function ($resource, apiUrl, toastr, Crud, Section) {
         var service = {};
         service.guidelines = [];
 
@@ -127,7 +126,7 @@ angular.module('webUiApp')
         return service;
 
     }])
-    .factory('Section', ['$resource', 'toastr', 'Crud', 'Recommendation', function ($resource, toastr, Crud, Recommendation) {
+    .factory('Section', ['$resource', 'apiUrl', 'toastr', 'Crud', 'Recommendation', function ($resource, apiUrl, toastr, Crud, Recommendation) {
         var service = {};
         service.section = {};
 
@@ -210,8 +209,8 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('Recommendation', ['$resource', 'toastr', 'Crud', 'Pico', 'EmrInfo', 'KeyInfo',
-        function ($resource, toastr, Crud, Pico, EmrInfo, KeyInfo) {
+    .factory('Recommendation', ['$resource', 'apiUrl', 'toastr', 'Crud', 'Pico', 'EmrInfo', 'KeyInfo',
+        function ($resource, apiUrl, toastr, Crud, Pico, EmrInfo, KeyInfo) {
         var service = {};
         service.recommendation = {};
 
@@ -339,7 +338,7 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('Author', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+    .factory('Author', ['$resource', 'apiUrl', 'toastr', 'Crud', function ($resource, apiUrl, toastr, Crud) {
         var service = {};
         service.authors = [];
 
@@ -370,7 +369,7 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('Pico', ['$resource', 'toastr', 'Crud', 'PicoCode', function ($resource, toastr, Crud, PicoCode) {
+    .factory('Pico', ['$resource', 'apiUrl', 'toastr', 'Crud', 'PicoCode', 'PicoOutcome', function ($resource, apiUrl, toastr, Crud, PicoCode, PicoOutcome) {
         var service = {};
 
         var resource =  $resource(apiUrl + 'picos/:_id', {},
@@ -449,7 +448,7 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('PicoCode', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
+    .factory('PicoCode', ['$resource', 'apiUrl', 'Crud', 'toastr', 'apiUrl', function ($resource, apiUrl, Crud, toastr) {
         var service = {};
 
         var resource = $resource(apiUrl + 'picoCodes/:_id', {},
@@ -479,7 +478,7 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('TaxonomyCode', ['$resource', function ($resource) {
+    .factory('TaxonomyCode', ['$resource', 'apiUrl', 'toastr', 'Crud', function ($resource, apiUrl, toastr, Crud) {
         var service = {};
 
         var resource = $resource(apiUrl + 'taxonomycodes/:_id', {},
@@ -496,7 +495,7 @@ angular.module('webUiApp')
                 });
         };
     }])
-    .factory('EmrInfo', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+    .factory('EmrInfo', ['$resource', 'apiUrl', 'toastr', 'Crud', function ($resource, apiUrl, toastr, Crud) {
         var service = {};
 
         var resource = $resource(apiUrl + 'emrinfos/:_id', {},
@@ -528,7 +527,7 @@ angular.module('webUiApp')
         };
         return service;
     }])
-    .factory('KeyInfo', ['$resource', 'toastr', 'Crud', function ($resource, toastr, Crud) {
+    .factory('KeyInfo', ['$resource', 'apiUrl', 'toastr', 'Crud', function ($resource, apiUrl, toastr, Crud) {
         var service = {};
 
         var resource = $resource(apiUrl + 'keyinfos/:_id', {},
@@ -561,7 +560,7 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('PicoOutcome', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
+    .factory('PicoOutcome', ['$resource', 'apiUrl', 'Crud', 'toastr', function ($resource, apiUrl, Crud, toastr) {
         var service = {};
 
         var resource = $resource(apiUrl + 'picooutcomes/:_id', {},
@@ -603,7 +602,7 @@ angular.module('webUiApp')
 
         return service;
     }])
-    .factory('Reference', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
+    .factory('Reference', ['$resource', 'apiUrl', 'Crud', 'toastr', function ($resource, apiUrl, Crud, toastr) {
         var service = {};
         service.references = [];
 

@@ -227,4 +227,5 @@ angular
 
         $urlRouterProvider.otherwise('/');
 
-    }]);
+    }])
+    .value('apiUrl', 'http://localhost:50500/api/v1/');
