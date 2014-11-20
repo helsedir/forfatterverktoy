@@ -81,17 +81,15 @@ angular.module('webUiApp')
                     templateUrl: 'components/guidelines/guideline/section/recommendation/_referencesmodal.html',
                     controller: ['ModalService', '$scope', 'Reference', function (ModalService, $scope, Reference) {
                       $scope.isCollapsed = true;
-                      Reference.query().$promise.then(function(references){
-                      $scope.references = references;
-                      for (var i = $scope.references.length - 1; i >= 0; i--) {
-                        //If reference is in recommendation, make checkbox checked
-                        if(isReferenceInRecommendation($scope.references[i])){
-                          $scope.references[i].checked = true;
-                        }
-                      }
-                      }, function(error){
-                        toastr.error(error.data.message, 'Error!');
-                      });
+                        Reference.getReferences().then(function () {
+                            $scope.references = Reference.references;
+                            for (var i = $scope.references.length - 1; i >= 0; i--) {
+                                //If reference is in recommendation, make checkbox checked
+                                if(isReferenceInRecommendation($scope.references[i])){
+                                    $scope.references[i].checked = true;
+                                }
+                            }
+                        });
 
                        $scope.save = function () {
                         for (var i = $scope.references.length - 1; i >= 0; i--) {
@@ -108,23 +106,15 @@ angular.module('webUiApp')
 
                       $scope.openCreateReference = function (){
                         $scope.isCollapsed = !$scope.isCollapsed;
-                        $scope.reference = new Reference();
+                        //$scope.reference = new Reference();
                       };
 
                       $scope.saveReference = function (){
                         //$scope.author = new Author();
-                        $scope.reference.$save().then(function (data){
-                          
-                          toastr.success('Opprettet referanse');
-                          data.checked = true;
-                          $scope.references.push(data);
-                          $scope.isCollapsed = true;
-                        
-                        }, function (error){
-
-                          Crud.handlePostError(error);
-
-                        });
+                          Reference.createReference($scope.reference).then(function (data) {
+                              data.checked = true;
+                              $scope.isCollapsed = true;
+                          });
                       };
 
                     }]
@@ -145,29 +135,10 @@ angular.module('webUiApp')
         }
 
         function addReferenceToRecommendation(reference){
-          Recommendation.addReference({id: $scope.recommendation.recommendationId, referenceId: reference.referenceId})
-          .$promise.then(function(){ 
-            toastr.success('La til referanse i anbefalingen');
-            $scope.recommendation.references.push(reference);
-          }, 
-          function(error){
-            Crud.handlePostError(error);
-          });
+          Recommendation.addReference(reference);
         }
 
         function removeReferenceFromRecommendation(reference){
-          Recommendation.deleteReference({id: $scope.recommendation.recommendationId, referenceId: reference.referenceId})
-          .$promise.then(function(){
-            toastr.success('Fjernet referanse fra anbefalingen');
-            //Remove reference from list
-            for (var i = $scope.recommendation.references.length - 1; i >= 0; i--) {
-              if($scope.recommendation.references[i].referenceId == reference.referenceId){
-                $scope.recommendation.references.splice(i, 1);
-              }
-            }
-          },
-          function(error){
-            Crud.handlePostError(error);
-          });
+            Recommendation.removeReference(reference.referenceId);
         }
     }]);

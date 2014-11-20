@@ -276,9 +276,10 @@ angular.module('webUiApp')
 
 
         service.addEmrInfo = function (recommendationId, emrInfo) {
-            return resource.addPico({id: recommendationId}, emrInfo)
-                .$promise.then(function () {
+            return resource.addEmrInfo({id: recommendationId}, emrInfo)
+                .$promise.then(function (data) {
                     toastr.success('La til emrInfo');
+                    return data;
                 }, function (error){
                     Crud.handlePostError(error);
                 });
@@ -292,9 +293,10 @@ angular.module('webUiApp')
 
 
         service.addKeyInfo = function (recommendationId, keyInfo) {
-            return resource.addPico({id: recommendationId}, keyInfo)
-                .$promise.then(function () {
+            return resource.addKeyInfo({id: recommendationId}, keyInfo)
+                .$promise.then(function (data) {
                     toastr.success('La til keyInfo');
+                    return data;
                 }, function (error){
                     Crud.handlePostError(error);
                 });
@@ -305,6 +307,34 @@ angular.module('webUiApp')
                 service.recommendation.keyInfos.splice(index, 1);
             });
         };
+
+            service.addReference = function (reference) {
+                return resource.addReference({id: service.recommendation.recommendationId, referenceId: reference.referenceId})
+                    .$promise.then(function(){
+                        toastr.success('La til referanse i anbefaling');
+                        service.recommendation.references.push(reference);
+                    },
+                    function(error){
+                        Crud.handlePostError(error);
+                    });
+            };
+
+            service.removeReference = function (referenceId) {
+                return resource.deleteReference({id: service.recommendation.recommendationId, referenceId: referenceId})
+                    .$promise.then(function(){
+                        toastr.success('Fjernet referanse fra anbefalingen');
+                        //Remove reference from list
+                        for (var i = service.recommendation.references.length - 1; i >= 0; i--) {
+                            if(service.recommendation.references[i].referenceId == referenceId){
+                                service.recommendation.references.splice(i, 1);
+                            }
+                        }
+                    },
+                    function(error){
+                        Crud.handlePostError(error);
+                    });
+            };
+
 
 
         return service;
@@ -484,12 +514,12 @@ angular.module('webUiApp')
                 });
         };
 
-        service.deleteEmrInfo = function (emrInfoToDelete) {
-            return resource.delete({_id: emrInfoToDelete.keyInfoId})
+        service.deleteEmrInfo = function (id) {
+            return resource.delete({_id: id})
                 .$promise.then(function () {
                     toastr.success('Slettet');
                     //If the recommendation we deleted was the same as the one we're keeping the state of
-                    if(emrInfoToDelete.emrInfoId ===  service.emrInfo.emrInfoId){
+                    if(id ===  service.emrInfo.emrInfoId){
                         service.emrInfo = {};
                     }
                 }, function (error){
@@ -516,12 +546,12 @@ angular.module('webUiApp')
                 });
         };
 
-        service.deleteKeyInfo = function (keyInfoToDelete) {
-            return resource.delete({_id: keyInfoToDelete.keyInfoId})
+        service.deleteKeyInfo = function (id) {
+            return resource.delete({_id: id})
                 .$promise.then(function () {
                     toastr.success('Slettet');
                     //If the recommendation we deleted was the same as the one we're keeping the state of
-                    if(keyInfoToDelete.keyInfoId ===  service.keyInfo.keyInfoId){
+                    if(id ===  service.keyInfo.keyInfoId){
                         service.keyInfo = {};
                     }
                 }, function (error){
@@ -575,11 +605,21 @@ angular.module('webUiApp')
     }])
     .factory('Reference', ['$resource', 'Crud', 'toastr', function ($resource, Crud, toastr) {
         var service = {};
+        service.references = [];
 
         var resource = $resource(apiUrl + 'referances/:_id', {},
             {
                 update: { method: 'PUT' }
             });
+
+        service.getReferences = function () {
+            return resource.query().
+                $promise.then(function(data) {
+                    service.references = data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
 
         service.getReference = function (referenceId) {
             return resource.get({_id: referenceId}).
@@ -589,6 +629,20 @@ angular.module('webUiApp')
                     Crud.handlePostError(error);
                 });
         };
+
+        service.createReference = function (reference) {
+            return resource.save(reference)
+                .$promise.then(function (data) {
+                    //update the object
+                    service.reference = data;
+                    service.references.push(data);
+                    toastr.success('Lagret');
+                    return data;
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
 
         service.deleteReference = function (reference) {
             return resource.delete({_id: reference.referenceId})
