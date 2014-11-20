@@ -20,38 +20,16 @@ angular.module('webUiApp')
         var recommendationId = $stateParams.recommendationId;
         var referenceId = $stateParams.referenceId;
        
-        //Get all authors
-        Reference.query(function(data){
-            $scope.references = data;
+        //Get all references
+        Reference.getReferences().then(function () {
+           $scope.references = Reference.references;
         });
-        
 
-        $scope.updateOrCreateReference = function() {
-            if(referenceId != 0){
-                Reference.update({ _id: referenceId }, $scope.reference)
-                    .$promise.then(function(data){
-                        toastr.success(data.summary, 'Lagret');
-                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/'+ data.referenceId);
-                    }, function(error){
-                        Crud.handlePostError(error);
-                    });
-            }
-
-            else if(typeof(recommendationId) != 'undefined' && recommendationId != null)
-            {
-                Recommendation.addReference({id: recommendationId}, $scope.reference)
-                    .$promise.then(function(data){
-                        toastr.success(data.summary, 'Opprettet Reference');
-                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/reference/'+ data.referenceId);
-                    },function(error){
-                        Crud.handlePostError(error);
-                    });
-            }
-        };
 
         $scope.updateReferenceBtnClick = function(referenceId, arrayIndex){
           //Get the reference we want to edit
-          Reference.get({_id: referenceId}).$promise.then(function(reference){
+            Reference.getReference(referenceId).then(function () {
+                var reference = Reference.reference;
             
             ModalService.showModal({
                   templateUrl: 'components/reference/_createorupdatereferencemodal.html',
