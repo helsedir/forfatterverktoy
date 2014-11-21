@@ -20,10 +20,13 @@ angular.module('webUiApp')
             });
     };
 
-    service.deleteGuideline = function (guidelineToDelete, index) {
-        return resource.delete({_id: guidelineToDelete.guidelineId})
+    service.deleteGuideline = function (id, index) {
+        return resource.delete({_id: id})
             .$promise.then(function () {
-                toastr.success(guidelineToDelete.heading, 'Slettet');
+                toastr.success('Slettet');
+                if (service.guideline.guidelineId == id) {
+                    service.guideline = {};
+                }
                 service.guidelines.splice(index, 1);
             }, function (error){
                 Crud.handlePostError(error);
@@ -43,8 +46,9 @@ angular.module('webUiApp')
 
     service.updateGuideline = function (guidelineToUpdate) {
         return resource.update({_id: guidelineToUpdate.guidelineId}, guidelineToUpdate)
-            .$promise.then(function () {
+            .$promise.then(function (data) {
                 toastr.success(guidelineToUpdate.title, 'Lagret');
+                service.guideline = data;
             }, function (error){
                 Crud.handlePostError(error);
             });
@@ -64,6 +68,7 @@ angular.module('webUiApp')
         return resource.addSection({id: guidelineId}, sectionToAdd)
             .$promise.then(function(data) {
                 toastr.success(data.heading, 'La til seksjon i retningslinje');
+                service.guideline.sections.push(data);
                 return data;
                 //$location.path(baseUrl + data.sectionId);
             }, function (error){
@@ -72,7 +77,7 @@ angular.module('webUiApp')
     };
 
     service.deleteSection = function (sectionToDelete, index) {
-        Section.deleteSection(sectionToDelete).then(function () {
+        return Section.deleteSection(sectionToDelete).then(function () {
             service.guideline.sections.splice(index, 1);
         });
     };

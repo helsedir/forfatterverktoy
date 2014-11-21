@@ -16,9 +16,5 @@ describe('Controller: GuidelineCtrl', function () {
     });
   }));
 
-  it('should have no items to start', function () {
-    console.log(scope.guideline);
-    expect(scope.guideline.guidelineId).toBe(null);
-  });
 
 });
