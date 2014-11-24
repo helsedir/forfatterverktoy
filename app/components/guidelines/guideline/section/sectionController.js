@@ -8,7 +8,7 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', 'Crud', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope, Crud) {
+  .controller('SectionCtrl', ['$scope', 'Section', 'Guideline', 'Recommendation', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', function ($scope, Section, Guideline, Recommendation, $stateParams, $location, toastr, ModalService, $rootScope) {
     if($stateParams.guidelineId){
       $scope.guidelineId = $stateParams.guidelineId;
     }
@@ -23,11 +23,12 @@ angular.module('webUiApp')
     $rootScope.sectionLabel = ' - ny seksjon';
 
     if(sectionId != 0)
-    {    
-      Section.get({_id: sectionId}, function(data){
-        $scope.section = data;
-        $rootScope.sectionLabel = ' - ' + data.heading;
+    {
+      Section.getSection(sectionId).then(function () {
+        $scope.section = Section.section;
+        $rootScope.sectionLabel = ' - ' + Section.section.heading;
       });
+
     }
     
     //If parentsection id is defined we are creating a section under a section
@@ -35,42 +36,28 @@ angular.module('webUiApp')
     $scope.updateOrCreateSection = function() {
       if(sectionId == 0)
       {
+        //section under section
         if(typeof(parentSectionId) != 'undefined' && parentSectionId != null)
         {
-          createSection(Section, parentSectionId);
+          Section.addSection(parentSectionId, $scope.section).then(function () {
+            console.log(Section.section.sectionId);
+            $location.path(baseUrl + Section.section.sectionId);
+          });
         }
+        //section under guideline
         else if(typeof(guidelineId) != 'undefined' && guidelineId != null)
         {
-          createSection(Guideline, guidelineId);
+          Guideline.addSection(guidelineId, $scope.section).then(function (data) {
+            $location.path(baseUrl + data.sectionId);
+          });
         }
       }
       else
       {
-        updateSection(Section, $scope.section.sectionId);
+        Section.updateSection($scope.section);
       }
     };
 
-    //Creates a new Section
-    //The resource provided must have an addSection method.
-    var createSection = function (resource, id){
-      resource.addSection({id: id }, $scope.section)
-      .$promise.then(function(data){
-        toastr.success(data.heading, 'Opprettet seksjon');
-        $location.path(baseUrl + data.sectionId);
-      },
-      function(error){
-        Crud.handlePostError(error);
-      });
-    };
-
-    var updateSection = function(resource, id){
-        resource.update({ _id: id }, $scope.section)
-        .$promise.then(function(data){
-          toastr.success(data.heading, 'Lagret');
-        }, function(error){
-          Crud.handlePostError(error);
-        });
-    };
 
     $scope.addSectionBtnClick = function(){
       $location.path(baseUrl + '0').search('parentSectionId', sectionId);
@@ -89,34 +76,21 @@ angular.module('webUiApp')
       }
       else{
         sectionToDelete = $scope.section;
-      } 
-      Section.delete({ _id: sectionToDelete.sectionId })
-        .$promise.then(function(){
-          toastr.success(sectionToDelete.heading, 'Slettet');
+      }
 
-          if(typeof index != 'undefined'){
-            $scope.section.childSections.splice(index, 1);
-          }
-          else{
-            $location.path('/guideline/'+guidelineId);
-          }
-        }, function(error){
-          Crud.handlePostError(error);
-        });
+      //Delete the section
+      Section.deleteSection(sectionToDelete, index).then(function (){
+        //If we deleted a section (not childsection)
+        if(typeof index == 'undefined'){
+          $location.path('/guideline/'+guidelineId);
+        }
+      });
     };
 
     $scope.deleteRecommendationBtnClick = function(index){
       var recommendationToDelete = $scope.section.recommendations[index];
-      Recommendation.delete({_id: recommendationToDelete.recommendationId})
-          .$promise.then(function(){
-
-            toastr.success(recommendationToDelete.heading, 'Slettet');
-            $scope.section.recommendations.splice(index, 1);
-
-            }, function(error){
-            Crud.handlePostError(error);
-          });
-      };
+      Section.deleteRecommendation(recommendationToDelete, index);
+    };
 
     $scope.editSortOrderRecommendationBtnClick = function() {
             ModalService.showModal({

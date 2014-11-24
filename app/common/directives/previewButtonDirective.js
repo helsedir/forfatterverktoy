@@ -27,6 +27,10 @@ angular.module('webUiApp')
       			scope.text = 'anbefaling';
       			scope.url = baseUrl + $stateParams.guidelineId + '/section/' + $stateParams.sectionId + '/recommendation/' + $stateParams.recommendationId;
       			break;
+			default:
+				scope.text = 'retningslinjer';
+				scope.url = baseUrl;
+				break;
       	}
       }
     };

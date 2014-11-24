@@ -27,9 +27,16 @@ module.exports = function(config) {
     'bower_components/angular-toastr/dist/angular-toastr.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js',
     'bower_components/angular-ng-breadcrumbs/dist/ng-breadcrumbs.js',
-      'app/scripts/**/*.js',
-      'app/scripts/*.js',
-      'test/spec/controllers/*.js'
+      'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-modal-service/dst/angular-modal-service.js',
+      'bower_components/angular-bootstrap/ui-bootstrap.js',
+      'app/assets/libs/angular-redactor.js',
+      'app/app.js',
+      'app/commons/services/crudService.js',
+      'app/common/**/*.js',
+      'app/components/**/*.js',
+      'test/spec/controllers/*.js',
+      'test/spec/services/*.js',
     ],
 
 
@@ -41,13 +48,14 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'app/components/**/*.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
 
     // web server port

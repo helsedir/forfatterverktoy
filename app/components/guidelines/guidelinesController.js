@@ -8,18 +8,15 @@
  * Controller of the webUiApp
  */
 angular.module('webUiApp')
-  .controller('GuidelinesCtrl',['$scope', '$resource', 'Guideline','toastr', '$location', 'Crud', function ($scope, $resource, Guideline, toastr, $location, Crud) {
+  .controller('GuidelinesCtrl',['$scope', '$resource', 'Guideline', '$location', function ($scope, $resource, Guideline, $location) {
 
-
-  	Guideline.query().$promise.then(function(guidelines){
-  		//success
-		$scope.guidelines = guidelines;
-  	}, function(error){
-  		toastr.error(error.data.message, 'Error!');
-  	});
+    //Get all the guidelines
+  	Guideline.getGuidelines().then(function () {
+      $scope.guidelines = Guideline.guidelines;
+    });
 
   	$scope.addGuidelineBtnClick = function(){
-		  $location.path('/guideline/0');
+      $location.path('/guideline/0');
   	}; 
 
     $scope.editGuidelineBtnClick = function(index){
@@ -27,14 +24,8 @@ angular.module('webUiApp')
     };
 
     $scope.deleteGuidelineBtnClick = function(index){
-      var guidelineToDelete = $scope.guidelines[index];
-      Guideline.delete({ _id: guidelineToDelete.guidelineId })
-      .$promise.then(function(){
-        toastr.success(guidelineToDelete.title, 'Slettet');
-        $scope.guidelines.splice(index, 1);
-      }, function(error){
-          Crud.handlePostError(error);
-      });
+      var guidelineToDelete = Guideline.guidelines[index];
+      Guideline.deleteGuideline(guidelineToDelete, index);
     };
 
   }]);

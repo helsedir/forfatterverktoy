@@ -8,68 +8,47 @@
  * Controller of the webUiApp  
  */
 angular.module('webUiApp')
-  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope', 'Crud',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService, $rootScope, Crud) {
+  .controller('GuidelineCtrl',['$scope', 'Guideline', 'Section', 'Author', '$stateParams', '$location', 'toastr', 'ModalService', '$rootScope',  function ($scope, Guideline, Section, Author, $stateParams, $location, toastr, ModalService, $rootScope) {
   	var guidelineId = $stateParams.guidelineId;
     var baseUrl = '/guideline/';
     $scope.baseUrl = baseUrl;
 
     if(guidelineId == 0)
     {
-      $scope.guideline = new Guideline();
+      //$scope.guideline = new Guideline();
       $rootScope.guidelineLabel = ' - ny retningslinje';
     }
     else
-    {      
-      Guideline.get({_id: guidelineId}, function(data){
-        $scope.guideline = data;
-        $rootScope.guidelineLabel = ' - ' + data.shortTitle;
+    {
+      Guideline.getGuideline(guidelineId).then(function () {
+        $scope.guideline = Guideline.guideline;
       });
     }
     
-    $scope.updateOrCreateGuideline = function() {
+    $scope.updateOrCreateGuideline = function () {
       if($scope.guideline.guidelineId == null)
       {
-        $scope.guideline.$save().then(function(data){
-            toastr.success(data.title, 'Opprettet Retninglinje');
-            $location.path(baseUrl + data.guidelineId);
-
-        }, function (error){
-            Crud.handlePostError(error);
+        Guideline.saveGuideline($scope.guideline).then(function () {
+          $location.path(baseUrl + Guideline.guideline.guidelineId);
         });
       }
       else
       {
-        Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
-        .$promise.then(function(){
-
-          toastr.success($scope.guideline.title, 'Lagret');
-        }, function(error){
-            Crud.handlePostError(error);
-        });
+        Guideline.updateGuideline($scope.guideline);
       }
     };
 
-    $scope.removeGuidelineBtnClick = function() {
-      $scope.guideline.isDeleted = true;
-    	Guideline.update({ _id: $scope.guideline.guidelineId }, $scope.guideline)
-      .$promise.then(function(){
 
-        toastr.success($scope.guideline.title, 'Slettet');
+
+    $scope.removeGuidelineBtnClick = function() {
+      Guideline.deleteGuideline($scope.guideline).then(function () {
         $location.path('/');
-      }, function(error){
-            Crud.handlePostError(error);
-        });
+      });
     };
 
     $scope.deleteSectionBtnClick = function(index) {
-      var sectionToDelete = $scope.guideline.sections[index];
-      Section.delete({ _id: sectionToDelete.sectionId })
-      .$promise.then(function(){
-        toastr.success(sectionToDelete.heading, 'Slettet');
-        $scope.guideline.sections.splice(index, 1);
-      }, function(error){
-        Crud.handlePostError(error);
-      });
+      var sectionToDelete = Guideline.guideline.sections[index];
+      Guideline.deleteSection(sectionToDelete);
     };
 
 
@@ -81,52 +60,46 @@ angular.module('webUiApp')
 
             ModalService.showModal({
                 templateUrl: 'components/guidelines/guideline/_authormodal.html',
-                controller: ['ModalService', '$scope', 'Author', function (ModalService, $scope, Author) {
+                controller: ['ModalService', '$scope', 'Author', 'Guideline', function (ModalService, $scope, Author, Guideline) {
                   $scope.isCollapsed = true;
-                  Author.query().$promise.then(function(authors){
-                  $scope.authors = authors;
-                  for (var i = $scope.authors.length - 1; i >= 0; i--) {
-                    //If author is in guideline, make checkbox checked
-                    if(isAuthorInGuideline($scope.authors[i])){
-                      $scope.authors[i].checked = true;
+
+                  function checkCheckboxes () {
+                    for (var i = $scope.authors.length - 1; i >= 0; i--) {
+                      //If author is in guideline, make checkbox checked
+                      if(Guideline.isAuthorInGuideline($scope.authors[i])){
+                        $scope.authors[i].checked = true;
+                      }
                     }
                   }
-                  }, function(error){
-                    toastr.error(error.data.message, 'Error!');
+
+                  Author.getAuthors().then(function () {
+                    $scope.authors = Author.authors;
+                    checkCheckboxes();
                   });
 
                   $scope.openCreateAuthor = function (){
-
                     $scope.isCollapsed = !$scope.isCollapsed;
-                    $scope.author = new Author();
+                    //$scope.author = new Author();
                   };
 
                   $scope.saveAuthor = function (){
-                    //$scope.author = new Author();
-                    $scope.author.$save().then(function (data){
-                      
-                      toastr.success(data.name, 'Opprettet forfatter');
-                      data.checked = true;
-                      $scope.authors.push(data);
+                    Author.createAuthor($scope.author).then(function () {
+                      $scope.author.checked = true;
+                      $scope.authors.push($scope.author);
                       $scope.isCollapsed = true;
-                    
-                    }, function (error){
-
-                      Crud.handlePostError(error);
-
                     });
                   };
                   
-
+                  //Called when we close the modal
                    $scope.save = function () {
                     for (var i = $scope.authors.length - 1; i >= 0; i--) {
                       //If checked and not in guideline add author to guideline
-                      if($scope.authors[i].checked && !isAuthorInGuideline($scope.authors[i])){
-                        addAuthorToGuideline($scope.authors[i]);
+                      if($scope.authors[i].checked && !Guideline.isAuthorInGuideline($scope.authors[i])){
+                        Guideline.addAuthor($scope.authors[i]);
                       }
                       //If unchecked remove author from guideline
-                      else if(!$scope.authors[i].checked && isAuthorInGuideline($scope.authors[i])){
-                        removeAuthorFromGuideline($scope.authors[i]);
+                      else if(!$scope.authors[i].checked && Guideline.isAuthorInGuideline($scope.authors[i])){
+                        Guideline.removeAuthor($scope.authors[i]);
                       }
                     }
                    };
@@ -138,42 +111,6 @@ angular.module('webUiApp')
             });
         };
     $scope.addAuthorBtnClick.$inject = ['$scope', 'ModalService'];
-
-    //Check if author passed is in this guideline's collection of authors
-    function isAuthorInGuideline(author) {
-      for (var i = $scope.guideline.authors.length - 1; i >= 0; i--) {
-        if($scope.guideline.authors[i].authorId == author.authorId){
-          return true;
-        }
-      }
-    }
-
-    function addAuthorToGuideline(author){
-      Guideline.addAuthor({id: $scope.guideline.guidelineId, authorId: author.authorId})
-      .$promise.then(function(){ 
-        toastr.success(author.name, 'La til forfatter i retningslinje');
-        $scope.guideline.authors.push(author);
-      }, 
-      function(error){
-        Crud.handlePostError(error);
-      });
-    }
-
-    function removeAuthorFromGuideline(author){
-      Guideline.deleteAuthor({id: $scope.guideline.guidelineId, authorId: author.authorId})
-      .$promise.then(function(){
-        toastr.success(author.name,'Fjernet forfatter fra retningslinjen');
-        //Remove author from list
-        for (var i = $scope.guideline.authors.length - 1; i >= 0; i--) {
-          if($scope.guideline.authors[i].authorId == author.authorId){
-            $scope.guideline.authors.splice(i, 1);
-          }
-        }
-      },
-      function(error){
-        Crud.handlePostError(error);
-      });
-    }
 
     $scope.editSortOrderBtnClick = function() {
             ModalService.showModal({
@@ -189,16 +126,13 @@ angular.module('webUiApp')
                       if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
                         console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
                         $scope.resource[i].sortOrder = i;
-                        Section.update({ _id: $scope.resource[i].sectionId }, $scope.resource[i])
-                        .$promise.then(function(){
-                          
-                        });
+                        Section.updateSection($scope.resource[i]);
                       }
                     }
                   };
                 }],
                 inputs: {
-                  sections: $scope.guideline.sections //inject the sections
+                  sections: Guideline.guideline.sections //inject the sections
                 }
             }).then(function(modal) {
                 modal.element.modal();

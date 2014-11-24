@@ -18,56 +18,37 @@ angular.module('webUiApp')
 
 
         if (recommendationId != 0) {
-            Recommendation.get({_id: recommendationId}, function (data) {
-                $scope.recommendation = data;
+            Recommendation.getRecommendation(recommendationId).then(function () {
+                $scope.recommendation = Recommendation.recommendation;
                 if($scope.recommendation.strength == null){
-                  $scope.recommendation.strength = 'null';
+                    $scope.recommendation.strength = 'null';
                 }
-                $rootScope.recommendationLabel = ' - ' + data.heading; //update breadcrumb
+                $rootScope.recommendationLabel = ' - ' + Recommendation.recommendation.heading; //update breadcrumb
             });
         }
         else {
-          $scope.recommendation = new Recommendation();
-          $scope.recommendation.strength = 'null';
+          //$scope.recommendation = new Recommendation();
+          //$scope.recommendation.strength = 'null';
           $rootScope.recommendationLabel = ' - ny anbefaling'; //update breadcrumb
         }
-
-
 
         $scope.updateOrCreateRecommendation = function () {
 
             if (recommendationId != 0) {
-                Recommendation.update({ _id: recommendationId }, $scope.recommendation)
-                    .$promise.then(function (data) {
-                        $rootScope.recommendationLabel = ' - ' + data.heading; //update breadcrumb
-                        toastr.success(data.heading, 'Lagret');
-                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
-                    }, function (error) {
-                        Crud.handlePostError(error);
-                    });
+                Recommendation.updateRecommendation($scope.recommendation);
             }
 
             else if (typeof(sectionId) != 'undefined' && sectionId != null) {
-                Section.addRecommendation({id: sectionId}, $scope.recommendation)
-                    .$promise.then(function (data) {
-                        $rootScope.recommendationLabel = ' - ' + data.heading; //update breadcrumb
-                        toastr.success(data.heading, 'Opprettet anbefaling');
-                        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
-                    }, function (error) {
-                        Crud.handlePostError(error);
-                    });
+                Section.addRecommendation(sectionId, $scope.recommendation).then(function (data) {
+                    $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/' + data.recommendationId);
+                });
             }
         };
 
         $scope.deleteRecommendationBtnClick = function () {
-            var recommendationToDelete = $scope.recommendation;
-            Recommendation.delete({ _id: recommendationToDelete.recommendationId })
-                .$promise.then(function(){
-                toastr.success('Anbefaling: ' + recommendationToDelete.heading, 'Slettet');
+            Recommendation.deleteRecommendation($scope.recommendation).then(function () {
                 $location.path('/guideline/' + guidelineId + '/section/'+sectionId);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            });
         };
 
         $scope.addPicoBtnClick = function () {
@@ -75,14 +56,7 @@ angular.module('webUiApp')
         };
 
         $scope.deletePicoBtnClick = function (index){
-            var picoToDelete = $scope.recommendation.picos[index];
-            Pico.delete({ _id: picoToDelete.picoId })
-                .$promise.then(function(){
-                toastr.success('Pico: ' + picoToDelete.picoId, 'Slettet');
-                $scope.recommendation.picos.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            Recommendation.deletePico(index, $scope.recommendation.picos[index]);
         };
 
         $scope.addEmrInfoBtnClick = function () {
@@ -90,14 +64,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteEmrInfoBtnClick = function (index){
-            var emrInfoToDelete = $scope.recommendation.emrInfo[index];
-            EmrInfo.delete({ _id: emrInfoToDelete.emrInfoId })
-                .$promise.then(function(){
-                toastr.success('emrInfo: ' + emrInfoToDelete.emrInfoId, 'Slettet');
-                $scope.recommendation.emrInfo.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            Recommendation.deleteEmrInfo(index, $scope.recommendation.emrinfo[index]);
         };
 
         $scope.addKeyInfoBtnClick = function () {
@@ -105,14 +72,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteKeyInfoBtnClick = function (index){
-            var keyInfoToDelete = $scope.recommendation.keyInfo[index];
-            KeyInfo.delete({ _id: keyInfoToDelete.keyInfoId })
-                .$promise.then(function(){
-                toastr.success('keyInfo: ' + keyInfoToDelete.keyInfoId, 'Slettet');
-                $scope.recommendation.keyInfo.splice(index, 1);
-              }, function(error){
-                Crud.handlePostError(error);
-              });
+            Recommendation.deleteKeyInfo(index, $scope.recommendation.keyinfo[index]);
         };
 
         $scope.changePublishedStage = function () {
@@ -131,17 +91,15 @@ angular.module('webUiApp')
                     templateUrl: 'components/guidelines/guideline/section/recommendation/_referencesmodal.html',
                     controller: ['ModalService', '$scope', 'Reference', function (ModalService, $scope, Reference) {
                       $scope.isCollapsed = true;
-                      Reference.query().$promise.then(function(references){
-                      $scope.references = references;
-                      for (var i = $scope.references.length - 1; i >= 0; i--) {
-                        //If reference is in recommendation, make checkbox checked
-                        if(isReferenceInRecommendation($scope.references[i])){
-                          $scope.references[i].checked = true;
-                        }
-                      }
-                      }, function(error){
-                        toastr.error(error.data.message, 'Error!');
-                      });
+                        Reference.getReferences().then(function () {
+                            $scope.references = Reference.references;
+                            for (var i = $scope.references.length - 1; i >= 0; i--) {
+                                //If reference is in recommendation, make checkbox checked
+                                if(isReferenceInRecommendation($scope.references[i])){
+                                    $scope.references[i].checked = true;
+                                }
+                            }
+                        });
 
                        $scope.save = function () {
                         for (var i = $scope.references.length - 1; i >= 0; i--) {
@@ -158,23 +116,15 @@ angular.module('webUiApp')
 
                       $scope.openCreateReference = function (){
                         $scope.isCollapsed = !$scope.isCollapsed;
-                        $scope.reference = new Reference();
+                        //$scope.reference = new Reference();
                       };
 
                       $scope.saveReference = function (){
                         //$scope.author = new Author();
-                        $scope.reference.$save().then(function (data){
-                          
-                          toastr.success('Opprettet referanse');
-                          data.checked = true;
-                          $scope.references.push(data);
-                          $scope.isCollapsed = true;
-                        
-                        }, function (error){
-
-                          Crud.handlePostError(error);
-
-                        });
+                          Reference.createReference($scope.reference).then(function (data) {
+                              data.checked = true;
+                              $scope.isCollapsed = true;
+                          });
                       };
 
                     }]
@@ -195,29 +145,10 @@ angular.module('webUiApp')
         }
 
         function addReferenceToRecommendation(reference){
-          Recommendation.addReference({id: $scope.recommendation.recommendationId, referenceId: reference.referenceId})
-          .$promise.then(function(){ 
-            toastr.success('La til referanse i anbefalingen');
-            $scope.recommendation.references.push(reference);
-          }, 
-          function(error){
-            Crud.handlePostError(error);
-          });
+          Recommendation.addReference(reference);
         }
 
         function removeReferenceFromRecommendation(reference){
-          Recommendation.deleteReference({id: $scope.recommendation.recommendationId, referenceId: reference.referenceId})
-          .$promise.then(function(){
-            toastr.success('Fjernet referanse fra anbefalingen');
-            //Remove reference from list
-            for (var i = $scope.recommendation.references.length - 1; i >= 0; i--) {
-              if($scope.recommendation.references[i].referenceId == reference.referenceId){
-                $scope.recommendation.references.splice(i, 1);
-              }
-            }
-          },
-          function(error){
-            Crud.handlePostError(error);
-          });
+            Recommendation.removeReference(reference.referenceId);
         }
     }]);

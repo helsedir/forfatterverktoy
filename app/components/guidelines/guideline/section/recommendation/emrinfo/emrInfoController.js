@@ -15,35 +15,27 @@ angular.module('webUiApp')
   	var emrInfoId = $stateParams.emrInfoId;
 
     if(emrInfoId != 0){
-      EmrInfo.get({_id: emrInfoId}, function(data){
-      $scope.emrInfo = data;
+      EmrInfo.getEmrInfo(emrInfoId).then(function () {
+        $scope.emrInfo = EmrInfo.emrInfo;
       });
     }
 
     $scope.updateOrCreateEmrInfo = function() {
       if(emrInfoId != 0){
-        EmrInfo.update({ _id: emrInfoId }, $scope.emrInfo)
-        .$promise.then(function(data){
-            toastr.success(data.summary, 'Lagret');
-            $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/'+ data.emrInfoId);
-          }, function(error){
-            Crud.handlePostError(error);
-          });
+        EmrInfo.updateEmrInfo($scope.emrInfo);
       }
 
       else if(typeof(recommendationId) != 'undefined' && recommendationId != null)
       {
-        Recommendation.addEmrInfo({id: recommendationId}, $scope.emrInfo)
-        .$promise.then(function(data){
-          toastr.success(data.summary, 'Opprettet EmrInfo');
+        Recommendation.addEmrInfo(recommendationId, $scope.emrInfo).then(function (data) {
           $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId+'/emrinfo/'+ data.emrInfoId);
-        },function(error){
-          Crud.handlePostError(error);
         });
       }
     };
 
     $scope.deleteEmrInfoBtnClick = function () {
-        Crud.delete($scope.emrInfo, '/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId, 'EmrInfo', 'item.emrInfoId');
+      EmrInfo.deleteEmrInfo(emrInfoId).then(function () {
+        $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId);
+      });
     };
     }]);
