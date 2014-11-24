@@ -198,5 +198,101 @@ describe('guidelineFactory', function () {
 
             $httpBackend.flush();
         }));
+    });
+    describe('addAuthor', function () {
+        it('should add author to guideline', inject(function (Guideline) {
+            Guideline.guideline = {
+                guidelineId: 1,
+                "title": "spedbarn",
+                authors: []
+            };
+
+            var author = {
+                "name":"Sjur"
+            }
+
+            $httpBackend.expectPUT(apiUrl+'guidelines/1/authors').respond({
+                "name":"sjur"
+            });
+
+            expect(Guideline.guideline.authors.length).toEqual(0);
+            mockGuidelineResource.addAuthor(author).then(function () {
+                expect(Guideline.guideline.authors.length).toEqual(1);
+            })
+            $httpBackend.flush();
+        }));
+    });
+    describe('removeAuthor', function () {
+       it('Should remove author from guideline', inject (function (Guideline) {
+           Guideline.guideline = {
+               guidelineId: 1,
+               "title": "spedbarn",
+               authors: [
+                   {
+                       authorId: 1,
+                       "name":"Sjur"
+                   },
+                   {
+                       authorId: 2,
+                       "name":"Anton"
+                   }]
+           };
+           var authorToRemove = {
+               authorId: 1,
+               "name":"Sjur"
+           };
+           expect(Guideline.guideline.authors[1]).toBeDefined();
+           $httpBackend.expectDELETE(apiUrl+'guidelines/1/authors/1').respond({});
+
+           mockGuidelineResource.removeAuthor(authorToRemove).then(function () {
+               expect(Guideline.guideline.authors[1]).toBeUndefined();
+           });
+
+           $httpBackend.flush();
+       }));
+    });
+    describe('isAuthorInGuideline', function () {
+
+        it('should return true if author is in guideline', inject (function (Guideline) {
+            Guideline.guideline = {
+                guidelineId: 1,
+                "title": "spedbarn",
+                authors: [
+                    {
+                        authorId: 1,
+                        "name":"Sjur"
+                    },
+                    {
+                        authorId: 2,
+                        "name":"Anton"
+                    }]
+            };
+            var authorInGuideline = {
+                authorId: 1,
+                "name":"Sjur"
+            };
+            expect(Guideline.isAuthorInGuideline(authorInGuideline)).toBeTruthy();
+        }));
+
+        it('should return false if author is not in guideline', inject (function (Guideline) {
+            Guideline.guideline = {
+                guidelineId: 1,
+                "title": "spedbarn",
+                authors: [
+                    {
+                        authorId: 1,
+                        "name":"Sjur"
+                    },
+                    {
+                        authorId: 2,
+                        "name":"Anton"
+                    }]
+            };
+            var authorNotInGuideline = {
+                authorId: 3,
+                "name":"Sjur"
+            };
+            expect(Guideline.isAuthorInGuideline(authorNotInGuideline)).toBeFalsy();
+        }));
     })
 });
