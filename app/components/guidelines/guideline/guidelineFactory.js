@@ -1,5 +1,5 @@
 angular.module('webUiApp')
-.factory('Guideline', ['$resource', 'apiUrl', 'toastr', 'Crud', 'Section', 'apiUrl', function ($resource, apiUrl, toastr, Crud, Section) {
+.factory('Guideline', ['$resource', 'apiUrl', 'NotificationFactory', 'Section', 'apiUrl', function ($resource, apiUrl, NotificationFactory, Section) {
     var service = {};
     service.guidelines = [];
 
@@ -16,20 +16,20 @@ angular.module('webUiApp')
             $promise.then(function (guidelines) {
                 service.guidelines = guidelines;
             }, function(error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
     service.deleteGuideline = function (id, index) {
         return resource.delete({_id: id})
             .$promise.then(function () {
-                toastr.success('Slettet');
+                NotificationFactory.displaySuccess('Slettet');
                 if (service.guideline.guidelineId == id) {
                     service.guideline = {};
                 }
                 service.guidelines.splice(index, 1);
             }, function (error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
@@ -38,19 +38,19 @@ angular.module('webUiApp')
             .$promise.then(function (data) {
                 //update the object
                 service.guideline = data;
-                toastr.success(data.heading, 'Lagret');
+                NotificationFactory.displaySuccess('Lagret', data.heading);
             }, function (error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
     service.updateGuideline = function (guidelineToUpdate) {
         return resource.update({_id: guidelineToUpdate.guidelineId}, guidelineToUpdate)
             .$promise.then(function (data) {
-                toastr.success(guidelineToUpdate.title, 'Lagret');
+                NotificationFactory.displaySuccess('Lagret', guidelineToUpdate.title);
                 service.guideline = data;
             }, function (error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
@@ -58,21 +58,19 @@ angular.module('webUiApp')
         return resource.get({_id: guidelineID}).
             $promise.then(function(data) {
                 service.guideline = data;
-                //$location.path(baseUrl + data.sectionId);
             }, function (error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
     service.addSection = function (guidelineId, sectionToAdd) {
         return resource.addSection({id: guidelineId}, sectionToAdd)
             .$promise.then(function(data) {
-                toastr.success(data.heading, 'La til seksjon i retningslinje');
+                NotificationFactory.displaySuccess('La til seksjon i retningslinje', data.heading);
                 service.guideline.sections.push(data);
                 return data;
-                //$location.path(baseUrl + data.sectionId);
             }, function (error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
@@ -85,18 +83,18 @@ angular.module('webUiApp')
     service.addAuthor = function (author) {
         return resource.addAuthor({id: service.guideline.guidelineId, authorId: author.authorId})
             .$promise.then(function(){
-                toastr.success(author.name, 'La til forfatter i retningslinje');
+                NotificationFactory.displaySuccess('La til forfatter i retningslinje', author.name);
                 service.guideline.authors.push(author);
             },
             function(error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
     service.removeAuthor = function (author) {
         return resource.deleteAuthor({id: service.guideline.guidelineId, authorId: author.authorId})
             .$promise.then(function(){
-                toastr.success(author.name,'Fjernet forfatter fra retningslinjen');
+                NotificationFactory.displaySuccess('Fjernet forfatter fra retningslinjen', author.name);
                 //Remove author from list
                 for (var i = service.guideline.authors.length - 1; i >= 0; i--) {
                     if(service.guideline.authors[i].authorId == author.authorId){
@@ -105,7 +103,7 @@ angular.module('webUiApp')
                 }
             },
             function(error){
-                Crud.handlePostError(error);
+                NotificationFactory.handlePostError(error);
             });
     };
 
