@@ -32,6 +32,7 @@ angular.module('webUiApp')
                     //update the object
                     service.author = data;
                     service.authors.push(data);
+                    return data;
                     toastr.success(data.name, 'Opprettet forfatter');
                 }, function (error){
                     Crud.handlePostError(error);

@@ -10,14 +10,17 @@ describe('Controller: GuidelinesCtrl', function () {
     var location;
     var Guideline;
 
+
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope, $location, _Guideline_) {
         scope = $rootScope.$new();
         location = $location;
         Guideline = _Guideline_;
+
         GuidelinesController = $controller('GuidelinesCtrl', {
             $scope: scope
         });
+        spyOn(Guideline, 'getGuidelines');
     }));
 
     it('should change location to add new guideline', function () {
@@ -38,5 +41,6 @@ describe('Controller: GuidelinesCtrl', function () {
         scope.deleteGuidelineBtnClick(0);
         expect(Guideline.deleteGuideline).toHaveBeenCalledWith(guidelineToDelete, 0);
     });
+
 
 });

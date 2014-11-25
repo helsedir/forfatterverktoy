@@ -84,8 +84,11 @@ angular.module('webUiApp')
 
                   $scope.saveAuthor = function (){
                     Author.createAuthor($scope.author).then(function () {
-                      $scope.author.checked = true;
-                      $scope.authors.push($scope.author);
+                      Author.author.checked = true;
+                      //$scope.author = Author.author;
+
+                      //$scope.author.checked = true;
+                      //$scope.authors.push($scope.author);
                       $scope.isCollapsed = true;
                     });
                   };

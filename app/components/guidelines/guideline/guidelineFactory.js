@@ -81,6 +81,7 @@ angular.module('webUiApp')
     };
 
     service.addAuthor = function (author) {
+        console.log(author.authorId);
         return resource.addAuthor({id: service.guideline.guidelineId, authorId: author.authorId})
             .$promise.then(function(){
                 NotificationFactory.displaySuccess('La til forfatter i retningslinje', author.name);
