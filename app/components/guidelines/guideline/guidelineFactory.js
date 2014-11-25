@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('webUiApp')
 .factory('Guideline', ['$resource', 'apiUrl', 'NotificationFactory', 'Section', 'apiUrl', function ($resource, apiUrl, NotificationFactory, Section) {
     var service = {};
@@ -27,7 +29,9 @@ angular.module('webUiApp')
                 if (service.guideline.guidelineId == id) {
                     service.guideline = {};
                 }
-                service.guidelines.splice(index, 1);
+                if(typeof(index != 'undefined')) {
+                    service.guidelines.splice(index, 1);
+                }
             }, function (error){
                 NotificationFactory.handlePostError(error);
             });
