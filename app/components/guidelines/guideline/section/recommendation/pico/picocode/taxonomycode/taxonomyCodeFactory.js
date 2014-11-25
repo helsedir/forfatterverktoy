@@ -15,4 +15,6 @@ angular.module('webUiApp')
                     Crud.handlePostError(error);
                 });
         };
+
+        return service;
     }]);

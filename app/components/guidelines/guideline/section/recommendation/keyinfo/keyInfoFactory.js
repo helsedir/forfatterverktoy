@@ -18,12 +18,12 @@ angular.module('webUiApp')
                 });
         };
 
-        service.deleteKeyInfo = function (id) {
-            return resource.delete({_id: id})
+        service.deleteKeyInfo = function (keyInfoId) {
+            return resource.delete({_id: keyInfoId})
                 .$promise.then(function () {
                     toastr.success('Slettet');
                     //If the recommendation we deleted was the same as the one we're keeping the state of
-                    if(id ===  service.keyInfo.keyInfoId){
+                    if(typeof(service.keyInfo.keyInfoId != 'undefined') && keyInfoId ===  service.keyInfo.keyInfoId){
                         service.keyInfo = {};
                     }
                 }, function (error){

@@ -74,7 +74,8 @@ angular.module('webUiApp')
 
                     var addPicoCodes = function (pico){
                         var picoCodes = [];
-                        //Add all the picoCodes which are the picotype we are using (population = 0, intervention = 1, control = 2, outcome = 3)
+                        //Add all the picoCodes which are the picotype we are using
+                        //(population = 0, intervention = 1, control = 2, outcome = 3)
                         for(var i=0; i < pico.picoCodes.length; i++){                
                             if(pico.picoCodes[i].picoType == picoType){
                                 picoCodes.push(pico.picoCodes[i]);

@@ -74,9 +74,9 @@ angular.module('webUiApp')
                     });
             };
 
-            service.deleteEmrInfo = function (index, emrInfoToDelete) {
-                EmrInfo.deleteEmrInfo(emrInfoToDelete).then(function (){
-                    service.recommendation.emrInfos.splice(index, 1);
+            service.deleteEmrInfo = function (index, emrInfoId) {
+                EmrInfo.deleteEmrInfo(emrInfoId).then(function (){
+                    service.recommendation.emrInfo.splice(index, 1);
                 });
             };
 
@@ -91,9 +91,9 @@ angular.module('webUiApp')
                     });
             };
 
-            service.deleteKeyInfo = function (index, keyInfoToDelete) {
-                KeyInfo.deleteKeyInfo(keyInfoToDelete).then(function (){
-                    service.recommendation.keyInfos.splice(index, 1);
+            service.deleteKeyInfo = function (index, keyInfoId) {
+                KeyInfo.deleteKeyInfo(keyInfoId).then(function (){
+                    service.recommendation.keyInfo.splice(index, 1);
                 });
             };
 

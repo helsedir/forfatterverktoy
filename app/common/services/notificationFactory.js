@@ -27,9 +27,15 @@ angular.module('webUiApp')
             if(error.status == 401) {
                 toastr.warning('Logg inn for å lagre');
             }
-            if(error.status == 0) {
+
+            else if(error.status == 0) {
                 toastr.error('Kan ikke opprette forbindelse til API');
             }
+
+            else if(error.status == 404) {
+                toastr.error('Status code: ' + error.status +' Kunne ikke finne ressurs.');
+            }
+
             else {
                 toastr.error('Status code: ' + error.status +' '+ error.statusText + ' Error data: ' + error.data.message, 'Error!');
             }

@@ -64,7 +64,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteEmrInfoBtnClick = function (index){
-            Recommendation.deleteEmrInfo(index, $scope.recommendation.emrinfo[index]);
+            Recommendation.deleteEmrInfo(index, $scope.recommendation.emrInfo[index].emrInfoId);
         };
 
         $scope.addKeyInfoBtnClick = function () {
@@ -72,7 +72,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteKeyInfoBtnClick = function (index){
-            Recommendation.deleteKeyInfo(index, $scope.recommendation.keyinfo[index]);
+            Recommendation.deleteKeyInfo(index, $scope.recommendation.keyInfo[index].keyInfoId);
         };
 
         $scope.changePublishedStage = function () {
