@@ -54,6 +54,10 @@ angular.module('webUiApp')
       $location.path(baseUrl + guidelineId + '/section/0');
     };
 
+    $scope.changePublishedStage = function () {
+      Guideline.publish($scope.guideline.guidelineId, $scope.guideline.publishedStage);
+    };
+
     $scope.addAuthorBtnClick = function() {
 
             ModalService.showModal({

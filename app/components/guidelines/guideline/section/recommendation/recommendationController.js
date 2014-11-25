@@ -76,13 +76,7 @@ angular.module('webUiApp')
         };
 
         $scope.changePublishedStage = function () {
-            Recommendation.publish({id:$scope.recommendation.recommendationId, publishedStage:$scope.recommendation.publishedStage})
-        .$promise.then(function(){
-            toastr.success('Endret publiseringsstatus');
-        }, function(error){
-            Crud.handlePostError(error);
-        });
-
+            Recommendation.publish($scope.recommendation.recommendationId, $scope.recommendation.publishedStage);
         };
 
         $scope.editReferencesBtnClick = function() {

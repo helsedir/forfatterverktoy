@@ -10,7 +10,8 @@ angular.module('webUiApp')
             update: { method: 'PUT' },
             addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'guidelines/:id/sections/'},
             addAuthor: {method: 'PUT', params: {id: '@id', authorId: '@authorId'}, url: apiUrl + 'guidelines/:id/authors/:authorId'},
-            deleteAuthor: {method: 'DELETE', params: {id: '@id', authorId: '@authorId'}, url: apiUrl + 'guidelines/:id/authors/:authorId'}
+            deleteAuthor: {method: 'DELETE', params: {id: '@id', authorId: '@authorId'}, url: apiUrl + 'guidelines/:id/authors/:authorId'},
+            publish: {method: 'PUT', params: {id: '@id', publishedStage:'@publishedStage'}, url: apiUrl + 'guidelines/:id/publish?publishedStage=:publishedStage'}
         });
 
     service.getGuidelines = function () {
@@ -121,6 +122,16 @@ angular.module('webUiApp')
         });
         return authorInGuideline;
     };
+
+        service.publish = function (guidelineId, publishedStage) {
+            return resource.publish({id: guidelineId, publishedStage: publishedStage}).
+                $promise.then(function () {
+                    NotificationFactory.displaySuccess('Oppdaterte publiseringsstatus');
+                },
+                function (error) {
+                    NotificationFactory.handlePostError(error);
+                });
+        };
 
     return service;
 

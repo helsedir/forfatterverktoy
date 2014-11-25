@@ -8,7 +8,8 @@ angular.module('webUiApp')
             {
                 update: { method: 'PUT' },
                 addSection: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/sections/'},
-                addRecommendation: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/recommendations/'}
+                addRecommendation: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'sections/:id/recommendations/'},
+                publish: {method: 'PUT', params: {id: '@id', publishedStage:'@publishedStage'}, url: apiUrl + 'sections/:id/publish?publishedStage=:publishedStage'}
             });
 
         service.getSection = function (sectionId) {
@@ -85,6 +86,16 @@ angular.module('webUiApp')
             return Recommendation.deleteRecommendation(recommendationToDelete).then(function () {
                 service.section.recommendations.splice(index, 1);
             });
+        };
+
+        service.publish = function (sectionId, publishedStage) {
+            return resource.publish({id: sectionId, publishedStage: publishedStage}).
+                $promise.then(function () {
+                    NotificationFactory.displaySuccess('Oppdaterte publiseringsstatus');
+                },
+                function (error) {
+                    NotificationFactory.handlePostError(error);
+                });
         };
 
         return service;

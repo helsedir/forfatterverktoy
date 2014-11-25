@@ -58,6 +58,10 @@ angular.module('webUiApp')
       }
     };
 
+      $scope.changePublishedStage = function () {
+        Section.publish($scope.section.sectionId, $scope.section.publishedStage);
+      };
+
 
     $scope.addSectionBtnClick = function(){
       $location.path(baseUrl + '0').search('parentSectionId', sectionId);

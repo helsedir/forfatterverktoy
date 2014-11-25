@@ -11,7 +11,8 @@ angular.module('webUiApp')
                     addEmrInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/emrinfos/'},
                     addKeyInfo: {method: 'POST', params: {id: '@id'}, url: apiUrl + 'recommendations/:id/keyinfo/'},
                     addReference: {method: 'PUT', params: {id: '@id', referenceId: '@referenceId'}, url: apiUrl + 'recommendations/:id/references/:referenceId'},
-                    deleteReference: {method: 'DELETE', params: {id: '@id', referenceId: '@referenceId'}, url: apiUrl + 'recommendations/:id/references/:referenceId'}
+                    deleteReference: {method: 'DELETE', params: {id: '@id', referenceId: '@referenceId'}, url: apiUrl + 'recommendations/:id/references/:referenceId'},
+                    publish: {method: 'PUT', params: {id: '@id', publishedStage:'@publishedStage'}, url: apiUrl + 'recommendations/:id/publish?publishedStage=:publishedStage'}
                 });
 
 
@@ -120,6 +121,16 @@ angular.module('webUiApp')
                         }
                     },
                     function(error){
+                        Crud.handlePostError(error);
+                    });
+            };
+
+            service.publish = function (recommendationId, publishedStage) {
+                return resource.publish({id: recommendationId, publishedStage: publishedStage}).
+                    $promise.then(function () {
+                        toastr.success('Oppdaterte publiseringsstatus');
+                    },
+                    function (error) {
                         Crud.handlePostError(error);
                     });
             };
