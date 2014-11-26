@@ -23,11 +23,11 @@
 			</div> -->
 			<div class="form-group">
 				<label for="text">Tekst</label>
-				<textarea ng-model="section.text" redactor></textarea>
+				<textarea id="text" ng-model="section.text" redactor></textarea>
 			</div>
 			<div class="form-group col-md-12">
 				<label for="type">Publiseringsstatus</label>
-				<select class="form-control" id="type" ng-model="section.publishedStage" ng-change="changePublishedStage()">
+				<select class="form-control" id="type" ng-model="section.publishedStage">
 					<option value="0">Kladd</option>
 					<option value="1">Høringsutkast</option>
 					<option value="2">Publisert</option>

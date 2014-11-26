@@ -34,7 +34,9 @@ angular.module('webUiApp')
       }
       else
       {
-        Guideline.updateGuideline($scope.guideline);
+        Guideline.updateGuideline($scope.guideline).then(function() {
+          Guideline.publish($scope.guideline.guidelineId, $scope.guideline.publishedStage);
+        });
       }
     };
 
@@ -52,10 +54,6 @@ angular.module('webUiApp')
 
     $scope.addSectionBtnClick = function(){
       $location.path(baseUrl + guidelineId + '/section/0');
-    };
-
-    $scope.changePublishedStage = function () {
-      Guideline.publish($scope.guideline.guidelineId, $scope.guideline.publishedStage);
     };
 
     $scope.addAuthorBtnClick = function() {

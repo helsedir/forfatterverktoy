@@ -35,7 +35,9 @@ angular.module('webUiApp')
         $scope.updateOrCreateRecommendation = function () {
 
             if (recommendationId != 0) {
-                Recommendation.updateRecommendation($scope.recommendation);
+                Recommendation.updateRecommendation($scope.recommendation).then(function () {
+                    Recommendation.publish($scope.recommendation.recommendationId, $scope.recommendation.publishedStage);
+                });
             }
 
             else if (typeof(sectionId) != 'undefined' && sectionId != null) {
@@ -73,10 +75,6 @@ angular.module('webUiApp')
 
         $scope.deleteKeyInfoBtnClick = function (index){
             Recommendation.deleteKeyInfo(index, $scope.recommendation.keyInfo[index].keyInfoId);
-        };
-
-        $scope.changePublishedStage = function () {
-            Recommendation.publish($scope.recommendation.recommendationId, $scope.recommendation.publishedStage);
         };
 
         $scope.editReferencesBtnClick = function() {

@@ -26,8 +26,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="author in authors | filter:searchText" ng-class="{success: author.checked}">
-              <td ng-click="author.checked = !author.checked">{{$index + 1git }}</td>
+            <tr ng-repeat="author in authors | filter:searchText | orderBy: 'name'" ng-class="{success: author.checked}">
+              <td ng-click="author.checked = !author.checked">{{$index + 1}}</td>
               <td ng-click="author.checked = !author.checked">{{author.name}}</td>
               <td ng-click="author.checked = !author.checked">{{author.email}}</td>
               <td>

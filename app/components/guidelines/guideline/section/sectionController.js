@@ -54,13 +54,11 @@ angular.module('webUiApp')
       }
       else
       {
-        Section.updateSection($scope.section);
+        Section.updateSection($scope.section).then(function () {
+          Section.publish($scope.section.sectionId, $scope.section.publishedStage);
+        });
       }
     };
-
-      $scope.changePublishedStage = function () {
-        Section.publish($scope.section.sectionId, $scope.section.publishedStage);
-      };
 
 
     $scope.addSectionBtnClick = function(){
