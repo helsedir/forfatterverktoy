@@ -23,16 +23,15 @@ angular.module('webUiApp')
             });
     };
 
-    service.deleteGuideline = function (id, index) {
-        return resource.delete({_id: id})
+    service.deleteGuideline = function (guideline) {
+        return resource.delete({_id: guideline.guidelineId})
             .$promise.then(function () {
                 NotificationFactory.displaySuccess('Slettet');
                 if (typeof(service.guideline) != 'undefined' && service.guideline.guidelineId == id) {
                     service.guideline = {};
                 }
-                if(typeof(index != 'undefined')) {
-                    service.guidelines.splice(index, 1);
-                }
+                service.guidelines.splice(service.guidelines.indexOf(guideline), 1);
+
             }, function (error){
                 NotificationFactory.handlePostError(error);
             });

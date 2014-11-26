@@ -23,9 +23,8 @@ angular.module('webUiApp')
       $location.path('/guideline/' + index);
     };
 
-    $scope.deleteGuidelineBtnClick = function(index){
-      var guidelineToDelete = Guideline.guidelines[index];
-      Guideline.deleteGuideline(guidelineToDelete.guidelineId, index);
+    $scope.deleteGuidelineBtnClick = function(guideline) {
+      Guideline.deleteGuideline(guideline);
     };
 
   }]);
