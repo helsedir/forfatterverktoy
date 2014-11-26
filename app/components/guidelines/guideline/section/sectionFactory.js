@@ -91,7 +91,6 @@ angular.module('webUiApp')
         service.publish = function (sectionId, publishedStage) {
             return resource.publish({id: sectionId, publishedStage: publishedStage}).
                 $promise.then(function () {
-                    NotificationFactory.displaySuccess('Oppdaterte publiseringsstatus');
                 },
                 function (error) {
                     NotificationFactory.handlePostError(error);

@@ -128,7 +128,7 @@ angular.module('webUiApp')
             service.publish = function (recommendationId, publishedStage) {
                 return resource.publish({id: recommendationId, publishedStage: publishedStage}).
                     $promise.then(function () {
-                        toastr.success('Oppdaterte publiseringsstatus');
+
                     },
                     function (error) {
                         Crud.handlePostError(error);
