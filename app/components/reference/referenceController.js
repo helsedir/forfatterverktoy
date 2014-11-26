@@ -54,19 +54,9 @@ angular.module('webUiApp')
             templateUrl: 'components/reference/_createorupdatereferencemodal.html',
             controller: ['$scope', 'Reference', 'close', function ($scope, Reference, close){
               
-              $scope.reference = new Reference();
+
               $scope.save = function (){
-
-                $scope.reference.$save().then(function (data){
-                  
-                  toastr.success(data.name, 'Opprettet referanse');
-                  close(data, 500);
-                
-                }, function (error){
-
-                  Crud.handlePostError(error);
-
-                });
+                Reference.createReference($scope.reference);
               };
 
             }]

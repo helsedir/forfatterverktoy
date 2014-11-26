@@ -22,8 +22,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="author in authors | filter:search">
-				<td ng-click="updateAuthorBtnClick({{author.authorId}}, $index)">{{author.authorId}}</td>
+			<tr ng-repeat="author in authors | filter:search | orderBy: 'name'">
+				<td ng-click="updateAuthorBtnClick({{author.authorId}}, $index)">{{$index + 1}}</td>
 				<td ng-click="updateAuthorBtnClick({{author.authorId}}, $index)">{{author.name}}</td>
 				<td ng-click="updateAuthorBtnClick({{author.authorId}}, $index)">{{author.email}}</td>
 				<td class="col-xs-4">

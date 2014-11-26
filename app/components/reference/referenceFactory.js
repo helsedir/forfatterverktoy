@@ -52,13 +52,16 @@ angular.module('webUiApp')
         };
 
 
-        service.deleteReference = function (reference) {
-            return resource.delete({_id: reference.referenceId})
+        service.deleteReference = function (referenceId, index) {
+            return resource.delete({_id: referenceId})
                 .$promise.then(function () {
                     toastr.success('Slettet');
                     //If the recommendation we deleted was the same as the one we're keeping the state of
-                    if(reference.referenceId ===  service.reference.referenceId){
+                    if(typeof(service.reference) != 'undefined' && referenceId ===  service.reference.referenceId){
                         service.reference = {};
+                    }
+                    if(typeof(index) != 'undefined') {
+                        service.references.splice(index, 1);
                     }
                 }, function (error){
                     Crud.handlePostError(error);

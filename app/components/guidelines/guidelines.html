@@ -31,16 +31,16 @@
 		<tr>
 			<th>#</th>
 			<th>Korttittel</th>
-			<th>Sist oppdatert</th>
+			<th>Oppdatert</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="guideline in guidelines | filter:searchText">
+		<tr ng-repeat="guideline in guidelines | filter:searchText | orderBy: 'shortTitle'">
 			<td btn-href="/guideline/{{guideline.guidelineId}}">{{$index+1}}</td>
-			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.shortTitle}}</td>
-			<td btn-href="/guideline/{{guideline.guidelineId}}">{{guideline.updatedDate | date}}</td>
-			<td class="col-xs-4">
+			<td btn-href="/guideline/{{guideline.guidelineId}}" class="breakall">{{guideline.shortTitle}}</td>
+			<td btn-href="/guideline/{{guideline.guidelineId}}" class="text-right col-sm-1 hidden-xs">{{guideline.updatedDate | date:'dd.MM.yy'}}</td>
+			<td class="col-sm-3">
 				<div class="btn-group pull-right">
 				
 				<button type="button" class="btn btn-link btn-delete" ng-click="deleteGuidelineBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette retningslinjen {{guideline.title}}">Slett <span class="glyphicon glyphicon-remove"></span></button>
