@@ -25,7 +25,7 @@ angular.module('webUiApp')
 
     $scope.deleteGuidelineBtnClick = function(index){
       var guidelineToDelete = Guideline.guidelines[index];
-      Guideline.deleteGuideline(guidelineToDelete, index);
+      Guideline.deleteGuideline(guidelineToDelete.guidelineId, index);
     };
 
   }]);

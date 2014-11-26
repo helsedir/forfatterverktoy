@@ -27,7 +27,7 @@ angular.module('webUiApp')
         return resource.delete({_id: id})
             .$promise.then(function () {
                 NotificationFactory.displaySuccess('Slettet');
-                if (service.guideline.guidelineId == id) {
+                if (typeof(service.guideline) != 'undefined' && service.guideline.guidelineId == id) {
                     service.guideline = {};
                 }
                 if(typeof(index != 'undefined')) {

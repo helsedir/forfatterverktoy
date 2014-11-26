@@ -40,7 +40,7 @@ angular.module('webUiApp')
         };
 
         service.updateReference = function (reference,index) {
-            return resource.update({_id: service.reference.referenceId}, reference)
+            return resource.update({_id: reference.referenceId}, reference)
                 .$promise.then(function (data) {
                     toastr.success('Lagret');
                     if (typeof(index) != 'undefined') {

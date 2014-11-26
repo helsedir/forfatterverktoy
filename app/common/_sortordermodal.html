@@ -14,15 +14,17 @@
       		<thead>
       			<tr>
       				<th class="col-md-1">#</th>
-      				<th class="col-md-9">Tittel</th>
+      				<th class="col-md-9" ng-if="!resource[0].author">Tittel</th>
+                    <th class="col-md-9" ng-if="resource[0].author">Forfatter</th>
       				<th class="col-md-2">Oppdatert</th>
       			</tr>
       		</thead>
       		<tbody ui-sortable ng-model="resource">
       			<tr ng-repeat="element in resource | orderBy : sortOrder">
       				<td class="col-md-1">{{$index}}</td>
-      				<td class="col-md-9" ng-if="element.heading">{{element.heading}}</td>
-              <td class="col-md-9" ng-if="element.title">{{element.title}}</td>
+      				<td class="col-md-9" ng-if="element.heading && !element.author">{{element.heading}}</td>
+                    <td class="col-md-9" ng-if="element.author">{{element.author}}</td>
+              <td class="col-md-9" ng-if="element.title && !element.author">{{element.title}}</td>
               <td class="col-md-9" ng-if="element.picoId">
                 <b>Population: </b><i>{{element.population}}</i>
                 <b>Control: </b><i>{{element.control}}</i>

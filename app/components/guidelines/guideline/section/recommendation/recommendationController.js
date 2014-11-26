@@ -145,4 +145,32 @@ angular.module('webUiApp')
         function removeReferenceFromRecommendation(reference){
             Recommendation.removeReference(reference.referenceId);
         }
+
+        $scope.editSortOrderBtnClick = function() {
+            ModalService.showModal({
+                templateUrl: 'common/_sortordermodal.html',
+                controller: ['ModalService', '$scope', 'references', 'Reference', function (ModalService, $scope, references, Reference) {
+                    //set this scope's recommendations to the injected recommendations
+                    $scope.resource = references;
+
+                    $scope.save = function (){
+
+                        //Loop through the elements and update if sortorder is changed
+                        for (var i =  0; i < $scope.resource.length; i++) {
+                            if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
+                                console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
+                                $scope.resource[i].sortOrder = i;
+                                Reference.updateReference($scope.resource[i]);
+                            }
+                        }
+                    };
+                }],
+                inputs: {
+                    references: $scope.recommendation.references //inject the recommendations
+                }
+            }).then(function(modal) {
+                modal.element.modal();
+
+            });
+        };
     }]);
