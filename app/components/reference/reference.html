@@ -26,11 +26,10 @@
             </td>
             <td class="col-xs-4">
                 <div class="btn-group pull-right">
-                
-                <button type="button" class="btn btn-link btn-delete" ng-click="deleteReferenceBtnClick($index)" ng-confirm-click="Er du sikker på at du vil slette referansen">Slett <span class="glyphicon glyphicon-remove"></span></button>
-                <button type="button" class="btn btn-link" ng-click="updateReferenceBtnClick({{reference.referenceId}}, $index)">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
+                    <button type="button" class="btn btn-link btn-delete" ng-click="deleteReferenceBtnClick(reference)" ng-confirm-click="Er du sikker på at du vil slette referansen">Slett <span class="glyphicon glyphicon-remove"></span></button>
+                    <button type="button" class="btn btn-link" ng-click="updateReferenceBtnClick({{reference.referenceId}}, $index)">Rediger <span class="glyphicon glyphicon-pencil"></span></button>
                 </div>
-                </td>
+            </td>
         </tr>
     </table>
     <button type="button" class="btn btn-primary" ng-click="createReferenceBtnClick()">Ny referanse</button>

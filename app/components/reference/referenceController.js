@@ -52,9 +52,7 @@ angular.module('webUiApp')
         $scope.createReferenceBtnClick = function (){
           ModalService.showModal({
             templateUrl: 'components/reference/_createorupdatereferencemodal.html',
-            controller: ['$scope', 'Reference', 'close', function ($scope, Reference, close){
-              
-
+            controller: ['$scope', 'Reference', function ($scope, Reference){
               $scope.save = function (){
                 Reference.createReference($scope.reference);
               };
@@ -68,9 +66,8 @@ angular.module('webUiApp')
           });
         };
 
-        $scope.deleteReferenceBtnClick = function(index){
-          var referenceToDelete = $scope.references[index];
-            Reference.deleteReference(referenceToDelete.referenceId, index);
+        $scope.deleteReferenceBtnClick = function(reference){
+            Reference.deleteReference(reference);
         };
 
     }]);
