@@ -110,10 +110,8 @@ angular.module('webUiApp')
                       if($scope.resource[i].sortOrder != i){ //If we changed the sort order of the element
                         console.log($scope.resource[i].heading+' changed sortorder from: '+$scope.resource[i].sortOrder+' to: '+i);
                         $scope.resource[i].sortOrder = i;
-                        Recommendation.update({ _id: $scope.resource[i].recommendationId }, $scope.resource[i])
-                        .$promise.then(function(){
-                          
-                        });
+                        Recommendation.updateRecommendation($scope.resource[i]);
+
                       }
                     }
                   };
