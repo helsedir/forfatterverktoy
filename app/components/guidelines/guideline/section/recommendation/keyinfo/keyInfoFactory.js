@@ -18,6 +18,15 @@ angular.module('webUiApp')
                 });
         };
 
+        service.updateKeyInfo = function (keyInfo) {
+            return resource.update({_id: keyInfo.keyInfoId}, keyInfo)
+                .$promise.then(function () {
+                    toastr.success('Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
         service.deleteKeyInfo = function (keyInfoId) {
             return resource.delete({_id: keyInfoId})
                 .$promise.then(function () {

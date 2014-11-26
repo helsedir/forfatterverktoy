@@ -41,7 +41,7 @@ angular.module('webUiApp')
     };
 
     $scope.removeGuidelineBtnClick = function() {
-      Guideline.deleteGuideline($scope.guideline.guidelineId).then(function () {
+      Guideline.deleteGuideline($scope.guideline).then(function () {
         $location.path('/');
       });
     };

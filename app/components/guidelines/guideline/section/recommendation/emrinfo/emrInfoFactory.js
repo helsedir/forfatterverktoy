@@ -18,6 +18,15 @@ angular.module('webUiApp')
                 });
         };
 
+        service.updateEmrInfo = function (emrInfo) {
+            return resource.update({_id: emrInfo.emrInfoId}, emrInfo)
+                .$promise.then(function () {
+                    toastr.success('Lagret');
+                }, function (error){
+                    Crud.handlePostError(error);
+                });
+        };
+
         service.deleteEmrInfo = function (id) {
             return resource.delete({_id: id})
                 .$promise.then(function () {

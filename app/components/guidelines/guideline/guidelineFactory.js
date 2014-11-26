@@ -27,7 +27,7 @@ angular.module('webUiApp')
         return resource.delete({_id: guideline.guidelineId})
             .$promise.then(function () {
                 NotificationFactory.displaySuccess('Slettet');
-                if (typeof(service.guideline) != 'undefined' && service.guideline.guidelineId == id) {
+                if (typeof(service.guideline) != 'undefined' && service.guideline.guidelineId == guideline.guidelineId) {
                     service.guideline = {};
                 }
                 service.guidelines.splice(service.guidelines.indexOf(guideline), 1);
@@ -85,7 +85,6 @@ angular.module('webUiApp')
     };
 
     service.addAuthor = function (author) {
-        console.log(author.authorId);
         return resource.addAuthor({id: service.guideline.guidelineId, authorId: author.authorId})
             .$promise.then(function(){
                 NotificationFactory.displaySuccess('La til forfatter i retningslinje', author.name);
