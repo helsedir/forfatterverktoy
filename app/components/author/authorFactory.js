@@ -32,33 +32,34 @@ angular.module('webUiApp')
                     //update the object
                     service.author = data;
                     service.authors.push(data);
-                    return data;
                     toastr.success(data.name, 'Opprettet forfatter');
+                    return data;
                 }, function (error){
                     Crud.handlePostError(error);
                 });
         };
 
-        service.updateAuthor = function (author,index) {
+        service.updateAuthor = function (author) {
             return resource.update({_id: service.author.authorId}, author)
                 .$promise.then(function (data) {
                     toastr.success('Lagret');
-                    if (typeof(index) != 'undefined') {
-                        service.authors[index] = data;
+                    for(var i = 0; i < service.authors.length; i++) {
+                        if (service.authors[i].authorId == data.authorId) {
+                            service.authors[i] = data;
+                        }
                     }
                 }, function (error){
                     Crud.handlePostError(error);
                 });
         };
 
-        service.deleteAuthor = function (id, index) {
-            return resource.delete({_id: id})
+        service.deleteAuthor = function (author) {
+            return resource.delete({_id: author.authorId})
                 .$promise.then(function () {
-                    toastr.success('Slettet');
 
-                    if (typeof(index) != 'undefined') {
-                        service.authors.splice(index,1);
-                    }
+                    toastr.success('Slettet');
+                    service.authors.splice(service.authors.indexOf(author),1);
+
                 }, function (error){
                     Crud.handlePostError(error);
                 });

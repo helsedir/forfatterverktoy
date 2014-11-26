@@ -24,20 +24,19 @@ angular.module('webUiApp')
         
         ModalService.showModal({
               templateUrl: 'components/author/_createorupdateauthormodal.html',
-              controller: ['$scope', 'author', 'index', 'Author', 'close', function ($scope, author, index, Author, close) {
+              controller: ['$scope', 'author', 'Author', 'close', function ($scope, author, Author, close) {
                 
                 //set this scope's author to the injected author
                 $scope.author = author;
 
                 //update author
                 $scope.save = function () {
-                  Author.updateAuthor($scope.author, index).then(function () {
+                  Author.updateAuthor($scope.author).then(function () {
                     close(500);
                   });
                 };
               }],
               inputs: {
-                index: arrayIndex,
                 author: author //inject the author returned from promise object
               }
             }).then(function(modal) {
@@ -70,8 +69,7 @@ angular.module('webUiApp')
       });
     };
 
-    $scope.deleteAuthorBtnClick = function(index){
-      var authorToDelete = $scope.authors[index];
-      Author.deleteAuthor(authorToDelete.authorId, index);
+    $scope.deleteAuthorBtnClick = function(author){
+      Author.deleteAuthor(author);
     };
   }]);
