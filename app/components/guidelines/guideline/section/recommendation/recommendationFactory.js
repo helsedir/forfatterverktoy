@@ -18,8 +18,9 @@ angular.module('webUiApp')
 
             service.updateRecommendation = function (recommendationToUpdate) {
                 return resource.update({_id: recommendationToUpdate.recommendationId}, recommendationToUpdate)
-                    .$promise.then(function () {
+                    .$promise.then(function (data) {
                         toastr.success(recommendationToUpdate.heading, 'Lagret');
+                        service.recommendation = data;
                     }, function (error){
                         Crud.handlePostError(error);
                     });
@@ -52,6 +53,9 @@ angular.module('webUiApp')
                 return resource.addPico({id: recommendationId}, pico)
                     .$promise.then(function(data) {
                         toastr.success('La til pico');
+                        if(recommendationId == service.recommendation.recommendationId) {
+                            service.recommendation.picos.push(data);
+                        }
                         return data;
                     }, function (error){
                         Crud.handlePostError(error);
@@ -69,6 +73,9 @@ angular.module('webUiApp')
                 return resource.addEmrInfo({id: recommendationId}, emrInfo)
                     .$promise.then(function (data) {
                         toastr.success('La til emrInfo');
+                        if(recommendationId == service.recommendation.recommendationId) {
+                            service.recommendation.emrInfos.push(data);
+                        }
                         return data;
                     }, function (error){
                         Crud.handlePostError(error);
@@ -76,8 +83,8 @@ angular.module('webUiApp')
             };
 
             service.deleteEmrInfo = function (index, emrInfoId) {
-                EmrInfo.deleteEmrInfo(emrInfoId).then(function (){
-                    service.recommendation.emrInfo.splice(index, 1);
+                return EmrInfo.deleteEmrInfo(emrInfoId).then(function (){
+                    service.recommendation.emrInfos.splice(index, 1);
                 });
             };
 

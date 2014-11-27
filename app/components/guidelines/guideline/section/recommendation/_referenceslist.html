@@ -2,7 +2,7 @@
 	<h3>Referanser</h3>
 	<ol class="referencelist" ng-show="recommendation.references.length > 0">
 		<li ng-repeat="reference in recommendation.references | orderBy:'author'">
-			<span ng-if="reference.author">{{reference.author}}. </span><span ng-if="reference.title">{{reference.title}}. </span> <span ng-if="reference.journal">{{reference.journal}}. </span> <span ng-if="reference.year">{{reference.year}}</span><span ng-if="reference.volume">;{{reference.volume}}</span><span ng-if="reference.issue">({{reference.issue}})</span><span ng-if="reference.pageStart">:{{reference.pageStart}}</span><span ng-if="reference.pageEnd">-{{reference.pageEnd}}. </span><span ng-if="reference.pmid">PubMed PMID: {{reference.pmid}}. </span> <span ng-if="reference.url" class="breakall">Avaliable from: {{reference.url}} </span>
+			<span ng-if="reference.author">{{reference.author}}. </span><span ng-if="reference.title">{{reference.title}}. </span> <span ng-if="reference.journal">{{reference.journal}}. </span> <span ng-if="reference.year">{{reference.year}}</span><span ng-if="reference.volume">;{{reference.volume}}</span><span ng-if="reference.issue">({{reference.issue}})</span><span ng-if="reference.pageStart">:{{reference.pageStart}}</span><span ng-if="reference.pageEnd">-{{reference.pageEnd}}. </span><span ng-if="reference.pmid">PubMed PMID: {{reference.pmid}}. </span> <span ng-if="reference.url" class="breakall">Available from: {{reference.url}} </span>
 		</li>
 	</ol>
 	<button type="button" class="btn btn-secondary" ng-click="editReferencesBtnClick()">Rediger referanselisten</button>

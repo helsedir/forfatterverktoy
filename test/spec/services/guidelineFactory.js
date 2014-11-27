@@ -56,13 +56,14 @@ describe('guidelineFactory', function () {
         it('should delete a single guideline', inject(function (Guideline) {
             Guideline.guideline = {guidelineId: 1};
             expect(Guideline.guideline).toBeDefined();
+            var guideline = {guidelineId: 1};
 
             $httpBackend.expectDELETE(apiUrl+'guidelines/1')
                 .respond({
                     guidelineId: 1
                 });
 
-            mockGuidelineResource.deleteGuideline(1).then(function () {
+            mockGuidelineResource.deleteGuideline(guideline).then(function () {
                 expect(Guideline.guideline.guidelineId).toBeUndefined();
             });
             $httpBackend.flush();
@@ -78,10 +79,10 @@ describe('guidelineFactory', function () {
 
             $httpBackend.expectDELETE(apiUrl+'guidelines/2')
                 .respond({
-                    guidelineId: 1
+                    guidelineId: 2
                 });
 
-            mockGuidelineResource.deleteGuideline(2,1).then(function () {
+            mockGuidelineResource.deleteGuideline(guideline2).then(function () {
                 expect(Guideline.guidelines[1]).toBeUndefined();
             });
             $httpBackend.flush();

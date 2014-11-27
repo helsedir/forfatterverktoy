@@ -38,9 +38,8 @@ describe('Controller: GuidelinesCtrl', function () {
         Guideline.guidelines = [];
         Guideline.guidelines.push(guidelineToDelete);
         spyOn(Guideline, 'deleteGuideline')
-        scope.deleteGuidelineBtnClick(0);
-        expect(Guideline.deleteGuideline).toHaveBeenCalledWith(guidelineToDelete, 0);
+        scope.deleteGuidelineBtnClick(guidelineToDelete);
+        expect(Guideline.deleteGuideline).toHaveBeenCalledWith(guidelineToDelete);
     });
-
 
 });
