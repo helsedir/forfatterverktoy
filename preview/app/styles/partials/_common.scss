@@ -1,0 +1,221 @@
+/*Common styles for all guidelines*/
+
+article{
+    min-height: 900px;
+}
+
+b{
+  font-weight: bold;
+}
+
+strong{
+  font-weight: bold;
+}
+
+em{
+  font-style: italic;
+}
+
+ol{
+  list-style-position: inside;
+  margin-top: 10px;
+  list-style-type: decimal;
+}
+
+.smalltitle{
+  font-family: $fontCalibri;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+h2  {
+  &.smalltitle{
+    @extend .smalltitle;
+  }
+}
+
+h1.nomargin-top{
+  margin-top: 0;
+}
+
+.title, .subtitle, .sectiontitle{
+    word-wrap: break-word;
+}
+
+.container a:focus{
+    background: none;
+}
+
+aside.guidelines {
+    @include breakpoint("tablet") {
+        float: none !important;
+    }
+    .module.module_person{
+        margin-bottom: 50px;
+    }
+
+    .module_related {
+
+        &.module{
+            margin-top: 25px; //override default
+            &:last-child{
+                margin-bottom: 25px;
+            }
+        }
+        width: 100%;
+        h3 {
+            font-family: $fontCalibri;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-top: 0;
+            color: $colorRegalBlue;
+            line-height: 20px;
+        }
+        ul.linklist {
+            li {
+                font-size: 20px;
+                font-family: $fontSohoRegular;
+            }
+            a {
+                color: $colorRegalBlue;
+                font-size: 20px;
+                font-family: $fontSohoRegular;
+                &:after {
+                    padding-left: 10px;
+                    content: $fontIconChevronRight;
+                    font-family: $fontAwesome;
+                    text-decoration: none;
+                    font-size: inherit;
+                }
+            }
+        }
+        &.green {
+            border-left: 2px solid $colorGreen;
+        }
+        &.blue {
+            border-left: 2px solid $colorSeaGreen;
+        }
+    }
+}
+
+form.retningslinjerSok {
+    label {
+        color: $colorRegalBlue;
+        margin-bottom: 10px;
+    }
+    #searchinput {
+        margin-top: 0;
+    }
+}
+
+
+/* Override default */
+.refinesearch {
+    input[type="radio"]:focus + label {
+        background: none;
+        font-weight: bold;
+        color: $colorBlack;
+    }
+    input[type="radio"]:active + label {
+        background: none;
+        font-weight: bold;
+        color: $colorBlack;
+    }
+}
+
+
+
+/* IKONER */
+.container .module.module_print .ikon_disclaimer span,
+.container-fluid .module.module_print .ikon_disclaimer span,
+.container .module.module_social .ikon_disclaimer span,
+.container-fluid .module.module_social .ikon_disclaimer span {
+  background: url(../img/modules/icons/ikon_disclaimer_regular.svg) no-repeat;
+  -moz-background-size: 27px 20px;
+  -o-background-size: 27px 20px;
+  -webkit-background-size: 27px 20px;
+  background-size: 27px 20px;
+}
+
+.container .module.module_print .ikon_disclaimer:hover span,
+.container-fluid .module.module_print .ikon_disclaimer:hover span,
+.container .module.module_social .ikon_disclaimer:hover span,
+.container-fluid .module.module_social .ikon_disclaimer:hover span {
+  background: url(../img/modules/icons/ikon_disclaimer_hover.svg) no-repeat;
+  -moz-background-size: 28px 23px;
+  -o-background-size: 28px 23px;
+  -webkit-background-size: 28px 23px;
+  background-size: 28px 23px;
+}
+
+.container .module.module_print .ikon_metode span,
+.container-fluid .module.module_print .ikon_metode span,
+.container .module.module_social .ikon_metode span,
+.container-fluid .module.module_social .ikon_metode span {
+  background: url(../img/modules/icons/ikon_metodikk_regular.svg) no-repeat;
+  -moz-background-size: 27px 20px;
+  -o-background-size: 27px 20px;
+  -webkit-background-size: 27px 20px;
+  background-size: 27px 20px;
+}
+
+.container .module.module_print .ikon_metode:hover span,
+.container-fluid .module.module_print .ikon_metode:hover span,
+.container .module.module_social .ikon_metode:hover span,
+.container-fluid .module.module_social .ikon_metode:hover span {
+  background: url(../img/modules/icons/ikon_metodikk_hover.svg) no-repeat;
+  -moz-background-size: 28px 23px;
+  -o-background-size: 28px 23px;
+  -webkit-background-size: 28px 23px;
+  background-size: 28px 23px;
+}
+
+.container .aboutsection{
+    margin-top: 25px;
+    @extend .bulletlist;
+}
+
+.container .aboutsectioncontent{
+    background-color: $colorWhite;
+    padding: 15px 30px;
+  //classes from ../utilities/_snippets.scss
+  @extend .bulletlist;
+  @extend .table;
+}
+
+.container .aboutsectionheading{
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+.publishedstage{
+
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  font-size: 20px;
+  font: $fontSoho;
+  z-index: 1;
+}
+
+.breakall{
+  -ms-word-break: break-all;
+       word-break: break-all;
+
+       // Non standard for webkit
+       word-break: break-word;
+
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
+}
+
+#print{
+  @media print {
+    body{
+      font-size: 12pt;
+      line-height: 1.3;
+    }
+  }
+}

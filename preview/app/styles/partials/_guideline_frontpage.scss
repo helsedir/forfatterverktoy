@@ -1,0 +1,263 @@
+/*Styles for one single guideline*/
+
+
+/*
+ ---------------------------------
+ Header
+ ---------------------------------
+*/
+
+.Guidelinefrontpage .pageheader {
+    background: $colorWhite;
+    border-left: 19px solid $colorRegalBlue;
+    overflow: hidden;
+    @include breakpoint("mobile") {
+        border: none;
+        margin: 0;
+    }
+}
+
+.Guidelinefrontpage .headergroup {
+    color: $colorWhite;
+    background: $colorPurple;
+    background-image: url("../img/Livslinje-enkel-lilla.svg");
+    background-repeat: no-repeat;
+    background-size: 200% 60%;
+    background-position: bottom;
+    margin-left: -13px;
+    /*To make icon move to bottom right*/
+    @include breakpoint("tablet") {
+        position: relative;
+    }
+
+    & > .container {
+        padding-bottom: 50px;
+        @include breakpoint("desktop") {
+            position: relative;
+        }
+    }
+}
+
+.Guidelinefrontpage .metadata {
+    li {
+        margin-right: 30px;
+        font-size: 18px;
+        display: inline-block;
+        span {
+            font-size: 35px;
+            margin-bottom: 5px;
+            display: block;
+        }
+    }
+    .number {
+        font-family: $fontSohoLight;
+    }
+}
+
+.Guidelinefrontpage .title {
+    font-weight: normal;
+    font-size: 40px;
+    font-family: $fontSohoLight;
+    line-height: 48px;
+    color: $colorWhite;
+    padding-top: 0;
+    display: block;
+    //position: relative;
+    @include breakpoint("mobile") {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 36px;
+    }
+}
+
+.Guidelinefrontpage .subtitle {
+    font-family: $fontSohoLight;
+    //font-size: 18px;
+    line-height: 22px;
+    display: inline-block;
+    margin-bottom: 30px;
+    @include breakpoint("mobile") {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.Guidelinefrontpage .aboutguidelineicon {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    color: $colorWhite;
+    @include breakpoint("tablet") {
+        bottom: 0;
+        top: auto;
+    }
+
+    &:before {
+        color: $colorWhite;
+        display: block;
+        background-color: $colorBase; //fallback
+        background-color: rgba(255, 255, 255, 0.2);
+        content: url("../img/modules/icons/ico-i.svg");
+        text-align: center;
+        width: 80px;
+        height: 80px;
+        padding: 15px 20px;
+        margin-left: 20px;
+        @include breakpoint("tablet") {
+            padding: 8px 10px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+    &.open:before {
+        content: url("../img/modules/icons/ico-x.svg");
+    }
+    .text {
+        color: $colorWhite;
+        font-size: 18px;
+        @include breakpoint("tablet") {
+            display: none;
+        }
+    }
+}
+
+.Guidelinefrontpage .aboutexpand {
+    @extend .bulletlist;
+    @extend .table;
+    overflow: hidden;
+    display: none;
+    @include breakpoint("mobile") {
+        padding: 10px 15px;
+    }
+
+    @include breakpoint("tablet"){
+        padding-left: 5px;
+    }
+
+    @media only screen and (min-width: 900px) {
+        padding: 30px 0;
+    }
+    .metadata .text {
+        display: block;
+        color: $colorFriarGray;
+    }
+    .metadata {
+        padding: 0;
+        margin-bottom: 10px;
+        @media only screen and (min-width: 900px) {
+            float: left;
+            padding-right: 30px;
+            border-right: 2px solid $colorRegalBlue;
+        }
+    }
+    > .text {
+        padding: 0;
+        @media only screen and (min-width: 900px) {
+
+            padding-left: 30px;
+            width: 70%;
+            float: left;
+        }
+    }
+}
+
+.Guidelinefrontpage .container .breadcrumbs li a{
+    &:after{
+        color: $colorWhite;
+    }
+    color: $colorWhite;
+}
+
+/*
+ ---------------------------------
+ Main
+ ---------------------------------
+*/
+
+.Guidelinefrontpage .retningslinjerSok {
+    margin-top: 30px;
+}
+
+.Guidelinefrontpage .sectionlist {
+    .element {
+        min-height: 100px;
+        padding: 20px 30px;
+        position: relative;
+        margin-bottom: 20px;
+        &:nth-child(odd) {
+            background-color: $colorGallery;
+        }
+        &:nth-child(even) {
+            background-color: $colorWhite;
+        }
+    }
+
+}
+
+.Guidelinefrontpage .sectionheading {
+        /*Less padding on mobile */
+        padding-right: 10px;
+        @media only screen and (min-width: 600px) {
+            padding-right: 105px;
+        }
+        margin-top: 10px;
+        color: $colorBondiBlue;
+        word-break: break-word;
+        span {
+            line-height: 15px;
+            margin-bottom: 10px;
+            display: block;
+            color: $colorRegalBlue;
+        }
+    }
+
+.Guidelinefrontpage .sectioninformation {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 28%;
+    .numberofrecommendations {
+        color: $colorCloudy;
+        font-size: 18px;
+        a{
+            color: $colorCloudy;
+            &:visited{
+                color: $colorCloudy;
+            }
+        }
+    }
+    .numberofrecommendations > .number {
+        font-family: $fontSohoLight;
+        color: $colorCloudy;
+        display: block;
+        font-size: 30px;
+        text-align: center;
+    }
+    .haschildsections {
+        width: 40px;
+        height: 50px;
+        margin-right: 25px;
+    }
+}
+/*
+ ---------------------------------
+ Sidebar
+ ---------------------------------
+*/
+
+/*hacking aside to fit with col-md-8 */
+.Guidelinefrontpage .guidelines.col-8 {
+    @media only screen and (min-width: 1200px) {
+        margin-right: -50%;
+    }
+    @media only screen and (max-width: 1199px) and (min-width: 950px) {
+        margin-right: -54%;
+    }
+    @media only screen and (max-width: 950px) {
+        margin-top: 0;
+        margin-right: 0;
+        position: relative;
+        width: auto;
+    }
+}
+

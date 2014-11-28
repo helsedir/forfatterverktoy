@@ -1,0 +1,16 @@
+<h1>{{guideline.title}}</h1>
+<small>Publisert {{guideline.createdDate | date}}, oppdatert {{guideline.updatedDate | date}}</small>
+<div ng-bind-html="guideline.text | unsafe">
+
+</div>
+
+<h2>Forfattere</h2>
+<ul>
+	<li ng-repeat="author in guideline.authors">
+		{{author.name}} - {{author.email}}
+	</li>
+</ul>
+
+<div ng-transclude>
+	
+</div>

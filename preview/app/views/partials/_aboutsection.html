@@ -1,0 +1,6 @@
+<section ng-show="section.text" class="aboutsection">
+	<div class="aboutsectioncontent">
+		<!-- <h1 class="aboutsectionheading">Om {{section.heading | lowercase}}</h1> midlertidig fjernet (TAD) -->
+		<p ng-bind-html="section.text | unsafe"></p>
+	</div>
+</section>

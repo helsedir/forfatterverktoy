@@ -1,0 +1,62 @@
+
+<div>
+	<h3 ng-if="recommendation.heading">{{recommendation.heading}}</h3>
+	<recommendation-strength strength="recommendation.strength"></recommendation-strength>
+	<div ng-bind-html="recommendation.text | unsafe"></div>
+
+	<div ng-repeat="keyInfo in recommendation.keyInfo">
+		<h4>Fordeler og ulemper</h4>
+		<div ng-bind-html="keyInfo.benefits | unsafe">
+		</div>
+
+		<h4>Kvalitet på dokumentasjonen</h4>
+		<div ng-bind-html="keyInfo.evidence | unsafe">
+		</div>
+
+		<h4>Verdier og preferanser</h4>
+		<div ng-bind-html="keyInfo.preference | unsafe">
+		</div>
+
+		<h4>Ressurshensyn</h4>
+		<div ng-bind-html="keyInfo.resources | unsafe">
+		</div>
+	</div>
+
+	<div ng-if="recommendation.picos.length">
+		<h4>Pico</h4>
+		<dl class="dl-horizontal"  ng-repeat="pico in recommendation.picos">
+			<dt>Populasjon</dt>
+			<dd>{{pico.population}}</dd>
+			<dt>Intervensjon</dt>
+			<dd>{{pico.intervention}}</dd>
+			<dt>Komparator</dt>
+			<dd>{{pico.control}}</dd>
+			<dt>Utfall</dt>
+			<dd>{{pico.outcome}}</dd>
+		</dl>
+	</div>
+
+	<div ng-if="recommendation.rational.length > 11">
+		<h4>Begrunnelse</h4>
+		<div ng-bind-html="recommendation.rational | unsafe">
+
+		</div>
+	</div>
+
+	<div ng-if="recommendation.practicalAdvice.length > 5">
+		<h4>Praktisk informasjon</h4>
+		<div ng-bind-html="recommendation.practicalAdvice | unsafe">
+
+		</div>
+	</div>
+
+	<div ng-if="recommendation.references.length">
+		<h4>Referanser</h4>
+		<ol>
+			<li ng-repeat="reference in recommendation.references">
+				<span ng-if="reference.author">{{reference.author}}. </span><span ng-if="reference.title">{{reference.title}}. </span> <span ng-if="reference.journal">{{reference.journal}}. </span> <span ng-if="reference.year">{{reference.year}}</span><span ng-if="reference.volume">;{{reference.volume}}</span><span ng-if="reference.issue">({{reference.issue}})</span><span ng-if="reference.pageStart">:{{reference.pageStart}}</span><span ng-if="reference.pageEnd">-{{reference.pageEnd}}. </span><span ng-if="reference.pmid">PubMed PMID: {{reference.pmid}}. </span> <span ng-if="reference.url">Avaliable from: {{reference.url}} </span>
+			</li>
+		</ol>
+	</div>
+
+</div>

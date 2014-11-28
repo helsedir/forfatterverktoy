@@ -1,0 +1,29 @@
+<published-stage resource="Anbefalingen" publishedstage="recommendation.publishedStage"></published-stage>
+<article class="container Recommendations" >
+
+  <!--Recommendations-->
+  <div class="row">
+
+
+    <div class="col-md-12 col-lg-8">
+      <h3>{{guideline.title}}</h3>
+      <section class="Recommendation" ng-hide="recommendation.isDeleted">
+        <recommendation accordions></recommendation>
+      </section>
+
+    <!--About section-->
+    <about-section></about-section>
+
+  </div>
+
+    <!-- row -->
+  </div>
+  <!-- end container -->
+</article>
+<script>
+//We need to wait until Angular is finished with the DOM
+    window.setTimeout(function(){
+        runJqueryUIRecommendationStuff();
+        $(".recommendationtitle").trigger("click");
+    }, 1000);
+</script>

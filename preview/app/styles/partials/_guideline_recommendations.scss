@@ -1,0 +1,730 @@
+/*Styles for the recommendations within a guideline*/
+
+/*
+ ---------------------------------
+    Header
+ ---------------------------------
+*/
+
+.Recommendations .col-md-12.nopadding {
+    @include breakpoint("mobile") {
+        padding: 0;
+    }
+}
+
+.Recommendations .pageheader {
+    background: $colorWhite;
+    border-left: 19px solid $colorRegalBlue;
+    @include breakpoint("mobile") {
+        border: none;
+        margin: 0;
+    }
+
+    nav {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        margin-left: 30px;
+        @include breakpoint("mobile") {
+            margin: 0;
+            background: $colorRegalBlue;
+            li {
+                margin-left: 45px;
+                padding: 7px 0;
+                display: none;
+                &:last-child {
+                    display: block;
+                    &:before{
+                        color: $colorWhite;
+                    }
+                }
+                &:before {
+                    position: absolute;
+                    left: 20px;
+                    top: 5px;
+                    font-family: $fontAwesome;
+                    content: $fontIconChevronLeft;
+                    font-size: 40px;
+                    vertical-align: middle;
+                    color: $colorWhite;
+                }
+            }
+            a {
+                color: $colorWhite;
+                font-size: 20px;
+                &:visited{
+                    color: $colorWhite;
+                }
+                &:before{
+                    color: $colorWhite;
+                }
+            }
+        }
+    }
+}
+
+.Recommendations .headerGroup {
+    color: $colorWhite;
+    background: $colorPurple;
+    background-image: url("../img/Livslinje-enkel-lilla.svg");
+    background-repeat: repeat-x;
+    background-size: cover;
+    overflow: hidden;
+    @include breakpoint("mobile") {
+        background: none;
+    }
+}
+
+.Recommendations .guidelinetitle {
+    line-height: 22px;
+    display: block;
+    margin-left: 30px;
+    margin-top: 30px;
+    @include breakpoint("mobile") {
+        display: none;
+    }
+}
+
+.Recommendations .sectiontitle {
+    color: $colorWhite;
+    margin-top: 20px;
+    padding-left: 30px;
+    padding-top: 0;
+    padding-bottom: 45px;
+    display: block;
+    //position: relative;
+    @include breakpoint("mobile") {
+        padding-left: 15px;
+        padding-right: 15px;
+        color: $colorRegalBlue;
+        font-size: 36px;
+    }
+}
+
+/*
+ ---------------------------------
+    Main
+ ---------------------------------
+*/
+.Recommendations{
+    margin-bottom: 100px;
+}
+
+
+
+.Recommendation {
+    padding: 0;
+    background: $colorWhite;
+    margin-bottom: 25px;
+    &:first-child {
+        margin-top: 40px;
+    }
+    dl dt {
+        font-weight: bold;
+    }
+    @media (min-width: 768px) {
+        .dl-horizontal {
+            width: 100%;
+            overflow: auto;
+            dt {
+                float: left;
+                width: auto;
+                overflow: hidden;
+                clear: left;
+                text-align: right;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            dd {
+                margin-left: 120px;
+                //float: left;
+
+            }
+        }
+    }
+    @include breakpoint("mobile") {
+        &.open {
+            margin-bottom: 100px;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 50px;
+    }
+}
+
+.Recommendation .recommendationheader {
+    &.gradingStrong {
+        border-left: 5px solid $colorgrading-strong;
+    }
+    &.gradingWeak {
+        border-left: 5px solid $colorgrading-weak;
+    }
+    &.gradingNone {
+        border-left: 5px solid $colorCloudy;
+    }
+    &.gradingBlank {
+        border-left: 5px solid $colorWhite;
+        /*Change to site background on mobile */
+        @include breakpoint("mobile") {
+            border-left: 5px solid $colorBase;
+        }
+    }
+}
+
+.Recommendation .recommendationtitle{
+        min-height: 100px;
+        margin-top: 0;
+        margin-right: 30px;
+        display: block;
+        color: $colorRegalBlue;
+        position: relative;
+        padding-left: 45px;
+        padding-bottom: 45px;
+        padding-top: 30px;
+        cursor: pointer;
+        font-size: 28px;
+        line-height: 36px;
+        font-family: "Soho Gothic W01 Light";
+        margin: 35px 0 0 0;
+        &:before {
+            position: absolute;
+            left: 15px;
+            content: $fontIconChevronDown;
+            font-family: $fontAwesome;
+            cursor: pointer;
+        }
+        &.clicked {
+            &:before {
+                content: $fontIconChevronUp;
+            }
+        }
+        @include breakpoint("mobile") {
+            &.clicked {
+                background: $colorBase;
+            }
+            padding-bottom: 15px;
+            width: 100%;
+            padding-right: 45px;
+        }
+}
+
+.Recommendation .recommendationcontent {
+    position: relative;
+}
+
+.Recommendation .recommendationexplanation {
+    /*Grading icon*/
+    margin-left: 50px;
+    padding-left: 20px;
+    @include breakpoint("mobile") {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    &.gradingStrong {
+        border-left: 2px solid $colorgrading-strong;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    &.gradingWeak {
+        border-left: 2px solid $colorgrading-weak;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    &.gradingNone {
+        border-left: 2px solid $colorgrading-none;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    &.gradingBlank {
+        border-left: 2px solid $colorgrading-blank;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    .clickable {
+        cursor: pointer;
+    }
+    .icon {
+        padding: 7px 15px;
+        width: 50px;
+        text-align: center;
+        display: inline-block;
+        &:before {
+            content: url("../img/modules/icons/ico-i.svg");
+            display: inline-block;
+            color: $colorWhite;
+            width: 20px;
+            height: 30px;
+            margin-bottom: 0;
+        }
+        &.open {
+            &:before {
+                content: url("../img/modules/icons/ico-x.svg");
+            }
+        }
+        &.gradingStrong {
+            background-color: $colorgrading-strong;
+        }
+        &.gradingWeak {
+            background-color: $colorgrading-weak;
+        }
+        &.gradingNone {
+            background-color: $colorgrading-none;
+        }
+        @include breakpoint("mobile") {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 25px;
+            padding: 10px 15px;
+            width: 50px;
+            text-align: center;
+        }
+    }
+}
+
+/*Grading header*/
+.Recommendation .recommendationstrength {
+    cursor: pointer;
+    font-family: $fontCalibriBold;
+    text-transform: uppercase;
+    margin-left: 15px;
+    &.gradingStrong {
+        color: $colorgrading-strong;
+    }
+    &.gradingWeak {
+        color: $colorgrading-weak;
+    }
+    @include breakpoint("mobile") {
+        display: block;
+        padding-top: 15px;
+        font-size: 26px;
+        font-family: $fontCalibri;
+        height: 51px;
+    }
+}
+/*Grading text*/
+.Recommendation .explainingtext {
+    margin-top: 0;
+    margin-right: 20px;
+    padding: 10px;
+    &.gradingStrong {
+        background-color: $colorSnuff;
+    }
+    &.gradingWeak {
+        background-color: $colorEdgewater;
+    }
+    p {
+        max-width: 650px;
+    }
+    @include breakpoint("mobile") {
+        padding: 25px 15px;
+        font-size: 24px;
+        margin-right: 0;
+    }
+}
+
+/* Styling for EKG border  */
+.Recommendation .textContainer {
+    @extend .bulletlist;
+    margin-left: 50px;
+    margin-right: 30px;
+    padding-left: 20px;
+    padding-top: 0;
+    min-height: 110px;
+    @include breakpoint("mobile") {
+        min-height: 50px;
+        margin: 0;
+        padding: 15px;
+    }
+
+    &.gradingStrong {
+        border-left: 2px solid $colorgrading-strong;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    &.gradingWeak {
+        border-left: 2px solid $colorgrading-weak;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    &.gradingNone {
+        border-left: 2px solid $colorgrading-none;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+
+        .recommendation-text {
+            padding-top: 0;
+    }
+    &.gradingBlank {
+        border-left: 2px solid $colorgrading-blank;
+        @include breakpoint("mobile") {
+            border-left: none;
+        }
+    }
+    .recommendation-text {
+        max-width: 650px;
+        padding-top: 15px;
+            dl{
+                dt{
+                    margin-top: 20px;
+                }
+                dd{
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+    img.pulse {
+        top: 40px;
+        position: absolute;
+        left: 43px;
+        height: 57px;
+        @include breakpoint("mobile") {
+            display: none;
+        }
+    }
+}
+
+/* Navigational tabs within recommendation */
+.Recommendation .tabs {
+    margin-top: 45px;
+    width: 100%;
+    .resp-tabs-list {
+        margin-bottom: 20px;
+        margin-left: 50px;
+        margin-right: 30px;
+        text-align: justify;
+        .resp-tab-item {
+            $margin: 4px;
+            cursor: pointer;
+            padding: 2px 10px;
+            display: inline-block;
+            background-color: $colorGallery;
+            margin-right: $margin;
+            &:last {
+                margin-right: 0;
+                margin-left: $margin;
+            }
+            a {
+                font-size: 18px;
+                color: $colorBlack;
+                &:focus, &:visited:focus{
+                    color: $colorBlack !important;
+                }
+            }
+            &.resp-tab-active {
+                background-color: $colorBase;
+                height: 40px;
+                font-family: $fontCalibriBold;
+            }
+        }
+        &.open {
+            margin-bottom: 0;
+        }
+    }
+    .resp-tabs-container {
+
+        p{
+            font-size: 18px;
+        }
+        .keyinfoheading {
+            margin: 30px 0 0 0;
+            line-height: 36px;
+            padding-left: 0;
+            font-size: 28px;
+        }
+        $border: 15px solid $colorWhite;
+        border-left: $border;
+        border-right: $border;
+        border-bottom: $border;
+        @include breakpoint("desktop") {
+            background-color: $colorBase;
+            font-size: 18px;
+        }
+
+        @include breakpoint("tablet") {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+
+        @include breakpoint("mobile") {
+            margin: 0;
+            border: 0;
+            background-color: $colorBase;
+            padding-top: 1px;
+            padding-bottom: 3px;
+        }
+
+        /* container divs for tab content */
+        > div {
+            padding-top: 30px;
+            margin-left: 60px;
+            margin-right: 30px;
+            padding-bottom: 30px;
+            @include breakpoint("tablet") {
+                background-color: $colorBase;
+                margin: 0;
+                padding-left: 20px;
+                padding-right: 15px;
+            }
+
+            @include breakpoint("mobile") {
+                background-color: $colorGallery;
+            }
+        }
+        .resp-accordion {
+
+            padding: 7px 20px;
+            background-color: $colorGallery;
+            //margin-top: 0;
+            margin-top: 3px;
+            @include breakpoint("mobile") {
+                background-color: $colorWhite;
+            }
+
+            a {
+                //font-size: 24px;
+                color: $colorBlack;
+                &:before {
+                    padding-right: 10px;
+                    font-size: 30px;
+                    content: $fontIconChevronDown;
+                    font-family: $fontAwesome;
+                    text-decoration: none;
+                    color: $colorFriarGray;
+                }
+            }
+            &.resp-tab-active {
+                background-color: $colorBase;
+                @include breakpoint("mobile") {
+                    background-color: $colorGallery;
+                }
+
+                a {
+                    &:before {
+                        content: $fontIconChevronUp;
+                    }
+                }
+            }
+        }
+        ul.linklist {
+            margin-left: 0;
+            li {
+                display: inline-block;
+                margin-right: 20px;
+                line-height: 40px;
+                a {
+                    font-size: 18px;
+                    text-decoration: underline;
+                    color: $colorBlack;
+                    &:after {
+                        content: url("../img/modules/icons/ico-full-skjerm.svg");
+                        display: inline-block;
+                        width: 15px;
+                        height: 15px;
+                        margin-left: 15px;
+                    }
+                }
+                @include breakpoint("mobile") {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.Recommendation .button-close {
+    width: 100%;
+    height: 30px;
+    display: block;
+    @include breakpoint("mobile") {
+        height: 44px;
+    }
+
+    i {
+        color: $colorWhite;
+        margin-left: 20px;
+        font-size: 28px;
+        @include breakpoint("mobile") {
+            font-size: 30px;
+            @include vertical-align;
+        }
+    }
+    &.gradingStrong {
+        background-color: $colorgrading-strong;
+    }
+    &.gradingWeak {
+        background-color: $colorgrading-weak;
+    }
+    &.gradingNone {
+        background-color: $colorgrading-none;
+    }
+}
+
+.picomodal {
+    width: auto;
+    min-width: 300px;
+    position: relative;
+    max-width: 1300px;
+    overflow: hidden;
+    font-size: 18px;
+    background: $colorWhite;
+    //@media (min-width: 1200px) {
+    //    width: 1200px;
+    //}
+
+    .block{
+        display: block;
+    }
+    i{
+        font-style: italic;
+    }
+
+    @media (max-width: 1150px){
+        /* Force table to not be like tables anymore */
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            /* Hide table headers (but not display: none;, for accessibility) */
+                thead tr {
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+                }
+                tr { border-bottom: 15px solid #ccc;
+                    &:first-child{
+                        @media all and (max-width: 600px){
+                            margin-top: 15px;
+                        }
+                    }
+                }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        position: relative;
+                        padding-left: 250px;
+                        @media all and (max-width: 600px){
+                            padding-left: 15px;
+                        }
+                        &:last-child{
+                            margin-bottom: 5px;
+                        }
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                        @media all and (max-width: 600px){
+                            position: relative;
+                            top: auto;
+                            left: auto;
+                            display: block;
+                        }
+                    }
+                    /*
+                        Label the data
+                        */
+                        %bold {font-weight: bold}
+                        td:nth-of-type(1):before {@extend %bold; content: "Utfall"; }
+                        td:nth-of-type(2):before {@extend %bold; content: "Tiltro til estimatene"; }
+                        td:nth-of-type(3):before {@extend %bold; content: "Relativ effekt"; }
+                        td:nth-of-type(4):before {@extend %bold; content: "Ingen behandling"; }
+                        td:nth-of-type(5):before {@extend %bold; content: "Parental antikoagulasjon"; }
+                        td:nth-of-type(6):before {@extend %bold; content: "Absolutt forskjell"; }
+                        td:nth-of-type(7):before {@extend %bold; content: "Antall inkluderte"; }
+                        td:nth-of-type(8):before {@extend %bold; content: "Antall studier"; }
+                        td:nth-of-type(9):before {@extend %bold; content: "Oppf\f8lgingstid"; }
+    }
+
+    .picomodalheader {
+        background: $colorQuillGray;
+        font-weight: bold;
+        padding: 10px 30px;
+        a {
+            text-decoration: underline;
+            color: $colorFriarGray;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-weight: normal;
+            &:after {
+                font-family: $fontAwesome;
+                content: $fontIconClose;
+                text-decoration: none;
+                font-size: inherit;
+                padding-left: 10px;
+            }
+        }
+    }
+    table {
+
+
+
+        th {
+            font-weight: bold;
+            text-align: left;
+        }
+        @media (min-width: 1150px){
+            margin: 30px auto;
+            td{
+                text-align: center;
+            }
+            th,td{
+                padding: 5px;
+            }
+
+        td:first-child {
+
+            padding-left: 30px;
+        }
+        th:first-child {
+
+            padding-left: 30px;
+        }
+        td:last-child {
+            padding-right: 30px;
+        }
+        th:last-child {
+            padding-right: 30px;
+        }
+
+        tbody tr:nth-child(even) {
+            background: $colorBase;
+        }
+    }}
+}
+ @media (max-width: 1150px){
+.mfp-content{
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+}
+
+.picosummarycontent, .picoreferencescontent{
+    max-width: 600px;
+    padding: 30px 30px;
+}
+
+#rasjonale, #praktisk, #nokkelinfo, #print{
+  //classes from ../utilities/_snippets.scss
+    @extend .bulletlist;
+    @extend .table;
+}
+
+

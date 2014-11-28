@@ -1,0 +1,82 @@
+.Search .searchform {
+    margin-top: 30px;
+}
+
+.Search .numberofresults {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    display: block;
+    color: $colorRegalBlue;
+}
+
+.Searchresults .result {
+    position: relative;
+    padding: 20px 30px;
+    margin-bottom: 20px;
+}
+
+.Searchresults .section {
+    background-color: $colorGallery;
+}
+
+.Searchresults .sectioninformation {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 38%;
+    color: $colorCloudy;
+    font-size: 18px;
+    .numberofrecommendations {
+        font-family: $fontSohoLight;
+        color: $colorCloudy;
+        display: block;
+        font-size: 30px;
+        text-align: center;
+    }
+}
+
+.Searchresults .sectiontitle {
+    padding-right: 105px;
+    margin-top: 0;
+    color: $colorBondiBlue;
+    .guidelinetitle {
+        display: block;
+        color: $colorRegalBlue;
+    }
+}
+
+.Searchresults .recommendation {
+    background-color: $colorWhite;
+    border-left: 2px solid $colorSeaGreen;
+    @include breakpoint("mobile"){
+        border: none;
+    }
+    .recommendationnumber {
+        color: $colorCloudy;
+        font-size: 18px;
+    }
+}
+
+.Searchresults .pulse {
+    top: 0;
+    position: absolute;
+    left: -9px;
+    height: 57px;
+    @include breakpoint("mobile") {
+        display: none;
+    }
+}
+
+.Searchresults .breadcrumbs {
+    margin: 0;
+    .crumb {
+        margin-bottom: 0;
+        padding-right: 15px;
+        padding: 0;
+        color: $colorRegalBlue;
+        &:after {
+            margin: 0 15px;
+            font-size: 20px;
+        }
+    }
+}

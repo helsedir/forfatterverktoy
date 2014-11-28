@@ -1,5 +1,0 @@
-app/scripts/textangular/*.js
-app/scripts/services/authservice.js
-app/scripts/directives/login.js
-app/scripts/controllers/login.js
-app/scripts/vendor/*.js

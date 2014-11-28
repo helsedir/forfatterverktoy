@@ -1,0 +1,28 @@
+.bulletlist{
+  ul li{
+    list-style-position: outside;
+    margin-top: 10px;
+    margin: 0 0 10px 25px;
+    display: block;
+    &:before{
+      content: "\2022";
+      color: #004e66;
+      margin: -1px 0 0 -25px;
+      display: block;
+      position: absolute;
+    }
+  }
+}
+
+.table{
+  table {
+    margin-top: 15px;
+     border-collapse: collapse;
+   }
+
+  td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+  }
+}

@@ -1,0 +1,38 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 2824583, 2014-06-06T04:46:16-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: Calibri Bold by Ascender
+ * URL: http://www.myfonts.com/fonts/ascender/calibri/bold/
+ *
+ * Webfont: Calibri by Ascender
+ * URL: http://www.myfonts.com/fonts/ascender/calibri/regular/
+ *
+ *
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2824583
+ * Licensed pageviews: 600,000
+ * Webfonts copyright: &#x00A9; 2007 Microsoft Corporation. All Rights Reserved.
+ *
+ * © 2014 MyFonts Inc
+*/
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2b1987");
+
+@font-face {
+    font-family: 'Calibri-Bold';
+    src: url('../fonts/Calibri/2B1987_0_0.eot');
+    src: url('../fonts/Calibri/2B1987_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/Calibri/2B1987_0_0.woff') format('woff'),url('../fonts/Calibri/2B1987_0_0.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Calibri';
+    src: url('../fonts/Calibri/2B1987_1_0.eot');
+    src: url('../fonts/Calibri/2B1987_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/Calibri/2B1987_1_0.woff') format('woff'),url('../fonts/Calibri/2B1987_1_0.ttf') format('truetype');
+}

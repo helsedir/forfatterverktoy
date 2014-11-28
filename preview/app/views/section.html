@@ -1,0 +1,67 @@
+    <published-stage resource="Seksjonen" publishedstage="section.publishedStage"></published-stage>
+<article class="container Recommendations" >
+
+  <!--Header row-->
+  <div class="row">
+    <div class="col-md-12 nopadding">
+      <header id="pageheader" class="pageheader">
+        <nav>
+          <ol class="breadcrumbs clearfix">
+            <li><a href="#">Forside</a></li>
+            <li><a href="#">Nasjonale faglige retningslinjer</a></li>
+            <li><a href="#/{{guideline.guidelineId}}/">{{guideline.title}}</a></li>
+            <li><a class="active">{{section.heading}}</a></li>
+          </ol>
+        </nav>
+        <div class="headerGroup">
+          <span class="guidelinetitle smalltitle">{{guideline.title}}</span>
+          <h1 class="sectiontitle">{{section.heading}}</h1>
+        </div>
+
+      </header>
+    </div>
+  </div>
+  <!--Recommendations-->
+  <div class="row">
+
+
+    <div class="col-md-12 col-lg-8">
+
+      <section class="Recommendation" ng-repeat="recommendation in section.recommendations" ng-hide="recommendation.isDeleted">
+        <recommendation accordions></recommendation>
+      </section>
+
+    <!--About section-->
+    <about-section></about-section>
+
+  </div>
+    <aside class="col-md-12 col-lg-3 pull-right guidelines">
+      <div class="module module_related green col-md-6">
+        <h3>Relaterte anbefalinger</h3>
+        <ul class="linklist">
+          <li><a href="#">Sepsis</a></li>
+          <li><a href="#">Antibiotika</a></li>
+          <li><a href="#">Sepsis</a></li>
+        </ul>
+        <img class="pulse" src="img/modules/EKG-groenn.png" alt="">
+      </div>
+      <div class="module module_related blue col-md-6">
+        <h3>Relaterte retningslinjer</h3>
+        <ul class="linklist">
+          <li><a href="#">Antibiotika</a></li>
+          <li><a href="#">Sepsis</a></li>
+          <li><a href="#">Sepsis</a></li>
+        </ul>
+        <img class="pulse" src="img/modules/EKG-lyseblaa.png" alt="">
+      </div>
+    </aside>
+    <!-- row -->
+  </div>
+  <!-- end container -->
+</article>
+<script>
+//We need to wait until Angular is finished with the DOM
+    //window.setTimeout(function(){
+    //    runJqueryUIRecommendationStuff();
+    //}, 1000);
+</script>

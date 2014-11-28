@@ -1,0 +1,37 @@
+
+<article class="container" id="print">
+	<div>
+
+		<h1>{{guideline.title}}</h1>
+		<small>Publisert {{guideline.createdDate | date}}, oppdatert {{guideline.updatedDate | date}}</small>
+		<div ng-bind-html="guideline.text | unsafe">
+
+		</div>
+
+		<h2 ng-if="guideline.authors.length">Forfattere</h2>
+		<ul>
+			<li ng-repeat="author in guideline.authors" ng-if="guideline.authors.length">
+				{{author.name}} - {{author.email}}
+			</li>
+		</ul>
+
+
+		<div ng-repeat="section in guideline.sections" ng-if="guideline.sections">
+			<h2 ng-if="section.heading">{{section.heading}}</h2>
+			<div ng-bind-html="section.text | unsafe">
+			</div>
+
+			<print-recommendation ng-repeat="recommendation in section.recommendations" recommendationId="recommendation.recommendationId" >
+			</print-recommendation>
+
+      <div ng-repeat="childSection in section.childSections">
+        <h2 ng-if="childSection.heading">{{childSection.heading}}</h2>
+        <div ng-bind-html="childSection.text | unsafe">
+        </div>
+        <print-recommendation ng-repeat="childRecommendation in childSection.recommendations" recommendationId="childRecommendation.recommendationId" >
+        </print-recommendation>
+      </div>
+		</div>
+
+	</div>
+</article>

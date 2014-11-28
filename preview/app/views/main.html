@@ -1,0 +1,118 @@
+<article class="container Guidelinesfrontpage">
+    <div class="row">
+        <div class="col-md-7">
+            <header id="pageheader" class="pageheader">
+                <nav>
+                    <ol class="breadcrumbs clearfix">
+                        <li><a href="#">Forside</a></li>
+
+                    </ol>
+
+                </nav>
+                <h1>Retningslinjer og veiledere</h1>
+                <small>Retningslinjer, veiledere, pakkeforløp</small>
+            </header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <form class="retningslinjerSok">
+                <label for="searchinput">Søk etter anbefalinger i retningslinjer og veiledere</label>
+                <div id="search_input_retningslinjer">
+                    <input id="searchinput" class="search typeahead" type="text" placeholder="Amming, Sepsis.." />
+                </div>
+            </form>
+
+            <div class="content">
+                 <aside class="aside">
+            <div class="accordion_mobile refinesearch">
+                <h2>Avgrens visning</h2>
+                <form>
+                    <ul>
+                        <li>
+                            <input type="radio" name="radiobutton" id="alle" checked ng-click="refineSearch = '0'">
+                            <label for="alle"><span></span>Alle</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radiobutton" id="nasjonalefagligeretn" ng-click="refineSearch = '1'">
+                            <label for="nasjonalefagligeretn"><span></span>Nasjonale faglige retningslinjer</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radiobutton" id="prio" ng-click="refineSearch = '4'">
+                            <label for="prio"><span></span>Prioriteringsveiledere</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radiobutton" id="andre" ng-click="refineSearch = '2'">
+                            <label for="andre"><span></span>Andre veiledere</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="radiobutton" id="kreft" ng-click="refineSearch = '3'">
+                            <label for="kreft"><span></span>Pakkeforløp for kreft</label>
+                        </li>
+                    </ul>
+                </form>
+                <form class="searchform">
+                    <label for="searchinput"></label>
+                    <input id="searchinput" ng-model="searchText" class="search" type="text" placeholder="Avgrens visning" />
+                </form>
+            </div>
+        </aside>
+
+            <span class="guidelinecount">{{filtered.length}} retningslinjer og veiledere</span>
+            <ul class="guidelineslist">
+                <li ng-repeat="guideline in filtered = (guidelines | filter: searchText | isType:refineSearch | orderBy: 'shortTitle')" class="guideline" ng-hide="guideline.isDeleted">
+
+                        <a href="#/{{guideline.guidelineId}}">
+                            <!-- guidelines.title -->
+                            <h3 class="guidelinetitle">{{guideline.shortTitle}}</h3>
+                            <p class="guidelinesummary">{{guideline.title}}</p>
+                        </a>
+
+                </li>
+                <li class="guideline pdf">
+
+                        <a href="#">
+                            <!-- guidelines.title -->
+                            <h3 class="guidelinetitle">Spedbarnsernæring</h3>
+                            <p class="guidelinesummary">Nasjonal faglig retningslinje for spedbarnsernæring (kortversjon)</p>
+                            <span class="download">Last ned pdf 2,4MB</span>
+                            <img class="pdficon" src="img/modules/icons/ico-pdf.png" alt="" />
+                        </a>
+
+                </li>
+                <li class="guideline pdf">
+
+                        <a href="#">
+                            <!-- guidelines.title -->
+                            <h3 class="guidelinetitle">Spedbarnsernæring</h3>
+                            <p class="guidelinesummary">Nasjonal faglig retningslinje for spedbarnsernæring (kortversjon)</p>
+                            <span class="download">Les HTML-versjon</span>
+                            <img class="htmlicon" src="img/modules/icons/ico-www.png" alt="" />
+                        </a>
+
+                </li>
+            </ul>
+            <!-- cols -->
+
+        </div>
+    </div>
+
+
+        <!-- row -->
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="module module_social col-md-7">
+                <a href="#" class="ikon_metode"><span></span>metode</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- end container -->
+</article>
+<script>
+//We need to wait until Angular is finished with the DOM
+    //window.setTimeout(function(){
+    //    runJqueryUIRecommendationStuff();
+    //}, 500);
+</script>

@@ -1,0 +1,257 @@
+.Guidelinechildsection .pageheader {
+    background: $colorWhite;
+    border-left: 19px solid $colorRegalBlue;
+    @include breakpoint("mobile") {
+        border: none;
+        margin: 0;
+    }
+
+    nav {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        margin-left: 30px;
+        @include breakpoint("mobile") {
+            margin: 0;
+            background: $colorRegalBlue;
+            li {
+                margin-left: 45px;
+                padding: 7px 0;
+                display: none;
+                &:last-child {
+                    display: block;
+                    &:before{
+                        color: $colorWhite;
+                    }
+                }
+                &:before {
+                    position: absolute;
+                    left: 20px;
+                    top: 5px;
+                    font-family: $fontAwesome;
+                    content: $fontIconChevronLeft;
+                    font-size: 40px;
+                    vertical-align: middle;
+                    color: $colorWhite;
+                }
+            }
+            a {
+                color: $colorWhite;
+                font-size: 20px;
+                &:visited{
+                    color: $colorWhite;
+                }
+                &:before{
+                    color: $colorWhite;
+                }
+            }
+        }
+    }
+}
+
+.Guidelinechildsection .nopadding{
+    padding: 0;
+}
+
+
+.Guidelinechildsection .headerGroup {
+    position: relative;
+    color: $colorWhite;
+    background: $colorPurple;
+    background-image: url("../img/Livslinje-enkel-lilla.svg");
+    background-repeat: repeat-x;
+    background-size: cover;
+    overflow: hidden;
+    @include breakpoint("mobile") {
+        //background: none;
+    }
+}
+
+.Guidelinechildsection .guidelinetitle {
+    line-height: 22px;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 30px;
+    @include breakpoint("mobile") {
+        display: none;
+    }
+}
+
+.Guidelinechildsection .sectiontitle {
+    color: $colorWhite;
+    margin-top: 20px;
+    padding-left: 30px;
+    padding-top: 0;
+    padding-bottom: 45px;
+    display: block;
+    font-size: 36px;
+
+    @include breakpoint("mobile") {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 36px;
+    }
+}
+
+.Guidelinechildsection .aboutguidelineicon {
+    position: absolute;
+    right: 30px;
+    top: 25%;
+    color: $colorWhite;
+    @include breakpoint("tablet") {
+        bottom: 0;
+        top: auto;
+        right: 0;
+
+    }
+
+    &:before {
+        color: $colorWhite;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.2);
+        content: url("../img/modules/icons/ico-i.svg");
+        text-align: center;
+        width: 80px;
+        height: 80px;
+        padding: 15px 20px;
+        margin-left: 20px;
+        @include breakpoint("tablet") {
+            padding: 8px 10px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+    &.open:before {
+        content: url("../img/modules/icons/ico-x.svg");
+    }
+    .text {
+        color: $colorWhite;
+        font-size: 18px;
+        @include breakpoint("tablet") {
+            display: none;
+        }
+    }
+}
+
+.Guidelinechildsection .aboutexpand {
+    overflow: hidden;
+    display: none;
+
+
+    @include breakpoint("tablet"){
+        padding-left: 30px;
+    }
+    @include breakpoint("mobile") {
+        padding: 10px 15px;
+    }
+
+    @media only screen and (min-width: 900px) {
+        padding: 30px 0 30px 30px;
+    }
+    .metadata .text {
+        display: block;
+        color: $colorFriarGray;
+    }
+    .metadata {
+        padding: 0;
+        margin-bottom: 10px;
+        @media only screen and (min-width: 900px) {
+            float: left;
+            padding-right: 30px;
+            border-right: 2px solid $colorRegalBlue;
+        }
+    }
+    > .text {
+        padding: 0;
+        @media only screen and (min-width: 900px) {
+
+            padding-left: 30px;
+            width: 70%;
+            float: left;
+        }
+    }
+}
+
+.Guidelinechildsection .sectionlist {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    .element {
+        min-height: 100px;
+        padding: 20px 30px;
+        position: relative;
+        margin-bottom: 25px;
+        &:nth-child(odd) {
+            background-color: $colorGallery;
+        }
+        &:nth-child(even) {
+            background-color: $colorWhite;
+        }
+    }
+}
+
+.Guidelinechildsection .sectionheading {
+        /*Less padding on mobile */
+        padding-right: 10px;
+        margin-top: 10px;
+        @media only screen and (min-width: 600px) {
+            padding-right: 105px;
+        }
+        color: $colorBondiBlue;
+        word-break: break-word;
+        span {
+            line-height: 15px;
+            margin-bottom: 10px;
+            display: block;
+            color: $colorRegalBlue;
+        }
+    }
+
+.Guidelinechildsection .sectioninformation {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 28%;
+    .numberofrecommendations {
+        color: $colorCloudy;
+        font-size: 18px;
+        a{
+            color: $colorCloudy;
+            &:visited{
+                color: $colorCloudy;
+            }
+        }
+    }
+    .numberofrecommendations > .number {
+        font-family: $fontSohoLight;
+        color: $colorCloudy;
+        display: block;
+        font-size: 30px;
+        text-align: center;
+    }
+    .haschildsections {
+        width: 40px;
+        height: 50px;
+        margin-right: 25px;
+    }
+}
+/*
+ ---------------------------------
+ Sidebar
+ ---------------------------------
+*/
+
+/*hacking aside to fit with col-md-8 */
+.Guidelinechildsection .guidelines.col-8 {
+    @media only screen and (min-width: 1200px) {
+        margin-right: -50%;
+    }
+    @media only screen and (max-width: 1199px) and (min-width: 950px) {
+        margin-right: -54%;
+    }
+    @media only screen and (max-width: 950px) {
+        margin-top: 0;
+        margin-right: 0;
+        position: relative;
+        width: auto;
+    }
+}
+

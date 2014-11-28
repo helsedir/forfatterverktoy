@@ -1,0 +1,110 @@
+<published-stage resource="Seksjonen" publishedstage="section.publishedStage"></published-stage>
+<article class="container Guidelinechildsection">
+	<!--Header row-->
+	<div class="row">
+		<div class="col-md-12 nopadding">
+			<header id="pageheader" class="pageheader">
+				<nav>
+					<ol class="breadcrumbs clearfix">
+						<li><a href="#">Forside</a></li>
+						<li><a href="#" class="active">Nasjonale faglige retningslinjer</a></li>
+						<li><a href="#/{{guideline.guidelineId}}/">{{guideline.shortTitle}}</a></li>
+						<li><a class="active">{{section.heading}}</a></li>
+					</ol>
+				</nav>
+				<div class="headerGroup">
+					<span class="guidelinetitle smalltitle">{{guideline.title}}</span>
+					<h1 class="sectiontitle">{{section.heading}}</h1>
+					<a href="" title="" class="aboutguidelineicon"><span class="text">Om retningslinjen</span></a>
+				</div>
+				<div class="aboutexpand">
+					<div class="metadata">
+						<span class="text">Opprettet {{guideline.createdDate | date:'dd.MM.yyyy'}}</span>
+						<span class="text">Sist oppdatert {{guideline.updatedDate | date:'dd.MM.yyyy'}}</span>
+					</div>
+					<div class="text" ng-bind-html="guideline.text | unsafe">
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<h2 class="smalltitle">Innhold i dette kapittelet</h2>
+			<section class="Recommendation" ng-repeat="recommendation in section.recommendations" ng-hide="recommendation.isDeleted">
+				<recommendation accordions></recommendation>
+			</section>
+
+
+
+			<ul class="sectionlist">
+
+				<li class="element" ng-repeat="thisSection in section.childSections" ng-hide="thisSection.isDeleted">
+					<a ng-if="thisSection.childSections.length > 0" href="#/{{guideline.guidelineId}}/childsectionIndex/{{thisSection.sectionId}}">
+						<h3 class="sectionheading">{{thisSection.heading}}</h3>
+						<div class="sectioninformation hidden-xs">
+							<!--Show image if we are redirecting to next transport page with childsections-->
+							<img class="haschildsections" src="img/modules/icons/ico-mer.png" alt="" />
+						</div>
+					</a>
+					<a ng-if="thisSection.childSections.length == 0" href="#/{{guideline.guidelineId}}/section/{{thisSection.sectionId}}">
+						<h3 class="sectionheading">{{thisSection.heading}}</h3>
+						<div class="sectioninformation hidden-xs">
+							<!--Show number of recommendations if section has no childsections-->
+							<div class="numberofrecommendations" ng-if="thisSection.recommendations.length > 0">
+								<span class="number">{{thisSection.recommendations.length}}</span>
+								<span ng-if="thisSection.recommendations.length > 1">Anbefalinger</span>
+                <span ng-if="thisSection.recommendations.length <= 1">Anbefaling</span>
+							</div>
+						</div>
+					</a>
+				</li>
+
+			</ul>
+
+		<about-section></about-section>
+		<div class="module module_social">
+			<a href="javascript:window.print()" class=" ikon_skrivut"><span></span>utskriftsvennlig versjon</a>
+			<a href="#" class="ikon_disclaimer"><span></span>disclaimer</a>
+			<a href="#" class="ikon_metode"><span></span>metode</a>
+		</div>
+		<aside class="aside guidelines col-8">
+			<div class=" module module_person ">
+				<h5 class=" module_description">Ansvarlig for retningslinjen</h5>
+				<a href="mailto:Anne.May.Knudsen@helsedir.no">
+					<div class="name">Avd XX</div>
+				</a>
+				<div class="person_information">
+					<p class="phone">E-post: avdxx@helsedir.no</p>
+				</div>
+			</div>
+			<div class="module module_related green">
+				<h3>Relaterte anbefalinger</h3>
+				<ul class="linklist">
+					<li><a href="#">Sepsis</a></li>
+					<li><a href="#">Antibiotika</a></li>
+					<li><a href="#">Sepsis</a></li>
+				</ul>
+				<img class="pulse" src="img/modules/EKG-groenn.png" alt="">
+			</div>
+			<div class="module module_related blue">
+				<h3>Relaterte retningslinjer</h3>
+				<ul class="linklist">
+					<li><a href="#">Antibiotika</a></li>
+					<li><a href="#">Sepsis</a></li>
+					<li><a href="#">Sepsis</a></li>
+				</ul>
+				<img class="pulse" src="img/modules/EKG-lyseblaa.png" alt="">
+			</div>
+		</aside>
+		</div> <!-- cols -->
+		</div><!-- row -->
+	</div>
+	</article> <!-- end container -->
+	<script>
+	//We need to wait until Angular is finished with the DOM
+	window.setTimeout(function(){
+	runJqueryUIRecommendationStuff();
+	runJqueryUIStuff();
+	}, 1000);
+	</script>

@@ -1,0 +1,75 @@
+/*Retningslinje forside. Liste over alle nasjonale faglige retningslinjer */
+
+
+.Guidelinesfrontpage .pageheader {
+    margin-bottom: 30px;
+}
+
+.Guidelinesfrontpage .guideline {
+        background: $colorWhite;
+        padding: 30px;
+        margin: 30px 0;
+        position: relative;
+        @include breakpoint("mobile"){
+            padding: 10px;
+        }
+        &:first-child {
+            margin-top: 10px;
+        }
+        &.pdf{
+            background: $colorGallery;
+            .guidelinetitle{
+                color: $colorFriarGray;
+            }
+        }
+}
+
+.Guidelinesfrontpage .guidelinetitle{
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: $colorBondiBlue;
+}
+ 
+ 
+
+.Guidelinesfrontpage .guidelinecount {
+    font-size: 18px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 30px;
+    color: $colorRegalBlue;
+}
+
+.Guidelinesfrontpage .guidelinesummary{
+    word-wrap: break-word;
+    color: $colorBlack;
+    padding-right: 70px;
+}
+
+
+.Guidelinesfrontpage .download{
+    color: $colorPersianRed;
+    display: block;
+    font-family: $fontSohoRegular;
+    line-height: 32px;
+    &:after{
+        padding-left: 15px;
+        font-size: 24px;
+        font-family: $fontAwesome;
+        content: $fontIconChevronRight;
+    }
+}
+
+.Guidelinesfrontpage .pdficon{
+    position: absolute;
+    top: 58px;
+    height: 50px;
+    right: 40px;
+}
+
+.Guidelinesfrontpage .htmlicon{
+    position: absolute;
+    top: 58px;
+    height: 40px;
+    right: 40px;
+}

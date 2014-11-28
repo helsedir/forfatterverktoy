@@ -1,0 +1,571 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/masterpage.css">
+    <link rel="stylesheet" href="styles/font_soho.css">
+    <link rel="stylesheet" href="styles/font_calibri.css">
+    <link rel="stylesheet" href="styles/magnific-popup.css">
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="guidelinePreviewApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+        <div id="header" ng-hide="recommendation">
+            <div class="shortcuts">
+                <ul>
+                    <li><a href="#content" id="contentshortcut">Gå til innhold</a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <header class="row masterheader">
+                    <div class="col-xs-7 col-sm-8 col-md-4 col-lg-4 nopadding">
+                        <a href="#" id="logo" title="Gå til forsiden">
+                            <img src="img/logo.svg" alt="">
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-0 hidden-xs hidden-sm ">
+                        <div class="menubutton pull-right">
+                            <button class="js-expander" style="cursor: pointer;">
+                                <span>Meny</span>
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 visible-xs xs-no-padding col-sm-4 visible-sm">
+
+                        <div class="menubutton mobile-search pull-right" id="mobilesearch">
+                        </div>
+                        <div class="menubutton mobile-menu js-expander pull-right" id="mobilemenu" style="cursor: pointer;">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-2 col-lg-3 hidden-sm" id="mainsearchcolumn">
+                        <form>
+                            <span role="search">
+                                <label for="mainsearchinput" class="visuallyhidden">Søk</label>
+                                <input id="mainsearchinput" class="mainsearch" type="search" title="Skriv inn hva du vil søke på og trykk enter" placeholder="Søk i alt innhold">
+                            </span>
+                        </form>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                        <div class="pull-right">
+                            <a class="links hidden-sm hidden-xs" href="#">OM OSS</a>
+                            <a class="links hidden-sm hidden-xs" href="#">EN</a>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="toppmeny container-fluid js-expand visuallyhidden">
+                <div class="inner container-fluid">
+                    <div class="container">
+                        <nav class="tabs">
+
+                            <ul class="tab-links" role="tablist">
+                                <li class="tabs_header" id="tab_header1" role="tab" aria-controls="panel_header1" aria-selected="true" tabindex="0">Kategorier</li>
+                                <li class="tabs_header" id="tab_header2" role="tab" aria-controls="panel_header2" aria-selected="false" tabindex="0">Innhold A-Å</li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="panel_header1" class="tab tabpanel_header" aria-labelledby="tab_header1" aria-hidden="false" role="tabpanel">
+
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-4">
+
+                                            <ul>
+                                                <li><a href="#" id="content_categories">Nasjonale faglige retningslinjer</a></li>
+                                                <li><a href="#">Nasjonale strategier og planer</a></li>
+                                                <li><a href="#">Statistikk og analyse</a></li>
+                                                <li><a href="#">Rapporter, brosjyrer og publikasjoner</a></li>
+                                                <li><a href="#">Tilskudd</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <ul>
+                                                <li><a href="#">Folkehelse og forebygging</a></li>
+                                                <li><a href="#">Beredskap</a></li>
+                                                <li><a href="#">Lover og rettigheter</a></li>
+                                                <li><a href="#">Høringer</a></li>
+                                                <li><a href="#">Kurs og konferanser</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix visible-xs visible-sm"></div>
+
+                                        <div class=" col-sm-6 col-md-4">
+                                            <ul>
+
+                                                <li><a href="#">Diagnoser og tilstander</a></li>
+                                                <li><a href="#">Legemidler og medisinsk utstyr</a></li>
+                                                <li><a href="#">Godkjenning og turnus</a></li>
+                                                <li><a href="#">eHelse</a></li>
+                                                <li><a href="#">Helseøkonomi</a></li>
+                                                <li class="hidden_links"><a href="#" class="">Om oss</a></li>
+                                                <li class="hidden_links"><a href="#" class="">English</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="panel_header2" class="tab visuallyhidden tabpanel_header" aria-labelledby="tab_header2" aria-hidden="true" role="tabpanel">
+                                    <div class="row alphabetical">
+                                        <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                            <ul>
+                                                <li class="character">A</li>
+                                                <li><a href="#" id="content_alphabetical">AD/HD</a></li>
+                                                <li><a href="#">Alkohol</a></li>
+                                                <li><a href="#">Antibiotika</a></li>
+                                                <li><a href="#">Astma og allergi</a></li>
+                                            </ul>
+
+                                            <ul>
+                                                <li class="character">B</li>
+                                                <li><a href="#">Beredskap og krisehåndtering</a></li>
+                                            </ul>
+
+                                            <ul>
+                                                <li class="character">D</li>
+                                                <li><a href="#">Demens</a></li>
+                                                <li><a href="#">Diabetes</a></li>
+                                            </ul>
+
+                                            <ul>
+                                                <li class="character">E</li>
+                                                <li><a href="#">E-resept</a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">F</li>
+
+                                                <li><a href="#">Folkehelsearbeid</a></li>
+                                                <li><a href="#">Forgiftning</a></li>
+                                                <li><a href="#">Frisklivssentraler</a></li>
+                                                <li><a href="#">Fritt sykehusvalg </a></li>
+                                                <li><a href="#">Fysioterapi       </a></li>
+                                                <li><a href="#">Førerkort         </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">G</li>
+                                                <li><a href="#">Godkjenning og autorisasjon </a></li>
+                                                <li><a href="#">Graviditet, fødsel og amming</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                            <ul>
+                                                <li class="character">H</li>
+                                                <li><a href="#">Helsestasjon og skolehelsetjenesten    </a></li>
+                                                <li><a href="#">Helseøkonomi og finansiering           </a></li>
+                                                <li><a href="#">Hjerneslag                             </a></li>
+                                                <li><a href="#">Hjerte- og karsykdommer                </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">I</li>
+                                                <li><a href="#">Individuell plan og rehabilitiering    </a></li>
+                                                <li><a href="#">Influensa                              </a></li>
+                                                <li><a href="#">Innvandrerhelse                        </a></li>
+                                                <li><a href="#">IPLOS                                  </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">K</li>
+                                                <li><a href="#">Kjernejournal                          </a></li>
+                                                <li><a href="#">Kols                                   </a></li>
+                                                <li><a href="#">Kosthold, ernæring og fysisk aktivitet </a></li>
+                                                <li><a href="#">Kreft                                  </a></li>
+                                                <li><a href="#">Kvalitetsindikatorer                   </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">L</li>
+                                                <li><a href="#">Legemidler                             </a></li>
+                                                <li><a href="#">Legestillingsregisteret                </a></li>
+                                                <li><a href="#">Lover og fortolkninger                 </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix hidden-md hidden-lg"></div>
+                                        <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                            <ul>
+                                                <li class="character">M</li>
+
+                                                <li><a href="#">ME-CFS                                 </a></li>
+                                                <li><a href="#">Medisinsk bibliotek                    </a></li>
+                                                <li><a href="#">Medisinsk utstyr                       </a></li>
+                                                <li><a href="#">Medisinske koder og kodeverk           </a></li>
+                                                <li><a href="#">Motiverende intervju                   </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">N</li>
+                                                <li><a href="#">Nasjonale faglige retningslinjer       </a></li>
+                                                <li><a href="#">Nasjonale strategier og handlingsplaner</a></li>
+                                                <li><a href="#">Norsk pasientregister</a></li>
+                                                <li><a href="#">Nødnett</a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">O</li>
+                                                <li><a href="#">Offshore                            </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">P</li>
+                                                <li><a href="#">Pasientrettigheter                  </a></li>
+                                                <li><a href="#">Psykisk helse                       </a></li>
+                                                <li><a href="#">Psykisk utviklingshemmede           </a></li>
+                                                <li><a href="#">Pårørende                           </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                            <ul>
+                                                <li class="character">R</li>
+                                                <li><a href="#">Refusjoner                          </a></li>
+                                                <li><a href="#">Rus og narkotika                    </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">S</li>
+                                                <li><a href="#">Samhandlingsreformen                </a></li>
+                                                <li><a href="#">Seksuell helse                      </a></li>
+                                                <li><a href="#">Skjemaer                            </a></li>
+                                                <li><a href="#">Smittevern                          </a></li>
+                                                <li><a href="#">Statistikk, tall og analyse         </a></li>
+                                                <li><a href="#">Sykehjem og hjemmesykepleie         </a></li>
+                                                <li><a href="#">Sykemelding                         </a></li>
+                                                <li><a href="#">System for innføring av nye metoder </a></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="character">T</li>
+                                                <li><a href="#">Tannhelse            </a></li>
+                                                <li><a href="#">Taushetsplikt        </a></li>
+                                                <li><a href="#">Tilskudd             </a></li>
+                                                <li><a href="#">Tobakk, røyk og snus </a></li>
+                                                <li><a href="#">Turnus </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <a id="content" tabindex="-1"></a>
+
+        </div>
+
+
+    <!--Main content-->
+
+       <div ng-view autoscroll="true"></div>
+
+    <!--footer-->
+        <div class=" shortcuts" ng-hide="recommendation || login">
+            <ul>
+                <li><a href="#bottom">Bunnlinje</a></li>
+            </ul>
+        </div>
+        <div id="footer" ng-hide="recommendation || login">
+            <footer class=" footerwrapper">
+                <div class=" menuwrapper">
+                    <div class="container">
+                        <div class="row ">
+                            <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h1 class=" visuallyhidden">Bunnmeny</h1>
+                                <nav class=" tabs">
+
+                                    <ul class=" tab-links" role="tablist">
+                                        <li role="presentation"><span class=" tabs_footer" id="tab_footer1" role="tab" aria-controls="panel_footer1" aria-selected="true" tabindex="0">Kategorier</span></li>
+                                        <li role="presentation"><span class=" tabs_footer" id="tab_footer2" role="tab" aria-controls="panel_footer2" aria-selected="false" tabindex="0">Innhold A-Å</span></li>
+                                    </ul>
+                                    <div class=" tab-content">
+                                        <div id="panel_footer1" class=" tab tabpanel_footer" aria-labelledby="tab_footer1" aria-hidden="false" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-4">
+
+                                                    <ul>
+                                                        <li><a href="medisinskeRetningslinjer/" id="footer_content_categories">Nasjonale faglige retningslinjer</a></li>
+                                                        <li><a href="#">Nasjonale strategier og planer</a></li>
+                                                        <li><a href="#">Statistikk og analyse</a></li>
+                                                        <li><a href="#">Rapporter, brosjyrer og publikasjoner</a></li>
+                                                        <li><a href="#">Tilskudd</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-6 col-md-4">
+                                                    <ul>
+                                                        <li><a href="#">Folkehelse og forebygging</a></li>
+                                                        <li><a href="#">Beredskap</a></li>
+                                                        <li><a href="#">Lover og rettigheter</a></li>
+                                                        <li><a href="#">Høringer</a></li>
+                                                        <li><a href="#">Kurs og konferanser</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class=" clearfix visible-xs visible-sm"></div>
+
+                                                <div class=" col-sm-6 col-md-4">
+                                                    <ul>
+
+                                                        <li><a href="#">Diagnoser og tilstander</a></li>
+                                                        <li><a href="#">Legemidler og medisinsk utstyr</a></li>
+                                                        <li><a href="#">Godkjenning og turnus</a></li>
+                                                        <li><a href="#">eHelse</a></li>
+                                                        <li><a href="#">Helseøkonomi</a></li>
+                                                        <li class="hidden_links"><a href="#">Om oss</a></li>
+                                                        <li class="hidden_links"><a href="#">English</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="panel_footer2" class="tab tabpanel_footer" aria-labelledby="tab_footer2" aria-hidden="true" role="tabpanel">
+                                            <div class="row alphabetical">
+                                                <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                                    <ul>
+                                                        <li class="character">A</li>
+                                                        <li><a href="#" id="footer_content_alphabetical">AD/HD</a></li>
+                                                        <li><a href="#">Alkohol</a></li>
+                                                        <li><a href="#">Antibiotika</a></li>
+                                                        <li><a href="#">Astma og allergi</a></li>
+                                                    </ul>
+
+                                                    <ul>
+                                                        <li class="character">B</li>
+                                                        <li><a href="#">Beredskap og krisehåndtering</a></li>
+                                                    </ul>
+
+                                                    <ul>
+                                                        <li class="character">D</li>
+                                                        <li><a href="#">Demens</a></li>
+                                                        <li><a href="#">Diabetes</a></li>
+                                                    </ul>
+
+                                                    <ul>
+                                                        <li class="character">E</li>
+                                                        <li><a href="#">E-resept</a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">F</li>
+
+                                                        <li><a href="#">Folkehelsearbeid</a></li>
+                                                        <li><a href="#">Forgiftning</a></li>
+                                                        <li><a href="#">Frisklivssentraler</a></li>
+                                                        <li><a href="#">Fritt sykehusvalg </a></li>
+                                                        <li><a href="#">Fysioterapi       </a></li>
+                                                        <li><a href="#">Førerkort         </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">G</li>
+                                                        <li><a href="#">Godkjenning og autorisasjon </a></li>
+                                                        <li><a href="#">Graviditet, fødsel og amming</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                                    <ul>
+                                                        <li class="character">H</li>
+                                                        <li><a href="#">Helsestasjon og skolehelsetjenesten    </a></li>
+                                                        <li><a href="#">Helseøkonomi og finansiering           </a></li>
+                                                        <li><a href="#">Hjerneslag                             </a></li>
+                                                        <li><a href="#">Hjerte- og karsykdommer                </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">I</li>
+                                                        <li><a href="#">Individuell plan og rehabilitiering    </a></li>
+                                                        <li><a href="#">Influensa                              </a></li>
+                                                        <li><a href="#">Innvandrerhelse                        </a></li>
+                                                        <li><a href="#">IPLOS                                  </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">K</li>
+                                                        <li><a href="#">Kjernejournal                          </a></li>
+                                                        <li><a href="#">Kols                                   </a></li>
+                                                        <li><a href="#">Kosthold, ernæring og fysisk aktivitet </a></li>
+                                                        <li><a href="#">Kreft                                  </a></li>
+                                                        <li><a href="#">Kvalitetsindikatorer                   </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">L</li>
+                                                        <li><a href="#">Legemidler                             </a></li>
+                                                        <li><a href="#">Legestillingsregisteret                </a></li>
+                                                        <li><a href="#">Lover og fortolkninger                 </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class=" clearfix hidden-md hidden-lg"></div>
+                                                <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                                    <ul>
+                                                        <li class="character">M</li>
+
+                                                        <li><a href="#">ME-CFS                                 </a></li>
+                                                        <li><a href="#">Medisinsk bibliotek                    </a></li>
+                                                        <li><a href="#">Medisinsk utstyr                       </a></li>
+                                                        <li><a href="#">Medisinske koder og kodeverk           </a></li>
+                                                        <li><a href="#">Motiverende intervju                   </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">N</li>
+                                                        <li><a href="#">Nasjonale faglige retningslinjer       </a></li>
+                                                        <li><a href="#">Nasjonale strategier og handlingsplaner</a></li>
+                                                        <li><a href="#">Norsk pasientregister</a></li>
+                                                        <li><a href="#">Nødnett</a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">O</li>
+                                                        <li><a href="#">Offshore                            </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">P</li>
+                                                        <li><a href="#">Pasientrettigheter                  </a></li>
+                                                        <li><a href="#">Psykisk helse                       </a></li>
+                                                        <li><a href="#">Psykisk utviklingshemmede           </a></li>
+                                                        <li><a href="#">Pårørende                           </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3 col-lg-3">
+
+                                                    <ul>
+                                                        <li class="character">R</li>
+                                                        <li><a href="#">Refusjoner                          </a></li>
+                                                        <li><a href="#">Rus og narkotika                    </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">S</li>
+                                                        <li><a href="#">Samhandlingsreformen                </a></li>
+                                                        <li><a href="#">Seksuell helse                      </a></li>
+                                                        <li><a href="#">Skjemaer                            </a></li>
+                                                        <li><a href="#">Smittevern                          </a></li>
+                                                        <li><a href="#">Statistikk, tall og analyse         </a></li>
+                                                        <li><a href="#">Sykehjem og hjemmesykepleie         </a></li>
+                                                        <li><a href="#">Sykemelding                         </a></li>
+                                                        <li><a href="#">System for innføring av nye metoder </a></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="character">T</li>
+                                                        <li><a href="#">Tannhelse            </a></li>
+                                                        <li><a href="#">Taushetsplikt        </a></li>
+                                                        <li><a href="#">Tilskudd             </a></li>
+                                                        <li><a href="#">Tobakk, røyk og snus </a></li>
+                                                        <li><a href="#">Turnus </a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <a id="bottom" tabindex="-1"></a>
+
+                <div class=" footerlinkswrapper">
+                    <div class="container">
+                        <div class="row">
+                            <section class="col-sm-12 col-md-4 ">
+                                <a href="kontaktoss.html">
+                                    <h4 class=" internal-link arrow_right">Kontakt oss</h4>
+                                </a>
+                                <p>Telefon: +47 810 20 050</p>
+                                <p>E-post: <a href="mailto:postmottak@helsedir.no">postmottak@helsedir.no</a></p>
+                                <p>Besøk: Universitetsgata 2, 0130 Oslo</p>
+                                <p>Post: Pb 7000 St.Olavs plass, 0130 Oslo</p>
+                            </section>
+                            <section class="col-sm-12 col-md-4">
+                                <a href="transportside_omoss.html">   <h4 class=" internal-link arrow_right">Om Helsedirektoratet</h4></a>
+                                <p>Helsedirektoratet gjennomfører helsepolitikken, forvalter helselover og er faglig rådgiver innen helse.</p>
+                                <ul class=" about">
+                                    <li><a href="#">Ledige stillinger</a></li>
+                                    <li><a href="#">Organisasjonskart</a></li>
+                                    <li><a href="#">Aktuelt</a></li>
+                                    <li><a href="#">Kurs og konferanser</a></li>
+                                    <li><a href="#">Presse</a></li>
+                                </ul>
+                            </section>
+                            <section class="col-sm-12 col-md-4 ">
+                                <h4>Abonner</h4>
+                                <a href="#"><p class="abonner">Nyheter på e-post</p></a>
+                                <a href="#"><p class="abonner">Nyheter på RSS</p></a>
+
+                                <div class=" socialmedia clearfix">
+                                    <h4>Følg oss på</h4>
+                                    <div>
+                                        <a class=" twitter" href="#"></a>
+                                        <a class=" facebook" href="#"></a>
+                                        <a class=" youtube" href="#"></a>
+                                        <a class=" linkedin" href="#"></a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </footer>
+        </div>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/authinterceptorservice.js"></script>
+    <script src="scripts/services/resourceFactory.js"></script>
+    <script src="scripts/vendor/magnific-popup.js"></script>
+    <script src="scripts/vendor/jquery-responsivetabs.js"></script>
+    <script src="scripts/vendor/guideline_jquery.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/guideline.js"></script>
+    <script src="scripts/controllers/section.js"></script>
+    <script src="scripts/controllers/recommendation.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/directives/responsive-tabs.js"></script>
+    <script src="scripts/directives/magnificpopup.js"></script>
+    <script src="scripts/directives/grading.js"></script>
+    <script src="scripts/directives/accordion.js"></script>
+    <script src="scripts/directives/explanationclick.js"></script>
+    <script src="scripts/directives/aboutsection.js"></script>
+    <script src="scripts/directives/aboutguidelineexpand.js"></script>
+    <script src="scripts/directives/publishedstage.js"></script>
+    <script src="scripts/directives/recommendation.js"></script>
+    <script src="scripts/directives/recommendationStrength.js"></script>
+    <script src="scripts/services/errorservice.js"></script>
+    <script src="scripts/services/authService.js"></script>
+    <script src="scripts/controllers/print.js"></script>
+    <script src="scripts/directives/printguideline.js"></script>
+    <script src="scripts/directives/printauthor.js"></script>
+    <script src="scripts/directives/printsection.js"></script>
+    <script src="scripts/directives/printrecommendation.js"></script>
+    <script src="scripts/directives/tableofcontents.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
