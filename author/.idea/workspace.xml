@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf89f802-b828-4428-855c-a9f293b035d4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../preview/app/styles/partials/_common.scss" afterPath="$PROJECT_DIR$/../preview/app/styles/partials/_common.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../preview/app/styles/partials/_guideline_recommendations.scss" afterPath="$PROJECT_DIR$/../preview/app/styles/partials/_guideline_recommendations.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../preview/app/views/partials/_recommendation.html" afterPath="$PROJECT_DIR$/../preview/app/views/partials/_recommendation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../preview/app/scripts/services/authService.js" afterPath="$PROJECT_DIR$/../preview/app/scripts/services/authService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../preview/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../preview/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../preview/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../preview/.idea/workspace.xml" />
     </list>

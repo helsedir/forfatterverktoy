@@ -524,7 +524,7 @@
                 a {
                     font-size: 18px;
                     text-decoration: underline;
-                    color: $colorBlack;
+                    color: $colorBlack !important;
                     &:after {
                         content: url("../img/modules/icons/ico-full-skjerm.svg");
                         display: inline-block;
