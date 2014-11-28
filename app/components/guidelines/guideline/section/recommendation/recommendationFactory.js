@@ -62,9 +62,9 @@ angular.module('webUiApp')
                     });
             };
 
-            service.deletePico = function (index, picoToDelete) {
-                Pico.deletePico(picoToDelete).then(function (){
-                    service.recommendation.picos.splice(index, 1);
+            service.deletePico = function (picoToDelete) {
+                return Pico.deletePico(picoToDelete).then(function (){
+                    service.recommendation.picos.splice(service.recommendation.picos.indexOf(picoToDelete), 1);
                 });
             };
 
@@ -82,9 +82,9 @@ angular.module('webUiApp')
                     });
             };
 
-            service.deleteEmrInfo = function (index, emrInfoId) {
-                return EmrInfo.deleteEmrInfo(emrInfoId).then(function (){
-                    service.recommendation.emrInfos.splice(index, 1);
+            service.deleteEmrInfo = function (emrInfoTodelete) {
+                return EmrInfo.deleteEmrInfo(emrInfoTodelete.emrInfoId).then(function (){
+                    service.recommendation.emrInfos.splice(service.recommendation.emrInfos.indexOf(emrInfoTodelete), 1);
                 });
             };
 
@@ -93,15 +93,18 @@ angular.module('webUiApp')
                 return resource.addKeyInfo({id: recommendationId}, keyInfo)
                     .$promise.then(function (data) {
                         toastr.success('La til keyInfo');
+                        if(recommendationId == service.recommendation.recommendationId) {
+                            service.recommendation.keyInfos.push(data);
+                        }
                         return data;
                     }, function (error){
                         Crud.handlePostError(error);
                     });
             };
 
-            service.deleteKeyInfo = function (index, keyInfoId) {
-                KeyInfo.deleteKeyInfo(keyInfoId).then(function (){
-                    service.recommendation.keyInfo.splice(index, 1);
+            service.deleteKeyInfo = function (keyInfo) {
+                return KeyInfo.deleteKeyInfo(keyInfo.keyInfoId).then(function (){
+                    service.recommendation.keyInfos.splice(service.recommendation.keyInfos.indexOf(keyInfo), 1);
                 });
             };
 
@@ -135,7 +138,9 @@ angular.module('webUiApp')
             service.publish = function (recommendationId, publishedStage) {
                 return resource.publish({id: recommendationId, publishedStage: publishedStage}).
                     $promise.then(function () {
-
+                        if(typeof(service.recommendation) != 'undefined' && recommendationId == service.recommendation.recommendationId) {
+                            service.recommendation.publishedStage = publishedStage;
+                        }
                     },
                     function (error) {
                         Crud.handlePostError(error);

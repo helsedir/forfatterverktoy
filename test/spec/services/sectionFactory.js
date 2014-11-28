@@ -1,5 +1,5 @@
 'use strict';
-describe('SectionFactory', function () {
+describe('Service: sectionFactory', function () {
     var apiUrl = 'http://localhost:50500/api/v1/';
     var mockSectionResource;
     var $httpBackend;
@@ -194,5 +194,7 @@ describe('SectionFactory', function () {
 
             $httpBackend.flush();
         }));
-    })
+    });
+
+
 });

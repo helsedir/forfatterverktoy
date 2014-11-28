@@ -34,7 +34,7 @@ angular.module('webUiApp')
     };
 
     $scope.deleteEmrInfoBtnClick = function () {
-      EmrInfo.deleteEmrInfo(emrInfoId).then(function () {
+      EmrInfo.deleteEmrInfo($scope.emrInfo).then(function () {
         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId);
       });
     };

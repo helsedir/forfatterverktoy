@@ -33,7 +33,7 @@ angular.module('webUiApp')
                 .$promise.then(function () {
                     toastr.success('Slettet');
                     //If the recommendation we deleted was the same as the one we're keeping the state of
-                    if(picoToDelete.picoId ===  service.pico.picoId){
+                    if(typeof(service.pico) != 'undefined' && picoToDelete.picoId ===  service.pico.picoId){
                         service.pico = {};
                     }
                 }, function (error){

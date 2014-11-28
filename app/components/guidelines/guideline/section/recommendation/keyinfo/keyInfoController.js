@@ -35,7 +35,7 @@ angular.module('webUiApp')
 
     
     $scope.deleteKeyInfoBtnClick = function () {
-      KeyInfo.deleteKeyInfo(keyInfoId).then(function (){
+      KeyInfo.deleteKeyInfo().then(function (){
         $location.path('/guideline/'+guidelineId+'/section/'+sectionId+'/recommendation/'+recommendationId);
       });
     };

@@ -1,5 +1,5 @@
 'use strict';
-describe('recommendationFactory', function () {
+describe('Service: recommendationFactory', function () {
     var apiUrl = 'http://localhost:50500/api/v1/';
     var mockRecommendationResource;
     var $httpBackend;
@@ -91,8 +91,8 @@ describe('recommendationFactory', function () {
     });
 
     describe('deletePico', function () {
-       iit('should remove pico from array of picos', inject (function (Recommendation) {
-           $httpBackend.expectDELETE(apiUrl+'recommendations/1/picos/1').respond({});
+       it('should remove pico from array of picos', inject (function (Recommendation) {
+           $httpBackend.expectDELETE(apiUrl+'picos/1').respond({});
            Recommendation.recommendation = {
                recommendationId: 1,
                picos: [{picoId: 1},{picoId: 2}]
@@ -102,9 +102,10 @@ describe('recommendationFactory', function () {
            };
 
            expect(Recommendation.recommendation.picos.length).toBe(2);
-           Recommendation.deletePico(2, picoToDelete).then(function () {
-
+           Recommendation.deletePico(picoToDelete).then(function () {
+               expect(Recommendation.recommendation.picos.length).toBe(1);
            });
+           $httpBackend.flush();
 
        }));
     });
@@ -131,7 +132,7 @@ describe('recommendationFactory', function () {
 
     describe('deleteemrInfo', function () {
         it('should remove emrInfo from array of emrInfos', inject (function (Recommendation) {
-            $httpBackend.expectDELETE(apiUrl+'emrinfos').respond({});
+            $httpBackend.expectDELETE(apiUrl+'emrinfos/1').respond({});
             Recommendation.recommendation = {
                 recommendationId: 1,
                 emrInfos: [{emrInfoId: 1},{emrInfoId: 2}]
@@ -141,12 +142,110 @@ describe('recommendationFactory', function () {
             };
 
             expect(Recommendation.recommendation.emrInfos.length).toBe(2);
-            Recommendation.deleteEmrInfo(emrInfoToDelete.emrInfoId).then(function () {
+            Recommendation.deleteEmrInfo(emrInfoToDelete).then(function () {
                expect(Recommendation.recommendation.emrInfos.length).toBe(1);
             });
 
             $httpBackend.flush();
 
+        }));
+    });
+
+    describe('addEmrInfo', function () {
+        it('should add keyInfo to array of keyInfos', inject(function (Recommendation) {
+            $httpBackend.expectPOST(apiUrl+'recommendations/1/keyinfo').respond({keyInfoId: 1});
+            Recommendation.recommendation = {
+                recommendationId: 1,
+                keyInfos: []
+            };
+            var keyInfoToAdd = {
+                keyInfoId: 1
+            };
+
+            expect(Recommendation.recommendation.keyInfos.length).toBe(0);
+            Recommendation.addKeyInfo(1, keyInfoToAdd).then(function () {
+                expect(Recommendation.recommendation.keyInfos.length).toBe(1);
+            });
+
+            $httpBackend.flush();
+        }));
+    });
+
+    describe('deletekeyInfo', function () {
+        it('should remove keyInfo from array of keyInfos', inject (function (Recommendation) {
+            $httpBackend.expectDELETE(apiUrl+'keyinfos/1').respond({});
+            Recommendation.recommendation = {
+                recommendationId: 1,
+                keyInfos: [{keyInfoId: 1},{keyInfoId: 2}]
+            };
+            var keyInfoToDelete = {
+                keyInfoId: 1
+            };
+
+            expect(Recommendation.recommendation.keyInfos.length).toBe(2);
+            Recommendation.deleteKeyInfo(keyInfoToDelete).then(function () {
+                expect(Recommendation.recommendation.keyInfos.length).toBe(1);
+            });
+
+            $httpBackend.flush();
+
+        }));
+    });
+
+    describe('addReference', function () {
+        it('should add reference to list of references', inject(function (Recommendation) {
+            $httpBackend.expectPUT(apiUrl+'recommendations/1/references/1').respond({keyInfoId: 1});
+            Recommendation.recommendation = {
+                recommendationId: 1,
+                references: []
+            };
+            var referenceToAdd = {
+                referenceId: 1
+            };
+
+            expect(Recommendation.recommendation.references.length).toBe(0);
+            Recommendation.addReference(referenceToAdd).then(function () {
+                expect(Recommendation.recommendation.references.length).toBe(1);
+            });
+
+            $httpBackend.flush();
+        }));
+    });
+
+    describe('removeReference', function () {
+        it('should remove reference from list of references', inject(function (Recommendation) {
+            $httpBackend.expectDELETE(apiUrl+'recommendations/1/references/1').respond({referenceId: 1});
+            Recommendation.recommendation = {
+                recommendationId: 1,
+                references: [{referenceId:1}]
+            };
+            var referenceToDelete = {
+                referenceId: 1
+            };
+
+            expect(Recommendation.recommendation.references.length).toBe(1);
+            Recommendation.removeReference(referenceToDelete.referenceId).then(function () {
+                expect(Recommendation.recommendation.references.length).toBe(0);
+            });
+            $httpBackend.flush();
+
+        }));
+    });
+
+    describe('publish', function () {
+        it('should update publishedStage', inject(function (Recommendation) {
+            Recommendation.recommendation = {
+                recommendationId: 1,
+                publishedStage: 1
+            }
+
+            expect(Recommendation.recommendation.publishedStage).toEqual(1);
+            $httpBackend.expectPUT(apiUrl+'recommendations/1/publish?publishedStage=2').respond({});
+            Recommendation.publish(1, 2).then(function () {
+                expect(Recommendation.recommendation.publishedStage).toEqual(2);
+            });
+
+            $httpBackend.flush();
         }));
     });
 });

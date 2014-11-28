@@ -58,7 +58,7 @@ angular.module('webUiApp')
         };
 
         $scope.deletePicoBtnClick = function (index){
-            Recommendation.deletePico(index, $scope.recommendation.picos[index]);
+            Recommendation.deletePico($scope.recommendation.picos[index]);
         };
 
         $scope.addEmrInfoBtnClick = function () {
@@ -66,7 +66,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteEmrInfoBtnClick = function (index){
-            Recommendation.deleteEmrInfo(index, $scope.recommendation.emrInfo[index].emrInfoId);
+            Recommendation.deleteEmrInfo($scope.recommendation.emrInfo[index]);
         };
 
         $scope.addKeyInfoBtnClick = function () {
@@ -74,7 +74,7 @@ angular.module('webUiApp')
         };
 
         $scope.deleteKeyInfoBtnClick = function (index){
-            Recommendation.deleteKeyInfo(index, $scope.recommendation.keyInfo[index].keyInfoId);
+            Recommendation.deleteKeyInfo($scope.recommendation.keyInfo[index].keyInfoId);
         };
 
         $scope.editReferencesBtnClick = function() {

@@ -32,7 +32,7 @@ angular.module('webUiApp')
                 .$promise.then(function () {
                     toastr.success('Slettet');
                     //If the recommendation we deleted was the same as the one we're keeping the state of
-                    if(typeof(service.emrInfo != 'undefined') && id ===  service.emrInfo.emrInfoId){
+                    if(typeof(service.emrInfo) != 'undefined' && id ===  service.emrInfo.emrInfoId){
                         service.emrInfo = {};
                     }
                 }, function (error){
