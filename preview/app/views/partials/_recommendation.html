@@ -138,6 +138,12 @@
                   </tr>
                 </tbody>
               </table>
+
+                <div ng-repeat="item in pico.picoOutcomes" ng-show="item.summary.length > 10" class="summary">
+                  <h3>{{item.outcome}}</h3>
+                  <div ng-bind-html="item.summary | unsafe"></div>
+                </div>
+
             </section>
             <section id="picoSummary" class="white-popup mfp-hide picomodal">
               <header class="picomodalheader">

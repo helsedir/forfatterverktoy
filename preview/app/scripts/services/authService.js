@@ -10,7 +10,7 @@
 angular.module('guidelinePreviewApp')
     .factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
 
-    var serviceBase = 'http://localhost:50500/';
+    var serviceBase = 'http://localhost:50500/api/v1/';
     var authServiceFactory = {};
 
     var _authentication = {
