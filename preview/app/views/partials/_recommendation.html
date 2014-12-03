@@ -60,7 +60,7 @@
           </div>
         </div>
         <div id="vitenskap" ng-if="recommendation.picos.length > 0">
-          <section class="pico" ng-repeat="pico in recommendation.picos" ng-hide="pico.isDeleted">
+          <section class="pico" ng-repeat="pico in recommendation.picos">
             <dl class="dl-horizontal">
               <dt>Populasjon</dt>
               <dd ng-bind-html="pico.population | unsafe"></dd>
@@ -73,11 +73,11 @@
             </dl>
 
             <ul class="linklist">
-              <li ng-if="pico.picoOutcomes.length > 0"><a href="#picoEvidensprofil" class="open-popup-link" magnific-popup>Evidensprofil</a></li>
-              <li ng-if="pico.summary.length > 0 "><a href="#picoSummary" class="open-popup-link" magnific-popup>Sammendrag av studie</a></li>
+              <li ng-if="pico.picoOutcomes.length > 0"><a href="#picoEvidensprofil-{{$parent.$parent.$index}}-{{$index}}" class="open-popup-link" magnific-popup>Evidensprofil</a></li>
+              <li ng-if="pico.summary.length > 0 "><a href="#picoSummary-{{$parent.$parent.$index}}-{{$index}}" class="open-popup-link" magnific-popup>Sammendrag av studie</a></li>
               <li ng-if="pico.references.length > 0"><a href="#picoReferences" class="open-popup-link" magnific-popup>Referanser</a></li>
             </ul>
-            <section id="picoEvidensprofil" class="white-popup mfp-hide picomodal">
+            <section id="picoEvidensprofil-{{$parent.$parent.$index}}-{{$index}}" class="white-popup mfp-hide picomodal evidensprofil">
               <header class="picomodalheader">
                 <h1>Evidensprofil</h1>
                 <a href="" class="closemodalbutton">Lukk</a>
@@ -139,13 +139,13 @@
                 </tbody>
               </table>
 
-                <div ng-repeat="item in pico.picoOutcomes" ng-show="item.summary.length > 10" class="summary">
+                <div ng-repeat="item in pico.picoOutcomes" ng-show="item.summary.length > 11" class="summary">
                   <h3>{{item.outcome}}</h3>
                   <div ng-bind-html="item.summary | unsafe"></div>
                 </div>
 
             </section>
-            <section id="picoSummary" class="white-popup mfp-hide picomodal">
+            <section id="picoSummary-{{$parent.$parent.$index}}-{{$index}}" class="white-popup mfp-hide picomodal">
               <header class="picomodalheader">
                 <h1>Sammendrag</h1>
                 <a href="" class="closemodalbutton">Lukk</a>

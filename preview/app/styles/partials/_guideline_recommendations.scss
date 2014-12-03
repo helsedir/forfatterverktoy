@@ -330,7 +330,9 @@
 
 /* Styling for EKG border  */
 .Recommendation .textContainer {
-    @extend .bulletlist;
+  //classes from ../utilities/_snippets.scss
+  @extend .bulletlist;
+  @extend .table;
     margin-left: 50px;
     margin-right: 30px;
     padding-left: 20px;
@@ -370,6 +372,7 @@
         }
     }
     .recommendation-text {
+      @extend .table;
         max-width: 650px;
         padding-top: 15px;
             dl{
@@ -588,6 +591,8 @@
         font-style: italic;
     }
 
+  &.evidensprofil{
+
     @media (max-width: 1150px){
         /* Force table to not be like tables anymore */
             table, thead, tbody, th, td, tr {
@@ -650,6 +655,43 @@
                         td:nth-of-type(8):before {@extend %bold; content: "Antall studier"; }
                         td:nth-of-type(9):before {@extend %bold; content: "Oppf\f8lgingstid"; }
     }
+    table {
+
+
+
+      th {
+        font-weight: bold;
+        text-align: left;
+      }
+      @media (min-width: 1150px){
+        margin: 30px auto;
+        td{
+          text-align: center;
+        }
+        th,td{
+          padding: 5px;
+        }
+
+        td:first-child {
+
+          padding-left: 30px;
+        }
+        th:first-child {
+
+          padding-left: 30px;
+        }
+        td:last-child {
+          padding-right: 30px;
+        }
+        th:last-child {
+          padding-right: 30px;
+        }
+
+        tbody tr:nth-child(even) {
+          background: $colorBase;
+        }
+      }}
+  }
 
     .picomodalheader {
         background: $colorQuillGray;
@@ -671,42 +713,7 @@
             }
         }
     }
-    table {
 
-
-
-        th {
-            font-weight: bold;
-            text-align: left;
-        }
-        @media (min-width: 1150px){
-            margin: 30px auto;
-            td{
-                text-align: center;
-            }
-            th,td{
-                padding: 5px;
-            }
-
-        td:first-child {
-
-            padding-left: 30px;
-        }
-        th:first-child {
-
-            padding-left: 30px;
-        }
-        td:last-child {
-            padding-right: 30px;
-        }
-        th:last-child {
-            padding-right: 30px;
-        }
-
-        tbody tr:nth-child(even) {
-            background: $colorBase;
-        }
-    }}
   .summary {
     padding: 10px 30px;
   }
@@ -720,8 +727,14 @@
 }
 
 .picosummarycontent, .picoreferencescontent{
-    max-width: 600px;
-    padding: 30px 30px;
+  @extend .bulletlist;
+  @extend .table;
+  table {
+    margin: inherit;
+  }
+  min-width: 300px;
+  max-width: 800px;
+  padding: 30px 30px;
 }
 
 #rasjonale, #praktisk, #nokkelinfo, #print{
