@@ -15,7 +15,7 @@
 				<div class="headerGroup">
 					<span class="guidelinetitle smalltitle">{{guideline.title}}</span>
 					<h1 class="sectiontitle">{{section.heading}}</h1>
-					<a href="" title="" class="aboutguidelineicon"><span class="text">Om retningslinjen</span></a>
+					<a href="" title="" class="aboutguidelineicon" about-guideline-expand><span class="text">Om retningslinjen</span></a>
 				</div>
 				<div class="aboutexpand">
 					<div class="metadata">
@@ -104,7 +104,6 @@
 	<script>
 	//We need to wait until Angular is finished with the DOM
 	window.setTimeout(function(){
-	runJqueryUIRecommendationStuff();
-	runJqueryUIStuff();
+    responsiveTables();
 	}, 1000);
 	</script>
