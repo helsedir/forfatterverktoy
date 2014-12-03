@@ -372,7 +372,8 @@
         }
     }
     .recommendation-text {
-      @extend .table;
+      //@extend .table;
+      //@include responsive-table(1000px);
         max-width: 650px;
         padding-top: 15px;
             dl{
@@ -592,76 +593,12 @@
     }
 
   &.evidensprofil{
+    @include responsive-table(1150px);
 
-    @media (max-width: 1150px){
-        /* Force table to not be like tables anymore */
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-            /* Hide table headers (but not display: none;, for accessibility) */
-                thead tr {
-                    position: absolute;
-                    top: -9999px;
-                    left: -9999px;
-                }
-                tr { border-bottom: 15px solid #ccc;
-                    &:first-child{
-                        @media all and (max-width: 600px){
-                            margin-top: 15px;
-                        }
-                    }
-                }
-
-                    td {
-                        /* Behave  like a "row" */
-                        border: none;
-                        position: relative;
-                        padding-left: 250px;
-                        @media all and (max-width: 600px){
-                            padding-left: 15px;
-                        }
-                        &:last-child{
-                            margin-bottom: 5px;
-                        }
-                    }
-
-                    td:before {
-                        /* Now like a table header */
-                        position: absolute;
-                        /* Top/left values mimic padding */
-                        top: 6px;
-                        left: 6px;
-                        width: 45%;
-                        padding-right: 10px;
-                        white-space: nowrap;
-                        @media all and (max-width: 600px){
-                            position: relative;
-                            top: auto;
-                            left: auto;
-                            display: block;
-                        }
-                    }
-                    /*
-                        Label the data
-                        */
-                        %bold {font-weight: bold}
-                        td:nth-of-type(1):before {@extend %bold; content: "Utfall"; }
-                        td:nth-of-type(2):before {@extend %bold; content: "Tiltro til estimatene"; }
-                        td:nth-of-type(3):before {@extend %bold; content: "Relativ effekt"; }
-                        td:nth-of-type(4):before {@extend %bold; content: "Ingen behandling"; }
-                        td:nth-of-type(5):before {@extend %bold; content: "Parental antikoagulasjon"; }
-                        td:nth-of-type(6):before {@extend %bold; content: "Absolutt forskjell"; }
-                        td:nth-of-type(7):before {@extend %bold; content: "Antall inkluderte"; }
-                        td:nth-of-type(8):before {@extend %bold; content: "Antall studier"; }
-                        td:nth-of-type(9):before {@extend %bold; content: "Oppf\f8lgingstid"; }
-    }
     table {
-
-
-
       th {
         font-weight: bold;
-        text-align: left;
+        text-align: center;
       }
       @media (min-width: 1150px){
         margin: 30px auto;

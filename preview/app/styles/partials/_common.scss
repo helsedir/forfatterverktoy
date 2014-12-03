@@ -218,3 +218,50 @@ form.retningslinjerSok {
     }
   }
 }
+
+.breakTable {
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr {
+    border: none !important;
+    display: block;
+  }
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr { //border-bottom: 15px solid #ccc !important;
+
+    &:first-child{
+      margin-top: 15px;
+    }
+  }
+
+  td {
+    /* Behave  like a "row" */
+    position: relative;
+    padding-left: 15px;
+    border-left: 1px solid #000000 !important;
+    border-right: 1px solid #000000 !important;
+    border-bottom: 1px solid #000000 !important;
+    &:last-child{
+      margin-bottom: 5px;
+    }
+    &:first-child{
+      border-top: 1px solid #000000 !important;
+    }
+  }
+
+  td:before {
+    padding-right: 10px;
+    content: attr(data-th);
+    word-break: break-all;
+    font-weight: bold;
+    position: relative;
+    top: auto;
+    left: auto;
+    display: block;
+  }
+}
+

@@ -22,8 +22,50 @@
     }
 }
 
+@mixin responsive-table($breakPoint) {
+  @media (max-width: $breakPoint){
 
-  
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr { border-bottom: 15px solid #ccc;
+      &:first-child{
+        margin-top: 15px;
+      }
+    }
+
+    td {
+      /* Behave  like a "row" */
+      border: none;
+      position: relative;
+      padding-left: 15px;
+      &:last-child{
+        margin-bottom: 5px;
+      }
+    }
+
+    td:before {
+      padding-right: 10px;
+      content: attr(data-th);
+      word-break: break-all;
+      font-weight: bold;
+      position: relative;
+      top: auto;
+      left: auto;
+      display: block;
+    }
+  }
+}
+
+
+
 @mixin vertical-align {
   position: relative;
   top: 50%;

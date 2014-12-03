@@ -21,12 +21,12 @@
         </p>
       </div>
     </div>
-    <div class="textContainer" data-grading="{{recommendation.strength}}">
+    <div class="textContainer" data-grading="{{recommendation.strength}}" responsive-table="648">
       <img ng-show="recommendation.strength == 'strong'" class="pulse closed" src="img/modules/line-ekg-purple.png">
       <img ng-show="recommendation.strength == 'weak'" class="pulse closed" src="img/modules/line-ekg-seagreen.png">
       <img ng-show="recommendation.strength == null" class="pulse closed" src="img/modules/line-ekg-gray.png">
       <img ng-show="recommendation.strength == 'null'" class="pulse closed" src="img/modules/line-ekg-gray.png">
-      <div class="recommendation-text" ng-bind-html="recommendation.text | unsafe" >
+      <div class="recommendation-text" ng-bind-html="recommendation.text | unsafe">
 
       </div>
     </div>
@@ -85,7 +85,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Utfall</th>
+                    <th data-th="Utfall">Utfall</th>
                     <th>Tiltro til estimatene</th>
                     <th>Relativ effekt</th>
                     <th>{{pico.control}}</th>
@@ -96,15 +96,15 @@
                 </thead>
                 <tbody>
                   <tr ng-repeat="item in pico.picoOutcomes">
-                    <td>{{item.outcome}}</td>
-                    <td>
+                    <td data-th="Utfall">{{item.outcome}}</td>
+                    <td data-th="Tiltro til estimatene">
                       <span ng-if="item.certaintyEffect == 1">Veldig lav</span>
                       <span ng-if="item.certaintyEffect == 2">Lav</span>
                       <span ng-if="item.certaintyEffect == 3">Moderat</span>
                       <span ng-if="item.certaintyEffect == 4">Høy</span>
                       <i class="block">{{item.certaintyEffectText}}</i>
                     </td>
-                    <td>
+                    <td data-th="Relativ effekt">
                       <span ng-if="item.relativeEffect == 1">RR</span>
                       <span ng-if="item.relativeEffect == 2">OR</span>
                       <span ng-if="item.relativeEffect == 3">HR</span>
@@ -113,13 +113,13 @@
                         (CI {{item.relativeEffectConfidenceLow}} - {{item.relativeEffectConfidenceHigh}})
                       </i>
                     </td>
-                    <td>{{item.controlCount}}
+                    <td data-th="{{pico.control}}">{{item.controlCount}}
                       <i class="block">per 1000</i>
                     </td>
-                    <td>{{item.interventionCount}}
+                    <td data-th="{{pico.intervention}}">{{item.interventionCount}}
                       <i class="block">per 1000</i>
                     </td>
-                    <td>
+                    <td data-th="Absolutt forskjell">
                       {{item.absoluteDifference}}
                       <span ng-if="item.absoluteDifferenceType == 1">færre</span>
                       <span ng-if="item.absoluteDifferenceType == 2">flere</span>
@@ -134,7 +134,7 @@
                        )
                       </i>
                     </td>
-                    <td>{{item.studies}}</td>
+                    <td data-th="Deltakere (studier), oppfølging">{{item.studies}}</td>
                   </tr>
                 </tbody>
               </table>

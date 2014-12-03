@@ -19,10 +19,19 @@
     margin-top: 15px;
      border-collapse: collapse;
    }
-
+  th{
+    font-weight: bold;
+  }
+  thead{
+    td{
+      font-weight: bold;
+    }
+  }
   td, th {
     border: 1px solid #999;
     padding: 0.5rem;
     text-align: left;
   }
 }
+
+
