@@ -135,6 +135,8 @@
 .Guidelinechildsection .aboutexpand {
     overflow: hidden;
     display: none;
+  @extend .bulletlist;
+  @extend .table;
 
 
     @include breakpoint("tablet"){

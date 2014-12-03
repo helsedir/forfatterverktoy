@@ -1,5 +1,6 @@
 //$(responsiveTables());
 function responsiveTables() {
+
   $('table').each(function (index) {
     var width = $(this).width();
     var containerWidth = $(this).parent().width();
