@@ -33,8 +33,8 @@ function loopTables(context) {
   $(context).find('table').each(function (index) { //find all tables
     var width = $(this).width();
     var containerWidth = $(this).parent().width();
-    console.log('width: '+width+' container: '+containerWidth);
-    console.log(this);
+    //console.log('width: '+width+' container: '+containerWidth);
+    //console.log(this);
     if (containerWidth > 0 && width > containerWidth) {
       addDataHeaders(this); //prepare table for breaking
       $(this).addClass('breakTable');
