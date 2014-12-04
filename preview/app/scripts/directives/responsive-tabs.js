@@ -19,14 +19,15 @@ angular.module('guidelinePreviewApp')
           closed: true,
           slideSpeed: 200
         };
-        
+
         var changeFunction = function(){
           element.easyResponsiveTabs({
-       type: 'default', //Types: default, vertical, accordion           
+       type: 'default', //Types: default, vertical, accordion
        closed: true,// Start closed if in accordion view
        slideSpeed: 200,
-       activate: function(event) { // Callback function if tab is switched  
+       activate: function(event) { // Callback function if tab is switched
         $(this).closest("ul").addClass("open");
+         loopTables($(this).closest('.tabs').find('.resp-tabs-container'));
         }
    });
 

@@ -242,11 +242,13 @@ form.retningslinjerSok {
     /* Behave  like a "row" */
     position: relative;
     padding-left: 15px;
+    word-break: break-all;
     border-left: 1px solid #000000 !important;
     border-right: 1px solid #000000 !important;
     border-bottom: 1px solid #000000 !important;
     &:last-child{
       margin-bottom: 5px;
+
     }
     &:first-child{
       border-top: 1px solid #000000 !important;

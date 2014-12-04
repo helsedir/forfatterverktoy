@@ -74,7 +74,7 @@
 
             <ul class="linklist">
               <li ng-if="pico.picoOutcomes.length > 0"><a href="#picoEvidensprofil-{{$parent.$parent.$index}}-{{$index}}" class="open-popup-link" magnific-popup>Evidensprofil</a></li>
-              <li ng-if="pico.summary.length > 0 "><a href="#picoSummary-{{$parent.$parent.$index}}-{{$index}}" class="open-popup-link" magnific-popup>Sammendrag av studie</a></li>
+              <li ng-if="pico.summary.length > 0 "><a href="#picoSummary-{{$parent.$parent.$index}}-{{$index}}" class="picosummarylink open-popup-link" magnific-popup>Sammendrag av studie</a></li>
               <li ng-if="pico.references.length > 0"><a href="#picoReferences" class="open-popup-link" magnific-popup>Referanser</a></li>
             </ul>
             <section id="picoEvidensprofil-{{$parent.$parent.$index}}-{{$index}}" class="white-popup mfp-hide picomodal evidensprofil">
@@ -145,7 +145,7 @@
                 </div>
 
             </section>
-            <section id="picoSummary-{{$parent.$parent.$index}}-{{$index}}" class="white-popup mfp-hide picomodal">
+            <section id="picoSummary-{{$parent.$parent.$index}}-{{$index}}" class="white-popup mfp-hide picomodal picosummary">
               <header class="picomodalheader">
                 <h1>Sammendrag</h1>
                 <a href="" class="closemodalbutton">Lukk</a>
