@@ -2,9 +2,9 @@
 ## Grunt
 #################
 node_modules/
-package.json
 .sass-cache
 backup/
 .tmp/
 bower_components/
 dist/
+.idea/
