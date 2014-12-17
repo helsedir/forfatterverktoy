@@ -7,7 +7,7 @@
  * # Guideline
  * Factory in the webUiApp.
  */
-var apiUrl = 'http://nfr-api.azurewebsites.net/api/v1/';
+var apiUrl = 'http://localhost:50500/api/v1/';
 angular.module('guidelinePreviewApp')
     .factory('Guideline', ['$resource', function ($resource) {
         return $resource(apiUrl + 'guidelines/:_id', {},

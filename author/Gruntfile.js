@@ -336,11 +336,11 @@ module.exports = function (grunt) {
         overwrite: true,                 // overwrite matched source files
         replacements: [{
           from: "http://localhost:50500/",
-          to: "http://nfr-api.azurewebsites.net/"
+          to: "https://data.helsedirektoratet.no/"
         },
         {
           from: "http://localhost:8000/",
-          to: "http://nfr-web.azurewebsites.net/preview/"
+          to: "https://red-data.helsedirektoratet.no/preview/"
         }]
       }
     },
